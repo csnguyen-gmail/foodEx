@@ -12,6 +12,8 @@
 		6F5C32C6172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C1172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg */; };
 		6F5C32C7172B7FB300BCF8F7 /* hamburger.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C2172B7FB300BCF8F7 /* hamburger.jpg */; };
 		6F5C32C8172B7FB300BCF8F7 /* mushroom_risotto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C3172B7FB300BCF8F7 /* mushroom_risotto.jpg */; };
+		6F5C32CA172B828D00BCF8F7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */; };
+		6F5C32CE172B82EF00BCF8F7 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */; };
 		6F5E91E9172385780059055F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91E8172385780059055F /* UIKit.framework */; };
 		6F5E91EB172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E91ED172385780059055F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EC172385780059055F /* CoreGraphics.framework */; };
@@ -28,8 +30,6 @@
 		6F5E9212172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
-		6FBFE63E172577FC0073A178 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE63D172577FC0073A178 /* GoogleMaps.framework */; };
-		6FBFE640172578080073A178 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBFE63F172578080073A178 /* GoogleMaps.bundle */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -65,6 +65,8 @@
 		6F5C32C1172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_egg_sandwich.jpg; sourceTree = "<group>"; };
 		6F5C32C2172B7FB300BCF8F7 /* hamburger.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hamburger.jpg; sourceTree = "<group>"; };
 		6F5C32C3172B7FB300BCF8F7 /* mushroom_risotto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mushroom_risotto.jpg; sourceTree = "<group>"; };
+		6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = framework/GoogleMaps.framework; sourceTree = "<group>"; };
+		6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		6F5E91E5172385780059055F /* feedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5E91E8172385780059055F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6F5E91EA172385780059055F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,8 +88,6 @@
 		6F5E9219172385780059055F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F5E921B172385780059055F /* feedExTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = feedExTests.h; sourceTree = "<group>"; };
 		6F5E921C172385780059055F /* feedExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = feedExTests.m; sourceTree = "<group>"; };
-		6FBFE63D172577FC0073A178 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		6FBFE63F172578080073A178 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -127,7 +127,7 @@
 				6F5E91E9172385780059055F /* UIKit.framework in Frameworks */,
 				6F5E91EB172385780059055F /* Foundation.framework in Frameworks */,
 				6F5E91ED172385780059055F /* CoreGraphics.framework in Frameworks */,
-				6FBFE63E172577FC0073A178 /* GoogleMaps.framework in Frameworks */,
+				6F5C32CA172B828D00BCF8F7 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +156,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		6F5C32CB172B82B100BCF8F7 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		6F5E91DC172385770059055F = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +186,7 @@
 		6F5E91E7172385780059055F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */,
 				6FBFE641172578860073A178 /* AVFoundation.framework */,
 				6FBFE642172578860073A178 /* CoreData.framework */,
 				6FBFE643172578860073A178 /* CoreLocation.framework */,
@@ -190,8 +199,6 @@
 				6FBFE64A172578860073A178 /* OpenGLES.framework */,
 				6FBFE64B172578860073A178 /* QuartzCore.framework */,
 				6FBFE64C172578860073A178 /* SystemConfiguration.framework */,
-				6FBFE63F172578080073A178 /* GoogleMaps.bundle */,
-				6FBFE63D172577FC0073A178 /* GoogleMaps.framework */,
 				6F5E91E8172385780059055F /* UIKit.framework */,
 				6F5E91EA172385780059055F /* Foundation.framework */,
 				6F5E91EC172385780059055F /* CoreGraphics.framework */,
@@ -203,7 +210,7 @@
 		6F5E91EE172385780059055F /* feedEx */ = {
 			isa = PBXGroup;
 			children = (
-				6FBFE667172817D00073A178 /* CoreData */,
+				6F5C32CB172B82B100BCF8F7 /* CoreData */,
 				6F5E91F7172385780059055F /* FEAppDelegate.h */,
 				6F5E91F8172385780059055F /* FEAppDelegate.m */,
 				6F5E9200172385780059055F /* MainStoryboard_iPhone.storyboard */,
@@ -246,13 +253,6 @@
 				6F5E9218172385780059055F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6FBFE667172817D00073A178 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CoreData;
 			sourceTree = "<group>";
 		};
 		6FCE53431723968A00D61BB9 /* Icons */ = {
@@ -350,7 +350,6 @@
 				6FCE534B1723968A00D61BB9 /* map.png in Resources */,
 				6FCE534C1723968A00D61BB9 /* search.png in Resources */,
 				6FCE534D1723968A00D61BB9 /* spin.png in Resources */,
-				6FBFE640172578080073A178 /* GoogleMaps.bundle in Resources */,
 				6F5C32C4172B7FB300BCF8F7 /* egg_benedict.jpg in Resources */,
 				6F5C32C5172B7FB300BCF8F7 /* full_breakfast.jpg in Resources */,
 				6F5C32C6172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg in Resources */,
@@ -392,6 +391,7 @@
 			files = (
 				6F5E91F5172385780059055F /* main.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
+				6F5C32CE172B82EF00BCF8F7 /* CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +515,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
@@ -531,6 +532,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
@@ -606,6 +608,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6F5E91DD172385770059055F /* Project object */;
 }
