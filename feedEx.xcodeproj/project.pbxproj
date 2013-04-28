@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1BC984172BE626009FDF6E /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC983172BE626009FDF6E /* Place.m */; };
+		6F1BC985172BE626009FDF6E /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC983172BE626009FDF6E /* Place.m */; };
+		6F1BC988172BE626009FDF6E /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC987172BE626009FDF6E /* Food.m */; };
+		6F1BC989172BE626009FDF6E /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC987172BE626009FDF6E /* Food.m */; };
+		6F1BC98C172BE627009FDF6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC98B172BE627009FDF6E /* User.m */; };
+		6F1BC98D172BE627009FDF6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC98B172BE627009FDF6E /* User.m */; };
+		6F1BC990172BE627009FDF6E /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC98F172BE627009FDF6E /* AbstractInfo.m */; };
+		6F1BC991172BE627009FDF6E /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC98F172BE627009FDF6E /* AbstractInfo.m */; };
 		6F5C32C4172B7FB300BCF8F7 /* egg_benedict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32BF172B7FB300BCF8F7 /* egg_benedict.jpg */; };
 		6F5C32C5172B7FB300BCF8F7 /* full_breakfast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C0172B7FB300BCF8F7 /* full_breakfast.jpg */; };
 		6F5C32C6172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C1172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg */; };
@@ -60,6 +68,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F1BC982172BE626009FDF6E /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6F1BC983172BE626009FDF6E /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6F1BC986172BE626009FDF6E /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6F1BC987172BE626009FDF6E /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6F1BC98A172BE627009FDF6E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6F1BC98B172BE627009FDF6E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6F1BC98E172BE627009FDF6E /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6F1BC98F172BE627009FDF6E /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6F5C32BF172B7FB300BCF8F7 /* egg_benedict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = egg_benedict.jpg; sourceTree = "<group>"; };
 		6F5C32C0172B7FB300BCF8F7 /* full_breakfast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = full_breakfast.jpg; sourceTree = "<group>"; };
 		6F5C32C1172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_egg_sandwich.jpg; sourceTree = "<group>"; };
@@ -160,6 +176,14 @@
 			isa = PBXGroup;
 			children = (
 				6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */,
+				6F1BC982172BE626009FDF6E /* Place.h */,
+				6F1BC983172BE626009FDF6E /* Place.m */,
+				6F1BC986172BE626009FDF6E /* Food.h */,
+				6F1BC987172BE626009FDF6E /* Food.m */,
+				6F1BC98A172BE627009FDF6E /* User.h */,
+				6F1BC98B172BE627009FDF6E /* User.m */,
+				6F1BC98E172BE627009FDF6E /* AbstractInfo.h */,
+				6F1BC98F172BE627009FDF6E /* AbstractInfo.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -392,6 +416,10 @@
 				6F5E91F5172385780059055F /* main.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* CoreData.xcdatamodeld in Sources */,
+				6F1BC984172BE626009FDF6E /* Place.m in Sources */,
+				6F1BC988172BE626009FDF6E /* Food.m in Sources */,
+				6F1BC98C172BE627009FDF6E /* User.m in Sources */,
+				6F1BC990172BE627009FDF6E /* AbstractInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
+				6F1BC985172BE626009FDF6E /* Place.m in Sources */,
+				6F1BC989172BE626009FDF6E /* Food.m in Sources */,
+				6F1BC98D172BE627009FDF6E /* User.m in Sources */,
+				6F1BC991172BE627009FDF6E /* AbstractInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
