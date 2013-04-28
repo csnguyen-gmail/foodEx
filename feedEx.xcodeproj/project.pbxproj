@@ -21,7 +21,7 @@
 		6F5C32C7172B7FB300BCF8F7 /* hamburger.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C2172B7FB300BCF8F7 /* hamburger.jpg */; };
 		6F5C32C8172B7FB300BCF8F7 /* mushroom_risotto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C3172B7FB300BCF8F7 /* mushroom_risotto.jpg */; };
 		6F5C32CA172B828D00BCF8F7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */; };
-		6F5C32CE172B82EF00BCF8F7 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */; };
+		6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */; };
 		6F5E91E9172385780059055F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91E8172385780059055F /* UIKit.framework */; };
 		6F5E91EB172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E91ED172385780059055F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EC172385780059055F /* CoreGraphics.framework */; };
@@ -82,7 +82,7 @@
 		6F5C32C2172B7FB300BCF8F7 /* hamburger.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hamburger.jpg; sourceTree = "<group>"; };
 		6F5C32C3172B7FB300BCF8F7 /* mushroom_risotto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mushroom_risotto.jpg; sourceTree = "<group>"; };
 		6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = framework/GoogleMaps.framework; sourceTree = "<group>"; };
-		6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = feedex.xcdatamodel; sourceTree = "<group>"; };
 		6F5E91E5172385780059055F /* feedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5E91E8172385780059055F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6F5E91EA172385780059055F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -175,7 +175,7 @@
 		6F5C32CB172B82B100BCF8F7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */,
+				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
 				6F1BC982172BE626009FDF6E /* Place.h */,
 				6F1BC983172BE626009FDF6E /* Place.m */,
 				6F1BC986172BE626009FDF6E /* Food.h */,
@@ -415,7 +415,7 @@
 			files = (
 				6F5E91F5172385780059055F /* main.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
-				6F5C32CE172B82EF00BCF8F7 /* CoreData.xcdatamodeld in Sources */,
+				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BC984172BE626009FDF6E /* Place.m in Sources */,
 				6F1BC988172BE626009FDF6E /* Food.m in Sources */,
 				6F1BC98C172BE627009FDF6E /* User.m in Sources */,
@@ -642,13 +642,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6F5C32CC172B82EF00BCF8F7 /* CoreData.xcdatamodeld */ = {
+		6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */,
+				6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */,
 			);
-			currentVersion = 6F5C32CD172B82EF00BCF8F7 /* CoreData.xcdatamodel */;
-			path = CoreData.xcdatamodeld;
+			currentVersion = 6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */;
+			path = feedex.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
