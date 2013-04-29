@@ -62,8 +62,14 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
     NSError *error = nil;
+    // preloading
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]]) {
+        NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"feedExDatabaseGenerate" ofType:@"sqlite"]];
+        if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:self.storeURL error:&error]) {
+            NSLog(@"Could copy preloaded data");
+        }
+    }
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error]) {
         

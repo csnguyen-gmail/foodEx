@@ -23,28 +23,13 @@
     }
     
     // not created yet
-    if (users.count == 0) {
-        // load default User
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"default_info" ofType:@"plist"];
-        NSDictionary *defaultInfo = [[NSDictionary alloc] initWithContentsOfFile:path];
-        NSDictionary *userInfo = defaultInfo[@"User"];
-        // and insert to core data
-        user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-        user.createdDate = [NSDate date];
-        user.name = userInfo[@"name"];
-        user.note = userInfo[@"note"];
-        // save core data
-        if ([context hasChanges] && ![context save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
     // created then return
-    else if (users.count == 1) {
+    if (users.count == 1) {
         user = users.lastObject;
     }
     // error
     else {
-        NSLog(@"Duplicate User");
+        NSLog(@"Load User failed");
     }    
     return user;
 }

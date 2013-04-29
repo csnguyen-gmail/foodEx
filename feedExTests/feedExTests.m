@@ -31,8 +31,6 @@
 #pragma mark - CoreData test;
 - (void)testLoadUser
 {
-    // remove core data first
-    [[NSFileManager defaultManager] removeItemAtURL:_coredata.storeURL  error:nil];
     User* user;
     // in case core data empty
     user = [User getUserInManagedObjectContext:_coredata.managedObjectContext];
