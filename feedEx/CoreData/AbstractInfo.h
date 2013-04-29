@@ -2,7 +2,7 @@
 //  AbstractInfo.h
 //  feedEx
 //
-//  Created by csnguyen on 4/27/13.
+//  Created by csnguyen on 4/28/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString * photoThumbnailUrl;
 @property (nonatomic, retain) NSString * photoOriginUrl;
 @property (nonatomic, retain) NSString * note;
+@property (nonatomic, retain) NSDate * createdDate;
 
 @end

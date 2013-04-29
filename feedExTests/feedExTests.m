@@ -7,14 +7,18 @@
 //
 
 #import "feedExTests.h"
+#import "FECoreDataController.h"
+#import "User+Additional.h"
 
-@implementation feedExTests
+@implementation feedExTests{
+    FECoreDataController *_coredata;
+}
 
 - (void)setUp
 {
     [super setUp];
-    
     // Set-up code here.
+    _coredata = [[FECoreDataController alloc] init];
 }
 
 - (void)tearDown
@@ -24,9 +28,20 @@
     [super tearDown];
 }
 
-- (void)testExample
+#pragma mark - CoreData test;
+- (void)testLoadUser
 {
-    STFail(@"Unit tests are not implemented yet in feedExTests");
+    // remove core data first
+    [[NSFileManager defaultManager] removeItemAtURL:_coredata.storeURL  error:nil];
+    User* user;
+    // in case core data empty
+    user = [User getUserInManagedObjectContext:_coredata.managedObjectContext];
+    STAssertNotNil(user, @"Can not created User");
+    // in case core data not empty
+    user = [User getUserInManagedObjectContext:_coredata.managedObjectContext];
+    STAssertNotNil(user, @"Can not created User");
+    user = [User getUserInManagedObjectContext:_coredata.managedObjectContext];
+    STAssertNotNil(user, @"Can not created User");
 }
 
 @end

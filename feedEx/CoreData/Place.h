@@ -2,7 +2,7 @@
 //  Place.h
 //  feedEx
 //
-//  Created by csnguyen on 4/27/13.
+//  Created by csnguyen on 4/29/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -19,10 +19,11 @@
 @property (nonatomic, retain) NSNumber * costlyLevel;
 @property (nonatomic, retain) NSNumber * elegantLevel;
 @property (nonatomic, retain) NSNumber * longtitude;
-@property (nonatomic, retain) NSNumber * mealType;
+@property (nonatomic, retain) NSString * mealType;
 @property (nonatomic, retain) NSNumber * rank;
 @property (nonatomic, retain) NSNumber * timesCheckin;
 @property (nonatomic, retain) NSNumber * tastyLavel;
+@property (nonatomic, retain) NSNumber * attitude;
 @property (nonatomic, retain) NSSet *foods;
 @property (nonatomic, retain) User *whose;
 @end

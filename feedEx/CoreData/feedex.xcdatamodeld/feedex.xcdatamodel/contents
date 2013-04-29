@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AbstractInfo" representedClassName="AbstractInfo" isAbstract="YES" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoOriginUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,11 +15,12 @@
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="averageCost" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="costlyLevel" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="1" syncable="YES"/>
         <attribute name="elegantLevel" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="1" syncable="YES"/>
         <attribute name="longtitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="mealType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mealType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="tastyLavel" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="1" syncable="YES"/>
         <attribute name="timesCheckin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -36,8 +38,8 @@
     </entity>
     <elements>
         <element name="Food" positionX="169" positionY="90" width="128" height="103"/>
-        <element name="Place" positionX="-110" positionY="61" width="128" height="236"/>
+        <element name="Place" positionX="-110" positionY="61" width="128" height="251"/>
         <element name="User" positionX="-324" positionY="109" width="128" height="86"/>
-        <element name="AbstractInfo" positionX="-108" positionY="-126" width="128" height="103"/>
+        <element name="AbstractInfo" positionX="-108" positionY="-126" width="128" height="118"/>
     </elements>
 </model>
