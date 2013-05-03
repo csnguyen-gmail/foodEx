@@ -11,11 +11,6 @@
 		6FA7DE9C172E7FFF004404E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA7DE9B172E7FFF004404E6 /* Foundation.framework */; };
 		6FA7DE9F172E7FFF004404E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DE9E172E7FFF004404E6 /* main.m */; };
 		6FA7DEA6172E8000004404E6 /* feedExDatabaseGenerate.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6FA7DEA5172E8000004404E6 /* feedExDatabaseGenerate.1 */; };
-		6FA7DEBC172E8043004404E6 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DEB3172E8043004404E6 /* AbstractInfo.m */; };
-		6FA7DEBD172E8043004404E6 /* feedex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DEB4172E8043004404E6 /* feedex.xcdatamodeld */; };
-		6FA7DEBE172E8043004404E6 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DEB7172E8043004404E6 /* Food.m */; };
-		6FA7DEBF172E8043004404E6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DEB9172E8043004404E6 /* Place.m */; };
-		6FA7DEC0172E8043004404E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7DEBB172E8043004404E6 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,15 +33,6 @@
 		6FA7DE9E172E7FFF004404E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6FA7DEA1172E7FFF004404E6 /* feedExDatabaseGenerate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "feedExDatabaseGenerate-Prefix.pch"; sourceTree = "<group>"; };
 		6FA7DEA5172E8000004404E6 /* feedExDatabaseGenerate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = feedExDatabaseGenerate.1; sourceTree = "<group>"; };
-		6FA7DEB2172E8043004404E6 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractInfo.h; path = ../../feedEx/CoreData/AbstractInfo.h; sourceTree = "<group>"; };
-		6FA7DEB3172E8043004404E6 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractInfo.m; path = ../../feedEx/CoreData/AbstractInfo.m; sourceTree = "<group>"; };
-		6FA7DEB5172E8043004404E6 /* feedex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = feedex.xcdatamodel; sourceTree = "<group>"; };
-		6FA7DEB6172E8043004404E6 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Food.h; path = ../../feedEx/CoreData/Food.h; sourceTree = "<group>"; };
-		6FA7DEB7172E8043004404E6 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Food.m; path = ../../feedEx/CoreData/Food.m; sourceTree = "<group>"; };
-		6FA7DEB8172E8043004404E6 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Place.h; path = ../../feedEx/CoreData/Place.h; sourceTree = "<group>"; };
-		6FA7DEB9172E8043004404E6 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Place.m; path = ../../feedEx/CoreData/Place.m; sourceTree = "<group>"; };
-		6FA7DEBA172E8043004404E6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../feedEx/CoreData/User.h; sourceTree = "<group>"; };
-		6FA7DEBB172E8043004404E6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../../feedEx/CoreData/User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,15 +77,6 @@
 		6FA7DE9D172E7FFF004404E6 /* feedExDatabaseGenerate */ = {
 			isa = PBXGroup;
 			children = (
-				6FA7DEB4172E8043004404E6 /* feedex.xcdatamodeld */,
-				6FA7DEB2172E8043004404E6 /* AbstractInfo.h */,
-				6FA7DEB3172E8043004404E6 /* AbstractInfo.m */,
-				6FA7DEB6172E8043004404E6 /* Food.h */,
-				6FA7DEB7172E8043004404E6 /* Food.m */,
-				6FA7DEB8172E8043004404E6 /* Place.h */,
-				6FA7DEB9172E8043004404E6 /* Place.m */,
-				6FA7DEBA172E8043004404E6 /* User.h */,
-				6FA7DEBB172E8043004404E6 /* User.m */,
 				6FA7DE9E172E7FFF004404E6 /* main.m */,
 				6FA7DEA5172E8000004404E6 /* feedExDatabaseGenerate.1 */,
 				6FA7DEA0172E7FFF004404E6 /* Supporting Files */,
@@ -167,11 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FA7DE9F172E7FFF004404E6 /* main.m in Sources */,
-				6FA7DEBC172E8043004404E6 /* AbstractInfo.m in Sources */,
-				6FA7DEBD172E8043004404E6 /* feedex.xcdatamodeld in Sources */,
-				6FA7DEBE172E8043004404E6 /* Food.m in Sources */,
-				6FA7DEBF172E8043004404E6 /* Place.m in Sources */,
-				6FA7DEC0172E8043004404E6 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,22 +246,9 @@
 				6FA7DEAB172E8000004404E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		6FA7DEB4172E8043004404E6 /* feedex.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				6FA7DEB5172E8043004404E6 /* feedex.xcdatamodel */,
-			);
-			currentVersion = 6FA7DEB5172E8043004404E6 /* feedex.xcdatamodel */;
-			name = feedex.xcdatamodeld;
-			path = ../../feedEx/CoreData/feedex.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 6FA7DE8E172E7FFF004404E6 /* Project object */;
 }

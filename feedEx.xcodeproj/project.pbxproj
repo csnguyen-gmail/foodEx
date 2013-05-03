@@ -7,18 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F1BC9E7172D377C009FDF6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9E6172D377C009FDF6E /* User.m */; };
-		6F1BC9E8172D377C009FDF6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9E6172D377C009FDF6E /* User.m */; };
-		6F1BC9EB172D377C009FDF6E /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9EA172D377C009FDF6E /* Food.m */; };
-		6F1BC9EC172D377C009FDF6E /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9EA172D377C009FDF6E /* Food.m */; };
-		6F1BC9F3172D377C009FDF6E /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9F2172D377C009FDF6E /* AbstractInfo.m */; };
-		6F1BC9F4172D377C009FDF6E /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9F2172D377C009FDF6E /* AbstractInfo.m */; };
-		6F1BC9FF172E162B009FDF6E /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9FE172E162B009FDF6E /* Place.m */; };
-		6F1BCA00172E162B009FDF6E /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BC9FE172E162B009FDF6E /* Place.m */; };
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
-		6F1BCA07172E2B6E009FDF6E /* User+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA06172E2B6E009FDF6E /* User+Additional.m */; };
-		6F1BCA08172E2B6E009FDF6E /* User+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA06172E2B6E009FDF6E /* User+Additional.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6F5C32C4172B7FB300BCF8F7 /* egg_benedict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32BF172B7FB300BCF8F7 /* egg_benedict.jpg */; };
 		6F5C32C5172B7FB300BCF8F7 /* full_breakfast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C32C0172B7FB300BCF8F7 /* full_breakfast.jpg */; };
@@ -43,8 +33,14 @@
 		6F5E9212172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
-		6FA7DEC4172E8A76004404E6 /* feedExDatabaseGenerate.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6FA7DEC3172E8A76004404E6 /* feedExDatabaseGenerate.sqlite */; };
-		6FA7DEC5172E8A76004404E6 /* feedExDatabaseGenerate.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6FA7DEC3172E8A76004404E6 /* feedExDatabaseGenerate.sqlite */; };
+		6F91DFE31733BBE500AF8D8F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFE21733BBE500AF8D8F /* Place.m */; };
+		6F91DFE41733BBE500AF8D8F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFE21733BBE500AF8D8F /* Place.m */; };
+		6F91DFE71733BBE500AF8D8F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFE61733BBE500AF8D8F /* Food.m */; };
+		6F91DFE81733BBE500AF8D8F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFE61733BBE500AF8D8F /* Food.m */; };
+		6F91DFEB1733BBE600AF8D8F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFEA1733BBE600AF8D8F /* User.m */; };
+		6F91DFEC1733BBE600AF8D8F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFEA1733BBE600AF8D8F /* User.m */; };
+		6F91DFEF1733BBE600AF8D8F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFEE1733BBE600AF8D8F /* AbstractInfo.m */; };
+		6F91DFF01733BBE600AF8D8F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F91DFEE1733BBE600AF8D8F /* AbstractInfo.m */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -82,18 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F1BC9E5172D377C009FDF6E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6F1BC9E6172D377C009FDF6E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6F1BC9E9172D377C009FDF6E /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6F1BC9EA172D377C009FDF6E /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6F1BC9F1172D377C009FDF6E /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6F1BC9F2172D377C009FDF6E /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
-		6F1BC9FD172E162B009FDF6E /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6F1BC9FE172E162B009FDF6E /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
-		6F1BCA05172E2B6E009FDF6E /* User+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Additional.h"; sourceTree = "<group>"; };
-		6F1BCA06172E2B6E009FDF6E /* User+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Additional.m"; sourceTree = "<group>"; };
 		6F5C32BF172B7FB300BCF8F7 /* egg_benedict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = egg_benedict.jpg; sourceTree = "<group>"; };
 		6F5C32C0172B7FB300BCF8F7 /* full_breakfast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = full_breakfast.jpg; sourceTree = "<group>"; };
 		6F5C32C1172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_egg_sandwich.jpg; sourceTree = "<group>"; };
@@ -122,8 +108,15 @@
 		6F5E9219172385780059055F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F5E921B172385780059055F /* feedExTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = feedExTests.h; sourceTree = "<group>"; };
 		6F5E921C172385780059055F /* feedExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = feedExTests.m; sourceTree = "<group>"; };
+		6F91DFE11733BBE500AF8D8F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6F91DFE21733BBE500AF8D8F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6F91DFE51733BBE500AF8D8F /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6F91DFE61733BBE500AF8D8F /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6F91DFE91733BBE600AF8D8F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6F91DFEA1733BBE600AF8D8F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6F91DFED1733BBE600AF8D8F /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6F91DFEE1733BBE600AF8D8F /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = feedExDatabaseGenerate.xcodeproj; path = feedExDatabaseGenerate/feedExDatabaseGenerate.xcodeproj; sourceTree = "<group>"; };
-		6FA7DEC3172E8A76004404E6 /* feedExDatabaseGenerate.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = feedExDatabaseGenerate.sqlite; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -197,16 +190,14 @@
 			isa = PBXGroup;
 			children = (
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6F1BC9F1172D377C009FDF6E /* AbstractInfo.h */,
-				6F1BC9F2172D377C009FDF6E /* AbstractInfo.m */,
-				6F1BC9FD172E162B009FDF6E /* Place.h */,
-				6F1BC9FE172E162B009FDF6E /* Place.m */,
-				6F1BC9E9172D377C009FDF6E /* Food.h */,
-				6F1BC9EA172D377C009FDF6E /* Food.m */,
-				6F1BC9E5172D377C009FDF6E /* User.h */,
-				6F1BC9E6172D377C009FDF6E /* User.m */,
-				6F1BCA05172E2B6E009FDF6E /* User+Additional.h */,
-				6F1BCA06172E2B6E009FDF6E /* User+Additional.m */,
+				6F91DFE11733BBE500AF8D8F /* Place.h */,
+				6F91DFE21733BBE500AF8D8F /* Place.m */,
+				6F91DFE51733BBE500AF8D8F /* Food.h */,
+				6F91DFE61733BBE500AF8D8F /* Food.m */,
+				6F91DFE91733BBE600AF8D8F /* User.h */,
+				6F91DFEA1733BBE600AF8D8F /* User.m */,
+				6F91DFED1733BBE600AF8D8F /* AbstractInfo.h */,
+				6F91DFEE1733BBE600AF8D8F /* AbstractInfo.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
 				6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */,
 			);
@@ -275,7 +266,6 @@
 			children = (
 				6F5C32BE172B7FB300BCF8F7 /* Images */,
 				6FCE53431723968A00D61BB9 /* Icons */,
-				6FA7DEC3172E8A76004404E6 /* feedExDatabaseGenerate.sqlite */,
 				6F5E91F0172385780059055F /* feedEx-Info.plist */,
 				6F5E91F1172385780059055F /* InfoPlist.strings */,
 				6F5E91F4172385780059055F /* main.m */,
@@ -430,7 +420,6 @@
 				6F5C32C6172B7FB300BCF8F7 /* ham_and_egg_sandwich.jpg in Resources */,
 				6F5C32C7172B7FB300BCF8F7 /* hamburger.jpg in Resources */,
 				6F5C32C8172B7FB300BCF8F7 /* mushroom_risotto.jpg in Resources */,
-				6FA7DEC4172E8A76004404E6 /* feedExDatabaseGenerate.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5E921A172385780059055F /* InfoPlist.strings in Resources */,
-				6FA7DEC5172E8A76004404E6 /* feedExDatabaseGenerate.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,12 +457,11 @@
 				6F5E91F5172385780059055F /* main.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
-				6F1BC9E7172D377C009FDF6E /* User.m in Sources */,
-				6F1BC9EB172D377C009FDF6E /* Food.m in Sources */,
-				6F1BC9F3172D377C009FDF6E /* AbstractInfo.m in Sources */,
-				6F1BC9FF172E162B009FDF6E /* Place.m in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
-				6F1BCA07172E2B6E009FDF6E /* User+Additional.m in Sources */,
+				6F91DFE31733BBE500AF8D8F /* Place.m in Sources */,
+				6F91DFE71733BBE500AF8D8F /* Food.m in Sources */,
+				6F91DFEB1733BBE600AF8D8F /* User.m in Sources */,
+				6F91DFEF1733BBE600AF8D8F /* AbstractInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,12 +470,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
-				6F1BC9E8172D377C009FDF6E /* User.m in Sources */,
-				6F1BC9EC172D377C009FDF6E /* Food.m in Sources */,
-				6F1BC9F4172D377C009FDF6E /* AbstractInfo.m in Sources */,
-				6F1BCA00172E162B009FDF6E /* Place.m in Sources */,
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
-				6F1BCA08172E2B6E009FDF6E /* User+Additional.m in Sources */,
+				6F91DFE41733BBE500AF8D8F /* Place.m in Sources */,
+				6F91DFE81733BBE500AF8D8F /* Food.m in Sources */,
+				6F91DFEC1733BBE600AF8D8F /* User.m in Sources */,
+				6F91DFF01733BBE600AF8D8F /* AbstractInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +628,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					TEST,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "feedExTests/feedExTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

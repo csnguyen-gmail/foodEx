@@ -2,7 +2,7 @@
 //  AbstractInfo.m
 //  feedEx
 //
-//  Created by csnguyen on 4/28/13.
+//  Created by csnguyen on 5/3/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -11,10 +11,10 @@
 
 @implementation AbstractInfo
 
-@dynamic name;
-@dynamic photoThumbnailUrl;
-@dynamic photoOriginUrl;
-@dynamic note;
 @dynamic createdDate;
+@dynamic name;
+@dynamic note;
+@dynamic photoOriginUrl;
+@dynamic photoThumbnailUrl;
 
 @end

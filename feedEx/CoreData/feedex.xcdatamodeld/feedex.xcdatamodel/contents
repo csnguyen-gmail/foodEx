@@ -27,19 +27,21 @@
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="where" inverseEntity="Food" syncable="YES"/>
         <relationship name="whose" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="places" inverseEntity="User" syncable="YES"/>
         <fetchedProperty name="bestFoods" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="Place" predicateString="isFavorite == YES"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND where == $FETCH_SOURCE"/>
         </fetchedProperty>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="AbstractInfo" syncable="YES">
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Place" inverseName="whose" inverseEntity="Place" syncable="YES"/>
         <fetchedProperty name="bestFoods" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="User" predicateString="foods.isBest == YES"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND where.whose == $FETCH_SOURCE"/>
         </fetchedProperty>
     </entity>
+    <fetchRequest name="GetPlaceByUserName" entity="Place" predicateString="whose.name == $NAME"/>
+    <fetchRequest name="GetUser" entity="User"/>
     <elements>
+        <element name="AbstractInfo" positionX="-108" positionY="-126" width="128" height="118"/>
         <element name="Food" positionX="169" positionY="90" width="128" height="103"/>
         <element name="Place" positionX="-110" positionY="61" width="128" height="251"/>
         <element name="User" positionX="-324" positionY="109" width="128" height="86"/>
-        <element name="AbstractInfo" positionX="-108" positionY="-126" width="128" height="118"/>
     </elements>
 </model>

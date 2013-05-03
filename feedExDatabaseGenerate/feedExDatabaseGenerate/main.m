@@ -5,8 +5,6 @@
 //  Created by csnguyen on 4/29/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
-#import "User.h"
-
 static NSManagedObjectModel *managedObjectModel()
 {
     static NSManagedObjectModel *model = nil;
@@ -60,19 +58,6 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         // Create the managed object context
         NSManagedObjectContext *context = managedObjectContext();
-        
-        // create user
-        User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-        user.createdDate = [NSDate date];
-        user.name = @"Test User";
-        user.note = @"This is Test User";
-        
-        // Save the managed object context
-        NSError *error = nil;
-        if (![context save:&error]) {
-            NSLog(@"Error while saving %@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
-            exit(1);
-        }
     }
     return 0;
 }

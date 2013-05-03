@@ -7,7 +7,11 @@
 //
 
 #import "FECoreDataController.h"
+#ifdef TEST
 #define DATA_BASE_NAME @"feedex.sqlite"
+#else
+#define DATA_BASE_NAME @"feedex_test.sqlite"
+#endif
 
 @implementation FECoreDataController
 @synthesize managedObjectContext = _managedObjectContext;
@@ -23,7 +27,7 @@
     }
     
     _storeURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    _storeURL = [_storeURL URLByAppendingPathComponent:@"feedex.sqlite"];
+    _storeURL = [_storeURL URLByAppendingPathComponent:DATA_BASE_NAME];
     
     return _storeURL;
 }
@@ -63,13 +67,16 @@
         return _persistentStoreCoordinator;
     }
     NSError *error = nil;
-    // preloading
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]]) {
-        NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"feedExDatabaseGenerate" ofType:@"sqlite"]];
-        if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:self.storeURL error:&error]) {
-            NSLog(@"Could copy preloaded data");
-        }
-    }
+//    // preloading
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]]) {
+//        NSString *preloadPath = [[NSBundle mainBundle] pathForResource:@"feedExDatabaseGenerate" ofType:@"sqlite"];
+//        if (preloadPath) {
+//            NSURL *preloadURL = [NSURL fileURLWithPath:preloadPath];
+//            if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:self.storeURL error:&error]) {
+//                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            }
+//        }
+//    }
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error]) {
         

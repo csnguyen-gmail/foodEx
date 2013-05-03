@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import <CoreData/CoreData.h>
 
 @interface FECoreDataController : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
