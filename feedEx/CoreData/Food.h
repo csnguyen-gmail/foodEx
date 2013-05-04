@@ -2,7 +2,7 @@
 //  Food.h
 //  feedEx
 //
-//  Created by csnguyen on 5/3/13.
+//  Created by csnguyen on 5/4/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSNumber * cost;
 @property (nonatomic, retain) NSString * foodType;
 @property (nonatomic, retain) NSNumber * isBest;
-@property (nonatomic, retain) Place *where;
+@property (nonatomic, retain) Place *placeOwner;
 
 @end

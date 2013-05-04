@@ -2,7 +2,7 @@
 //  Place.h
 //  feedEx
 //
-//  Created by csnguyen on 5/3/13.
+//  Created by csnguyen on 5/4/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSNumber * tastyLavel;
 @property (nonatomic, retain) NSNumber * timesCheckin;
 @property (nonatomic, retain) NSSet *foods;
-@property (nonatomic, retain) User *whose;
+@property (nonatomic, retain) User *userOwner;
 @end
 
 @interface Place (CoreDataGeneratedAccessors)

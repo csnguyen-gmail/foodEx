@@ -4,14 +4,18 @@
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photoOriginUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photoThumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailPhoto" optional="YES" attributeType="Transformable" valueTransformerName="PngImageTransformer" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="owner" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Food" representedClassName="Food" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="foodType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isBest" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="where" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="foods" inverseEntity="Place" syncable="YES"/>
+        <relationship name="placeOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="foods" inverseEntity="Place" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName="PngImageTransformer" storedInTruthFile="YES" syncable="YES"/>
+        <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AbstractInfo" inverseName="photos" inverseEntity="AbstractInfo" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,24 +28,25 @@
         <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="tastyLavel" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="1" syncable="YES"/>
         <attribute name="timesCheckin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="where" inverseEntity="Food" syncable="YES"/>
-        <relationship name="whose" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="places" inverseEntity="User" syncable="YES"/>
+        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="placeOwner" inverseEntity="Food" syncable="YES"/>
+        <relationship name="userOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="places" inverseEntity="User" syncable="YES"/>
         <fetchedProperty name="bestFoods" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND where == $FETCH_SOURCE"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND placeOwner == $FETCH_SOURCE"/>
         </fetchedProperty>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="AbstractInfo" syncable="YES">
-        <relationship name="places" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Place" inverseName="whose" inverseEntity="Place" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Place" inverseName="userOwner" inverseEntity="Place" syncable="YES"/>
         <fetchedProperty name="bestFoods" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND where.whose == $FETCH_SOURCE"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Food" predicateString="isBest == YES AND placeOwner.userOwner == $FETCH_SOURCE"/>
         </fetchedProperty>
     </entity>
-    <fetchRequest name="GetPlaceByUserName" entity="Place" predicateString="whose.name == $NAME"/>
+    <fetchRequest name="GetPlaceByUserName" entity="Place" predicateString="userOwner.name == $NAME"/>
     <fetchRequest name="GetUser" entity="User"/>
     <elements>
-        <element name="AbstractInfo" positionX="-108" positionY="-126" width="128" height="118"/>
+        <element name="AbstractInfo" positionX="-108" positionY="-135" width="128" height="118"/>
         <element name="Food" positionX="169" positionY="90" width="128" height="103"/>
         <element name="Place" positionX="-110" positionY="61" width="128" height="251"/>
         <element name="User" positionX="-324" positionY="109" width="128" height="86"/>
+        <element name="Photo" positionX="70" positionY="-108" width="128" height="73"/>
     </elements>
 </model>

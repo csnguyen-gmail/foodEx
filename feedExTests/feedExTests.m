@@ -27,12 +27,12 @@
     for (int i = 0; i < 10; i++) {
         Place *place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = [NSString stringWithFormat:@"Place%d", i];
-        place.whose = user;
+        place.userOwner = user;
         for (int j = 0; j < 2; j++) {
             Food *food = [NSEntityDescription insertNewObjectForEntityForName:@"Food" inManagedObjectContext:context];
             food.name = [NSString stringWithFormat:@"Food%d_%d", i, j];
             food.isBest = @(j%2==0);
-            food.where = place;
+            food.placeOwner = place;
         }
     }
 }
