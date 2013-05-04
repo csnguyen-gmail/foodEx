@@ -9,29 +9,21 @@
 #import "PngImageTransformer.h"
 
 @implementation PngImageTransformer
-+ (Class)transformedValueClass
-{
+
++ (Class)transformedValueClass {
     return [NSData class];
 }
 
-+ (BOOL)allowsReverseTransformation
-{
++ (BOOL)allowsReverseTransformation {
     return YES;
 }
 
-- (id)transformedValue:(id)value
-{
-    if (value == nil)
-        return nil;
-    
-    if ([value isKindOfClass:[NSData class]])
-        return value;
-    
-    return UIImagePNGRepresentation((UIImage *)value);
+// Takes a UIImage and returns NSData
+- (id)transformedValue:(id)value {
+    return UIImagePNGRepresentation(value);
 }
 
-- (id)reverseTransformedValue:(id)value
-{
-    return [UIImage imageWithData:(NSData *)value];
-}
-@end
+// Takes NSData from Core Data and returns a UIImage
+- (id)reverseTransformedValue:(id)value {
+    return [UIImage imageWithData:value];
+}@end

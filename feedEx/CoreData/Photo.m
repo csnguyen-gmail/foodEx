@@ -12,7 +12,7 @@
 
 @implementation Photo
 
-@dynamic image;
+@dynamic imageData;
 @dynamic owner;
 
 @end

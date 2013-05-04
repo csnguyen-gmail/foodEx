@@ -14,7 +14,7 @@
         <relationship name="placeOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="foods" inverseEntity="Place" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
-        <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName="PngImageTransformer" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" valueTransformerName="PngImageTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AbstractInfo" inverseName="photos" inverseEntity="AbstractInfo" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">

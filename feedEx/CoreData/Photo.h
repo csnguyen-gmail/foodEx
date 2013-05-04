@@ -13,7 +13,7 @@
 
 @interface Photo : NSManagedObject
 
-@property (nonatomic, retain) id image;
+@property (nonatomic, retain) NSData * imageData;
 @property (nonatomic, retain) AbstractInfo *owner;
 
 @end
