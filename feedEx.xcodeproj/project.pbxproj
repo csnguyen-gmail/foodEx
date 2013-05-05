@@ -7,16 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0D6CA8173640CD0008E12F /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CA7173640CD0008E12F /* Place+Extension.m */; };
+		6F0D6CA9173640CD0008E12F /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CA7173640CD0008E12F /* Place+Extension.m */; };
+		6F0D6D00173644650008E12F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CFF173644650008E12F /* AbstractInfo.m */; };
+		6F0D6D01173644650008E12F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CFF173644650008E12F /* AbstractInfo.m */; };
+		6F0D6D04173644680008E12F /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D03173644670008E12F /* Address.m */; };
+		6F0D6D05173644680008E12F /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D03173644670008E12F /* Address.m */; };
+		6F0D6D081736446B0008E12F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D071736446A0008E12F /* User.m */; };
+		6F0D6D091736446B0008E12F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D071736446A0008E12F /* User.m */; };
+		6F0D6D0C173644710008E12F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0B1736446F0008E12F /* Tag.m */; };
+		6F0D6D0D173644710008E12F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0B1736446F0008E12F /* Tag.m */; };
+		6F0D6D10173644790008E12F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0F173644770008E12F /* Food.m */; };
+		6F0D6D11173644790008E12F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0F173644770008E12F /* Food.m */; };
+		6F0D6D14173644820008E12F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D131736447F0008E12F /* Photo.m */; };
+		6F0D6D15173644820008E12F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D131736447F0008E12F /* Photo.m */; };
+		6F0D6D181736448E0008E12F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D171736448A0008E12F /* Place.m */; };
+		6F0D6D191736448E0008E12F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D171736448A0008E12F /* Place.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
-		6F12E64B17353D58007A38DA /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E64A17353D57007A38DA /* Food.m */; };
-		6F12E64C17353D58007A38DA /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E64A17353D57007A38DA /* Food.m */; };
-		6F12E64F17353D59007A38DA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E64E17353D58007A38DA /* User.m */; };
-		6F12E65017353D59007A38DA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E64E17353D58007A38DA /* User.m */; };
-		6F12E65717353D5A007A38DA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65617353D59007A38DA /* Place.m */; };
-		6F12E65817353D5A007A38DA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65617353D59007A38DA /* Place.m */; };
-		6F12E65B17353D5A007A38DA /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65A17353D5A007A38DA /* AbstractInfo.m */; };
-		6F12E65C17353D5A007A38DA /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65A17353D5A007A38DA /* AbstractInfo.m */; };
 		6F12E65F1735409A007A38DA /* AbstractInfo+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */; };
 		6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */; };
 		6F12E66317354466007A38DA /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E66217354466007A38DA /* UIImage+Extension.m */; };
@@ -31,8 +39,6 @@
 		6F12E67717354D27007A38DA /* hamburger.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E66E17354D27007A38DA /* hamburger.jpg */; };
 		6F12E67817354D27007A38DA /* mushroom_risotto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E66F17354D27007A38DA /* mushroom_risotto.jpg */; };
 		6F12E67917354D27007A38DA /* mushroom_risotto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E66F17354D27007A38DA /* mushroom_risotto.jpg */; };
-		6F12E6FC17355C7D007A38DA /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E6FB17355C7C007A38DA /* Photo.m */; };
-		6F12E6FD17355C7D007A38DA /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E6FB17355C7C007A38DA /* Photo.m */; };
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
@@ -91,16 +97,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F0D6CA6173640CC0008E12F /* Place+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Extension.h"; sourceTree = "<group>"; };
+		6F0D6CA7173640CD0008E12F /* Place+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Extension.m"; sourceTree = "<group>"; };
+		6F0D6CFE173644640008E12F /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6F0D6CFF173644650008E12F /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6F0D6D02173644660008E12F /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		6F0D6D03173644670008E12F /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		6F0D6D06173644690008E12F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6F0D6D071736446A0008E12F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6F0D6D0A1736446D0008E12F /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		6F0D6D0B1736446F0008E12F /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		6F0D6D0E173644740008E12F /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6F0D6D0F173644770008E12F /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6F0D6D121736447D0008E12F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6F0D6D131736447F0008E12F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		6F0D6D16173644870008E12F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6F0D6D171736448A0008E12F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
-		6F12E64917353D57007A38DA /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6F12E64A17353D57007A38DA /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6F12E64D17353D58007A38DA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6F12E64E17353D58007A38DA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6F12E65517353D59007A38DA /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6F12E65617353D59007A38DA /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		6F12E65917353D5A007A38DA /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6F12E65A17353D5A007A38DA /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AbstractInfo+Extension.h"; sourceTree = "<group>"; };
 		6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AbstractInfo+Extension.m"; sourceTree = "<group>"; };
 		6F12E66117354466007A38DA /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
@@ -110,8 +124,6 @@
 		6F12E66D17354D27007A38DA /* ham_and_egg_sandwich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_egg_sandwich.jpg; sourceTree = "<group>"; };
 		6F12E66E17354D27007A38DA /* hamburger.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hamburger.jpg; sourceTree = "<group>"; };
 		6F12E66F17354D27007A38DA /* mushroom_risotto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mushroom_risotto.jpg; sourceTree = "<group>"; };
-		6F12E6FA17355C7B007A38DA /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6F12E6FB17355C7C007A38DA /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
 		6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = framework/GoogleMaps.framework; sourceTree = "<group>"; };
@@ -210,25 +222,31 @@
 		6F5C32CB172B82B100BCF8F7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				6F0D6D02173644660008E12F /* Address.h */,
+				6F0D6D03173644670008E12F /* Address.m */,
+				6F0D6CFE173644640008E12F /* AbstractInfo.h */,
+				6F0D6CFF173644650008E12F /* AbstractInfo.m */,
+				6F0D6D16173644870008E12F /* Place.h */,
+				6F0D6D171736448A0008E12F /* Place.m */,
+				6F0D6D121736447D0008E12F /* Photo.h */,
+				6F0D6D131736447F0008E12F /* Photo.m */,
+				6F0D6D0E173644740008E12F /* Food.h */,
+				6F0D6D0F173644770008E12F /* Food.m */,
+				6F0D6D0A1736446D0008E12F /* Tag.h */,
+				6F0D6D0B1736446F0008E12F /* Tag.m */,
+				6F0D6D06173644690008E12F /* User.h */,
+				6F0D6D071736446A0008E12F /* User.m */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6F12E6FA17355C7B007A38DA /* Photo.h */,
-				6F12E6FB17355C7C007A38DA /* Photo.m */,
-				6F12E64917353D57007A38DA /* Food.h */,
-				6F12E64A17353D57007A38DA /* Food.m */,
-				6F12E64D17353D58007A38DA /* User.h */,
-				6F12E64E17353D58007A38DA /* User.m */,
-				6F12E65517353D59007A38DA /* Place.h */,
-				6F12E65617353D59007A38DA /* Place.m */,
-				6F12E65917353D5A007A38DA /* AbstractInfo.h */,
-				6F12E65A17353D5A007A38DA /* AbstractInfo.m */,
 				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
 				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
+				6F0D6CA6173640CC0008E12F /* Place+Extension.h */,
+				6F0D6CA7173640CD0008E12F /* Place+Extension.m */,
+				6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F12E66117354466007A38DA /* UIImage+Extension.h */,
 				6F12E66217354466007A38DA /* UIImage+Extension.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
-				6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -493,13 +511,16 @@
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */,
-				6F12E64B17353D58007A38DA /* Food.m in Sources */,
-				6F12E64F17353D59007A38DA /* User.m in Sources */,
-				6F12E65717353D5A007A38DA /* Place.m in Sources */,
-				6F12E65B17353D5A007A38DA /* AbstractInfo.m in Sources */,
 				6F12E65F1735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6F12E66317354466007A38DA /* UIImage+Extension.m in Sources */,
-				6F12E6FC17355C7D007A38DA /* Photo.m in Sources */,
+				6F0D6CA8173640CD0008E12F /* Place+Extension.m in Sources */,
+				6F0D6D00173644650008E12F /* AbstractInfo.m in Sources */,
+				6F0D6D04173644680008E12F /* Address.m in Sources */,
+				6F0D6D081736446B0008E12F /* User.m in Sources */,
+				6F0D6D0C173644710008E12F /* Tag.m in Sources */,
+				6F0D6D10173644790008E12F /* Food.m in Sources */,
+				6F0D6D14173644820008E12F /* Photo.m in Sources */,
+				6F0D6D181736448E0008E12F /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,13 +531,16 @@
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
-				6F12E64C17353D58007A38DA /* Food.m in Sources */,
-				6F12E65017353D59007A38DA /* User.m in Sources */,
-				6F12E65817353D5A007A38DA /* Place.m in Sources */,
-				6F12E65C17353D5A007A38DA /* AbstractInfo.m in Sources */,
 				6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6F12E66417354466007A38DA /* UIImage+Extension.m in Sources */,
-				6F12E6FD17355C7D007A38DA /* Photo.m in Sources */,
+				6F0D6CA9173640CD0008E12F /* Place+Extension.m in Sources */,
+				6F0D6D01173644650008E12F /* AbstractInfo.m in Sources */,
+				6F0D6D05173644680008E12F /* Address.m in Sources */,
+				6F0D6D091736446B0008E12F /* User.m in Sources */,
+				6F0D6D0D173644710008E12F /* Tag.m in Sources */,
+				6F0D6D11173644790008E12F /* Food.m in Sources */,
+				6F0D6D15173644820008E12F /* Photo.m in Sources */,
+				6F0D6D191736448E0008E12F /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

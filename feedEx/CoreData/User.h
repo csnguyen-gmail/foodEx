@@ -2,7 +2,7 @@
 //  User.h
 //  feedEx
 //
-//  Created by csnguyen on 5/4/13.
+//  Created by csnguyen on 5/5/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -14,14 +14,19 @@
 
 @interface User : AbstractInfo
 
-@property (nonatomic, retain) NSSet *places;
+@property (nonatomic, retain) NSOrderedSet *places;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
 
+- (void)insertObject:(Place *)value inPlacesAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromPlacesAtIndex:(NSUInteger)idx;
+- (void)insertPlaces:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removePlacesAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInPlacesAtIndex:(NSUInteger)idx withObject:(Place *)value;
+- (void)replacePlacesAtIndexes:(NSIndexSet *)indexes withPlaces:(NSArray *)values;
 - (void)addPlacesObject:(Place *)value;
 - (void)removePlacesObject:(Place *)value;
-- (void)addPlaces:(NSSet *)values;
-- (void)removePlaces:(NSSet *)values;
-
+- (void)addPlaces:(NSOrderedSet *)values;
+- (void)removePlaces:(NSOrderedSet *)values;
 @end
