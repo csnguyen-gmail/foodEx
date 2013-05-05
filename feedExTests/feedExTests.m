@@ -39,7 +39,6 @@
             food.placeOwner = place;
         }
     }
-    [context save:nil];
 }
 
 - (void)tearDown
@@ -50,6 +49,10 @@
 }
 
 #pragma mark - CoreData test;
+- (void)testSaveToPersistenceStoreAndWait {
+    NSError *error = [_coredata saveToPersistenceStoreAndWait];
+    STAssertNil(error, @"SaveToPersistenceStoreAndWait failed");
+}
 - (void)testGetUser
 {
     NSFetchRequest *fetchRequest = [_coredata.managedObjectModel fetchRequestTemplateForName:@"GetUser"];

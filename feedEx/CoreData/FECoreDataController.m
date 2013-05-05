@@ -14,13 +14,14 @@
 #endif
 
 @implementation FECoreDataController
+@synthesize writerManagedObjectContext = _writerManagedObjectContext;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize storeURL = _storeURL;
 
 #pragma mark - Core Data stack
-// store URL
+// Return store URL
 - (NSURL *)storeURL{
     if (_storeURL != nil) {
         return _storeURL;
@@ -33,16 +34,30 @@
 }
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)writerManagedObjectContext
+{
+    if (_writerManagedObjectContext != nil) {
+        return _writerManagedObjectContext;
+    }
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _writerManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_writerManagedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _writerManagedObjectContext;
+}
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and act as child context of writerContext.
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    NSManagedObjectContext *writerContext = self.writerManagedObjectContext;
+    if (writerContext != nil) {
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _managedObjectContext.parentContext = writerContext;
     }
     return _managedObjectContext;
 }
@@ -67,19 +82,18 @@
         return _persistentStoreCoordinator;
     }
     NSError *error = nil;
-//    // preloading
-//    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]]) {
-//        NSString *preloadPath = [[NSBundle mainBundle] pathForResource:@"feedExDatabaseGenerate" ofType:@"sqlite"];
-//        if (preloadPath) {
-//            NSURL *preloadURL = [NSURL fileURLWithPath:preloadPath];
-//            if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:self.storeURL error:&error]) {
-//                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            }
-//        }
-//    }
+    // preloading from database in pre-created in Bundle
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]]) {
+        NSString *preloadPath = [[NSBundle mainBundle] pathForResource:@"feedExDatabaseGenerate" ofType:@"sqlite"];
+        if (preloadPath) {
+            NSURL *preloadURL = [NSURL fileURLWithPath:preloadPath];
+            if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:self.storeURL error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            }
+        }
+    }
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error]) {
-        
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -110,4 +124,42 @@
     return _persistentStoreCoordinator;
 }
 
+#pragma mark - Utility functions
+-(void)saveToPersistenceStoreWithFinishBlock:(void (^)(NSError *))block onQueue:(dispatch_queue_t)queue {
+    dispatch_retain(queue); // support for IOS5, then queue is not retain/release automatically
+    NSManagedObjectContext *mainContext = self.managedObjectContext;
+    NSManagedObjectContext *writerContext = self.writerManagedObjectContext;
+    [mainContext performBlock:^{
+        // push modification to writer context (Main thread)
+        NSError *mainError;
+        if ([mainContext save:&mainError]) {
+            [writerContext performBlock:^{
+                // push modification to disk (Private thread)
+                NSError *writerError;
+                [writerContext save:&writerError];
+                dispatch_async(queue, ^{ block(writerError);});
+                dispatch_release(queue);
+            }];
+        }
+        else {
+            dispatch_async(queue, ^{ block(mainError);});
+            dispatch_release(queue);
+        }
+    }];
+}
+- (NSError *)saveToPersistenceStoreAndWait {
+    NSManagedObjectContext *mainContext = self.managedObjectContext;
+    NSManagedObjectContext *writerContext = self.writerManagedObjectContext;
+    __block NSError *error;
+    [mainContext performBlockAndWait:^{
+        // push modification to writer context (Main thread)
+        if ([mainContext save:&error]) {
+            [writerContext performBlockAndWait:^{
+                // push modification to disk (Private thread)
+                [writerContext save:&error];
+            }];
+        }
+    }];
+    return error;
+}
 @end
