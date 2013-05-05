@@ -39,6 +39,7 @@
             food.placeOwner = place;
         }
     }
+    [context save:nil];
 }
 
 - (void)tearDown
