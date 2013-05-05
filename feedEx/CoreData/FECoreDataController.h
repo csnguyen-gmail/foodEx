@@ -19,7 +19,7 @@
 @property (readonly, strong, nonatomic) NSURL *storeURL;
 
 // save to disk disk asynchronously
-- (void)saveToPersistenceStoreWithFinishBlock:(void(^)(NSError *error)) block onQueue:(dispatch_queue_t)queue;
+- (void)saveToPersistenceStoreAndThenRunOnQueue:(NSOperationQueue*)queue withFinishBlock:(void(^)(NSError *error))block;
 // save to disk disk synchronously
 - (NSError*)saveToPersistenceStoreAndWait;
 

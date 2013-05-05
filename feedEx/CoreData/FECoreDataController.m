@@ -125,8 +125,7 @@
 }
 
 #pragma mark - Utility functions
--(void)saveToPersistenceStoreWithFinishBlock:(void (^)(NSError *))block onQueue:(dispatch_queue_t)queue {
-    dispatch_retain(queue); // support for IOS5, then queue is not retain/release automatically
+- (void)saveToPersistenceStoreAndThenRunOnQueue:(NSOperationQueue *)queue withFinishBlock:(void (^)(NSError *))block {
     NSManagedObjectContext *mainContext = self.managedObjectContext;
     NSManagedObjectContext *writerContext = self.writerManagedObjectContext;
     [mainContext performBlock:^{
@@ -137,13 +136,15 @@
                 // push modification to disk (Private thread)
                 NSError *writerError;
                 [writerContext save:&writerError];
-                dispatch_async(queue, ^{ block(writerError);});
-                dispatch_release(queue);
+                [queue addOperationWithBlock:^{
+                    block(writerError);
+                }];
             }];
         }
         else {
-            dispatch_async(queue, ^{ block(mainError);});
-            dispatch_release(queue);
+            [queue addOperationWithBlock:^{
+                block(mainError);
+            }];
         }
     }];
 }
