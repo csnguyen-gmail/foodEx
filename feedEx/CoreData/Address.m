@@ -2,7 +2,7 @@
 //  Address.m
 //  feedEx
 //
-//  Created by csnguyen on 5/5/13.
+//  Created by csnguyen on 5/10/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -12,12 +12,13 @@
 
 @implementation Address
 
-@dynamic longtitude;
+@dynamic address;
 @dynamic attittude;
 @dynamic city;
 @dynamic country;
 @dynamic district;
-@dynamic address;
+@dynamic longtitude;
+@dynamic ward;
 @dynamic placeOwner;
 
 @end

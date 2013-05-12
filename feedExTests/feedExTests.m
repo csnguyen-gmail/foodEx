@@ -27,7 +27,7 @@
     NSManagedObjectContext *context = _coredata.managedObjectContext;
     User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     user.name = @"UserA";
-    [user setThumbnailAndOriginImage:[UIImage imageNamed:@"full_breakfast.jpg"]];
+    [user setThumbnailAndOriginImage:[UIImage imageNamed:@"a.jpg"]];
     for (int i = 0; i < 10; i++) {
         Place *place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = [NSString stringWithFormat:@"Place%d", i];
@@ -124,7 +124,7 @@
     NSFetchRequest *fetchRequest = [_coredata.managedObjectModel fetchRequestTemplateForName:@"GetUser"];
     NSArray *users = [_coredata.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     User *user = users.lastObject;
-    UIImage *loadedImage = [UIImage imageNamed:@"full_breakfast.jpg"];
+    UIImage *loadedImage = [UIImage imageNamed:@"a.jpg"];
     // check origin Photo
     NSData *originData = UIImagePNGRepresentation(loadedImage);
     NSData *storeData = [(Photo*)[[user.photos allObjects] lastObject] imageData];
