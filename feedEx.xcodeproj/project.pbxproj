@@ -42,6 +42,9 @@
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
+		6F288DE4174115FD00F94793 /* FEEditPlaceInfoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F288DE1174115FD00F94793 /* FEEditPlaceInfoMainVC.m */; };
+		6F288DE5174115FD00F94793 /* FEEditPlaceInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F288DE3174115FD00F94793 /* FEEditPlaceInfoTVC.m */; };
+		6F288DE8174116E800F94793 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F288DE7174116E800F94793 /* FEVerticalResizeControllView.m */; };
 		6F5C32CA172B828D00BCF8F7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */; };
 		6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */; };
 		6F5E91E9172385780059055F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91E8172385780059055F /* UIKit.framework */; };
@@ -60,10 +63,8 @@
 		6F5E9212172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
-		6FBD71C7173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD71C6173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.m */; };
 		6FBD71CB173F6E9500AB6EDA /* FETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD71CA173F6E9500AB6EDA /* FETestViewController.m */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
-		6FBD71D0173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD71CF173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.m */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -130,6 +131,12 @@
 		6F12E66F17354D27007A38DA /* e.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = e.jpg; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
+		6F288DE0174115FD00F94793 /* FEEditPlaceInfoMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEEditPlaceInfoMainVC.h; sourceTree = "<group>"; };
+		6F288DE1174115FD00F94793 /* FEEditPlaceInfoMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEEditPlaceInfoMainVC.m; sourceTree = "<group>"; };
+		6F288DE2174115FD00F94793 /* FEEditPlaceInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEEditPlaceInfoTVC.h; sourceTree = "<group>"; };
+		6F288DE3174115FD00F94793 /* FEEditPlaceInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEEditPlaceInfoTVC.m; sourceTree = "<group>"; };
+		6F288DE6174116E800F94793 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
+		6F288DE7174116E800F94793 /* FEVerticalResizeControllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEVerticalResizeControllView.m; sourceTree = "<group>"; };
 		6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = framework/GoogleMaps.framework; sourceTree = "<group>"; };
 		6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = feedex.xcdatamodel; sourceTree = "<group>"; };
 		6F5E91E5172385780059055F /* feedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,13 +161,9 @@
 		6F5E921B172385780059055F /* feedExTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = feedExTests.h; sourceTree = "<group>"; };
 		6F5E921C172385780059055F /* feedExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = feedExTests.m; sourceTree = "<group>"; };
 		6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = feedExDatabaseGenerate.xcodeproj; path = feedExDatabaseGenerate/feedExDatabaseGenerate.xcodeproj; sourceTree = "<group>"; };
-		6FBD71C5173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEEditPlaceInfoTVC.h; sourceTree = "<group>"; };
-		6FBD71C6173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEEditPlaceInfoTVC.m; sourceTree = "<group>"; };
 		6FBD71C9173F6E9400AB6EDA /* FETestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETestViewController.h; sourceTree = "<group>"; };
 		6FBD71CA173F6E9500AB6EDA /* FETestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETestViewController.m; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
-		6FBD71CE173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEEditPlaceInfoMainVC.h; sourceTree = "<group>"; };
-		6FBD71CF173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEEditPlaceInfoMainVC.m; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -228,6 +231,35 @@
 				6F12E66F17354D27007A38DA /* e.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		6F288DDD174115FD00F94793 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				6F288DDE174115FD00F94793 /* Common */,
+				6F288DDF174115FD00F94793 /* Place */,
+			);
+			path = GUI;
+			sourceTree = "<group>";
+		};
+		6F288DDE174115FD00F94793 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6F288DE6174116E800F94793 /* FEVerticalResizeControllView.h */,
+				6F288DE7174116E800F94793 /* FEVerticalResizeControllView.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6F288DDF174115FD00F94793 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				6F288DE0174115FD00F94793 /* FEEditPlaceInfoMainVC.h */,
+				6F288DE1174115FD00F94793 /* FEEditPlaceInfoMainVC.m */,
+				6F288DE2174115FD00F94793 /* FEEditPlaceInfoTVC.h */,
+				6F288DE3174115FD00F94793 /* FEEditPlaceInfoTVC.m */,
+			);
+			path = Place;
 			sourceTree = "<group>";
 		};
 		6F5C32CB172B82B100BCF8F7 /* CoreData */ = {
@@ -310,14 +342,11 @@
 		6F5E91EE172385780059055F /* feedEx */ = {
 			isa = PBXGroup;
 			children = (
+				6F288DDD174115FD00F94793 /* GUI */,
 				6F5C32CB172B82B100BCF8F7 /* CoreData */,
 				6F5E91F7172385780059055F /* FEAppDelegate.h */,
 				6F5E91F8172385780059055F /* FEAppDelegate.m */,
 				6F5E9200172385780059055F /* MainStoryboard_iPhone.storyboard */,
-				6FBD71CE173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.h */,
-				6FBD71CF173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.m */,
-				6FBD71C5173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.h */,
-				6FBD71C6173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.m */,
 				6F5E9203172385780059055F /* MainStoryboard_iPad.storyboard */,
 				6F5E91EF172385780059055F /* Supporting Files */,
 				6FBD71C9173F6E9400AB6EDA /* FETestViewController.h */,
@@ -540,9 +569,10 @@
 				6F0D6D10173644790008E12F /* Food.m in Sources */,
 				6F0D6D14173644820008E12F /* Photo.m in Sources */,
 				6F0D6D181736448E0008E12F /* Place.m in Sources */,
-				6FBD71C7173F5A6A00AB6EDA /* FEEditPlaceInfoTVC.m in Sources */,
 				6FBD71CB173F6E9500AB6EDA /* FETestViewController.m in Sources */,
-				6FBD71D0173F79BC00AB6EDA /* FEEditPlaceInfoMainVC.m in Sources */,
+				6F288DE4174115FD00F94793 /* FEEditPlaceInfoMainVC.m in Sources */,
+				6F288DE5174115FD00F94793 /* FEEditPlaceInfoTVC.m in Sources */,
+				6F288DE8174116E800F94793 /* FEVerticalResizeControllView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
