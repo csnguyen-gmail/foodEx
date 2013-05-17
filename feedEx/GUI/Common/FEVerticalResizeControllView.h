@@ -10,6 +10,7 @@
 
 @protocol FEVerticalResizeControllProtocol <NSObject>
 - (void)verticalResizeControllerDidChanged:(float) delta;
+- (void)verticalResizeControllerDidTapped;
 @end
 
 @interface FEVerticalResizeControllView : UIView

@@ -13,8 +13,8 @@
 
 @interface FEEditPlaceInfoMainVC : UIViewController<FEVerticalResizeControllProtocol>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIScrollView *placeInfoView;
-@property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeController;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
 @property (weak, nonatomic) FEEditPlaceInfoTVC *editPlaceInfoTVC;
 
 @end

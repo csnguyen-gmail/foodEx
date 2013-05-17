@@ -8,7 +8,9 @@
 
 #import "FEVerticalResizeControllView.h"
 @interface FEVerticalResizeControllView() {
-    float beginY;
+    float _beginY;
+    double _beginTime;
+    BOOL _duringTap;
 }
 @property (nonatomic, weak) UIView *upperView;
 @property (nonatomic, weak) UIView *lowerView;
@@ -19,7 +21,13 @@
 {
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    if (_duringTap) {
+        CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    }
+    else {
+        CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
+    }
+    
     NSString *separateString = @"・・・";
     [separateString drawInRect:CGRectMake(0, -6, rect.size.width, rect.size.height)
                       withFont:[UIFont systemFontOfSize:25]
@@ -30,15 +38,26 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    beginY = point.y;
+    _beginY = point.y;
+    _beginTime = CACurrentMediaTime();
+    _duringTap = YES;
+    [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    if (beginY != point.y) {
-        float delta = point.y - beginY;
+    if (_beginY != point.y) {
+        float delta = point.y - _beginY;
         [self.delegate verticalResizeControllerDidChanged:delta];
     }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (CACurrentMediaTime() - _beginTime <= 0.2f) {
+        [self.delegate verticalResizeControllerDidTapped];
+    }
+    _duringTap = NO;
+    [self setNeedsDisplay];
 }
 @end
