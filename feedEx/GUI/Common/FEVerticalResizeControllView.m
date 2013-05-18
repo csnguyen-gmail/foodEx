@@ -7,6 +7,7 @@
 //
 
 #import "FEVerticalResizeControllView.h"
+#import "NSString+Extension.h"
 @interface FEVerticalResizeControllView() {
     float _beginY;
     double _beginTime;
@@ -29,11 +30,7 @@
     }
     
     NSString *separateString = @"・・・";
-    [separateString drawInRect:CGRectMake(0, -6, rect.size.width, rect.size.height)
-                      withFont:[UIFont systemFontOfSize:25]
-                 lineBreakMode:NSLineBreakByCharWrapping
-                     alignment:NSTextAlignmentCenter];
-
+    [separateString drawCenteredInRect:rect withFont:[UIFont systemFontOfSize:25]];
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
