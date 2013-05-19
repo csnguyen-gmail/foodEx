@@ -10,6 +10,9 @@
 #define DYNAMIC_SCROLLVIEW_PADDING 5
 
 @interface FEDynamicScrollView()
+@property (nonatomic) float beginDraggingX;
+@property (nonatomic, weak) FEWiggleView *draggingWiggleView;
+
 @end
 
 @implementation FEDynamicScrollView
@@ -117,18 +120,53 @@
 }
 #pragma mark - handle gesture
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (!self.editMode) {
+        return;
+    }
     NSLog(@"begin");
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    for (FEWiggleView *view in self.wiggleViews) {
+        if (CGRectContainsPoint(view.frame, location)) {
+            self.draggingWiggleView = view;
+            self.draggingWiggleView.dragMode = YES;
+            [self bringSubviewToFront:self.draggingWiggleView];
+            break;
+        }
+    }
+    self.beginDraggingX = location.x;
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (!self.editMode) {
+        return;
+    }
     NSLog(@"move");
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    float delta = location.x - self.beginDraggingX;
+    self.draggingWiggleView.frame = CGRectMake(self.draggingWiggleView.frame.origin.x + delta,
+                                               self.draggingWiggleView.frame.origin.y,
+                                               self.draggingWiggleView.frame.size.width,
+                                               self.draggingWiggleView.frame.size.height);
+    
+    self.beginDraggingX = location.x;
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"end");
+    if (!self.editMode) {
+        return;
+    }
+    self.draggingWiggleView.dragMode = NO;
+    self.draggingWiggleView = nil;
 }
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             self.editMode = !self.editMode;
+            if (self.draggingWiggleView) {
+                self.draggingWiggleView.dragMode = NO;
+                self.draggingWiggleView = nil;
+            }
             break;
         case UIGestureRecognizerStateChanged:
             break;

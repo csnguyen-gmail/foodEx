@@ -51,13 +51,13 @@
 #pragma mark - wiggle effect
 - (void)appearDraggable {
     self.layer.opacity = 0.6f;
-    [self.layer setValue:@1.25f forKeyPath:@"transform.scale"];
+//    [self.layer setValue:@1.25f forKeyPath:@"transform.scale"];
     
 }
 
 - (void)appearNormal {
     self.layer.opacity = 1.0f;
-    [self.layer setValue:@1.0f forKeyPath:@"transform.scale"];
+//    [self.layer setValue:@1.0f forKeyPath:@"transform.scale"];
 }
 
 - (void)startWiggling {
