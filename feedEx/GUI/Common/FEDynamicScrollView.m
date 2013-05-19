@@ -10,7 +10,6 @@
 #define DYNAMIC_SCROLLVIEW_PADDING 5
 
 @interface FEDynamicScrollView()
-@property (nonatomic, strong) NSMutableArray *wiggleImageViews; // array of FEWiggleImageView
 @end
 
 @implementation FEDynamicScrollView
@@ -23,89 +22,64 @@
     // this tells the UIScrollView class to allow touches within subviews
     self.canCancelContentTouches = NO;
 }
-- (NSMutableArray *)wiggleImageViews {
-    if (!_wiggleImageViews) {
-        _wiggleImageViews = [[NSMutableArray alloc] init];
-    }
-    return _wiggleImageViews;
-}
-- (void)setImages:(NSMutableArray *)images {
-    // setter
-    _images = images;
+- (void)setWiggleViews:(NSMutableArray *)wiggleViews {
+    _wiggleViews = wiggleViews;
     // arrange images
     NSUInteger widthOfContentView = 0;
-    for (UIImage *image in images) {
-        // set up wiggle image view
-        FEWiggleImageView *imageView = [self createWiggleImageViewFromImage:image];
-        float imageWidth = imageView.frame.size.width;
-        float imageHeight = imageView.frame.size.height;
-        imageView.frame = CGRectMake(widthOfContentView, 0, imageWidth, imageHeight);
+    for (FEWiggleView *view in wiggleViews) {
+        float viewWidth = view.frame.size.width;
+        float viewHeight = view.frame.size.height;
+        view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
         // add to control
-        widthOfContentView += imageWidth + DYNAMIC_SCROLLVIEW_PADDING;
-        [self addSubview:imageView];
-        [self.wiggleImageViews addObject:imageView];
+        widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
+        [self addSubview:view];
     }
     self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
 }
 
-- (FEWiggleImageView*)createWiggleImageViewFromImage:(UIImage*)image {
-    FEWiggleImageView *imageView = [[FEWiggleImageView alloc] initWithImage:image];
-    imageView.roundedCorner = YES;
-    imageView.additionalView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
-    imageView.additionalView.opaque = YES;
-    return imageView;
-}
-
 - (void)setEditMode:(BOOL)editMode {
     _editMode = editMode;
-    if (_editMode) {
-        for (FEWiggleImageView *view in self.wiggleImageViews) {
-            [view startWiggling];
-        }
-    }
-    else {
-        for (FEWiggleImageView *view in self.wiggleImageViews) {
-            [view stopWiggling];
-        }
+    for (FEWiggleView *wiggleView in self.wiggleViews) {
+        wiggleView.editMode = editMode;
     }
 }
-- (void)addView:(UIImage *)image atIndex:(int)index {
-    if (index > self.wiggleImageViews.count) {
+- (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
+    if (index > self.wiggleViews.count) {
         return;
     }
     // set up wiggle image view
-    FEWiggleImageView *imageView = [self createWiggleImageViewFromImage:image];
-    float imageWidth = imageView.frame.size.width;
-    float imageHeight = imageView.frame.size.height;
-    float delta = imageWidth + DYNAMIC_SCROLLVIEW_PADDING;
+    float viewWidth = wiggleView.frame.size.width;
+    float viewHeight = wiggleView.frame.size.height;
+    float delta = viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
     float x;
     // insert first
-    if (self.wiggleImageViews.count == 0) {
+    if (self.wiggleViews.count == 0) {
         x = 0;
     }
     // insert last
-    else if (self.wiggleImageViews.count == index){
+    else if (self.wiggleViews.count == index){
         x = self.contentSize.width;
     }
     // insert at middle
     else {
-        x = [self.wiggleImageViews[index] frame].origin.x;
+        x = [self.wiggleViews[index] frame].origin.x;
     }
-    imageView.alpha = 0.0f;
-    imageView.frame = CGRectMake(x, 0, 0, 0);
+    wiggleView.alpha = 0.0f;
+    wiggleView.frame = CGRectMake(x, 0, 0, 0);
+    wiggleView.editMode = self.editMode;
     // add to control
-    [self addSubview:imageView];
+    [self addSubview:wiggleView];
     [self setContentOffset:CGPointMake(x, 0) animated:YES];
     
     // effect
     [UIView animateWithDuration:0.2f
                      animations:^{
                          // show wiggle view
-                         imageView.alpha = 1.0f;
-                         imageView.frame = CGRectMake(x, 0, imageWidth, imageHeight);
+                         wiggleView.alpha = 1.0f;
+                         wiggleView.frame = CGRectMake(x, 0, viewWidth, viewHeight);
                          // re-arrange right views
-                         for (int i = index; i < self.wiggleImageViews.count; i++) {
-                             FEWiggleImageView *view = self.wiggleImageViews[i];
+                         for (int i = index; i < self.wiggleViews.count; i++) {
+                             FEWiggleView *view = self.wiggleViews[i];
                              view.frame = CGRectMake(view.frame.origin.x + delta ,
                                                      view.frame.origin.y,
                                                      view.frame.size.width,
@@ -113,15 +87,11 @@
                          }
                      }
                      completion:^(BOOL finished) {
-                         if (self.editMode) {
-                             [imageView startWiggling];
-                         }
-                         [self.wiggleImageViews insertObject:imageView atIndex:index];
-                         [self.images insertObject:image atIndex:index];
-                         self.contentSize = CGSizeMake(self.contentSize.width + imageWidth + DYNAMIC_SCROLLVIEW_PADDING, self.contentSize.height);
+                         [self.wiggleViews insertObject:wiggleView atIndex:index];
+                         self.contentSize = CGSizeMake(self.contentSize.width + viewWidth + DYNAMIC_SCROLLVIEW_PADDING, self.contentSize.height);
                      }];
 }
-- (void)removeView:(FEWiggleImageView*)wiggleImageView {
+- (void)removeView:(FEWiggleView*)wiggleImageView {
     float delta = wiggleImageView.frame.size.width + DYNAMIC_SCROLLVIEW_PADDING;
     // effect
     [UIView animateWithDuration:0.2f
@@ -130,9 +100,9 @@
                          wiggleImageView.alpha = 0.0f;
                          wiggleImageView.frame = CGRectMake(wiggleImageView.frame.origin.x,wiggleImageView.frame.origin.y,0,0);
                          // re-arrange right views
-                         int index = [self.wiggleImageViews indexOfObject:wiggleImageView];
-                         for (int i = index + 1; i < self.wiggleImageViews.count; i++) {
-                             FEWiggleImageView *view = self.wiggleImageViews[i];
+                         int index = [self.wiggleViews indexOfObject:wiggleImageView];
+                         for (int i = index + 1; i < self.wiggleViews.count; i++) {
+                             FEWiggleView *view = self.wiggleViews[i];
                              view.frame = CGRectMake(view.frame.origin.x - delta ,
                                                      view.frame.origin.y,
                                                      view.frame.size.width,
@@ -142,8 +112,7 @@
                      completion:^(BOOL finished) {
                          self.contentSize = CGSizeMake(self.contentSize.width - delta, self.contentSize.height);
                          [wiggleImageView removeFromSuperview];
-                         [self.images removeObject:wiggleImageView.image];
-                         [self.wiggleImageViews removeObject:wiggleImageView];
+                         [self.wiggleViews removeObject:wiggleImageView];
                      }];
 }
 #pragma mark - handle gesture
@@ -174,9 +143,9 @@
         return;
     }
     CGPoint location = [recognizer locationInView:self];
-    for (FEWiggleImageView *view in self.wiggleImageViews) {
-        if (CGRectContainsPoint(view.additionalView.frame, [self convertPoint:location toView:view.additionalView])) {
-            [self removeView:view];
+    for (FEWiggleView *wiggleView in self.wiggleViews) {
+        if (CGRectContainsPoint(wiggleView.deleteView.frame, [self convertPoint:location toView:wiggleView.deleteView])) {
+            [self removeView:wiggleView];
             break;
         }
     }

@@ -242,10 +242,6 @@
                                 <rect key="frame" x="0.0" y="184" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="a_t.png" id="Fff-bd-KNN" customClass="FEWiggleImageView">
-                                <rect key="frame" x="89" y="382" width="102" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oeT-Bz-xG5">
                                 <rect key="frame" x="95" y="292" width="73" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -267,7 +263,6 @@
                     <tabBarItem key="tabBarItem" title="Test" id="qzK-gQ-9QZ"/>
                     <connections>
                         <outlet property="dynamicScrollView" destination="VjC-Pf-Iy5" id="2tS-3T-YPj"/>
-                        <outlet property="testWiggleView" destination="Fff-bd-KNN" id="AkW-Nb-LFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zH-Sa-M4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,9 +289,39 @@
             <point key="canvasLocation" x="-11931" y="-1092"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="a_t.png" width="102" height="64"/>
-    </resources>
+    <classes>
+        <class className="FEDynamicScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
+        </class>
+        <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="photoScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="FETestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addTapped:"/>
+                <relationship kind="outlet" name="dynamicScrollView" candidateClass="FEDynamicScrollView"/>
+            </relationships>
+        </class>
+        <class className="FEVerticalResizeControllView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
+        </class>
+        <class className="GMSMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

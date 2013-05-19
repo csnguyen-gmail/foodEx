@@ -54,7 +54,6 @@
 		6F9E95B91744EED100DCCF24 /* FEEditPlaceInfoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEEditPlaceInfoMainVC.m */; };
 		6F9E95BA1744EED100DCCF24 /* FEEditPlaceInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */; };
 		6F9E95C21745E44100DCCF24 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95C11745E44000DCCF24 /* NSString+Extension.m */; };
-		6F9E95C7174642F700DCCF24 /* FEWiggleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95C6174642F700DCCF24 /* FEWiggleImageView.m */; };
 		6F9E95CA174646A900DCCF24 /* FETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95C9174646A900DCCF24 /* FETestViewController.m */; };
 		6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95D017465D9200DCCF24 /* FEDynamicScrollView.m */; };
 		6F9E95F817473BAB00DCCF24 /* a_t.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E95EC17473BAB00DCCF24 /* a_t.png */; };
@@ -87,6 +86,7 @@
 		6FCE534B1723968A00D61BB9 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE53461723968A00D61BB9 /* map.png */; };
 		6FCE534C1723968A00D61BB9 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE53471723968A00D61BB9 /* search.png */; };
 		6FCE534D1723968A00D61BB9 /* spin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE53481723968A00D61BB9 /* spin.png */; };
+		6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD8CB511748DC410039EAE8 /* FEWiggleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +162,6 @@
 		6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEEditPlaceInfoTVC.m; sourceTree = "<group>"; };
 		6F9E95C01745E44000DCCF24 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		6F9E95C11745E44000DCCF24 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		6F9E95C5174642F700DCCF24 /* FEWiggleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleImageView.h; sourceTree = "<group>"; };
-		6F9E95C6174642F700DCCF24 /* FEWiggleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleImageView.m; sourceTree = "<group>"; };
 		6F9E95C8174646A900DCCF24 /* FETestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETestViewController.h; sourceTree = "<group>"; };
 		6F9E95C9174646A900DCCF24 /* FETestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETestViewController.m; sourceTree = "<group>"; };
 		6F9E95CF17465D9200DCCF24 /* FEDynamicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEDynamicScrollView.h; sourceTree = "<group>"; };
@@ -199,6 +197,8 @@
 		6FCE53461723968A00D61BB9 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		6FCE53471723968A00D61BB9 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		6FCE53481723968A00D61BB9 /* spin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spin.png; sourceTree = "<group>"; };
+		6FD8CB501748DC410039EAE8 /* FEWiggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleView.h; sourceTree = "<group>"; };
+		6FD8CB511748DC410039EAE8 /* FEWiggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,10 +402,10 @@
 				6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */,
 				6F9E95C01745E44000DCCF24 /* NSString+Extension.h */,
 				6F9E95C11745E44000DCCF24 /* NSString+Extension.m */,
-				6F9E95C5174642F700DCCF24 /* FEWiggleImageView.h */,
-				6F9E95C6174642F700DCCF24 /* FEWiggleImageView.m */,
 				6F9E95CF17465D9200DCCF24 /* FEDynamicScrollView.h */,
 				6F9E95D017465D9200DCCF24 /* FEDynamicScrollView.m */,
+				6FD8CB501748DC410039EAE8 /* FEWiggleView.h */,
+				6FD8CB511748DC410039EAE8 /* FEWiggleView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -606,9 +606,9 @@
 				6F9E95B91744EED100DCCF24 /* FEEditPlaceInfoMainVC.m in Sources */,
 				6F9E95BA1744EED100DCCF24 /* FEEditPlaceInfoTVC.m in Sources */,
 				6F9E95C21745E44100DCCF24 /* NSString+Extension.m in Sources */,
-				6F9E95C7174642F700DCCF24 /* FEWiggleImageView.m in Sources */,
 				6F9E95CA174646A900DCCF24 /* FETestViewController.m in Sources */,
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
+				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
