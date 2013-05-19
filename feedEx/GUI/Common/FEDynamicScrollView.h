@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FEWiggleImageView.h"
 
-@interface FEDynamicScrollView : UIScrollView <FEWiggleImageViewProtocol>
+@interface FEDynamicScrollView : UIScrollView
 @property (nonatomic, strong) NSMutableArray *images; // array of UIImage
 @property (nonatomic) BOOL editMode;
-- (void)addImage:(UIImage*)image atIndex:(int)index;
+- (void)addView:(UIImage*)image atIndex:(int)index;
 @end

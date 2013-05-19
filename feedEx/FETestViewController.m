@@ -32,16 +32,20 @@
                                                               [UIImage imageNamed:@"b_t"],
                                                               [UIImage imageNamed:@"c_t"],
                                                               [UIImage imageNamed:@"d_t"],
-                                                              [UIImage imageNamed:@"e_t"]]];
+                                                              [UIImage imageNamed:@"e_t"],
+                              [UIImage imageNamed:@"a_t"],
+                              [UIImage imageNamed:@"b_t"],
+                              [UIImage imageNamed:@"c_t"],
+                              [UIImage imageNamed:@"d_t"],
+                              [UIImage imageNamed:@"e_t"]]];
     self.dynamicScrollView.images = images;
     self.testWiggleView.additionalView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
-    self.testWiggleView.delegate = self;
     [self.testWiggleView startWiggling];
 }
 - (void)tappedToAdditionalView:(FEWiggleImageView *)wiggleImageView {
     NSLog(@"dsfsdf");
 }
 - (IBAction)addTapped:(id)sender {
-    [self.dynamicScrollView addImage:[UIImage imageNamed:@"e_t"] atIndex:0];
+    [self.dynamicScrollView addView:[UIImage imageNamed:@"e_t"] atIndex:0];
 }
 @end

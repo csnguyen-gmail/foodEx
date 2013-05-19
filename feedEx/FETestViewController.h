@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
-@interface FETestViewController : UIViewController <FEWiggleImageViewProtocol>
+@interface FETestViewController : UIViewController
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *dynamicScrollView;
 @property (weak, nonatomic) IBOutlet FEWiggleImageView *testWiggleView;
 - (IBAction)addTapped:(id)sender;

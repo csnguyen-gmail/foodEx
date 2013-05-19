@@ -18,6 +18,10 @@
     // add gesture recognizer
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
     [self addGestureRecognizer:longPressGesture];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    [self addGestureRecognizer:tapGesture];
+    // this tells the UIScrollView class to allow touches within subviews
+    self.canCancelContentTouches = NO;
 }
 - (NSMutableArray *)wiggleImageViews {
     if (!_wiggleImageViews) {
@@ -48,32 +52,10 @@
     FEWiggleImageView *imageView = [[FEWiggleImageView alloc] initWithImage:image];
     imageView.roundedCorner = YES;
     imageView.additionalView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
-    imageView.delegate = self;
+    imageView.additionalView.opaque = YES;
     return imageView;
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"begin");
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"move");
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"end");
-}
-- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
-//    CGPoint location = [recognizer locationInView:self];
-    switch (recognizer.state) {
-        case UIGestureRecognizerStateBegan:
-            self.editMode = !self.editMode;
-            break;
-        case UIGestureRecognizerStateChanged:
-            break;
-        case UIGestureRecognizerStateEnded:
-            break;
-        default:
-            break;
-    }
-}
+
 - (void)setEditMode:(BOOL)editMode {
     _editMode = editMode;
     if (_editMode) {
@@ -87,7 +69,7 @@
         }
     }
 }
-- (void)addImage:(UIImage *)image atIndex:(int)index {
+- (void)addView:(UIImage *)image atIndex:(int)index {
     if (index > self.wiggleImageViews.count) {
         return;
     }
@@ -139,8 +121,7 @@
                          self.contentSize = CGSizeMake(self.contentSize.width + imageWidth + DYNAMIC_SCROLLVIEW_PADDING, self.contentSize.height);
                      }];
 }
-#pragma mark - FEWiggleImageViewProtocol
-- (void)tappedToAdditionalView:(FEWiggleImageView *)wiggleImageView {
+- (void)removeView:(FEWiggleImageView*)wiggleImageView {
     float delta = wiggleImageView.frame.size.width + DYNAMIC_SCROLLVIEW_PADDING;
     // effect
     [UIView animateWithDuration:0.2f
@@ -165,4 +146,40 @@
                          [self.wiggleImageViews removeObject:wiggleImageView];
                      }];
 }
+#pragma mark - handle gesture
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"begin");
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"move");
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"end");
+}
+- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            self.editMode = !self.editMode;
+            break;
+        case UIGestureRecognizerStateChanged:
+            break;
+        case UIGestureRecognizerStateEnded:
+            break;
+        default:
+            break;
+    }
+}
+- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    if (!self.editMode) {
+        return;
+    }
+    CGPoint location = [recognizer locationInView:self];
+    for (FEWiggleImageView *view in self.wiggleImageViews) {
+        if (CGRectContainsPoint(view.additionalView.frame, [self convertPoint:location toView:view.additionalView])) {
+            [self removeView:view];
+            break;
+        }
+    }
+}
+
 @end

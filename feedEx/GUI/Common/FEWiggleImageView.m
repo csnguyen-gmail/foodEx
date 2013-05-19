@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEWiggleImageView()
-@property (nonatomic, strong) UITapGestureRecognizer *additionViewTapGesture;
 @end
 
 @implementation FEWiggleImageView
@@ -25,30 +24,6 @@
         self.layer.masksToBounds = NO;
     }
 }
-
-- (UITapGestureRecognizer *)additionViewTapGesture {
-    if (!_additionViewTapGesture) {
-        _additionViewTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(handleTapGesture:)];
-    }
-    return _additionViewTapGesture;
-}
-
-- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
-    //    CGPoint location = [recognizer locationInView:self];
-    switch (recognizer.state) {
-        case UIGestureRecognizerStateBegan:
-            break;
-        case UIGestureRecognizerStateChanged:
-            break;
-        case UIGestureRecognizerStateEnded:
-            [self.delegate tappedToAdditionalView:self];
-            break;
-        default:
-            break;
-    }
-}
-
 
 #pragma mark - wiggle effect
 - (void)appearDraggable {
@@ -67,10 +42,8 @@
         self.additionalView.frame = CGRectMake(5.0f, 5.0f,
                                                self.additionalView.frame.size.width,
                                                self.additionalView.frame.size.height);
-        [self.additionalView addGestureRecognizer:self.additionViewTapGesture];
-        self.additionalView.userInteractionEnabled = YES; // image view can not recoginize gesture unless this property is YES
         [self addSubview:self.additionalView];
-        self.userInteractionEnabled = YES;
+        self.userInteractionEnabled = YES; // this tells the subview it owns the touches inside of it
     }
     CAAnimation *rotationAnimation = [self wiggleRotationAnimation];
     [self.layer addAnimation:rotationAnimation forKey:@"wiggleRotation"];
@@ -81,8 +54,6 @@
 
 - (void)stopWiggling {
     if (self.additionalView) {
-        [self.additionalView removeGestureRecognizer:self.additionViewTapGesture];
-        self.additionalView.userInteractionEnabled = NO;
         [self.additionalView removeFromSuperview];
         self.userInteractionEnabled = NO;
     }
