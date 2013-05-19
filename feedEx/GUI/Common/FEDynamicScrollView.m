@@ -12,7 +12,7 @@
 @interface FEDynamicScrollView()
 @property (nonatomic) float beginDraggingX;
 @property (nonatomic, weak) FEWiggleView *draggingWiggleView;
-
+@property (nonatomic, weak) NSTimer *waitForPagingTimer;
 @end
 
 @implementation FEDynamicScrollView
@@ -123,7 +123,6 @@
     if (!self.editMode) {
         return;
     }
-    NSLog(@"begin");
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self];
     for (FEWiggleView *view in self.wiggleViews) {
@@ -140,7 +139,6 @@
     if (!self.editMode) {
         return;
     }
-    NSLog(@"move");
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self];
     float delta = location.x - self.beginDraggingX;
@@ -150,14 +148,76 @@
                                                self.draggingWiggleView.frame.size.height);
     
     self.beginDraggingX = location.x;
+    
+    CGRect rectInSuperView = [self convertRect:self.draggingWiggleView.frame toView:self.superview];
+    // touch to left edge
+    if (rectInSuperView.origin.x < 0) {
+        if (!self.waitForPagingTimer) {
+            self.waitForPagingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                       target:self
+                                                                     selector:@selector(handleTimer:)
+                                                                     userInfo:@{@"isLeft":@(YES)}
+                                                                      repeats:YES];
+        }
+    }
+    // touch to roght edge
+    else if (rectInSuperView.origin.x + rectInSuperView.size.width > self.frame.size.width) {
+        if (!self.waitForPagingTimer) {
+            self.waitForPagingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                       target:self
+                                                                     selector:@selector(handleTimer:)
+                                                                     userInfo:@{@"isLeft":@(NO)}
+                                                                      repeats:YES];
+        }
+    }
+    // not touch edge
+    else {
+        if (self.waitForPagingTimer) {
+            [self.waitForPagingTimer invalidate];
+            self.waitForPagingTimer = nil;
+        }
+    }
+}
+- (void)handleTimer:(NSTimer*)timer {
+    BOOL isLeft = [[[timer userInfo] objectForKey:@"isLeft"] boolValue];
+    if (isLeft) {
+        float newContentX = self.contentOffset.x - self.frame.size.width;
+        if (newContentX < 0) {
+            newContentX = 0;
+        }
+        [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
+        
+        float newDraggingViewX = newContentX; // TODO
+        self.beginDraggingX += newDraggingViewX - self.draggingWiggleView.frame.origin.x;
+        self.draggingWiggleView.frame = CGRectMake(newDraggingViewX,
+                                                   self.draggingWiggleView.frame.origin.y,
+                                                   self.draggingWiggleView.frame.size.width,
+                                                   self.draggingWiggleView.frame.size.height);
+        
+    }
+    else {
+        float newContentX = self.contentOffset.x + self.frame.size.width;
+        if (newContentX + self.frame.size.width > self.contentSize.width) {
+            newContentX = self.contentSize.width - self.frame.size.width;
+        }
+        [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
+        
+        float newDraggingViewX = newContentX + self.frame.size.width - self.draggingWiggleView.frame.size.width; // TODO
+        self.beginDraggingX += newDraggingViewX - self.draggingWiggleView.frame.origin.x;
+        self.draggingWiggleView.frame = CGRectMake(newDraggingViewX,
+                                                   self.draggingWiggleView.frame.origin.y,
+                                                   self.draggingWiggleView.frame.size.width,
+                                                   self.draggingWiggleView.frame.size.height);
+    }
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"end");
     if (!self.editMode) {
         return;
     }
     self.draggingWiggleView.dragMode = NO;
     self.draggingWiggleView = nil;
+    [self.waitForPagingTimer invalidate];
+    self.waitForPagingTimer = nil;
 }
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
     switch (recognizer.state) {
@@ -166,6 +226,8 @@
             if (self.draggingWiggleView) {
                 self.draggingWiggleView.dragMode = NO;
                 self.draggingWiggleView = nil;
+                [self.waitForPagingTimer invalidate];
+                self.waitForPagingTimer = nil;
             }
             break;
         case UIGestureRecognizerStateChanged:
