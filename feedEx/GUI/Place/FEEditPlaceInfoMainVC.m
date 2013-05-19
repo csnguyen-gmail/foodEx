@@ -85,11 +85,18 @@
         return;
     }
     if ((lowerView.frame.size.height - delta) < _limitLowerHeight) {
-        return;
+        if (lowerView.frame.size.height == _limitLowerHeight) {
+            return;
+        }
+        delta = lowerView.frame.size.height - _limitLowerHeight;
     }
     if ((upperView.frame.size.height + delta) < _limitUpperHeight) {
-        return;
+        if (upperView.frame.size.height == _limitUpperHeight) {
+            return;
+        }
+        delta = _limitUpperHeight - upperView.frame.size.height;
     }
+    NSLog(@"adf");
     verticalControllerView.frame = CGRectMake(verticalControllerView.frame.origin.x,
                                               verticalControllerView.frame.origin.y + delta,
                                               verticalControllerView.frame.size.width,

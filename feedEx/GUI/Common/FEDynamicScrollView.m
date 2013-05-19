@@ -14,6 +14,11 @@
 @end
 
 @implementation FEDynamicScrollView
+- (void)awakeFromNib {
+    // add gesture recognizer
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+    [self addGestureRecognizer:longPressGesture];
+}
 - (NSMutableArray *)wiggleImageViews {
     if (!_wiggleImageViews) {
         _wiggleImageViews = [[NSMutableArray alloc] init];
@@ -37,16 +42,23 @@
         [self.wiggleImageViews addObject:imageView];
     }
     self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
-    // add gesture recognizer
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-    [self addGestureRecognizer:longPressGesture];
 }
+
 - (FEWiggleImageView*)createWiggleImageViewFromImage:(UIImage*)image {
     FEWiggleImageView *imageView = [[FEWiggleImageView alloc] initWithImage:image];
     imageView.roundedCorner = YES;
     imageView.additionalView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
     imageView.delegate = self;
     return imageView;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"begin");
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"move");
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"end");
 }
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
 //    CGPoint location = [recognizer locationInView:self];
@@ -137,8 +149,8 @@
                          wiggleImageView.alpha = 0.0f;
                          wiggleImageView.frame = CGRectMake(wiggleImageView.frame.origin.x,wiggleImageView.frame.origin.y,0,0);
                          // re-arrange right views
-                         int indexInArray = [self.wiggleImageViews indexOfObject:wiggleImageView];
-                         for (int i = indexInArray + 1; i < self.wiggleImageViews.count; i++) {
+                         int index = [self.wiggleImageViews indexOfObject:wiggleImageView];
+                         for (int i = index + 1; i < self.wiggleImageViews.count; i++) {
                              FEWiggleImageView *view = self.wiggleImageViews[i];
                              view.frame = CGRectMake(view.frame.origin.x - delta ,
                                                      view.frame.origin.y,
