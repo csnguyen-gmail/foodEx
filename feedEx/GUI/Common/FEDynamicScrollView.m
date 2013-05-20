@@ -11,7 +11,7 @@
 
 @interface FEDynamicScrollView()
 @property (nonatomic) float beginDraggingX;
-@property (nonatomic, weak) FEWiggleView *draggingWiggleView;
+@property (nonatomic, strong) FEWiggleView *draggingWiggleView;
 @property (nonatomic, weak) NSTimer *waitForPagingTimer;
 @end
 
@@ -27,17 +27,11 @@
 }
 - (void)setWiggleViews:(NSMutableArray *)wiggleViews {
     _wiggleViews = wiggleViews;
-    // arrange images
-    NSUInteger widthOfContentView = 0;
+    // add view
     for (FEWiggleView *view in wiggleViews) {
-        float viewWidth = view.frame.size.width;
-        float viewHeight = view.frame.size.height;
-        view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
-        // add to control
-        widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
         [self addSubview:view];
     }
-    self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
+    [self rearrangeAllView];
 }
 
 - (void)setEditMode:(BOOL)editMode {
@@ -59,78 +53,39 @@
     [_waitForPagingTimer invalidate];
     _waitForPagingTimer = waitForPagingTimer;
 }
-
+- (void) rearrangeAllView {
+    NSUInteger widthOfContentView = 0;
+    for (FEWiggleView *view in self.wiggleViews) {
+        float viewWidth = view.frame.size.width;
+        float viewHeight = view.frame.size.height;
+        view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
+        // add to control
+        widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
+    }
+    self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
+}
 #pragma mark - handle update
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
-    if (index > self.wiggleViews.count) {
-        return;
-    }
-    // set up wiggle image view
-    float viewWidth = wiggleView.frame.size.width;
-    float viewHeight = wiggleView.frame.size.height;
-    float delta = viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
-    float x;
-    // insert first
-    if (self.wiggleViews.count == 0) {
-        x = 0;
-    }
-    // insert last
-    else if (self.wiggleViews.count == index){
-        x = self.contentSize.width;
-    }
-    // insert at middle
-    else {
-        x = [self.wiggleViews[index] frame].origin.x;
-    }
-    wiggleView.alpha = 0.0f;
-    wiggleView.frame = CGRectMake(x, 0, 0, 0);
-    wiggleView.editMode = self.editMode;
-    // add to control
-    [self addSubview:wiggleView];
-    [self setContentOffset:CGPointMake(x, 0) animated:YES];
-    
     // effect
     [UIView animateWithDuration:0.2f
                      animations:^{
-                         // show wiggle view
-                         wiggleView.alpha = 1.0f;
-                         wiggleView.frame = CGRectMake(x, 0, viewWidth, viewHeight);
-                         // re-arrange right views
-                         for (int i = index; i < self.wiggleViews.count; i++) {
-                             FEWiggleView *view = self.wiggleViews[i];
-                             view.frame = CGRectMake(view.frame.origin.x + delta ,
-                                                     view.frame.origin.y,
-                                                     view.frame.size.width,
-                                                     view.frame.size.height);
-                         }
+                         // add to control
+                         [self addSubview:wiggleView];
+                         [self.wiggleViews insertObject:wiggleView atIndex:index];
+                         [self rearrangeAllView];
                      }
                      completion:^(BOOL finished) {
-                         [self.wiggleViews insertObject:wiggleView atIndex:index];
-                         self.contentSize = CGSizeMake(self.contentSize.width + viewWidth + DYNAMIC_SCROLLVIEW_PADDING, self.contentSize.height);
                      }];
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
-    float delta = wiggleImageView.frame.size.width + DYNAMIC_SCROLLVIEW_PADDING;
     // effect
     [UIView animateWithDuration:0.2f
                      animations:^{
-                         // hide wiggle view
-                         wiggleImageView.alpha = 0.0f;
-                         wiggleImageView.frame = CGRectMake(wiggleImageView.frame.origin.x,wiggleImageView.frame.origin.y,0,0);
-                         // re-arrange right views
-                         int index = [self.wiggleViews indexOfObject:wiggleImageView];
-                         for (int i = index + 1; i < self.wiggleViews.count; i++) {
-                             FEWiggleView *view = self.wiggleViews[i];
-                             view.frame = CGRectMake(view.frame.origin.x - delta ,
-                                                     view.frame.origin.y,
-                                                     view.frame.size.width,
-                                                     view.frame.size.height);
-                         }
-                     }
-                     completion:^(BOOL finished) {
-                         self.contentSize = CGSizeMake(self.contentSize.width - delta, self.contentSize.height);
                          [wiggleImageView removeFromSuperview];
                          [self.wiggleViews removeObject:wiggleImageView];
+                         [self rearrangeAllView];
+                     }
+                     completion:^(BOOL finished) {
                      }];
 }
 #pragma mark - handle dragging
@@ -156,11 +111,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self];
     float delta = location.x - self.beginDraggingX;
-    self.draggingWiggleView.frame = CGRectMake(self.draggingWiggleView.frame.origin.x + delta,
-                                               self.draggingWiggleView.frame.origin.y,
-                                               self.draggingWiggleView.frame.size.width,
-                                               self.draggingWiggleView.frame.size.height);
-    
+    self.draggingWiggleView.frame = CGRectOffset(self.draggingWiggleView.frame, delta, 0);
     self.beginDraggingX = location.x;
     
     CGRect rectInSuperView = [self convertRect:self.draggingWiggleView.frame toView:self.superview];
@@ -190,6 +141,20 @@
     else {
         self.waitForPagingTimer = nil;
     }
+    
+    float midXofDraggingView = self.draggingWiggleView.frame.origin.x + self.draggingWiggleView.frame.size.width / 2;
+    // find interact view
+    for (FEWiggleView *view in self.wiggleViews) {
+        if (view != self.draggingWiggleView) {
+            if ((view.frame.origin.x < midXofDraggingView )
+                && (view.frame.origin.x + view.frame.size.width) > midXofDraggingView) {
+                // remove dragging view
+                // TODO
+                break;
+            }
+        }
+    }
+    
 }
 - (void)handleTimer:(NSTimer*)timer {
     BOOL isLeft = [[[timer userInfo] objectForKey:@"isLeft"] boolValue];
@@ -212,10 +177,7 @@
     float delta = newContentX - self.contentOffset.x;
     [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
     self.beginDraggingX += delta;
-    self.draggingWiggleView.frame = CGRectMake(self.draggingWiggleView.frame.origin.x + delta,
-                                               self.draggingWiggleView.frame.origin.y,
-                                               self.draggingWiggleView.frame.size.width,
-                                               self.draggingWiggleView.frame.size.height);
+    self.draggingWiggleView.frame = CGRectOffset(self.draggingWiggleView.frame, delta, 0);
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.editMode) {
