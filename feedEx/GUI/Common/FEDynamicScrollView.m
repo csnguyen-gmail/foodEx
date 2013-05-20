@@ -12,14 +12,16 @@
 @interface FEDynamicScrollView()
 @property (nonatomic) float beginDraggingX;
 @property (nonatomic, strong) FEWiggleView *draggingWiggleView;
+@property (nonatomic, strong) FEWiggleView *emptyWiggleView;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
 @property (nonatomic, weak) NSTimer *waitForPagingTimer;
 @end
 
 @implementation FEDynamicScrollView
 - (void)awakeFromNib {
     // add gesture recognizer
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-    [self addGestureRecognizer:longPressGesture];
+     self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+    [self addGestureRecognizer:self.longPressGesture];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapGesture];
     // this tells the UIScrollView class to allow touches within subviews
@@ -49,44 +51,70 @@
     }
     _draggingWiggleView = draggingWiggleView;
 }
+- (void)enterDraggingModeForView:(FEWiggleView*)view {
+    int index = [self.wiggleViews indexOfObject:view];
+    self.emptyWiggleView = [[FEWiggleView alloc] init];
+    self.emptyWiggleView.frame = view.frame;
+    [self.wiggleViews insertObject:self.emptyWiggleView atIndex:index];
+    [self addSubview:self.emptyWiggleView];
+    
+    self.draggingWiggleView = view;
+    self.draggingWiggleView.dragMode = YES;
+    [self.wiggleViews removeObject:self.draggingWiggleView];
+    [self bringSubviewToFront:self.draggingWiggleView];
+}
+- (void)exitDraggingMode {
+    if (!self.draggingWiggleView) {
+        return;
+    }
+    [UIView animateWithDuration:0.2f
+                     animations:^{
+                         int index = [self.wiggleViews indexOfObject:self.emptyWiggleView];
+                         [self.wiggleViews insertObject:self.draggingWiggleView atIndex:index];
+                         self.draggingWiggleView.dragMode = NO;
+                         self.draggingWiggleView.frame = self.emptyWiggleView.frame;
+                         self.draggingWiggleView = nil;
+                         
+                         [self.emptyWiggleView removeFromSuperview];
+                         [self.wiggleViews removeObject:self.emptyWiggleView];
+                         self.emptyWiggleView = nil;
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
 - (void)setWaitForPagingTimer:(NSTimer *)waitForPagingTimer {
     [_waitForPagingTimer invalidate];
     _waitForPagingTimer = waitForPagingTimer;
 }
 - (void) rearrangeAllView {
-    NSUInteger widthOfContentView = 0;
-    for (FEWiggleView *view in self.wiggleViews) {
-        float viewWidth = view.frame.size.width;
-        float viewHeight = view.frame.size.height;
-        view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
-        // add to control
-        widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
-    }
-    self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
+    // effect
+    [UIView animateWithDuration:0.2f
+                     animations:^{
+                         NSUInteger widthOfContentView = 0;
+                         for (FEWiggleView *view in self.wiggleViews) {
+                             float viewWidth = view.frame.size.width;
+                             float viewHeight = view.frame.size.height;
+                             view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
+                             // add to control
+                             widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
+                         }
+                         self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
 }
 #pragma mark - handle update
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
-    // effect
-    [UIView animateWithDuration:0.2f
-                     animations:^{
-                         // add to control
-                         [self addSubview:wiggleView];
-                         [self.wiggleViews insertObject:wiggleView atIndex:index];
-                         [self rearrangeAllView];
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+    wiggleView.editMode = self.editMode;
+    [self addSubview:wiggleView];
+    [self.wiggleViews insertObject:wiggleView atIndex:index];
+    [self rearrangeAllView];
+    [self scrollRectToVisible:wiggleView.frame animated:YES];
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
-    // effect
-    [UIView animateWithDuration:0.2f
-                     animations:^{
-                         [wiggleImageView removeFromSuperview];
-                         [self.wiggleViews removeObject:wiggleImageView];
-                         [self rearrangeAllView];
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+    [wiggleImageView removeFromSuperview];
+    [self.wiggleViews removeObject:wiggleImageView];
+    [self rearrangeAllView];
 }
 #pragma mark - handle dragging
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -97,8 +125,7 @@
     CGPoint location = [touch locationInView:self];
     for (FEWiggleView *view in self.wiggleViews) {
         if (CGRectContainsPoint(view.frame, location)) {
-            self.draggingWiggleView = view;
-            [self bringSubviewToFront:self.draggingWiggleView];
+            [self enterDraggingModeForView:view];
             break;
         }
     }
@@ -145,16 +172,17 @@
     float midXofDraggingView = self.draggingWiggleView.frame.origin.x + self.draggingWiggleView.frame.size.width / 2;
     // find interact view
     for (FEWiggleView *view in self.wiggleViews) {
-        if (view != self.draggingWiggleView) {
+        if (view != self.emptyWiggleView) {
             if ((view.frame.origin.x < midXofDraggingView )
                 && (view.frame.origin.x + view.frame.size.width) > midXofDraggingView) {
-                // remove dragging view
-                // TODO
+                int index = [self.wiggleViews indexOfObject:self.emptyWiggleView];
+                [self.wiggleViews removeObject:view];
+                [self.wiggleViews insertObject:view atIndex:index];
+                [self rearrangeAllView];
                 break;
             }
         }
     }
-    
 }
 - (void)handleTimer:(NSTimer*)timer {
     BOOL isLeft = [[[timer userInfo] objectForKey:@"isLeft"] boolValue];
@@ -178,20 +206,24 @@
     [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
     self.beginDraggingX += delta;
     self.draggingWiggleView.frame = CGRectOffset(self.draggingWiggleView.frame, delta, 0);
+    
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.editMode) {
         return;
     }
-    self.draggingWiggleView = nil;
+    [self exitDraggingMode];
     self.waitForPagingTimer = nil;
 }
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
-            self.editMode = !self.editMode;
-            self.draggingWiggleView = nil;
-            self.waitForPagingTimer = nil;
+            if (self.editMode) {
+                [self exitDraggingMode];
+                self.waitForPagingTimer = nil;
+            }
+            self.editMode = YES;
+            [self removeGestureRecognizer:self.longPressGesture];
             break;
         case UIGestureRecognizerStateChanged:
             break;
@@ -205,6 +237,7 @@
     if (!self.editMode) {
         return;
     }
+    [self exitDraggingMode];
     CGPoint location = [recognizer locationInView:self];
     for (FEWiggleView *wiggleView in self.wiggleViews) {
         if (CGRectContainsPoint(wiggleView.deleteView.frame, [self convertPoint:location toView:wiggleView.deleteView])) {

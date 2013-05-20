@@ -51,4 +51,7 @@
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];
     [self.dynamicScrollView addView:wiggleView atIndex:0];
 }
+- (IBAction)endEdit:(id)sender {
+    self.dynamicScrollView.editMode = NO;
+}
 @end

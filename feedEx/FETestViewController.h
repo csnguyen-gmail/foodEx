@@ -11,5 +11,6 @@
 @interface FETestViewController : UIViewController
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *dynamicScrollView;
 - (IBAction)addTapped:(id)sender;
+- (IBAction)endEdit:(id)sender;
 
 @end
