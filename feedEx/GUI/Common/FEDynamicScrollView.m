@@ -153,20 +153,22 @@
     // touch to left edge
     if (rectInSuperView.origin.x < 0) {
         if (!self.waitForPagingTimer) {
+            NSDictionary *userInfo = @{@"isLeft":@(YES)};
             self.waitForPagingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                        target:self
                                                                      selector:@selector(handleTimer:)
-                                                                     userInfo:@{@"isLeft":@(YES)}
+                                                                     userInfo: userInfo
                                                                       repeats:YES];
         }
     }
     // touch to roght edge
     else if (rectInSuperView.origin.x + rectInSuperView.size.width > self.frame.size.width) {
         if (!self.waitForPagingTimer) {
+            NSDictionary *userInfo = @{@"isLeft":@(NO)};
             self.waitForPagingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                        target:self
                                                                      selector:@selector(handleTimer:)
-                                                                     userInfo:@{@"isLeft":@(NO)}
+                                                                     userInfo:userInfo
                                                                       repeats:YES];
         }
     }
@@ -180,35 +182,29 @@
 }
 - (void)handleTimer:(NSTimer*)timer {
     BOOL isLeft = [[[timer userInfo] objectForKey:@"isLeft"] boolValue];
+    float newContentX;
     if (isLeft) {
-        float newContentX = self.contentOffset.x - self.frame.size.width;
+        // scroll view to left edge
+        newContentX = self.contentOffset.x - self.frame.size.width;
         if (newContentX < 0) {
             newContentX = 0;
         }
-        [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
-        
-        float newDraggingViewX = newContentX; // TODO
-        self.beginDraggingX += newDraggingViewX - self.draggingWiggleView.frame.origin.x;
-        self.draggingWiggleView.frame = CGRectMake(newDraggingViewX,
-                                                   self.draggingWiggleView.frame.origin.y,
-                                                   self.draggingWiggleView.frame.size.width,
-                                                   self.draggingWiggleView.frame.size.height);
-        
     }
     else {
-        float newContentX = self.contentOffset.x + self.frame.size.width;
+        // scroll view to right edge
+        newContentX = self.contentOffset.x + self.frame.size.width;
         if (newContentX + self.frame.size.width > self.contentSize.width) {
             newContentX = self.contentSize.width - self.frame.size.width;
         }
-        [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
-        
-        float newDraggingViewX = newContentX + self.frame.size.width - self.draggingWiggleView.frame.size.width; // TODO
-        self.beginDraggingX += newDraggingViewX - self.draggingWiggleView.frame.origin.x;
-        self.draggingWiggleView.frame = CGRectMake(newDraggingViewX,
-                                                   self.draggingWiggleView.frame.origin.y,
-                                                   self.draggingWiggleView.frame.size.width,
-                                                   self.draggingWiggleView.frame.size.height);
     }
+    
+    float delta = newContentX - self.contentOffset.x;
+    [self setContentOffset:CGPointMake(newContentX, self.contentOffset.y) animated:YES];
+    self.beginDraggingX += delta;
+    self.draggingWiggleView.frame = CGRectMake(self.draggingWiggleView.frame.origin.x + delta,
+                                               self.draggingWiggleView.frame.origin.y,
+                                               self.draggingWiggleView.frame.size.width,
+                                               self.draggingWiggleView.frame.size.height);
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.editMode) {
