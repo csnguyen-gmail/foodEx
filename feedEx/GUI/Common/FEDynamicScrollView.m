@@ -46,6 +46,21 @@
         wiggleView.editMode = editMode;
     }
 }
+- (void)setDraggingWiggleView:(FEWiggleView *)draggingWiggleView {
+    if (draggingWiggleView == nil) {
+        _draggingWiggleView.dragMode = NO;
+    }
+    else {
+        draggingWiggleView.dragMode = YES;
+    }
+    _draggingWiggleView = draggingWiggleView;
+}
+- (void)setWaitForPagingTimer:(NSTimer *)waitForPagingTimer {
+    [_waitForPagingTimer invalidate];
+    _waitForPagingTimer = waitForPagingTimer;
+}
+
+#pragma mark - handle update
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
     if (index > self.wiggleViews.count) {
         return;
@@ -118,7 +133,7 @@
                          [self.wiggleViews removeObject:wiggleImageView];
                      }];
 }
-#pragma mark - handle gesture
+#pragma mark - handle dragging
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.editMode) {
         return;
@@ -128,7 +143,6 @@
     for (FEWiggleView *view in self.wiggleViews) {
         if (CGRectContainsPoint(view.frame, location)) {
             self.draggingWiggleView = view;
-            self.draggingWiggleView.dragMode = YES;
             [self bringSubviewToFront:self.draggingWiggleView];
             break;
         }
@@ -161,7 +175,7 @@
                                                                       repeats:YES];
         }
     }
-    // touch to roght edge
+    // touch to right edge
     else if (rectInSuperView.origin.x + rectInSuperView.size.width > self.frame.size.width) {
         if (!self.waitForPagingTimer) {
             NSDictionary *userInfo = @{@"isLeft":@(NO)};
@@ -174,10 +188,7 @@
     }
     // not touch edge
     else {
-        if (self.waitForPagingTimer) {
-            [self.waitForPagingTimer invalidate];
-            self.waitForPagingTimer = nil;
-        }
+        self.waitForPagingTimer = nil;
     }
 }
 - (void)handleTimer:(NSTimer*)timer {
@@ -210,21 +221,15 @@
     if (!self.editMode) {
         return;
     }
-    self.draggingWiggleView.dragMode = NO;
     self.draggingWiggleView = nil;
-    [self.waitForPagingTimer invalidate];
     self.waitForPagingTimer = nil;
 }
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             self.editMode = !self.editMode;
-            if (self.draggingWiggleView) {
-                self.draggingWiggleView.dragMode = NO;
-                self.draggingWiggleView = nil;
-                [self.waitForPagingTimer invalidate];
-                self.waitForPagingTimer = nil;
-            }
+            self.draggingWiggleView = nil;
+            self.waitForPagingTimer = nil;
             break;
         case UIGestureRecognizerStateChanged:
             break;
