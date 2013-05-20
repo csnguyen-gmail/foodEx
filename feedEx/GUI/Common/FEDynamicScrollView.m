@@ -13,15 +13,12 @@
 @property (nonatomic) float beginDraggingX;
 @property (nonatomic, strong) FEWiggleView *draggingWiggleView;
 @property (nonatomic, strong) FEWiggleView *emptyWiggleView;
-@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
 @property (nonatomic, weak) NSTimer *waitForPagingTimer;
 @end
 
 @implementation FEDynamicScrollView
 - (void)awakeFromNib {
     // add gesture recognizer
-     self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-    [self addGestureRecognizer:self.longPressGesture];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapGesture];
     // this tells the UIScrollView class to allow touches within subviews
@@ -214,24 +211,6 @@
     }
     [self exitDraggingMode];
     self.waitForPagingTimer = nil;
-}
-- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
-    switch (recognizer.state) {
-        case UIGestureRecognizerStateBegan:
-            if (self.editMode) {
-                [self exitDraggingMode];
-                self.waitForPagingTimer = nil;
-            }
-            self.editMode = YES;
-            [self removeGestureRecognizer:self.longPressGesture];
-            break;
-        case UIGestureRecognizerStateChanged:
-            break;
-        case UIGestureRecognizerStateEnded:
-            break;
-        default:
-            break;
-    }
 }
 - (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
     if (!self.editMode) {
