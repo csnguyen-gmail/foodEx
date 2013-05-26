@@ -22,6 +22,7 @@
 
 - (void)viewDidUnload {
     [self setDynamicScrollView:nil];
+    [self setCapturedImageView:nil];
     [super viewDidUnload];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -54,4 +55,23 @@
 - (IBAction)endEdit:(id)sender {
     self.dynamicScrollView.editMode = !self.dynamicScrollView.editMode;
 }
+- (IBAction)captureTapped:(id)sender {
+    [self performSegueWithIdentifier:@"showImagePickerSegue" sender:self];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UIImagePickerController *controller = [segue destinationViewController];
+    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    controller.allowsEditing = YES;
+    controller.delegate = self;
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.capturedImageView.image = image;
+}
+
 @end

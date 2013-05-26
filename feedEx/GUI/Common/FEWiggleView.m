@@ -19,11 +19,15 @@
         _mainView = mainView;
         _deleteView = deleteView;
         
-        self.frame = _mainView.frame;
+        self.frame = CGRectMake(0.0, 0.0,
+                                _mainView.frame.size.width + _deleteView.frame.size.width / 2,
+                                _mainView.frame.size.height + _deleteView.frame.size.height / 2);
+        _mainView.frame = CGRectOffset(_mainView.frame,
+                                       _deleteView.frame.size.width / 2,
+                                       _deleteView.frame.size.height / 2);
+        _mainView.layer.cornerRadius = 10.0f;
+        _mainView.layer.masksToBounds = YES;
         [self addSubview:_mainView];
-        
-        self.layer.cornerRadius = 10.0f;
-        self.layer.masksToBounds = YES;
         
         self.editMode = NO;
         self.dragMode = NO;
@@ -61,8 +65,8 @@
 }
 
 - (void)startWiggling {
-    self.deleteView.frame = CGRectMake(5.0f,
-                                       5.0f,
+    self.deleteView.frame = CGRectMake(0.0f,
+                                       0.0f,
                                        self.deleteView.frame.size.width,
                                        self.deleteView.frame.size.height);
     [self addSubview:self.deleteView];

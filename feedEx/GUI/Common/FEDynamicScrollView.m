@@ -7,7 +7,8 @@
 //
 
 #import "FEDynamicScrollView.h"
-#define DYNAMIC_SCROLLVIEW_PADDING 5
+#define DYNAMIC_SCROLLVIEW_WIDTH_PADDING 5
+#define DYNAMIC_SCROLLVIEW_HEIGHT_PADDING 5
 
 @interface FEDynamicScrollView()
 @property (nonatomic) float beginDraggingX;
@@ -30,7 +31,7 @@
     for (FEWiggleView *view in wiggleViews) {
         [self addSubview:view];
     }
-    [self rearrangeAllView];
+    [self rearrangeAllViewWithAnimation:NO];
 }
 
 - (void)setEditMode:(BOOL)editMode {
@@ -83,17 +84,17 @@
     [_waitForPagingTimer invalidate];
     _waitForPagingTimer = waitForPagingTimer;
 }
-- (void) rearrangeAllView {
+- (void) rearrangeAllViewWithAnimation:(BOOL)animated {
     // effect
-    [UIView animateWithDuration:0.2f
+    [UIView animateWithDuration:animated ? 0.2f :0.0f
                      animations:^{
                          NSUInteger widthOfContentView = 0;
                          for (FEWiggleView *view in self.wiggleViews) {
                              float viewWidth = view.frame.size.width;
                              float viewHeight = view.frame.size.height;
-                             view.frame = CGRectMake(widthOfContentView, 0, viewWidth, viewHeight);
+                             view.frame = CGRectMake(widthOfContentView, DYNAMIC_SCROLLVIEW_HEIGHT_PADDING, viewWidth, viewHeight);
                              // add to control
-                             widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_PADDING;
+                             widthOfContentView += viewWidth + DYNAMIC_SCROLLVIEW_WIDTH_PADDING;
                          }
                          self.contentSize = CGSizeMake(widthOfContentView, self.frame.size.height);
                      }
@@ -105,13 +106,13 @@
     wiggleView.editMode = self.editMode;
     [self addSubview:wiggleView];
     [self.wiggleViews insertObject:wiggleView atIndex:index];
-    [self rearrangeAllView];
+    [self rearrangeAllViewWithAnimation:YES];
     [self scrollRectToVisible:wiggleView.frame animated:YES];
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
     [wiggleImageView removeFromSuperview];
     [self.wiggleViews removeObject:wiggleImageView];
-    [self rearrangeAllView];
+    [self rearrangeAllViewWithAnimation:YES];
 }
 #pragma mark - handle dragging
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -175,7 +176,7 @@
                 int index = [self.wiggleViews indexOfObject:self.emptyWiggleView];
                 [self.wiggleViews removeObject:view];
                 [self.wiggleViews insertObject:view atIndex:index];
-                [self rearrangeAllView];
+                [self rearrangeAllViewWithAnimation:YES];
                 break;
             }
         }

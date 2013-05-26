@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
-@interface FETestViewController : UIViewController
+@interface FETestViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *dynamicScrollView;
 - (IBAction)addTapped:(id)sender;
 - (IBAction)endEdit:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *capturedImageView;
 
 @end
