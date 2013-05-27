@@ -23,6 +23,12 @@
     [self setupGUI];
 }
 
+- (void)viewDidUnload {
+    [self setNoteTextView:nil];
+    [self setPhotoScrollView:nil];
+    [super viewDidUnload];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -66,20 +72,4 @@
     return rect.size.height;
 }
 
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.row %2 != 0) {
-//        cell.backgroundColor = [[UIColor alloc] initWithRed:191.0/255.0 green:206.0/255.0 blue:224.0/255.0 alpha:1.0];
-//    }
-//    else {
-//        cell.backgroundColor = [[UIColor alloc] initWithRed:250.0/255.0 green:250.0/255.0 blue:255.0/255.0 alpha:1.0];
-//    }
-//    cell.backgroundColor = [UIColor darkGrayColor];
-}
-
-- (void)viewDidUnload {
-    [self setNoteTextView:nil];
-    [self setPhotoScrollView:nil];
-    [super viewDidUnload];
-}
 @end

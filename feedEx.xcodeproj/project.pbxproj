@@ -50,6 +50,7 @@
 		6F5E9212172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
+		6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */; };
 		6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */; };
 		6F9E95B91744EED100DCCF24 /* FEEditPlaceInfoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEEditPlaceInfoMainVC.m */; };
 		6F9E95BA1744EED100DCCF24 /* FEEditPlaceInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */; };
@@ -149,6 +150,8 @@
 		6F5E9219172385780059055F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F5E921B172385780059055F /* feedExTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = feedExTests.h; sourceTree = "<group>"; };
 		6F5E921C172385780059055F /* feedExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = feedExTests.m; sourceTree = "<group>"; };
+		6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETrackingKeyboardWindow.h; sourceTree = "<group>"; };
+		6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETrackingKeyboardWindow.m; sourceTree = "<group>"; };
 		6F9E95B11744EED100DCCF24 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
 		6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEVerticalResizeControllView.m; sourceTree = "<group>"; };
 		6F9E95B41744EED100DCCF24 /* FEEditPlaceInfoMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEEditPlaceInfoMainVC.h; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 				6F9E95D017465D9200DCCF24 /* FEDynamicScrollView.m */,
 				6FD8CB501748DC410039EAE8 /* FEWiggleView.h */,
 				6FD8CB511748DC410039EAE8 /* FEWiggleView.m */,
+				6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */,
+				6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				6F9E95CA174646A900DCCF24 /* FETestViewController.m in Sources */,
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
+				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

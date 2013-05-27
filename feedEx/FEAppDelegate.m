@@ -7,12 +7,19 @@
 //
 
 #import "FEAppDelegate.h"
+#import "FETrackingKeyboardWindow.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation FEAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // tracking keyboard
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    FETrackingKeyboardWindow *window =[[FETrackingKeyboardWindow alloc] initWithFrame:screenRect];
+    self.window = window;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
     // provide key to use Google Map API
     [GMSServices provideAPIKey:@"AIzaSyDgkf3fKz7UkBuxHvrwRrOm74ah2vJJtY0"];
     return YES;
