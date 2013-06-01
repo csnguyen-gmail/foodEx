@@ -7,9 +7,10 @@
 //
 
 #import "FETestViewController.h"
-
+#import "FENextInputAccessoryView.h"
 @interface FETestViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextField *nextTextField;
 @end
 
 @implementation FETestViewController
@@ -18,11 +19,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem *moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self action:@selector(hello:)];
+    moreButton.tintColor = [UIColor redColor];
+    self.textField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.nextTextField additionalButtons:@[moreButton]];
+}
+-(void)hello:(id)sender {
+    NSLog(@"hello");
 }
 
 - (void)viewDidUnload {
     [self setDynamicScrollView:nil];
     [self setCapturedImageView:nil];
+    [self setTextField:nil];
+    [self setNextTextField:nil];
     [super viewDidUnload];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -33,7 +44,7 @@
                                                               [UIImage imageNamed:@"c_t"],
                                                               [UIImage imageNamed:@"d_t"],
                                                               [UIImage imageNamed:@"e_t"],
-                              [UIImage imageNamed:@"a_t"],
+                                                            [UIImage imageNamed:@"a_t"],
                               [UIImage imageNamed:@"b_t"],
                               [UIImage imageNamed:@"c_t"],
                               [UIImage imageNamed:@"d_t"],

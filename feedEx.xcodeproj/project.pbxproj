@@ -29,6 +29,7 @@
 		6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */; };
 		6F12E66317354466007A38DA /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E66217354466007A38DA /* UIImage+Extension.m */; };
 		6F12E66417354466007A38DA /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E66217354466007A38DA /* UIImage+Extension.m */; };
+		6F1962181756F64D0086C3F4 /* FENextInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FENextInputAccessoryView.m */; };
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
@@ -125,6 +126,8 @@
 		6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AbstractInfo+Extension.m"; sourceTree = "<group>"; };
 		6F12E66117354466007A38DA /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		6F12E66217354466007A38DA /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		6F1962161756F64C0086C3F4 /* FENextInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FENextInputAccessoryView.h; sourceTree = "<group>"; };
+		6F1962171756F64D0086C3F4 /* FENextInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FENextInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
 		6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = framework/GoogleMaps.framework; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 				6FD8CB511748DC410039EAE8 /* FEWiggleView.m */,
 				6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */,
 				6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */,
+				6F1962161756F64C0086C3F4 /* FENextInputAccessoryView.h */,
+				6F1962171756F64D0086C3F4 /* FENextInputAccessoryView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
+				6F1962181756F64D0086C3F4 /* FENextInputAccessoryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

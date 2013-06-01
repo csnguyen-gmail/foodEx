@@ -62,7 +62,6 @@
     self.verticalResizeView.delegate = self;
     _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 0;
     _limitLowerHeight = self.mapView.frame.size.height;
-    
 }
 
 - (void)loadData {

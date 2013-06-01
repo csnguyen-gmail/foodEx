@@ -7,9 +7,13 @@
 //
 
 #import "FEEditPlaceInfoTVC.h"
+#import "FENextInputAccessoryView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UIScrollView *photoScrollView;
 @property (strong, nonatomic) NSMutableArray *imagesArray;
@@ -26,6 +30,9 @@
 - (void)viewDidUnload {
     [self setNoteTextView:nil];
     [self setPhotoScrollView:nil];
+    [self setNameTextField:nil];
+    [self setAddressTextField:nil];
+    [self setTagTextField:nil];
     [super viewDidUnload];
 }
 
@@ -55,6 +62,25 @@
         x += 64 + 2;
     }
     self.photoScrollView.contentSize = CGSizeMake((64 + 2) * self.imagesArray.count, 64);
+    // name text field
+    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.addressTextField additionalButtons:nil];
+    // address text field
+    UIBarButtonItem *addressMoreButton = [[UIBarButtonItem alloc] initWithTitle:@"More"
+                                                                          style:UIBarButtonItemStyleDone
+                                                                         target:self
+                                                                         action:@selector(moreAddressTapped:)];
+    addressMoreButton.tintColor = [UIColor redColor];
+    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField additionalButtons:@[addressMoreButton]];
+    // tag text field
+    self.tagTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView additionalButtons:nil];
+    // note text view
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(commentDoneTapped:)];
+    self.noteTextView.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:nil additionalButtons:@[doneButton]];
+    
+    
 }
 
 - (void)loadData {
@@ -70,6 +96,16 @@
 - (NSUInteger)getHeightOfTable {
     CGRect rect = [self.tableView rectForSection:0];
     return rect.size.height;
+}
+
+#pragma mark - Address
+- (void)moreAddressTapped:(id)sender
+{
+    // TODO
+}
+#pragma mark - Comment
+- (void)commentDoneTapped:(id)sender {
+    [self.noteTextView resignFirstResponder];
 }
 
 @end
