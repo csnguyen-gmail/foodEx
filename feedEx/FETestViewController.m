@@ -58,6 +58,9 @@
     }
     self.dynamicScrollView.wiggleViews = wiggleViews;
 }
+- (void)viewDidDisappear:(BOOL)animated {
+    self.dynamicScrollView.editMode = NO;
+}
 - (IBAction)addTapped:(id)sender {
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"a_t"]]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];

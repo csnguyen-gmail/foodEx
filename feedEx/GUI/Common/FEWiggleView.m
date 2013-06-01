@@ -20,11 +20,11 @@
         _deleteView = deleteView;
         
         self.frame = CGRectMake(0.0, 0.0,
-                                _mainView.frame.size.width + _deleteView.frame.size.width / 2,
-                                _mainView.frame.size.height + _deleteView.frame.size.height / 2);
+                                _mainView.frame.size.width + _deleteView.frame.size.width / 3,
+                                _mainView.frame.size.height + _deleteView.frame.size.height / 3);
         _mainView.frame = CGRectOffset(_mainView.frame,
-                                       _deleteView.frame.size.width / 2,
-                                       _deleteView.frame.size.height / 2);
+                                       _deleteView.frame.size.width / 3,
+                                       _deleteView.frame.size.height / 3);
         _mainView.layer.cornerRadius = 10.0f;
         _mainView.layer.masksToBounds = YES;
         [self addSubview:_mainView];

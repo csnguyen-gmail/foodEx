@@ -15,6 +15,7 @@
 @property (nonatomic, strong) FEWiggleView *draggingWiggleView;
 @property (nonatomic, strong) FEWiggleView *emptyWiggleView;
 @property (nonatomic, weak) NSTimer *waitForPagingTimer;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longGesture;
 @end
 
 @implementation FEDynamicScrollView
@@ -24,10 +25,21 @@
     [self addGestureRecognizer:tapGesture];
     // this tells the UIScrollView class to allow touches within subviews
     self.canCancelContentTouches = NO;
+    // set up default mode of wiggle view
+    self.editMode = NO;
+}
+- (UILongPressGestureRecognizer *)longGesture {
+    if (!_longGesture) {
+        _longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
+    }
+    return _longGesture;
 }
 - (void)setWiggleViews:(NSMutableArray *)wiggleViews {
     _wiggleViews = wiggleViews;
     // add view
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
     for (FEWiggleView *view in wiggleViews) {
         [self addSubview:view];
     }
@@ -36,6 +48,13 @@
 
 - (void)setEditMode:(BOOL)editMode {
     _editMode = editMode;
+    if (editMode) {
+        [self removeGestureRecognizer:self.longGesture];
+    }
+    else {
+        [self addGestureRecognizer:self.longGesture];
+    }
+    
     for (FEWiggleView *wiggleView in self.wiggleViews) {
         wiggleView.editMode = editMode;
     }
@@ -60,6 +79,7 @@
     self.draggingWiggleView.dragMode = YES;
     [self.wiggleViews removeObject:self.draggingWiggleView];
     [self bringSubviewToFront:self.draggingWiggleView];
+    [self.dynamicScrollViewDelegate enterDraggingMode];
 }
 - (void)exitDraggingMode {
     if (!self.draggingWiggleView) {
@@ -79,7 +99,9 @@
                      }
                      completion:^(BOOL finished) {
                      }];
+    [self.dynamicScrollViewDelegate exitDraggingMode];
 }
+
 - (void)setWaitForPagingTimer:(NSTimer *)waitForPagingTimer {
     [_waitForPagingTimer invalidate];
     _waitForPagingTimer = waitForPagingTimer;
@@ -225,6 +247,10 @@
             break;
         }
     }
+}
+- (void)handleLongGesture:(UILongPressGestureRecognizer *)recognizer {
+    self.editMode = YES;
+    [self.dynamicScrollViewDelegate enterEditMode];
 }
 
 @end

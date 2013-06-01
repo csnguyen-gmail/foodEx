@@ -55,12 +55,12 @@
                                                        [self.editPlaceInfoTVC getHeightOfTable]);
     [self addChildViewController:self.editPlaceInfoTVC];
     self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, [self.editPlaceInfoTVC getHeightOfTable] - 0);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, [self.editPlaceInfoTVC getHeightOfTable] - 1);
     [self.scrollView addSubview:self.editPlaceInfoTVC.tableView];
     self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
     self.verticalResizeView.delegate = self;
-    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 0;
+    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _limitLowerHeight = self.mapView.frame.size.height;
 }
 
