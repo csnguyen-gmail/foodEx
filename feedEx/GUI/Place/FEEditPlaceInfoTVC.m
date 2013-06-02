@@ -43,12 +43,12 @@
                               [UIImage imageNamed:@"d_t"],
                               [UIImage imageNamed:@"e_t"]]];
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
-    for (UIImage *image in images) {
-        // set up wiggle image view
-        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:image]
-                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-        [wiggleViews addObject:wiggleView];
-    }
+//    for (UIImage *image in images) {
+//        // set up wiggle image view
+//        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:image]
+//                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
+//        [wiggleViews addObject:wiggleView];
+//    }
     self.photoScrollView.wiggleViews = wiggleViews;
     self.photoScrollView.dynamicScrollViewDelegate = self;
     self.addPhotoButton.hidden = NO;
@@ -135,7 +135,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIImagePickerController *controller = [segue destinationViewController];
-    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     controller.allowsEditing = YES;
     controller.delegate = self;
 }

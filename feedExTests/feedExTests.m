@@ -27,7 +27,7 @@
     NSManagedObjectContext *context = _coredata.managedObjectContext;
     User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     user.name = @"UserA";
-    [user setThumbnailAndOriginImage:[UIImage imageNamed:@"a.jpg"]];
+    [user insertThumbnailAndOriginImage:[UIImage imageNamed:@"a.jpg"] atIndex:0];
     for (int i = 0; i < 10; i++) {
         Place *place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = [NSString stringWithFormat:@"Place%d", i];
@@ -125,15 +125,16 @@
     NSArray *users = [_coredata.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     User *user = users.lastObject;
     UIImage *loadedImage = [UIImage imageNamed:@"a.jpg"];
+    Photo *firstPhotoOfUser = [user.photos objectAtIndex:0];
     // check origin Photo
     NSData *originData = UIImagePNGRepresentation(loadedImage);
-    NSData *storeData = [(Photo*)[[user.photos allObjects] lastObject] imageData];
+    NSData *storeData = firstPhotoOfUser.imageData;
     if (![originData isEqualToData:storeData]){
        STFail(@"Not match original image");
     }
     // check Thumbnail Photo
     NSData *originThumbnailData = UIImagePNGRepresentation([UIImage imageWithImage:loadedImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)]);
-    NSData *storeThumbnailData = UIImagePNGRepresentation(user.thumbnailPhoto);
+    NSData *storeThumbnailData = UIImagePNGRepresentation(firstPhotoOfUser.thumbnailPhoto);
     if (![originThumbnailData isEqualToData:storeThumbnailData]){
         STFail(@"Not match original thumbnail image");
     }

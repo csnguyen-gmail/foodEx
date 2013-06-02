@@ -7,22 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F0D6CA8173640CD0008E12F /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CA7173640CD0008E12F /* Place+Extension.m */; };
-		6F0D6CA9173640CD0008E12F /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CA7173640CD0008E12F /* Place+Extension.m */; };
-		6F0D6D00173644650008E12F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CFF173644650008E12F /* AbstractInfo.m */; };
-		6F0D6D01173644650008E12F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6CFF173644650008E12F /* AbstractInfo.m */; };
-		6F0D6D04173644680008E12F /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D03173644670008E12F /* Address.m */; };
-		6F0D6D05173644680008E12F /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D03173644670008E12F /* Address.m */; };
-		6F0D6D081736446B0008E12F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D071736446A0008E12F /* User.m */; };
-		6F0D6D091736446B0008E12F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D071736446A0008E12F /* User.m */; };
-		6F0D6D0C173644710008E12F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0B1736446F0008E12F /* Tag.m */; };
-		6F0D6D0D173644710008E12F /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0B1736446F0008E12F /* Tag.m */; };
-		6F0D6D10173644790008E12F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0F173644770008E12F /* Food.m */; };
-		6F0D6D11173644790008E12F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D0F173644770008E12F /* Food.m */; };
-		6F0D6D14173644820008E12F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D131736447F0008E12F /* Photo.m */; };
-		6F0D6D15173644820008E12F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D131736447F0008E12F /* Photo.m */; };
-		6F0D6D181736448E0008E12F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D171736448A0008E12F /* Place.m */; };
-		6F0D6D191736448E0008E12F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D6D171736448A0008E12F /* Place.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E65F1735409A007A38DA /* AbstractInfo+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */; };
@@ -86,6 +70,13 @@
 		6FED8F97175A5A7F00216AC6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F91175A5A7E00216AC6 /* pause.png */; };
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
 		6FED8F99175A5A7F00216AC6 /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F93175A5A7F00216AC6 /* remove.png */; };
+		6FED8FA9175B78E600216AC6 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FA8175B78E600216AC6 /* Food.m */; };
+		6FED8FAC175B78E900216AC6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FAB175B78E800216AC6 /* Place.m */; };
+		6FED8FAF175B78EA00216AC6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FAE175B78EA00216AC6 /* Photo.m */; };
+		6FED8FB2175B78EF00216AC6 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FB1175B78EC00216AC6 /* AbstractInfo.m */; };
+		6FED8FB5175B78F100216AC6 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FB4175B78F100216AC6 /* Address.m */; };
+		6FED8FB8175B78F600216AC6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FB7175B78F200216AC6 /* User.m */; };
+		6FED8FBB175B78F700216AC6 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED8FBA175B78F700216AC6 /* Tag.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,22 +97,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F0D6CA6173640CC0008E12F /* Place+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Extension.h"; sourceTree = "<group>"; };
-		6F0D6CA7173640CD0008E12F /* Place+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Extension.m"; sourceTree = "<group>"; };
-		6F0D6CFE173644640008E12F /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6F0D6CFF173644650008E12F /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
-		6F0D6D02173644660008E12F /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		6F0D6D03173644670008E12F /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
-		6F0D6D06173644690008E12F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6F0D6D071736446A0008E12F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6F0D6D0A1736446D0008E12F /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6F0D6D0B1736446F0008E12F /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6F0D6D0E173644740008E12F /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6F0D6D0F173644770008E12F /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6F0D6D121736447D0008E12F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6F0D6D131736447F0008E12F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6F0D6D16173644870008E12F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6F0D6D171736448A0008E12F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
 		6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AbstractInfo+Extension.h"; sourceTree = "<group>"; };
@@ -199,6 +174,20 @@
 		6FED8F91175A5A7E00216AC6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
 		6FED8F93175A5A7F00216AC6 /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
+		6FED8FA7175B78E500216AC6 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6FED8FA8175B78E600216AC6 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6FED8FAA175B78E700216AC6 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6FED8FAB175B78E800216AC6 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FED8FAD175B78E900216AC6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6FED8FAE175B78EA00216AC6 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		6FED8FB0175B78EB00216AC6 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6FED8FB1175B78EC00216AC6 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6FED8FB3175B78F000216AC6 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		6FED8FB4175B78F100216AC6 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		6FED8FB6175B78F100216AC6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6FED8FB7175B78F200216AC6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6FED8FB9175B78F700216AC6 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		6FED8FBA175B78F700216AC6 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,25 +247,23 @@
 		6F5C32CB172B82B100BCF8F7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6F0D6D02173644660008E12F /* Address.h */,
-				6F0D6D03173644670008E12F /* Address.m */,
-				6F0D6CFE173644640008E12F /* AbstractInfo.h */,
-				6F0D6CFF173644650008E12F /* AbstractInfo.m */,
-				6F0D6D16173644870008E12F /* Place.h */,
-				6F0D6D171736448A0008E12F /* Place.m */,
-				6F0D6D121736447D0008E12F /* Photo.h */,
-				6F0D6D131736447F0008E12F /* Photo.m */,
-				6F0D6D0E173644740008E12F /* Food.h */,
-				6F0D6D0F173644770008E12F /* Food.m */,
-				6F0D6D0A1736446D0008E12F /* Tag.h */,
-				6F0D6D0B1736446F0008E12F /* Tag.m */,
-				6F0D6D06173644690008E12F /* User.h */,
-				6F0D6D071736446A0008E12F /* User.m */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
+				6FED8FA7175B78E500216AC6 /* Food.h */,
+				6FED8FA8175B78E600216AC6 /* Food.m */,
+				6FED8FAA175B78E700216AC6 /* Place.h */,
+				6FED8FAD175B78E900216AC6 /* Photo.h */,
+				6FED8FB3175B78F000216AC6 /* Address.h */,
+				6FED8FB4175B78F100216AC6 /* Address.m */,
+				6FED8FB6175B78F100216AC6 /* User.h */,
+				6FED8FB7175B78F200216AC6 /* User.m */,
+				6FED8FB9175B78F700216AC6 /* Tag.h */,
+				6FED8FBA175B78F700216AC6 /* Tag.m */,
+				6FED8FB0175B78EB00216AC6 /* AbstractInfo.h */,
+				6FED8FB1175B78EC00216AC6 /* AbstractInfo.m */,
+				6FED8FAE175B78EA00216AC6 /* Photo.m */,
+				6FED8FAB175B78E800216AC6 /* Place.m */,
 				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
 				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
-				6F0D6CA6173640CC0008E12F /* Place+Extension.h */,
-				6F0D6CA7173640CD0008E12F /* Place+Extension.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F12E66117354466007A38DA /* UIImage+Extension.h */,
@@ -592,14 +579,6 @@
 				6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */,
 				6F12E65F1735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6F12E66317354466007A38DA /* UIImage+Extension.m in Sources */,
-				6F0D6CA8173640CD0008E12F /* Place+Extension.m in Sources */,
-				6F0D6D00173644650008E12F /* AbstractInfo.m in Sources */,
-				6F0D6D04173644680008E12F /* Address.m in Sources */,
-				6F0D6D081736446B0008E12F /* User.m in Sources */,
-				6F0D6D0C173644710008E12F /* Tag.m in Sources */,
-				6F0D6D10173644790008E12F /* Food.m in Sources */,
-				6F0D6D14173644820008E12F /* Photo.m in Sources */,
-				6F0D6D181736448E0008E12F /* Place.m in Sources */,
 				6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */,
 				6F9E95B91744EED100DCCF24 /* FEEditPlaceInfoMainVC.m in Sources */,
 				6F9E95BA1744EED100DCCF24 /* FEEditPlaceInfoTVC.m in Sources */,
@@ -609,6 +588,13 @@
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 				6F1962181756F64D0086C3F4 /* FENextInputAccessoryView.m in Sources */,
+				6FED8FA9175B78E600216AC6 /* Food.m in Sources */,
+				6FED8FAC175B78E900216AC6 /* Place.m in Sources */,
+				6FED8FAF175B78EA00216AC6 /* Photo.m in Sources */,
+				6FED8FB2175B78EF00216AC6 /* AbstractInfo.m in Sources */,
+				6FED8FB5175B78F100216AC6 /* Address.m in Sources */,
+				6FED8FB8175B78F600216AC6 /* User.m in Sources */,
+				6FED8FBB175B78F700216AC6 /* Tag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,14 +607,6 @@
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
 				6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6F12E66417354466007A38DA /* UIImage+Extension.m in Sources */,
-				6F0D6CA9173640CD0008E12F /* Place+Extension.m in Sources */,
-				6F0D6D01173644650008E12F /* AbstractInfo.m in Sources */,
-				6F0D6D05173644680008E12F /* Address.m in Sources */,
-				6F0D6D091736446B0008E12F /* User.m in Sources */,
-				6F0D6D0D173644710008E12F /* Tag.m in Sources */,
-				6F0D6D11173644790008E12F /* Food.m in Sources */,
-				6F0D6D15173644820008E12F /* Photo.m in Sources */,
-				6F0D6D191736448E0008E12F /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
