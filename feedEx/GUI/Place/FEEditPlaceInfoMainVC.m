@@ -31,17 +31,18 @@
     // edit place info view
     self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceInfoTVC"];
     self.editPlaceInfoTVC.tableView.layer.cornerRadius = 10;
+    float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height; // for remove last separate line
     self.editPlaceInfoTVC.tableView.frame = CGRectMake(0, 0,
                                                        self.scrollView.bounds.size.width,
-                                                       [self.editPlaceInfoTVC getHeightOfTable]);
+                                                       tableHeight);
     [self addChildViewController:self.editPlaceInfoTVC];
     self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, [self.editPlaceInfoTVC getHeightOfTable] - 1);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight - 1);
     [self.scrollView addSubview:self.editPlaceInfoTVC.tableView];
     self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
     self.verticalResizeView.delegate = self;
-    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 2;
+    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _limitLowerHeight = self.mapView.frame.size.height;
     _originUpperHeight = self.scrollView.frame.size.height;
 }
@@ -126,7 +127,9 @@
             marker.title = resp.firstResult.addressLine1;
             marker.snippet = resp.firstResult.addressLine2;
             marker.map = self.mapView;
+            self.editPlaceInfoTVC.regionTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
         }];
+        self.mapView.myLocationEnabled = NO;
     }
 }
 @end

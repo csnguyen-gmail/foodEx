@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
 
-@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-- (NSUInteger)getHeightOfTable;
+@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *regionTextField;
 @end

@@ -57,13 +57,10 @@
     self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.addressTextField
                                                                                   additionalButtons:nil];
     // address text field
-    UIBarButtonItem *addressMoreButton = [[UIBarButtonItem alloc] initWithTitle:@"More"
-                                                                          style:UIBarButtonItemStyleDone
-                                                                         target:self
-                                                                         action:@selector(moreAddressTapped:)];
-    addressMoreButton.tintColor = [UIColor redColor];
-    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField
-                                                                                     additionalButtons:@[addressMoreButton]];
+    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.regionTextField
+                                                                                     additionalButtons:nil];
+    self.regionTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField
+                                                                                    additionalButtons:nil];
     // tag text field
     self.tagTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView
                                                                                  additionalButtons:nil];
@@ -84,6 +81,7 @@
     [self setPhotoScrollView:nil];
     [self setAddPhotoButton:nil];
     [self setStopEditButton:nil];
+    [self setRegionTextField:nil];
     [super viewDidUnload];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -97,11 +95,10 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - Utility
-- (NSUInteger)getHeightOfTable {
-    CGRect rect = [self.tableView rectForSection:0];
-    return rect.size.height;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
-
 #pragma mark - Address
 - (void)moreAddressTapped:(id)sender {
     // TODO
