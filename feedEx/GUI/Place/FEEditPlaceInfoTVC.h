@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
 
-@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (NSUInteger)getHeightOfTable;
 @end

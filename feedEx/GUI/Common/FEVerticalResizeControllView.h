@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol FEVerticalResizeControllProtocol <NSObject>
+@protocol FEVerticalResizeControlDelegate <NSObject>
 - (void)verticalResizeControllerDidChanged:(float) delta;
 - (void)verticalResizeControllerDidTapped;
 @end
 
 @interface FEVerticalResizeControllView : UIView
-@property (nonatomic, weak) id<FEVerticalResizeControllProtocol> delegate;
+@property (nonatomic, weak) id<FEVerticalResizeControlDelegate> delegate;
 @end

@@ -18,26 +18,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
-@property (weak, nonatomic) IBOutlet FEDynamicScrollView *wigglePhotoScrollView;
+@property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
 @end
 
 @implementation FEEditPlaceInfoTVC
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-    [self setNoteTextView:nil];
-    [self setNameTextField:nil];
-    [self setAddressTextField:nil];
-    [self setTagTextField:nil];
-    [self setWigglePhotoScrollView:nil];
-    [self setAddPhotoButton:nil];
-    [self setStopEditButton:nil];
-    [super viewDidUnload];
-}
-- (void)viewDidAppear:(BOOL)animated {
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
     self.tableView.bounces = NO;
@@ -62,8 +49,8 @@
                                                                deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
         [wiggleViews addObject:wiggleView];
     }
-    self.wigglePhotoScrollView.wiggleViews = wiggleViews;
-    self.wigglePhotoScrollView.dynamicScrollViewDelegate = self;
+    self.photoScrollView.wiggleViews = wiggleViews;
+    self.photoScrollView.dynamicScrollViewDelegate = self;
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
     // name text field
@@ -88,8 +75,21 @@
     self.noteTextView.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:nil
                                                                                  additionalButtons:@[doneButton]];
 }
+
+- (void)viewDidUnload {
+    [self setNoteTextView:nil];
+    [self setNameTextField:nil];
+    [self setAddressTextField:nil];
+    [self setTagTextField:nil];
+    [self setPhotoScrollView:nil];
+    [self setAddPhotoButton:nil];
+    [self setStopEditButton:nil];
+    [super viewDidUnload];
+}
+- (void)viewDidAppear:(BOOL)animated {
+}
 - (void)viewDidDisappear:(BOOL)animated {
-    self.wigglePhotoScrollView.editMode = NO;
+    self.photoScrollView.editMode = NO;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -130,7 +130,7 @@
 - (IBAction)stopEditButtonTapped:(UIButton *)sender {
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
-    self.wigglePhotoScrollView.editMode = NO;
+    self.photoScrollView.editMode = NO;
 }
 - (IBAction)addPhotoTapped:(UIButton *)sender {
     [self performSegueWithIdentifier:@"showImagePickerSegue" sender:self];
@@ -138,7 +138,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIImagePickerController *controller = [segue destinationViewController];
-    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
     controller.allowsEditing = YES;
     controller.delegate = self;
 }
@@ -152,8 +152,8 @@
     UIImage *thumbnailImage = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(64.0, 64.0)];
     
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
-                                                           deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];
-    [self.wigglePhotoScrollView addView:wiggleView atIndex:0];
+                                                           deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
+    [self.photoScrollView addView:wiggleView atIndex:0];
     // TODO
 }
 

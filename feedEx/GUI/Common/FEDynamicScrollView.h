@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FEWiggleView.h"
 
-@protocol FEDynamicScrollViewProtocol <NSObject>
+@protocol FEDynamicScrollViewDelegate <NSObject>
 - (void)enterDraggingMode;
 - (void)exitDraggingMode;
 - (void)enterEditMode;
@@ -18,7 +18,7 @@
 @interface FEDynamicScrollView : UIScrollView
 @property (nonatomic, strong) NSMutableArray *wiggleViews; // array of FEWiggleView
 @property (nonatomic) BOOL editMode;
-@property (nonatomic, weak) id<FEDynamicScrollViewProtocol> dynamicScrollViewDelegate;
+@property (nonatomic, weak) id<FEDynamicScrollViewDelegate> dynamicScrollViewDelegate;
 
 - (void)addView:(FEWiggleView*)wiggleView atIndex:(int)index;
 @end

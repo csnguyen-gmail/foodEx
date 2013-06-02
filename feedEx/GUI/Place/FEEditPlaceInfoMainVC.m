@@ -13,37 +13,18 @@
     NSUInteger _limitUpperHeight;
     float _originUpperHeight;
 }
-
 @end
 
 @implementation FEEditPlaceInfoMainVC
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadData];
-    [self setupGUI];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setMapView:nil];
-    [self setScrollView:nil];
-    [self setVerticalResizeView:nil];
-    [super viewDidUnload];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    _originUpperHeight = self.scrollView.frame.size.height;
-}
-
-#pragma mark - Additional functions
-- (void)setupGUI {
+    
+    // get location
+    self.mapView.myLocationEnabled = YES;
+    [self.mapView addObserver:self forKeyPath:@"myLocation" options:NSKeyValueObservingOptionNew context: nil];
+    
     // map view
     self.mapView.layer.cornerRadius = 10;
     
@@ -60,25 +41,25 @@
     self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
     self.verticalResizeView.delegate = self;
-    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
+    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 2;
     _limitLowerHeight = self.mapView.frame.size.height;
+    _originUpperHeight = self.scrollView.frame.size.height;
 }
 
-- (void)loadData {
-    // load map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:6];
-    self.mapView.camera = camera;
-    self.mapView.myLocationEnabled = YES;
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = self.mapView;
-    
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-#pragma mark - FEVerticalResizeControllProtocol
+
+- (void)viewDidUnload {
+    [self setMapView:nil];
+    [self setScrollView:nil];
+    [self setVerticalResizeView:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - FEVerticalResizeControlDelegate
 - (void)verticalResizeControllerDidChanged:(float)delta {
     UIView *lowerView = self.mapView;
     UIView *upperView = self.scrollView;
@@ -127,5 +108,25 @@
     
 
 }
-
+#pragma mark - Map
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
+    if ([keyPath isEqualToString:@"myLocation"] && [object isKindOfClass:[GMSMapView class]])
+    {
+        CLLocation* location = self.mapView.myLocation;
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                                                longitude:location.coordinate.longitude
+                                                                     zoom:15];
+        self.mapView.camera = camera;
+        
+        [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
+            GMSMarker *marker = [[GMSMarker alloc] init];
+            marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+            marker.title = resp.firstResult.addressLine1;
+            marker.snippet = resp.firstResult.addressLine2;
+            marker.map = self.mapView;
+        }];
+    }
+}
 @end
