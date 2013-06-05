@@ -10,6 +10,8 @@
 
 #import <GoogleMaps/GMSOverlay.h>
 
+@class GMSCoordinateBounds;
+
 /**
  * GMSGroundOverlay specifies the available options for a ground overlay that
  * exists on the Earth's surface. Unlike a marker, the position of a ground
@@ -20,21 +22,30 @@
 /**
  * The position of this ground overlay, or more specifically, the physical
  * position of its anchor.
+ * If bounds has been specified, it will be updated to reflect the move to the
+ * new position.
  */
 @property (nonatomic, assign) CLLocationCoordinate2D position;
 
 /**
  * As groundAnchor on GMSMarker. Specifies where the ground overlay is anchored
  * to the earth in relation to its position.
+ * If bounds has been specified, position will be updated to keep the overlay
+ * within the bounds.
  */
 @property (nonatomic, assign) CGPoint anchor;
 
-/** Icon to render on the earth. Unlike for GMSMarker, this is required. */
+/**
+ * Icon to render on the earth. Unlike for GMSMarker, this is required.
+ */
 @property (nonatomic, strong) UIImage *icon;
 
 /**
  * The zoom level at which this ground overlay is displayed at 1:1. Will be
- * clamped to ensure that it is at least 1.
+ * clamped to ensure that it is at least 0.
+ * If bounds has been specified, it will be updated to fit the image at the new
+ * zoomLevel.
+ * zoomLevel will be updated when setting a new bounds or icon.
  */
 @property (nonatomic, assign) CGFloat zoomLevel;
 
@@ -45,11 +56,25 @@
 @property (nonatomic, assign) CLLocationDirection bearing;
 
 /**
+ * The bounds within which the overlay fits, ignoring the bearing. Overlay is
+ * scaled to fit within these bounds.
+ * Setting this will adjust the position accordingly.
+ */
+@property (nonatomic, strong) GMSCoordinateBounds *bounds;
+
+/**
  * Convenience constructor for GMSGroundOverlay for a particular position and
  * icon. Other properties will have default values.
  */
 + (instancetype)groundOverlayWithPosition:(CLLocationCoordinate2D)position
                                      icon:(UIImage *)icon;
+/**
+ * Convenience constructor for GMSGroundOverlay for a particular bounds and
+ * icon. Will set position accordingly.
+ */
++ (instancetype)groundOverlayWithBounds:(GMSCoordinateBounds *)bounds
+                                   icon:(UIImage *)icon;
+
 
 @end
 

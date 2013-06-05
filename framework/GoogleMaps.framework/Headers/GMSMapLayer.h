@@ -80,6 +80,11 @@ extern NSString *const kGMSLayerCameraViewingAngleKey;
  * GMSMapLayer is a custom subclass of CALayer, provided as the layer class on
  * GMSMapView. This layer should not be instantiated directly. It provides
  * model access to the camera normally defined on GMSMapView.
+ *
+ * Modifying or animating these properties will typically interrupt any current
+ * gesture on GMSMapView, e.g., a user's pan or rotation. Similarly, if a user
+ * performs an enabled gesture during an animation, the animation will stop
+ * 'in-place' (at the current presentation value).
  */
 @interface GMSMapLayer : CALayer
 

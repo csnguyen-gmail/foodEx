@@ -110,6 +110,9 @@ typedef enum {
   /** Satellite maps with a transparent label overview. */
   kGMSTypeHybrid,
 
+  /** No maps, no labels.  Display of traffic data is not supported. */
+  kGMSTypeNone,
+
 } GMSMapViewType;
 
 /**
@@ -179,6 +182,15 @@ typedef enum {
  * kGMSTypeNormal.
  */
 @property (nonatomic, assign) GMSMapViewType mapType;
+
+/**
+ * If set, 3D buildings will be shown where available.  Defaults to YES.
+ *
+ * This may be useful when adding a custom tile layer to the map, in order to
+ * make it clearer at high zoom levels.  Changing this value will cause all
+ * tiles to be briefly invalidated.
+ */
+@property (nonatomic, assign, getter=isBuildingsEnabled) BOOL buildingsEnabled;
 
 /**
  * Gets the GMSUISettings object, which controls user interface settings for the

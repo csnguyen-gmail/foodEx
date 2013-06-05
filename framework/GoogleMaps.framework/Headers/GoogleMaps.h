@@ -30,4 +30,7 @@
 #import <GoogleMaps/GMSProjection.h>
 #import <GoogleMaps/GMSReverseGeocodeOutput.h>
 #import <GoogleMaps/GMSServices.h>
+#import <GoogleMaps/GMSSyncTileLayer.h>
+#import <GoogleMaps/GMSTileLayer.h>
 #import <GoogleMaps/GMSUISettings.h>
+#import <GoogleMaps/GMSURLTileLayer.h>

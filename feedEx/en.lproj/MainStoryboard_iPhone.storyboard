@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="VjC-Pf-Iy5" customClass="FEDynamicScrollView">
-                                <rect key="frame" x="0.0" y="10" width="320" height="66"/>
+                                <rect key="frame" x="0.0" y="10" width="320" height="76"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.36621806569999998" green="0.5510663777" blue="0.8787636861" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>

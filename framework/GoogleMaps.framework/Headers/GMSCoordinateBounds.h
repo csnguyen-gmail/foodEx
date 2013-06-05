@@ -46,16 +46,22 @@
 - (id)initWithPath:(GMSPath *)path;
 
 /**
- * Allocates and returns a new GMSCoordinateBounds, representing
+ * Returns a GMSCoordinateBounds representing
  * the current bounds extended to include the passed-in coordinate.
  */
 - (GMSCoordinateBounds *)includingCoordinate:(CLLocationCoordinate2D)coordinate;
 
 /**
- * Allocates and returns a new GMSCoordinateBounds, representing
+ * Returns a GMSCoordinateBounds representing
  * the current bounds extended to include the entire other bounds.
  */
 - (GMSCoordinateBounds *)includingBounds:(GMSCoordinateBounds *)other;
+
+/**
+ * Returns a GMSCoordinateBounds representing the current bounds extended to
+ * include |path|.
+ */
+- (GMSCoordinateBounds *)includingPath:(GMSPath *)path;
 
 /**
  * Returns YES if |coordinate| is contained within the bounds.

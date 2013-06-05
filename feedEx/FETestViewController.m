@@ -42,11 +42,11 @@
     // Do any additional setup after loading the view.
     UIImage *originImage = [UIImage imageNamed:@"test_place"];
     NSMutableArray *images = [NSMutableArray arrayWithArray:@[[UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
-                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
-                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
-                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
-                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
-                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+//                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+//                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+//                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+//                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+//                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
                               [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE]]];
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
     for (UIImage *image in images) {
