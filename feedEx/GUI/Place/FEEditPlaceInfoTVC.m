@@ -32,23 +32,8 @@
     self.noteTextView.layer.borderWidth = 1;
     self.noteTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     // photo scroll view
-    NSMutableArray *images = [NSMutableArray arrayWithArray:@[[UIImage imageNamed:@"a_t"],
-                              [UIImage imageNamed:@"b_t"],
-                              [UIImage imageNamed:@"c_t"],
-                              [UIImage imageNamed:@"d_t"],
-                              [UIImage imageNamed:@"e_t"],
-                              [UIImage imageNamed:@"a_t"],
-                              [UIImage imageNamed:@"b_t"],
-                              [UIImage imageNamed:@"c_t"],
-                              [UIImage imageNamed:@"d_t"],
-                              [UIImage imageNamed:@"e_t"]]];
+    // TODO
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
-//    for (UIImage *image in images) {
-//        // set up wiggle image view
-//        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:image]
-//                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-//        [wiggleViews addObject:wiggleView];
-//    }
     self.photoScrollView.wiggleViews = wiggleViews;
     self.photoScrollView.dynamicScrollViewDelegate = self;
     self.addPhotoButton.hidden = NO;

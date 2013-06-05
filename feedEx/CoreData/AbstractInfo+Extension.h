@@ -7,9 +7,6 @@
 //
 
 #import "AbstractInfo.h"
-#define THUMBNAIL_WIDTH 64
-#define THUMBNAIL_HEIGHT 64
-
 @interface AbstractInfo (Extension)
 - (void)insertThumbnailAndOriginImage:(UIImage*)image atIndex:(NSUInteger)index;
 @end

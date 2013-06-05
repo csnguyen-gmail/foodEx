@@ -8,6 +8,7 @@
 
 #import "FETestViewController.h"
 #import "FENextInputAccessoryView.h"
+#import "UIImage+Extension.h"
 @interface FETestViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITextField *nextTextField;
@@ -39,21 +40,19 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // Do any additional setup after loading the view.
-    NSMutableArray *images = [NSMutableArray arrayWithArray:@[[UIImage imageNamed:@"a_t"],
-                                                              [UIImage imageNamed:@"b_t"],
-                                                              [UIImage imageNamed:@"c_t"],
-                                                              [UIImage imageNamed:@"d_t"],
-                                                              [UIImage imageNamed:@"e_t"],
-                                                            [UIImage imageNamed:@"a_t"],
-                              [UIImage imageNamed:@"b_t"],
-                              [UIImage imageNamed:@"c_t"],
-                              [UIImage imageNamed:@"d_t"],
-                              [UIImage imageNamed:@"e_t"]]];
+    UIImage *originImage = [UIImage imageNamed:@"test_place"];
+    NSMutableArray *images = [NSMutableArray arrayWithArray:@[[UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE],
+                              [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE]]];
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
     for (UIImage *image in images) {
         // set up wiggle image view
         FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:image]
-                                                              deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];
+                                                              deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
         [wiggleViews addObject:wiggleView];
     }
     self.dynamicScrollView.wiggleViews = wiggleViews;
@@ -62,8 +61,8 @@
     self.dynamicScrollView.editMode = NO;
 }
 - (IBAction)addTapped:(id)sender {
-    FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"a_t"]]
-                                                           deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];
+    FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test_place"]]
+                                                           deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.dynamicScrollView addView:wiggleView atIndex:0];
 }
 - (IBAction)endEdit:(id)sender {
