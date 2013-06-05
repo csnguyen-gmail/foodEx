@@ -174,7 +174,7 @@
         }
     }
     // touch to right edge
-    else if (rectInSuperView.origin.x + rectInSuperView.size.width > self.frame.size.width) {
+    else if ((self.contentSize.width > self.frame.size.width) && (rectInSuperView.origin.x + rectInSuperView.size.width > self.frame.size.width)) {
         if (!self.waitForPagingTimer) {
             NSDictionary *userInfo = @{@"isLeft":@(NO)};
             self.waitForPagingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f

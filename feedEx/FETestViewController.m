@@ -61,7 +61,9 @@
     self.dynamicScrollView.editMode = NO;
 }
 - (IBAction)addTapped:(id)sender {
-    FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"test_place"]]
+    UIImage *originImage = [UIImage imageNamed:@"test_place"];
+    UIImage *thumbnailImage = [UIImage imageWithImage:originImage scaledToSize:THUMBNAIL_SIZE];
+    FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.dynamicScrollView addView:wiggleView atIndex:0];
 }
