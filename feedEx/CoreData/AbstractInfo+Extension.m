@@ -7,7 +7,6 @@
 //
 
 #import "AbstractInfo+Extension.h"
-#import "UIImage+Extension.h"
 #import "Photo.h"
 
 @implementation AbstractInfo (Extension)

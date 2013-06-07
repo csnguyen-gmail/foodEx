@@ -8,7 +8,6 @@
 
 #import "FETestViewController.h"
 #import "FENextInputAccessoryView.h"
-#import "UIImage+Extension.h"
 @interface FETestViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITextField *nextTextField;

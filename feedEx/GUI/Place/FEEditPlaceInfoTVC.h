@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
+#import "GKImagePicker.h"
 
-@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *regionTextField;
 @end

@@ -12,7 +12,6 @@
 #import "Place.h"
 #import "Food.h"
 #import "Photo.h"
-#import "UIImage+Extension.h"
 #import "AbstractInfo+Extension.h"
 
 @implementation feedExTests{

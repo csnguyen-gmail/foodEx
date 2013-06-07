@@ -12,5 +12,7 @@
 #define THUMBNAIL_SIZE CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
 
 @interface UIImage (Extension)
++ (void)beginImageContextWithSize:(CGSize)size opaque:(BOOL)opaque;
++ (void)endImageContext;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 @end

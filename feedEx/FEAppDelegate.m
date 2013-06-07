@@ -21,7 +21,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     // provide key to use Google Map API
-    [GMSServices provideAPIKey:@"AIzaSyDgkf3fKz7UkBuxHvrwRrOm74ah2vJJtY0"];
+    [GMSServices provideAPIKey:@"AIzaSyAFoi1LNE9wzQbTjwX1LuPKEbvIP9WVfKA"];
     return YES;
 }
 

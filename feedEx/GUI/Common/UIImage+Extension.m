@@ -9,13 +9,9 @@
 #import "UIImage+Extension.h"
 
 @implementation UIImage (Extension)
-+ (void)beginImageContextWithSize:(CGSize)size {
++ (void)beginImageContextWithSize:(CGSize)size opaque:(BOOL)opaque{
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-        if ([[UIScreen mainScreen] scale] == 2.0) {
-            UIGraphicsBeginImageContextWithOptions(size, YES, 2.0);
-        } else {
-            UIGraphicsBeginImageContext(size);
-        }
+        UIGraphicsBeginImageContextWithOptions(size, opaque, [[UIScreen mainScreen] scale]);
     } else {
         UIGraphicsBeginImageContext(size);
     }
@@ -25,7 +21,7 @@
 }
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    [self beginImageContextWithSize:newSize];
+    [self beginImageContextWithSize:newSize opaque:YES];
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     [self endImageContext];
