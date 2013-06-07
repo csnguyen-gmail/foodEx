@@ -113,36 +113,48 @@ static CGRect GKScaleRect(CGRect rect, CGFloat scale)
 		return viewImage;
     }
     else {
+		GKImageCropOverlayView* view = (GKImageCropOverlayView*)self.cropOverlayView;
+        [UIImage beginImageContextWithSize:CGSizeMake(view.cropSize.width, view.cropSize.height)
+                                    opaque:self.scrollView.opaque];
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        
+        CGFloat xPositionInScrollView = view.cropPoint.x + self.scrollView.contentOffset.x - self.xOffset;
+        CGFloat yPositionInScrollView = view.cropPoint.y + self.scrollView.contentOffset.y - self.yOffset;
+        CGContextTranslateCTM(ctx, -(xPositionInScrollView), -(yPositionInScrollView));
 		
-		//scaled width/height in regards of real width to crop width
-		CGFloat scaleWidth = self.imageToCrop.size.width / self.cropSize.width;
-		CGFloat scaleHeight = self.imageToCrop.size.height / self.cropSize.height;
-		CGFloat scale = 0.0f;
-		
-		if (self.cropSize.width > self.cropSize.height) {
-			scale = (self.imageToCrop.size.width < self.imageToCrop.size.height ?
-					 MAX(scaleWidth, scaleHeight) :
-					 MIN(scaleWidth, scaleHeight));
-		}else{
-			scale = (self.imageToCrop.size.width < self.imageToCrop.size.height ?
-					 MIN(scaleWidth, scaleHeight) :
-					 MAX(scaleWidth, scaleHeight));
-		}
-		
-		//extract visible rect from scrollview and scale it
-		CGRect visibleRect = [scrollView convertRect:scrollView.bounds toView:imageView];
-		visibleRect = GKScaleRect(visibleRect, scale);
-		
-		//transform visible rect to image orientation
-		CGAffineTransform rectTransform = [self _orientationTransformedRectOfImage:self.imageToCrop];
-		visibleRect = CGRectApplyAffineTransform(visibleRect, rectTransform);
-		
-		//finally crop image
-		CGImageRef imageRef = CGImageCreateWithImageInRect([self.imageToCrop CGImage], visibleRect);
-		UIImage *result = [UIImage imageWithCGImage:imageRef scale:self.imageToCrop.scale orientation:self.imageToCrop.imageOrientation];
-		CGImageRelease(imageRef);
-		
-		return result;
+		[self.scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+		UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+		[UIImage endImageContext];
+		return viewImage;
+//		//scaled width/height in regards of real width to crop width
+//		CGFloat scaleWidth = self.imageToCrop.size.width / self.cropSize.width;
+//		CGFloat scaleHeight = self.imageToCrop.size.height / self.cropSize.height;
+//		CGFloat scale = 0.0f;
+//		
+//		if (self.cropSize.width > self.cropSize.height) {
+//			scale = (self.imageToCrop.size.width < self.imageToCrop.size.height ?
+//					 MAX(scaleWidth, scaleHeight) :
+//					 MIN(scaleWidth, scaleHeight));
+//		}else{
+//			scale = (self.imageToCrop.size.width < self.imageToCrop.size.height ?
+//					 MIN(scaleWidth, scaleHeight) :
+//					 MAX(scaleWidth, scaleHeight));
+//		}
+//		
+//		//extract visible rect from scrollview and scale it
+//		CGRect visibleRect = [scrollView convertRect:scrollView.bounds toView:imageView];
+//		visibleRect = GKScaleRect(visibleRect, scale);
+//		
+//		//transform visible rect to image orientation
+//		CGAffineTransform rectTransform = [self _orientationTransformedRectOfImage:self.imageToCrop];
+//		visibleRect = CGRectApplyAffineTransform(visibleRect, rectTransform);
+//		
+//		//finally crop image
+//		CGImageRef imageRef = CGImageCreateWithImageInRect([self.imageToCrop CGImage], visibleRect);
+//		UIImage *result = [UIImage imageWithCGImage:imageRef scale:self.imageToCrop.scale orientation:self.imageToCrop.imageOrientation];
+//		CGImageRelease(imageRef);
+//		
+//		return result;
     }
 }
 

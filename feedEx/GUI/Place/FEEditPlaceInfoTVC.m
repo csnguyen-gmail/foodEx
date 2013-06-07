@@ -121,8 +121,6 @@
 - (GKImagePicker *)imagePicker {
     if (!_imagePicker) {
         _imagePicker = [[GKImagePicker alloc] init];
-        CGRect screen = [[UIScreen mainScreen] bounds];
-        _imagePicker.cropSize = CGSizeMake(screen.size.width, screen.size.width);
         _imagePicker.delegate = self;
     }
     return _imagePicker;
@@ -131,10 +129,6 @@
     [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     UIImage *originImage = image;
     UIImage *thumbnailImage = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(64.0, 64.0)];
-    
-    NSLog(@"Edit: %@", NSStringFromCGSize(originImage.size));
-    NSLog(@"Thumbnail: %@", NSStringFromCGSize(originImage.size));
-    
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];
