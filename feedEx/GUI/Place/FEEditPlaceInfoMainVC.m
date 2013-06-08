@@ -127,7 +127,7 @@
             marker.title = resp.firstResult.addressLine1;
             marker.snippet = resp.firstResult.addressLine2;
             marker.map = self.mapView;
-            self.editPlaceInfoTVC.regionTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            self.editPlaceInfoTVC.addressTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
         }];
         self.mapView.myLocationEnabled = NO;
     }

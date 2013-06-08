@@ -12,7 +12,6 @@
 
 @interface FEEditPlaceInfoTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
@@ -39,13 +38,8 @@
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
     // name text field
-    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.addressTextField
+    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView
                                                                                   additionalButtons:nil];
-    // address text field
-    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.regionTextField
-                                                                                     additionalButtons:nil];
-    self.regionTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField
-                                                                                    additionalButtons:nil];
     // tag text field
     self.tagTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView
                                                                                  additionalButtons:nil];
@@ -66,7 +60,6 @@
     [self setPhotoScrollView:nil];
     [self setAddPhotoButton:nil];
     [self setStopEditButton:nil];
-    [self setRegionTextField:nil];
     [super viewDidUnload];
 }
 - (void)viewDidAppear:(BOOL)animated {

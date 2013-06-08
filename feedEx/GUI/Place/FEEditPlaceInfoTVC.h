@@ -11,5 +11,5 @@
 #import "GKImagePicker.h"
 
 @interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *regionTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @end
