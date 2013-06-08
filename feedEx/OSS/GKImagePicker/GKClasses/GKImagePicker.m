@@ -33,7 +33,7 @@
         self.resizeableCropArea = NO;
         _imagePickerController = [[UIImagePickerController alloc] init];
         _imagePickerController.delegate = self;
-        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     return self;
 }

@@ -38,7 +38,10 @@
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
     // name text field
-    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView
+    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.addressTextField
+                                                                                  additionalButtons:nil];
+    // address text field
+    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField
                                                                                   additionalButtons:nil];
     // tag text field
     self.tagTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView

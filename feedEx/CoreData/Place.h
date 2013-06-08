@@ -2,7 +2,7 @@
 //  Place.h
 //  feedEx
 //
-//  Created by csnguyen on 6/2/13.
+//  Created by csnguyen on 6/9/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -14,10 +14,8 @@
 
 @interface Place : AbstractInfo
 
-@property (nonatomic, retain) NSString * addressString;
-@property (nonatomic, retain) NSNumber * attitude;
-@property (nonatomic, retain) NSNumber * longtitude;
 @property (nonatomic, retain) NSNumber * timesCheckin;
+@property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) Address *address;
 @property (nonatomic, retain) NSOrderedSet *foods;
 @property (nonatomic, retain) User *userOwner;
