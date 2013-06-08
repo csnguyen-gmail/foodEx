@@ -13,16 +13,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="09r-gX-IP9">
-                                <rect key="frame" x="5" y="16" width="310" height="257"/>
+                                <rect key="frame" x="5" y="14" width="310" height="257"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="Gb5-Vv-gVp" customClass="GMSMapView">
-                                <rect key="frame" x="5" y="280" width="310" height="172"/>
+                                <rect key="frame" x="5" y="278" width="310" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="1y9-um-8HV" customClass="FEVerticalResizeControllView">
-                                <rect key="frame" x="5" y="266" width="310" height="15"/>
+                                <rect key="frame" x="5" y="264" width="310" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
