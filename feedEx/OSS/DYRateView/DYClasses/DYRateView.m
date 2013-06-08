@@ -37,16 +37,20 @@ static NSString *DefaultEmptyStarImageFilename = @"StarEmptyLarge.png";
 @end
 
 @implementation DYRateView
-- (void)awakeFromNib {
-    [self setupWithfullStar:[UIImage imageNamed:DefaultFullStarImageFilename]
-                  emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupWithfullStar:[UIImage imageNamed:DefaultFullStarImageFilename]
+                      emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
+    }
+    return self;
 }
 
-- (DYRateView *)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame fullStar:[UIImage imageNamed:DefaultFullStarImageFilename] emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
 }
 
-- (DYRateView *)initWithFrame:(CGRect)frame fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
+- (id)initWithFrame:(CGRect)frame fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupWithfullStar:fullStarImage emptyStar:emptyStarImage];

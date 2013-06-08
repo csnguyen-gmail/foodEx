@@ -8,12 +8,13 @@
 
 #import "FEEditPlaceInfoTVC.h"
 #import "FENextInputAccessoryView.h"
+#import "CPTextViewPlaceholder.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tagTextField;
-@property (weak, nonatomic) IBOutlet UITextView *noteTextView;
+@property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
@@ -24,8 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // back ground
+    // common setup
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
+    self.noteTextView.placeholder = @"Add note here";
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
     self.tableView.bounces = NO;

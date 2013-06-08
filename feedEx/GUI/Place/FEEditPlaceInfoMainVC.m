@@ -118,14 +118,17 @@
                                                                 longitude:location.coordinate.longitude
                                                                      zoom:15];
         self.mapView.camera = camera;
-        
         [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
             GMSMarker *marker = [[GMSMarker alloc] init];
             marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            marker.title = resp.firstResult.addressLine1;
-            marker.snippet = resp.firstResult.addressLine2;
             marker.map = self.mapView;
-            self.editPlaceInfoTVC.addressTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            if (resp.firstResult != nil) {
+                marker.title = resp.firstResult.addressLine1;
+                marker.snippet = resp.firstResult.addressLine2;
+                if ([self.editPlaceInfoTVC.addressTextField.text isEqualToString:@""]) {
+                    self.editPlaceInfoTVC.addressTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+                }
+            }
         }];
         self.mapView.myLocationEnabled = NO;
     }

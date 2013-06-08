@@ -17,7 +17,19 @@
 @property (nonatomic, weak) UIView *lowerView;
 @end
 @implementation FEVerticalResizeControllView
-- (void)awakeFromNib {
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
+    }
+    return self;
+}
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setup];
+    }
+    return self;
+}
+- (void)setup {
     self.backgroundColor = [UIColor clearColor];
 }
 
