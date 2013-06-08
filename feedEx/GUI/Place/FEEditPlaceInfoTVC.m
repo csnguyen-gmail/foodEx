@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // back ground
+    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
     self.tableView.bounces = NO;
@@ -31,7 +33,6 @@
     self.noteTextView.layer.borderWidth = 1;
     self.noteTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     // photo scroll view
-    // TODO
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
     self.photoScrollView.wiggleViews = wiggleViews;
     self.photoScrollView.dynamicScrollViewDelegate = self;
