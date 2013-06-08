@@ -9,9 +9,8 @@
 #import "FEEditPlaceInfoMainVC.h"
 
 @interface FEEditPlaceInfoMainVC (){
-    NSUInteger _limitLowerHeight;
-    NSUInteger _limitUpperHeight;
-    float _originUpperHeight;
+    float _minResizableHeight;
+    float _maxResizableHeight;
 }
 @end
 
@@ -42,9 +41,8 @@
     self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
     self.verticalResizeView.delegate = self;
-    _limitUpperHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
-    _limitLowerHeight = self.mapView.frame.size.height;
-    _originUpperHeight = self.scrollView.frame.size.height;
+    _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
+    _maxResizableHeight = self.scrollView.frame.size.height;
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,17 +66,17 @@
     if (delta == .0f) {
         return;
     }
-    if ((lowerView.frame.size.height - delta) < _limitLowerHeight) {
-        if (lowerView.frame.size.height == _limitLowerHeight) {
+    if ((upperView.frame.size.height + delta) > _maxResizableHeight) {
+        if (upperView.frame.size.height == _maxResizableHeight) {
             return;
         }
-        delta = lowerView.frame.size.height - _limitLowerHeight;
+        delta = _maxResizableHeight - upperView.frame.size.height;
     }
-    if ((upperView.frame.size.height + delta) < _limitUpperHeight) {
-        if (upperView.frame.size.height == _limitUpperHeight) {
+    if ((upperView.frame.size.height + delta) < _minResizableHeight) {
+        if (upperView.frame.size.height == _minResizableHeight) {
             return;
         }
-        delta = _limitUpperHeight - upperView.frame.size.height;
+        delta = _minResizableHeight - upperView.frame.size.height;
     }
     verticalControllerView.frame = CGRectMake(verticalControllerView.frame.origin.x,
                                               verticalControllerView.frame.origin.y + delta,
@@ -97,10 +95,10 @@
 - (void)verticalResizeControllerDidTapped {
     float delta;
     if (self.verticalResizeView.frame.origin.y < self.view.frame.size.height / 2) {
-        delta = self.scrollView.frame.size.height - _originUpperHeight;
+        delta = self.scrollView.frame.size.height - _maxResizableHeight;
     }
     else {
-        delta = self.scrollView.frame.size.height - _limitUpperHeight;
+        delta = self.scrollView.frame.size.height - _minResizableHeight;
     }
     
     [UIView animateWithDuration:.3f animations:^{
