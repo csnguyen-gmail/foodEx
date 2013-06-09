@@ -8,11 +8,13 @@
 
 #import "FEEditPlaceInfoTVC.h"
 #import "CPTextViewPlaceholder.h"
+#import "FECustomInputAccessoryView.h"
+#import "FETagTextField.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *tagTextField;
+@property (weak, nonatomic) IBOutlet FETagTextField *tagTextField;
 @property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
@@ -76,46 +78,36 @@
 #pragma mark - Utility
 #define BAR_BUTTON_NAME     1000
 #define BAR_BUTTON_ADDRESS  1001
-#define BAR_BUTTON_TAG      1002
 #define BAR_BUTTON_NOTE     1003
 - (void)setupInputAccesoryView {
     UIBarButtonItem *barButton;
     // name text field
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
-                                                target:self action:@selector(buttonInAccessryTapped:)];
+                                                target:self action:@selector(buttonInAccessoryTapped:)];
     barButton.tag = BAR_BUTTON_NAME;
     barButton.tintColor = [UIColor blackColor];
     self.nameTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
     // address text field
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
-                                                target:self action:@selector(buttonInAccessryTapped:)];
+                                                target:self action:@selector(buttonInAccessoryTapped:)];
     barButton.tag = BAR_BUTTON_ADDRESS;
     barButton.tintColor = [UIColor blackColor];
     self.addressTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
     // tag text field
-    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
-                                                target:self action:@selector(buttonInAccessryTapped:)];
-    barButton.tag = BAR_BUTTON_TAG;
-    barButton.tintColor = [UIColor blackColor];
-    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]
-                                                                                             andSuggestionWord:self.tags];
-    customInputAccessoryView.delegate = self;
-    self.tagTextField.inputAccessoryView = customInputAccessoryView;
+    self.tagTextField.nextTextField = self.noteTextView;
+    self.tagTextField.tags = self.tags;
     // note text view
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
-                                                target:self action:@selector(buttonInAccessryTapped:)];
+                                                target:self action:@selector(buttonInAccessoryTapped:)];
     barButton.tag = BAR_BUTTON_NOTE;
     self.noteTextView.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
 }
-- (void)buttonInAccessryTapped:(UIBarButtonItem*)sender {
+- (void)buttonInAccessoryTapped:(UIBarButtonItem*)sender {
     if (sender.tag == BAR_BUTTON_NAME) {
         [self.addressTextField becomeFirstResponder];
     }
     else if (sender.tag == BAR_BUTTON_ADDRESS) {
         [self.tagTextField becomeFirstResponder];
-    }
-    else if (sender.tag == BAR_BUTTON_TAG) {
-        [self.noteTextView becomeFirstResponder];
     }
     else if (sender.tag == BAR_BUTTON_NOTE) {
         [self.noteTextView resignFirstResponder];
@@ -124,17 +116,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-}
-- (IBAction)tagDidChange:(UITextField *)sender {
-    if ([sender.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
-        FECustomInputAccessoryView *inputAccessoryView = (FECustomInputAccessoryView*)sender.inputAccessoryView;
-        inputAccessoryView.filterWord = sender.text;
-        // TODO - get text after comma
-    }
-}
-- (void)suggestionWordTapped:(NSString *)word {
-    self.tagTextField.text = word;
-    // TODO - set text after comma
 }
 #pragma mark - Photos
 - (void)enterDraggingMode {

@@ -10,7 +10,7 @@
 #define TOOLBAR_HEIGHT 40
 #define SCROLL_VIEW_HEIGHT 40
 #define WORD_PADDING 1
-#define WORD_MARGING 20
+#define WORD_MARGING 15
 @interface FECustomInputAccessoryView()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @end
