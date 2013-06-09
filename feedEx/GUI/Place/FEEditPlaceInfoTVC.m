@@ -7,7 +7,6 @@
 //
 
 #import "FEEditPlaceInfoTVC.h"
-#import "FECustomInputAccessoryView.h"
 #import "CPTextViewPlaceholder.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
+@property (strong, nonatomic) NSArray *tags; // array of NSString
 @property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
 
@@ -65,6 +65,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - getter setter
+- (NSArray *)tags {
+    if (!_tags) {
+        // TODO - load tags from db
+        _tags = @[@"abc", @"def", @"ghi", @"jkl", @"mno", @"pqr", @"stu", @"vxyz"];
+    }
+    return  _tags;
+}
 #pragma mark - Utility
 #define BAR_BUTTON_NAME     1000
 #define BAR_BUTTON_ADDRESS  1001
@@ -89,7 +97,10 @@
                                                 target:self action:@selector(buttonInAccessryTapped:)];
     barButton.tag = BAR_BUTTON_TAG;
     barButton.tintColor = [UIColor blackColor];
-    self.tagTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
+    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]
+                                                                                             andSuggestionWord:self.tags];
+    customInputAccessoryView.delegate = self;
+    self.tagTextField.inputAccessoryView = customInputAccessoryView;
     // note text view
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
                                                 target:self action:@selector(buttonInAccessryTapped:)];
@@ -113,6 +124,17 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
+}
+- (IBAction)tagDidChange:(UITextField *)sender {
+    if ([sender.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
+        FECustomInputAccessoryView *inputAccessoryView = (FECustomInputAccessoryView*)sender.inputAccessoryView;
+        inputAccessoryView.filterWord = sender.text;
+        // TODO - get text after comma
+    }
+}
+- (void)suggestionWordTapped:(NSString *)word {
+    self.tagTextField.text = word;
+    // TODO - set text after comma
 }
 #pragma mark - Photos
 - (void)enterDraggingMode {
@@ -154,7 +176,7 @@
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];
-    // TODO
+    // TODO - manege image array
 }
 
 @end
