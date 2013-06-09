@@ -7,7 +7,7 @@
 //
 
 #import "FEEditPlaceInfoTVC.h"
-#import "FENextInputAccessoryView.h"
+#import "FECustomInputAccessoryView.h"
 #import "CPTextViewPlaceholder.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -40,22 +40,9 @@
     self.photoScrollView.dynamicScrollViewDelegate = self;
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
-    // name text field
-    self.nameTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.addressTextField
-                                                                                  additionalButtons:nil];
-    // address text field
-    self.addressTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.tagTextField
-                                                                                  additionalButtons:nil];
-    // tag text field
-    self.tagTextField.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:self.noteTextView
-                                                                                 additionalButtons:nil];
-    // note text view
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleDone
-                                                                  target:self
-                                                                  action:@selector(commentDoneTapped:)];
-    self.noteTextView.inputAccessoryView = [[FENextInputAccessoryView alloc] initWithNextTextField:nil
-                                                                                 additionalButtons:@[doneButton]];
+    // set up imput accesory view
+    [self setupInputAccesoryView];
+    
 }
 
 - (void)viewDidUnload {
@@ -79,17 +66,53 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - Utility
+#define BAR_BUTTON_NAME     1000
+#define BAR_BUTTON_ADDRESS  1001
+#define BAR_BUTTON_TAG      1002
+#define BAR_BUTTON_NOTE     1003
+- (void)setupInputAccesoryView {
+    UIBarButtonItem *barButton;
+    // name text field
+    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
+                                                target:self action:@selector(buttonInAccessryTapped:)];
+    barButton.tag = BAR_BUTTON_NAME;
+    barButton.tintColor = [UIColor blackColor];
+    self.nameTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
+    // address text field
+    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
+                                                target:self action:@selector(buttonInAccessryTapped:)];
+    barButton.tag = BAR_BUTTON_ADDRESS;
+    barButton.tintColor = [UIColor blackColor];
+    self.addressTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
+    // tag text field
+    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
+                                                target:self action:@selector(buttonInAccessryTapped:)];
+    barButton.tag = BAR_BUTTON_TAG;
+    barButton.tintColor = [UIColor blackColor];
+    self.tagTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
+    // note text view
+    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
+                                                target:self action:@selector(buttonInAccessryTapped:)];
+    barButton.tag = BAR_BUTTON_NOTE;
+    self.noteTextView.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
+}
+- (void)buttonInAccessryTapped:(UIBarButtonItem*)sender {
+    if (sender.tag == BAR_BUTTON_NAME) {
+        [self.addressTextField becomeFirstResponder];
+    }
+    else if (sender.tag == BAR_BUTTON_ADDRESS) {
+        [self.tagTextField becomeFirstResponder];
+    }
+    else if (sender.tag == BAR_BUTTON_TAG) {
+        [self.noteTextView becomeFirstResponder];
+    }
+    else if (sender.tag == BAR_BUTTON_NOTE) {
+        [self.noteTextView resignFirstResponder];
+    }
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-}
-#pragma mark - Address
-- (void)moreAddressTapped:(id)sender {
-    // TODO
-}
-#pragma mark - Comment
-- (void)commentDoneTapped:(id)sender {
-    [self.noteTextView resignFirstResponder];
 }
 #pragma mark - Photos
 - (void)enterDraggingMode {
