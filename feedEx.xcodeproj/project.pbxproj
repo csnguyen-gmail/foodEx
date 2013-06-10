@@ -81,7 +81,8 @@
 		6FAD9DED1763C1E700DB606C /* spin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DE31763C1E700DB606C /* spin@2x.png */; };
 		6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF01763E67900DB606C /* CPTextViewPlaceholder.m */; };
 		6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF517646E0900DB606C /* gradientBar.png */; };
-		6FAD9DFC1764FC6700DB606C /* FETagTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextField.m */; };
+		6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextView.m */; };
+		6FAD9DFF1765F45400DB606C /* FETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFE1765F45200DB606C /* FETestViewController.m */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
@@ -225,8 +226,10 @@
 		6FAD9DEF1763E67900DB606C /* CPTextViewPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextViewPlaceholder.h; sourceTree = "<group>"; };
 		6FAD9DF01763E67900DB606C /* CPTextViewPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTextViewPlaceholder.m; sourceTree = "<group>"; };
 		6FAD9DF517646E0900DB606C /* gradientBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBar.png; sourceTree = "<group>"; };
-		6FAD9DFA1764FC5D00DB606C /* FETagTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextField.h; sourceTree = "<group>"; };
-		6FAD9DFB1764FC6000DB606C /* FETagTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextField.m; sourceTree = "<group>"; };
+		6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextView.h; sourceTree = "<group>"; };
+		6FAD9DFB1764FC6000DB606C /* FETagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextView.m; sourceTree = "<group>"; };
+		6FAD9DFD1765F45100DB606C /* FETestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETestViewController.h; sourceTree = "<group>"; };
+		6FAD9DFE1765F45200DB606C /* FETestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETestViewController.m; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -483,6 +486,8 @@
 			children = (
 				6F9E95B01744EED100DCCF24 /* Common */,
 				6F9E95B31744EED100DCCF24 /* Place */,
+				6FAD9DFD1765F45100DB606C /* FETestViewController.h */,
+				6FAD9DFE1765F45200DB606C /* FETestViewController.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -504,8 +509,8 @@
 				6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */,
 				6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */,
 				6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */,
-				6FAD9DFA1764FC5D00DB606C /* FETagTextField.h */,
-				6FAD9DFB1764FC6000DB606C /* FETagTextField.m */,
+				6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */,
+				6FAD9DFB1764FC6000DB606C /* FETagTextView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -780,7 +785,8 @@
 				6FAD9DD61763AB0500DB606C /* Tag.m in Sources */,
 				6FAD9DD91763AB0500DB606C /* Photo.m in Sources */,
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
-				6FAD9DFC1764FC6700DB606C /* FETagTextField.m in Sources */,
+				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
+				6FAD9DFF1765F45400DB606C /* FETestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

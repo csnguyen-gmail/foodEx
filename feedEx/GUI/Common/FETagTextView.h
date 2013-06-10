@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FECustomInputAccessoryView.h"
+#import "CPTextViewPlaceholder.h"
 
-@interface FETagTextField : UITextField<FECustomInputAccessoryViewDelegate, UITextFieldDelegate>
+@interface FETagTextView : CPTextViewPlaceholder<FECustomInputAccessoryViewDelegate, UITextViewDelegate>
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) UIResponder *nextTextField;
 @end

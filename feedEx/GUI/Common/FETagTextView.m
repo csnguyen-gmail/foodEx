@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FETagTextField.h"
-@interface FETagTextField(){
+#import "FETagTextView.h"
+@interface FETagTextView(){
     id forwardDelegate;
 }
 @end
 
-@implementation FETagTextField
+@implementation FETagTextView
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -65,10 +65,12 @@
 }
 #pragma mark - setter getter
 - (void)setup {
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
-                                                                 target:self action:@selector(buttonInAccessoryTapped:)];
-    barButton.tintColor = [UIColor blackColor];
-    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone
+                                                                 target:self action:@selector(nextInAccessoryTapped:)];
+    nextButton.tintColor = [UIColor blackColor];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
+                                                                  target:self action:@selector(doneInAccessoryTapped:)];
+    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[doneButton, nextButton]
                                                                                              andSuggestionWord:self.tags];
     customInputAccessoryView.delegate = self;
     self.inputAccessoryView = customInputAccessoryView;
@@ -81,51 +83,26 @@
         inputAccessoryView.suggestionWords = _tags;
     }
 }
-- (void)setText:(NSString *)text {
-    [self textDidChanged:text];
-    [super setText:text];
-}
+
 #pragma mark - processing function
-- (void)buttonInAccessoryTapped:(UIBarButtonItem*)sender {
+- (void)nextInAccessoryTapped:(UIBarButtonItem*)sender {
     [self.nextTextField becomeFirstResponder];
 }
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    [self textDidChanged:newString];
-    // TODO: add with comma format
-    return YES;
+- (void)doneInAccessoryTapped:(UIBarButtonItem*)sender {
+    [self resignFirstResponder];
 }
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-    // TODO: remove with comma format
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    NSLog(@"focus");
+    // TODO
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *newString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    // TODO: add with comma format
+    NSLog(@"change");
     return YES;
 }
 - (void)suggestionWordTapped:(NSString *)word {
-    NSString *originString = self.text;
-    NSRange lastCommaRange = [originString rangeOfString:@", " options:NSBackwardsSearch];
-    // first word
-    if (lastCommaRange.length == 0) {
-        self.text = [NSString stringWithFormat:@"%@, ", word];
-    }
-    // from second word
-    else {
-        self.text = [NSString stringWithFormat:@"%@, %@, ",[originString substringToIndex:lastCommaRange.location], word];
-    }
-    // TODO: support curson not last row
+    // TODO
 }
-
-- (void)textDidChanged:(NSString*)text {
-    FECustomInputAccessoryView *inputAccessoryView = (FECustomInputAccessoryView*)self.inputAccessoryView;
-    NSString *originString = text;
-    NSRange lastCommaRange = [originString rangeOfString:@", " options:NSBackwardsSearch];
-    // first word
-    if (lastCommaRange.length == 0) {
-        inputAccessoryView.filterWord = originString;
-    }
-    // from second word
-    else {
-        inputAccessoryView.filterWord = [originString substringFromIndex:lastCommaRange.location + @", ".length];
-    }
-    // TODO: support curson not last row
-}
-
 @end

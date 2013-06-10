@@ -9,12 +9,12 @@
 #import "FEEditPlaceInfoTVC.h"
 #import "CPTextViewPlaceholder.h"
 #import "FECustomInputAccessoryView.h"
-#import "FETagTextField.h"
+#import "FETagTextView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet FETagTextField *tagTextField;
+@property (weak, nonatomic) IBOutlet FETagTextView *tagTextView;
 @property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
@@ -30,12 +30,16 @@
     // common setup
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.noteTextView.placeholder = @"Add note here";
+    self.tagTextView.placeholder = @"Add tag here, separated by comma";
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
     self.tableView.bounces = NO;
     self.noteTextView.layer.cornerRadius = 10;
     self.noteTextView.layer.borderWidth = 1;
     self.noteTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.tagTextView.layer.cornerRadius = 10;
+    self.tagTextView.layer.borderWidth = 1;
+    self.tagTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     // photo scroll view
     NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
     self.photoScrollView.wiggleViews = wiggleViews;
@@ -51,7 +55,7 @@
     [self setNoteTextView:nil];
     [self setNameTextField:nil];
     [self setAddressTextField:nil];
-    [self setTagTextField:nil];
+    [self setTagTextView:nil];
     [self setPhotoScrollView:nil];
     [self setAddPhotoButton:nil];
     [self setStopEditButton:nil];
@@ -94,8 +98,8 @@
     barButton.tintColor = [UIColor blackColor];
     self.addressTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
     // tag text field
-    self.tagTextField.nextTextField = self.noteTextView;
-    self.tagTextField.tags = self.tags;
+    self.tagTextView.nextTextField = self.noteTextView;
+    self.tagTextView.tags = self.tags;
     // note text view
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
                                                 target:self action:@selector(buttonInAccessoryTapped:)];
@@ -107,7 +111,7 @@
         [self.addressTextField becomeFirstResponder];
     }
     else if (sender.tag == BAR_BUTTON_ADDRESS) {
-        [self.tagTextField becomeFirstResponder];
+        [self.tagTextView becomeFirstResponder];
     }
     else if (sender.tag == BAR_BUTTON_NOTE) {
         [self.noteTextView resignFirstResponder];
