@@ -13,7 +13,6 @@
 @property (nonatomic) UITextAutocorrectionType originalCorrection;
 @property (nonatomic, strong) UIColor *placeholderColor;
 @property (nonatomic, strong) UIColor *originalTextColor;
-@property (nonatomic, getter = isUsingPlaceholder) BOOL usingPlaceholder;
 @property (nonatomic, getter = isSettingPlaceholder) BOOL settingPlaceholder;
 
 @end

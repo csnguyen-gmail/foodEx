@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CPTextViewPlaceholder : UITextView
-
+@property (nonatomic, getter = isUsingPlaceholder) BOOL usingPlaceholder;
 @property (nonatomic, strong) NSString *placeholder;
-
+- (void)textDidChange:(NSNotification *)notification;
 @end

@@ -84,7 +84,7 @@
     }
 }
 
-#pragma mark - processing function
+#pragma mark - event processing
 - (void)nextInAccessoryTapped:(UIBarButtonItem*)sender {
     [self.nextTextField becomeFirstResponder];
 }
@@ -93,16 +93,104 @@
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
-    NSLog(@"focus");
-    // TODO
+    if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
+        FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
+        customInputView.filterWord = [self getStringBetweenCommas:textView];
+    }
 }
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    NSString *newString = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    // TODO: add with comma format
-    NSLog(@"change");
-    return YES;
+//- (void)textViewDidChange:(UITextView *)textView {   // don't using textViewDidChange to prevent it's called before textDidChange of super
+- (void)textDidChange:(NSNotification *)notification {
+    [super textDidChange:notification];
+    if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
+        FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
+        customInputView.suggestionWords = [self rebuildSuggestionWords:self.tags withSelectedWords:[self buildTagArray:self.text]];
+        customInputView.filterWord = [self getStringBetweenCommas:self];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    [self formatText:textView];
+}
+
+#pragma mark - utility finctions
+- (NSMutableArray*)rebuildSuggestionWords:(NSArray*)suggestionWords withSelectedWords:(NSArray*)selectedWords{
+    NSMutableArray *newSuggestionWords = [[NSMutableArray alloc] init];
+    for (NSString *tag in suggestionWords) {
+        if (![selectedWords containsObject:tag]) {
+            [newSuggestionWords addObject:tag];
+        }
+    }
+    return newSuggestionWords;
+}
+- (void)formatText:(UITextView*)textView {
+    NSMutableArray *tags = [self buildTagArray:textView.text];
+    NSMutableString *formatedText = [[NSMutableString alloc] init];
+    for (int i = 0; i < tags.count - 1; i++) {
+        [formatedText appendFormat:@"%@, ",tags[i]];
+    }
+    [formatedText appendFormat:@"%@",tags[tags.count - 1]];
+    self.text = formatedText;
+}
+- (NSMutableArray*)buildTagArray:(NSString*)text{
+    NSArray *tags = [text componentsSeparatedByString:@","];
+    NSMutableArray *uniqueTags = [[NSMutableArray alloc] init];
+    for (NSString *tag in tags) {
+        NSString *strimedTag = [tag stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (![uniqueTags containsObject:strimedTag] && ![strimedTag isEqualToString:@""]) {
+            [uniqueTags addObject:strimedTag];
+        }
+    }
+    return uniqueTags;
+}
+- (NSString*)getStringBetweenCommas:(UITextView*)textView {
+    NSString *text = [textView.text substringWithRange:[self getRangeBetweenCommas:textView]];
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return text;
+}
+- (NSRange)getRangeBetweenCommas:(UITextView *)textView {
+    if (self.isUsingPlaceholder) {
+        return NSMakeRange(0, 0);
+    }
+    NSRange selectedRange = textView.selectedRange;
+    NSString *text = textView.text;
+    NSRange startCommaRange = [text rangeOfString:@","
+                                          options:(NSCaseInsensitiveSearch|NSBackwardsSearch)
+                                            range:NSMakeRange(0, selectedRange.location)];
+    NSRange endCommaRange = [text rangeOfString:@","
+                                        options:(NSCaseInsensitiveSearch)
+                                          range:NSMakeRange(selectedRange.location, (text.length - selectedRange.location))];
+    if (startCommaRange.length == 0) {
+        startCommaRange.location = 0;
+    }
+    if (startCommaRange.location != 0) {
+        startCommaRange.location += 1;
+    }
+    if (endCommaRange.length == 0) {
+        endCommaRange.location = text.length;
+    }
+    return NSMakeRange(startCommaRange.location, endCommaRange.location - startCommaRange.location);
 }
 - (void)suggestionWordTapped:(NSString *)word {
-    // TODO
+    NSString *text = self.text;
+    NSRange range = [self getRangeBetweenCommas:self];
+    NSString *replaceString;
+    if (self.isUsingPlaceholder || (text.length == (range.location + range.length))) {
+        replaceString = [NSString stringWithFormat:@" %@, ", word];
+    } else {
+        replaceString = [NSString stringWithFormat:@" %@", word];
+    }
+    text = [text stringByReplacingCharactersInRange:range withString:replaceString];
+    self.text = text;
+    [self sendCursorToRange:NSMakeRange(range.location + replaceString.length, 0)];
 }
+- (void)sendCursorToRange:(NSRange)range
+{
+    [self performSelector:@selector(cursorToBeginning:) withObject:[NSValue valueWithRange:range] afterDelay:0.01];
+}
+
+- (void)cursorToBeginning:(NSValue*)rangeValue
+{
+    super.selectedRange = [rangeValue rangeValue];
+}
+
 @end

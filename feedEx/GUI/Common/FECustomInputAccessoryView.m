@@ -28,6 +28,7 @@
     if (self) {
         [self setupToolBarWithButtons:buttons];
         self.suggestionWords = words;
+        self.filterWord = @"";
     }
     return self;
 }
@@ -49,11 +50,6 @@
     [self addSubview:toolBar];
 }
 
-- (void)setSuggestionWords:(NSArray *)suggestionWords {
-    _suggestionWords = suggestionWords;
-    self.filterWord = @"";
-}
-
 - (void)setFilterWord:(NSString *)filterWord {
     _filterWord = filterWord;
     [self.scrollView removeFromSuperview];
@@ -63,8 +59,14 @@
     // filter
     NSMutableArray *filteredWords = [[NSMutableArray alloc] init];
     for (NSString *word in self.suggestionWords) {
-        if (([filterWord isEqualToString:@""]) || ([word rangeOfString:filterWord].length > 0)) {
+        if ([filterWord isEqualToString:@""]) {
             [filteredWords addObject:word];
+        }
+        else  {
+            NSRange range = [word rangeOfString:filterWord];
+            if ((range.length > 0) && (range.length != word.length)) {
+                [filteredWords addObject:word];
+            }
         }
     }
     // build buttons

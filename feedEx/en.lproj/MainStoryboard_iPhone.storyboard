@@ -216,11 +216,11 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="fbR-8w-dgk" customClass="FETagTextView">
-                                                    <rect key="frame" x="73" y="7" width="227" height="52"/>
+                                                    <rect key="frame" x="74" y="7" width="227" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                 </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -398,52 +398,6 @@
         <image name="search.png" width="30" height="30"/>
         <image name="spin.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="CPTextViewPlaceholder" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTextViewPlaceholder.h"/>
-        </class>
-        <class className="DYRateView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DYRateView.h"/>
-        </class>
-        <class className="FEDynamicScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
-        </class>
-        <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
-            </relationships>
-        </class>
-        <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
-                <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
-                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
-            </relationships>
-        </class>
-        <class className="FETagTextView" superclassName="CPTextViewPlaceholder">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETagTextView.h"/>
-        </class>
-        <class className="FETestViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETestViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="FEVerticalResizeControllView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
-        </class>
-        <class className="GMSMapView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
