@@ -112,6 +112,12 @@
     [self formatText:textView];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text rangeOfString:@"\n"].length != 0) {
+        return NO;
+    }
+    return  YES;
+}
 #pragma mark - utility finctions
 - (NSMutableArray*)rebuildSuggestionWords:(NSArray*)suggestionWords withSelectedWords:(NSArray*)selectedWords{
     NSMutableArray *newSuggestionWords = [[NSMutableArray alloc] init];
