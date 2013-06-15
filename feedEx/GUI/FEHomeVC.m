@@ -8,6 +8,7 @@
 
 #import "FEHomeVC.h"
 #import "FEEditPlaceInfoMainVC.h"
+#import "FECoreDataController.h"
 #import "Place.h"
 @interface FEHomeVC ()
 
@@ -30,12 +31,25 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"addPlace"]) {
         FEEditPlaceInfoMainVC *addPlaceInfoMainVC = [segue destinationViewController];
-        addPlaceInfoMainVC.editPlaceInfo = nil;
+        addPlaceInfoMainVC.placeId = nil;
     }
     else if ([[segue identifier] isEqualToString:@"editPlace"]) {
         FEEditPlaceInfoMainVC *editPlaceInfoMainVC = [segue destinationViewController];
-        editPlaceInfoMainVC.editPlaceInfo = [[Place alloc] init];
-        // TODO
+        
+        FECoreDataController *coreData = [FECoreDataController sharedInstance];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coreData.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", @"DemoPlace"];
+        [fetchRequest setPredicate:predicate];
+        
+        NSError *error = nil;
+        NSArray *fetchedObjects = [coreData.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (fetchedObjects) {
+            Place *place = fetchedObjects[0];
+            editPlaceInfoMainVC.placeId = [place objectID];
+        }
     }
 }
 

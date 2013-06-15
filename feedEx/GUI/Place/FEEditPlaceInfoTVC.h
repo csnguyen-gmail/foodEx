@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
 #import "GKImagePicker.h"
+#import "FETagTextView.h"
+#import "CPTextViewPlaceholder.h"
 
 @interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet FETagTextView *tagTextView;
+@property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
+@property (strong, nonatomic) NSArray *tags; // array of NSString
+
 @end

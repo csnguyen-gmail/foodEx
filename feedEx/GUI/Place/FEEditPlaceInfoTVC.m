@@ -7,20 +7,13 @@
 //
 
 #import "FEEditPlaceInfoTVC.h"
-#import "CPTextViewPlaceholder.h"
 #import "FECustomInputAccessoryView.h"
-#import "FETagTextView.h"
 #import "FEAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet FETagTextView *tagTextView;
-@property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
-@property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
-@property (strong, nonatomic) NSArray *tags; // array of NSString
 @property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
 

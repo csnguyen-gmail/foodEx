@@ -20,6 +20,14 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize storeURL = _storeURL;
 
++ (FECoreDataController *)sharedInstance {
+    static dispatch_once_t onceToken;
+    static FECoreDataController *shared = nil;
+    dispatch_once(&onceToken, ^{
+        shared = [[FECoreDataController alloc] init];
+    });
+    return shared;
+}
 #pragma mark - Core Data stack
 // Return store URL
 - (NSURL *)storeURL{

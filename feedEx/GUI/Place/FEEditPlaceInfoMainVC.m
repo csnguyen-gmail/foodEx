@@ -7,11 +7,14 @@
 //
 
 #import "FEEditPlaceInfoMainVC.h"
+#import "FECoreDataController.h"
 
 @interface FEEditPlaceInfoMainVC (){
     float _minResizableHeight;
     float _maxResizableHeight;
 }
+@property (weak, nonatomic) FECoreDataController * coreData;
+@property (strong, nonatomic) Place *placeInfo;
 @end
 
 @implementation FEEditPlaceInfoMainVC
@@ -38,6 +41,8 @@
     self.verticalResizeView.delegate = self;
     _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _maxResizableHeight = self.scrollView.frame.size.height;
+    
+    [self loadPlace];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,9 +58,9 @@
     [super viewDidUnload];
 }
 #pragma mark - getter setter
-- (void)setEditPlaceInfo:(Place *)editPlaceInfo {
-    _editPlaceInfo = editPlaceInfo;
-    if (editPlaceInfo == nil) {
+- (void)setPlaceId:(NSManagedObjectID *)placeId {
+    _placeId = placeId;
+    if (placeId == nil) {
         self.title = @"Add Place";
         // get location
         self.mapView.myLocationEnabled = YES;
@@ -63,9 +68,37 @@
     }
     else {
         self.title = @"Edit Place";
+
     }
 }
+- (Place *)placeInfo {
+    if (!_placeInfo) {
+        if (self.placeId) {
+            _placeInfo = (Place*)[self.coreData.managedObjectContext existingObjectWithID:self.placeId error:nil];
+        }
+        else {
+            _placeInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
+        }
+    }
+    return _placeInfo;
+}
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
+}
 #pragma mark - Main processing
+- (void)savePlaceToDisk {
+    Place *placeInfo = self.placeInfo;
+    placeInfo.name = self.editPlaceInfoTVC.nameTextField.text;
+    [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+- (void)loadPlace {
+    self.editPlaceInfoTVC.nameTextField.text = self.placeInfo.name;
+}
 #pragma mark - Action sheet
 - (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
@@ -82,7 +115,7 @@
             // TODO: Delete
             break;
         case 1:
-            // TODO: Save
+            [self savePlaceToDisk];
             break;
         case 2:
             [self performSegueWithIdentifier:@"addFoods" sender:self];

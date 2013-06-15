@@ -18,6 +18,8 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSURL *storeURL;
 
+// get instance
++ (FECoreDataController *)sharedInstance;
 // save to disk disk asynchronously
 - (void)saveToPersistenceStoreAndThenRunOnQueue:(NSOperationQueue*)queue withFinishBlock:(void(^)(NSError *error))block;
 // save to disk disk synchronously

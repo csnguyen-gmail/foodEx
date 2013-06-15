@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
 @property (weak, nonatomic) FEEditPlaceInfoTVC *editPlaceInfoTVC;
-@property (strong, nonatomic) Place *editPlaceInfo;
+@property (strong, nonatomic) NSManagedObjectID *placeId;
 
 @end
