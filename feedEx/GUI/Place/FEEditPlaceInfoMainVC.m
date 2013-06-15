@@ -8,6 +8,7 @@
 
 #import "FEEditPlaceInfoMainVC.h"
 #import "FECoreDataController.h"
+#import "Address.h"
 
 @interface FEEditPlaceInfoMainVC (){
     float _minResizableHeight;
@@ -15,6 +16,7 @@
 }
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) Place *placeInfo;
+@property (assign, nonatomic) BOOL isNewPlace;
 @end
 
 @implementation FEEditPlaceInfoMainVC
@@ -42,6 +44,7 @@
     _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _maxResizableHeight = self.scrollView.frame.size.height;
     
+    // load place
     [self loadPlace];
 }
 
@@ -57,10 +60,22 @@
     [self setVerticalResizeView:nil];
     [super viewDidUnload];
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+        [self rollback];
+    }
+    [super viewWillDisappear:animated];
+}
 #pragma mark - getter setter
 - (void)setPlaceId:(NSManagedObjectID *)placeId {
     _placeId = placeId;
-    if (placeId == nil) {
+    self.isNewPlace = (placeId == nil);
+}
+- (void)setIsNewPlace:(BOOL)isNewPlace {
+    _isNewPlace = isNewPlace;
+    if (isNewPlace) {
         self.title = @"Add Place";
         // get location
         self.mapView.myLocationEnabled = YES;
@@ -68,7 +83,7 @@
     }
     else {
         self.title = @"Edit Place";
-
+        
     }
 }
 - (Place *)placeInfo {
@@ -88,39 +103,66 @@
     }
     return _coreData;
 }
-#pragma mark - Main processing
-- (void)savePlaceToDisk {
+#pragma mark - Coredata
+- (void)savePlace {
     Place *placeInfo = self.placeInfo;
     placeInfo.name = self.editPlaceInfoTVC.nameTextField.text;
+    placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
+    placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 - (void)loadPlace {
-    self.editPlaceInfoTVC.nameTextField.text = self.placeInfo.name;
+    Place *placeInfo = self.placeInfo;
+    self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
+    self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
+}
+- (void)deletePlace {
+    [self.coreData.managedObjectContext deleteObject:self.placeInfo];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+- (void)rollback {
+    [self.coreData.managedObjectContext rollback];
 }
 #pragma mark - Action sheet
 - (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                                     cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:@"Delete Place"
+                                               destructiveButtonTitle:self.isNewPlace?nil:@"Delete Place"
                                                     otherButtonTitles:@"Save", @"Add foods", nil];
     actionSheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
     [actionSheet showFromBarButtonItem:sender animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 0:
-            // TODO: Delete
-            break;
-        case 1:
-            [self savePlaceToDisk];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"addFoods" sender:self];
-        default:
-            break;
+    if (self.isNewPlace) {
+        switch (buttonIndex) {
+            case 0:
+                [self savePlace];
+                break;
+            case 1:
+                [self performSegueWithIdentifier:@"addFoods" sender:self];
+            default:
+                break;
+        }
+    }
+    else {
+        switch (buttonIndex) {
+            case 0:
+                [self deletePlace];
+                break;
+            case 1:
+                [self savePlace];
+                break;
+            case 2:
+                [self performSegueWithIdentifier:@"addFoods" sender:self];
+            default:
+                break;
+        }
     }
 }
 

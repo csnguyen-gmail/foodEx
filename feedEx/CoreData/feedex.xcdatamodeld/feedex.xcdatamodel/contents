@@ -5,7 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Photo" inverseName="owner" inverseEntity="Photo" syncable="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Tag" inverseName="owner" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="owner" inverseEntity="Tag" syncable="YES"/>
         <fetchedProperty name="firstPhoto" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AbstractInfo"/>
         </fetchedProperty>
@@ -29,7 +29,7 @@
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="rating" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="0" syncable="YES"/>
         <attribute name="timesCheckin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="address" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="placeOwner" inverseEntity="Address" syncable="YES"/>
+        <relationship name="address" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Address" inverseName="placeOwner" inverseEntity="Address" syncable="YES"/>
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Food" inverseName="placeOwner" inverseEntity="Food" syncable="YES"/>
         <relationship name="userOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="places" inverseEntity="User" syncable="YES"/>
         <fetchedProperty name="bestFoods" optional="YES" syncable="YES">

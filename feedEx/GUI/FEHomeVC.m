@@ -41,13 +41,10 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coreData.managedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", @"DemoPlace"];
-        [fetchRequest setPredicate:predicate];
-        
         NSError *error = nil;
         NSArray *fetchedObjects = [coreData.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         if (fetchedObjects) {
-            Place *place = fetchedObjects[0];
+            Place *place = [fetchedObjects lastObject];
             editPlaceInfoMainVC.placeId = [place objectID];
         }
     }
