@@ -12,7 +12,7 @@
 #import "FEVerticalResizeControllView.h"
 #import "Place.h"
 
-@interface FEEditPlaceInfoMainVC : UIViewController<FEVerticalResizeControlDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
+@interface FEEditPlaceInfoMainVC : UIViewController<FEVerticalResizeControlDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;

@@ -62,6 +62,7 @@
     [self setPhotoScrollView:nil];
     [self setAddPhotoButton:nil];
     [self setStopEditButton:nil];
+    [self setDeleteButton:nil];
     [super viewDidUnload];
 }
 

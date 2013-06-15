@@ -19,7 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,11 +29,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"addPlace"]) {
-        FEEditPlaceInfoMainVC *addPlaceInfoMainVC = [segue destinationViewController];
+        UINavigationController *navigationController = [segue destinationViewController];
+        FEEditPlaceInfoMainVC *addPlaceInfoMainVC = navigationController.viewControllers[0];
         addPlaceInfoMainVC.placeId = nil;
     }
     else if ([[segue identifier] isEqualToString:@"editPlace"]) {
-        FEEditPlaceInfoMainVC *editPlaceInfoMainVC = [segue destinationViewController];
+        UINavigationController *navigationController = [segue destinationViewController];
+        FEEditPlaceInfoMainVC *editPlaceInfoMainVC = navigationController.viewControllers[0];
         
         FECoreDataController *coreData = [FECoreDataController sharedInstance];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

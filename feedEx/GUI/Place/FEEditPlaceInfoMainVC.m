@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
     // map view
     self.mapView.layer.cornerRadius = 10;
@@ -59,14 +60,6 @@
     [self setScrollView:nil];
     [self setVerticalResizeView:nil];
     [super viewDidUnload];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        // back button was pressed.  We know this is true because self is no longer
-        // in the navigation stack.
-        [self rollback];
-    }
-    [super viewWillDisappear:animated];
 }
 #pragma mark - getter setter
 - (void)setPlaceId:(NSManagedObjectID *)placeId {
@@ -110,56 +103,68 @@
     placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
     placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }];
 }
 - (void)loadPlace {
     Place *placeInfo = self.placeInfo;
     self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
     self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
+    self.editPlaceInfoTVC.deleteButton.enabled = !self.isNewPlace;
+    [self.editPlaceInfoTVC.deleteButton addTarget:self
+                                           action:@selector(confirmDelete)
+                                 forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)deletePlace {
     [self.coreData.managedObjectContext deleteObject:self.placeInfo];
     [self.navigationController popViewControllerAnimated:YES];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }];
 }
 - (void)rollback {
     [self.coreData.managedObjectContext rollback];
+    [self dismissModalViewControllerAnimated:YES];
 }
-#pragma mark - Action sheet
-- (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:self.isNewPlace?nil:@"Delete Place"
-                                                    otherButtonTitles:@"Save", @"Add foods", nil];
-    actionSheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
-    [actionSheet showFromBarButtonItem:sender animated:YES];
+#pragma mark - Alert view
+#define ALERT_TAG_DELETE    1001
+#define ALERT_TAG_DONE      1002
+- (void)confirmDelete {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Delete Place Confirmation"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Delete & Exit", nil];
+    alertView.tag = ALERT_TAG_DELETE;
+    [alertView show];
 }
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (self.isNewPlace) {
+- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Exit Place Confirmation"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Save & Exit", @"Exit", nil];
+    alertView.tag = ALERT_TAG_DONE;
+    [alertView show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == ALERT_TAG_DELETE) {
         switch (buttonIndex) {
-            case 0:
-                [self savePlace];
-                break;
             case 1:
-                [self performSegueWithIdentifier:@"addFoods" sender:self];
+                [self deletePlace];
+                break;
             default:
                 break;
         }
     }
-    else {
+    else if (alertView.tag == ALERT_TAG_DONE) {
         switch (buttonIndex) {
-            case 0:
-                [self deletePlace];
-                break;
             case 1:
                 [self savePlace];
                 break;
             case 2:
-                [self performSegueWithIdentifier:@"addFoods" sender:self];
+                [self rollback];
+                break;
             default:
                 break;
         }

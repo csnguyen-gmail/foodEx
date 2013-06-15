@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet CPTextViewPlaceholder *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (strong, nonatomic) NSArray *tags; // array of NSString
 
 @end
