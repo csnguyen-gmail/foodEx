@@ -18,11 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    
-    // get location
-    self.mapView.myLocationEnabled = YES;
-    [self.mapView addObserver:self forKeyPath:@"myLocation" options:NSKeyValueObservingOptionNew context: nil];
     
     // map view
     self.mapView.layer.cornerRadius = 10;
@@ -56,6 +51,44 @@
     [self setScrollView:nil];
     [self setVerticalResizeView:nil];
     [super viewDidUnload];
+}
+#pragma mark - getter setter
+- (void)setEditPlaceInfo:(Place *)editPlaceInfo {
+    _editPlaceInfo = editPlaceInfo;
+    if (editPlaceInfo == nil) {
+        self.title = @"Add Place";
+        // get location
+        self.mapView.myLocationEnabled = YES;
+        [self.mapView addObserver:self forKeyPath:@"myLocation" options:NSKeyValueObservingOptionNew context: nil];
+    }
+    else {
+        self.title = @"Edit Place";
+    }
+}
+#pragma mark - Main processing
+#pragma mark - Action sheet
+- (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Delete Place"
+                                                    otherButtonTitles:@"Save", @"Add foods", nil];
+    actionSheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
+    [actionSheet showFromBarButtonItem:sender animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            // TODO: Delete
+            break;
+        case 1:
+            // TODO: Save
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"addFoods" sender:self];
+        default:
+            break;
+    }
 }
 
 #pragma mark - FEVerticalResizeControlDelegate

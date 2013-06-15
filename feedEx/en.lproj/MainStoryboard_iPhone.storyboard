@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Edit Place Info MainVC - Add place-->
+        <!--Edit Place Info MainVC - Place-->
         <scene sceneID="VLG-Iu-uDH">
             <objects>
                 <viewController id="Def-J3-3Bg" customClass="FEEditPlaceInfoMainVC" sceneMemberID="viewController">
@@ -30,11 +30,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add place" id="QEz-xT-8EV">
-                        <barButtonItem key="leftBarButtonItem" title="Save" id="ZsV-yw-OGo"/>
-                        <barButtonItem key="rightBarButtonItem" title="Foods" id="Uvk-5I-Zzt">
+                    <navigationItem key="navigationItem" title="Place" id="QEz-xT-8EV">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Uvk-5I-Zzt">
                             <connections>
-                                <segue destination="7Hd-8p-ZSh" kind="push" id="3XR-nk-QoD"/>
+                                <action selector="editButtonTapped:" destination="Def-J3-3Bg" id="u3U-gq-ESO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -43,11 +42,59 @@
                         <outlet property="mapView" destination="Gb5-Vv-gVp" id="3uC-nM-uHW"/>
                         <outlet property="scrollView" destination="09r-gX-IP9" id="TYw-g3-Yo2"/>
                         <outlet property="verticalResizeView" destination="1y9-um-8HV" id="nzi-8f-P67"/>
+                        <segue destination="7Hd-8p-ZSh" kind="push" identifier="addFoods" id="SI6-la-v6l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcE-fA-Guu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10882" y="-1092"/>
+            <point key="canvasLocation" x="-10224" y="-1092"/>
+        </scene>
+        <!--HomeVC - Home-->
+        <scene sceneID="62w-8t-xsG">
+            <objects>
+                <viewController id="kP9-gx-Ev8" customClass="FEHomeVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Tw-to-7T3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="1u0-3O-lXu">
+                                <rect key="frame" x="20" y="20" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="Add Place" backgroundImage="gradientBar.png">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Def-J3-3Bg" kind="push" identifier="addPlace" id="Cot-0V-dkk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="uuj-pR-1MG">
+                                <rect key="frame" x="120" y="20" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="Edit place" backgroundImage="gradientBar.png">
+                                    <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Def-J3-3Bg" kind="push" identifier="editPlace" id="vqH-rZ-OKg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="DDy-of-U6h"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="et8-8J-uW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10833" y="-1092"/>
         </scene>
         <!--View Controller - Foods-->
         <scene sceneID="IY2-28-w7x">
@@ -62,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ce2-oA-sNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10122" y="-1092"/>
+            <point key="canvasLocation" x="-9464" y="-1092"/>
         </scene>
         <!--Edit Place InfoTVC-->
         <scene sceneID="zta-bW-gde">
@@ -266,7 +313,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQm-z0-Ojv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10560" y="-1044"/>
+            <point key="canvasLocation" x="-9902" y="-1044"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="n8e-FW-mTs">
@@ -284,12 +331,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="Def-J3-3Bg" kind="relationship" relationship="rootViewController" id="zl8-JD-Uwf"/>
+                        <segue destination="kP9-gx-Ev8" kind="relationship" relationship="rootViewController" id="oVf-1G-ZgN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53W-tL-NSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11405" y="-1092"/>
+            <point key="canvasLocation" x="-11387" y="-1092"/>
         </scene>
         <!--View Controller - Map-->
         <scene sceneID="c2i-Eq-6gF">
@@ -391,6 +438,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="home.png" width="30" height="30"/>
         <image name="map.png" width="26" height="21"/>
@@ -403,4 +451,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="vqH-rZ-OKg"/>
+    </inferredMetricsTieBreakers>
 </document>
