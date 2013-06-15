@@ -14,6 +14,7 @@
     float _minResizableHeight;
     float _maxResizableHeight;
 }
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) Place *placeInfo;
 @property (assign, nonatomic) BOOL isNewPlace;
@@ -59,6 +60,7 @@
     [self setMapView:nil];
     [self setScrollView:nil];
     [self setVerticalResizeView:nil];
+    [self setIndicatorView:nil];
     [super viewDidUnload];
 }
 #pragma mark - getter setter
@@ -98,11 +100,13 @@
 }
 #pragma mark - Coredata
 - (void)savePlace {
+    [self.indicatorView startAnimating];
     Place *placeInfo = self.placeInfo;
     placeInfo.name = self.editPlaceInfoTVC.nameTextField.text;
     placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
     placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
     }];
 }
@@ -116,9 +120,11 @@
                                  forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)deletePlace {
+    [self.indicatorView startAnimating];
     [self.coreData.managedObjectContext deleteObject:self.placeInfo];
     [self.navigationController popViewControllerAnimated:YES];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
     }];
 }
