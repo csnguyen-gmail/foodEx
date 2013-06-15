@@ -86,7 +86,7 @@
 }
 #pragma mark - Utility
 - (void)actionWhenViewDisappear {
-    self.photoScrollView.editMode = NO;
+    [self exitEditMode];
 }
 
 #define BAR_BUTTON_NAME     1000
@@ -147,10 +147,13 @@
     self.addPhotoButton.hidden = YES;
     self.stopEditButton.hidden = NO;
 }
-- (IBAction)stopEditButtonTapped:(UIButton *)sender {
+- (void)exitEditMode {
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
     self.photoScrollView.editMode = NO;
+}
+- (IBAction)stopEditButtonTapped:(UIButton *)sender {
+    [self exitEditMode];
 }
 - (IBAction)addPhotoTapped:(UIButton *)sender {
     [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
