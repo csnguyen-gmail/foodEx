@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define NTF_APP_WILL_RESIGN_ACTIVE @"applicationWillResignActive"
+
 @interface FEAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @end

@@ -10,6 +10,7 @@
 #import "CPTextViewPlaceholder.h"
 #import "FECustomInputAccessoryView.h"
 #import "FETagTextView.h"
+#import "FEAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEEditPlaceInfoTVC ()
@@ -24,6 +25,15 @@
 @end
 
 @implementation FEEditPlaceInfoTVC
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionWhenViewDisappear) name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
+    }
+    return self;
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -61,15 +71,10 @@
     [self setStopEditButton:nil];
     [super viewDidUnload];
 }
-- (void)viewDidAppear:(BOOL)animated {
-}
+
 - (void)viewDidDisappear:(BOOL)animated {
-    self.photoScrollView.editMode = NO;
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidDisappear:animated];
+    [self actionWhenViewDisappear];
 }
 #pragma mark - getter setter
 - (NSArray *)tags {
@@ -80,6 +85,10 @@
     return  _tags;
 }
 #pragma mark - Utility
+- (void)actionWhenViewDisappear {
+    self.photoScrollView.editMode = NO;
+}
+
 #define BAR_BUTTON_NAME     1000
 #define BAR_BUTTON_ADDRESS  1001
 #define BAR_BUTTON_NOTE     1003
