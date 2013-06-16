@@ -68,23 +68,12 @@
     _placeId = placeId;
     self.isNewPlace = (placeId == nil);
 }
-- (void)setIsNewPlace:(BOOL)isNewPlace {
-    _isNewPlace = isNewPlace;
-    if (isNewPlace) {
-        self.title = @"Add Place";
-        // get location
-        self.mapView.myLocationEnabled = YES;
-        [self.mapView addObserver:self forKeyPath:@"myLocation" options:NSKeyValueObservingOptionNew context: nil];
-    }
-    else {
-        self.title = @"Edit Place";
-        
-    }
-}
+
 - (Place *)placeInfo {
     if (!_placeInfo) {
         if (self.placeId) {
             _placeInfo = (Place*)[self.coreData.managedObjectContext existingObjectWithID:self.placeId error:nil];
+            _placeId = [_placeInfo objectID];
         }
         else {
             _placeInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
@@ -105,6 +94,10 @@
     placeInfo.name = self.editPlaceInfoTVC.nameTextField.text;
     placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
     placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
+    placeInfo.address.longtitude = @(self.mapView.myLocation.coordinate.longitude);
+    placeInfo.address.lattittude = @(self.mapView.myLocation.coordinate.latitude);
+    placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
+    placeInfo.note = self.editPlaceInfoTVC.noteTextView.text;
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
@@ -112,12 +105,30 @@
 }
 - (void)loadPlace {
     Place *placeInfo = self.placeInfo;
-    self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
-    self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
-    self.editPlaceInfoTVC.deleteButton.enabled = !self.isNewPlace;
-    [self.editPlaceInfoTVC.deleteButton addTarget:self
-                                           action:@selector(confirmDelete)
-                                 forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    if (self.isNewPlace) {
+        self.title = @"Add Place";
+        self.editPlaceInfoTVC.deleteButton.enabled = NO;
+        // get location
+        [self addLocationObervation];
+    }
+    else {
+        self.title = @"Edit Place";
+        self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
+        self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
+        self.editPlaceInfoTVC.ratingView.rate = [placeInfo.rating floatValue];
+        self.editPlaceInfoTVC.noteTextView.text = placeInfo.note;
+        self.editPlaceInfoTVC.deleteButton.enabled = YES;
+        [self.editPlaceInfoTVC.deleteButton addTarget:self
+                                               action:@selector(confirmDelete)
+                                     forControlEvents:UIControlEventTouchUpInside];
+        if (![placeInfo.address.lattittude isEqual: @(0)] && ![placeInfo.address.longtitude isEqual: @(0)]) {
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:[placeInfo.address.lattittude floatValue]
+                                                              longitude:[placeInfo.address.longtitude floatValue]];
+            [self addMarketAt:location snippet:placeInfo.address.address];
+        }
+    }
 }
 - (void)deletePlace {
     [self.indicatorView startAnimating];
@@ -227,29 +238,54 @@
 
 }
 #pragma mark - Map
+#define GMAP_LOCATION_OBSERVE_KEY @"myLocation"
+#define GMAP_DEFAULT_ZOOM 15
+- (void)addLocationObervation {
+    if (!self.mapView.myLocationEnabled) {
+        self.mapView.myLocationEnabled = YES;
+        [self.mapView addObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY options:NSKeyValueObservingOptionNew context: nil];
+    }
+}
+- (void)removeLocationObservation {
+    if (self.mapView.myLocationEnabled) {
+        self.mapView.myLocationEnabled = NO;
+        [self.mapView removeObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY];
+    }
+}
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
-    if ([keyPath isEqualToString:@"myLocation"] && [object isKindOfClass:[GMSMapView class]])
+    [self removeLocationObservation];
+    if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
     {
         CLLocation* location = self.mapView.myLocation;
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
                                                                 longitude:location.coordinate.longitude
-                                                                     zoom:15];
+                                                                     zoom:GMAP_DEFAULT_ZOOM];
         self.mapView.camera = camera;
         [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
             GMSMarker *marker = [[GMSMarker alloc] init];
             marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
             marker.map = self.mapView;
             if (resp.firstResult != nil) {
-                marker.title = resp.firstResult.addressLine1;
-                marker.snippet = resp.firstResult.addressLine2;
+                marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
                 if ([self.editPlaceInfoTVC.addressTextField.text isEqualToString:@""]) {
-                    self.editPlaceInfoTVC.addressTextField.text = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+                    self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
                 }
             }
         }];
-        self.mapView.myLocationEnabled = NO;
     }
+}
+- (void)addMarketAt:(CLLocation*)location snippet:(NSString*)snippet {
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                                            longitude:location.coordinate.longitude
+                                                                 zoom:GMAP_DEFAULT_ZOOM];
+    self.mapView.camera = camera;
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+    marker.map = self.mapView;
+    marker.snippet = snippet;
+}
+- (void)dealloc {
+    [self removeLocationObservation];
 }
 @end

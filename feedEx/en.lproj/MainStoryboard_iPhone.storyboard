@@ -297,6 +297,7 @@
                         <outlet property="nameTextField" destination="uuU-LA-l48" id="BHM-wa-bnb"/>
                         <outlet property="noteTextView" destination="ptD-Tp-roJ" id="cqD-jD-j7y"/>
                         <outlet property="photoScrollView" destination="mOD-rG-KG0" id="XjP-kj-Ky0"/>
+                        <outlet property="ratingView" destination="4ZN-29-UM8" id="it9-1C-jAJ"/>
                         <outlet property="stopEditButton" destination="bvL-L7-OXW" id="PwE-5d-npW"/>
                         <outlet property="tagTextView" destination="fbR-8w-dgk" id="lGh-my-B6F"/>
                     </connections>
@@ -506,12 +507,15 @@
         <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
             <relationships>
+                <relationship kind="action" name="addPhotoTapped:" candidateClass="UIButton"/>
+                <relationship kind="action" name="stopEditButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
                 <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
                 <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
             </relationships>

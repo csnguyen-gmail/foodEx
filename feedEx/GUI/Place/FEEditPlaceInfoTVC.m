@@ -65,6 +65,7 @@
     [self setAddPhotoButton:nil];
     [self setStopEditButton:nil];
     [self setDeleteButton:nil];
+    [self setRatingView:nil];
     [super viewDidUnload];
 }
 
