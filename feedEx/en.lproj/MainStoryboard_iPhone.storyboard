@@ -122,7 +122,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="mOD-rG-KG0" customClass="FEDynamicScrollView">
-                                                    <rect key="frame" x="9" y="-2" width="250" height="82"/>
+                                                    <rect key="frame" x="9" y="-2" width="255" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cFe-KC-K4I">
@@ -507,8 +507,6 @@
         <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
             <relationships>
-                <relationship kind="action" name="addPhotoTapped:" candidateClass="UIButton"/>
-                <relationship kind="action" name="stopEditButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>

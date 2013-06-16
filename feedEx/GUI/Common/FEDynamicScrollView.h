@@ -13,6 +13,7 @@
 - (void)enterDraggingMode;
 - (void)exitDraggingMode;
 - (void)enterEditMode;
+- (void)removeImageAtIndex:(NSUInteger)index;
 @end
 
 @interface FEDynamicScrollView : UIScrollView

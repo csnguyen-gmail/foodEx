@@ -144,6 +144,7 @@
     [self scrollRectToVisible:wiggleView.frame animated:YES];
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
+    [self.dynamicScrollViewDelegate removeImageAtIndex:[self.wiggleViews indexOfObject:wiggleImageView]];
     [wiggleImageView removeFromSuperview];
     [self.wiggleViews removeObject:wiggleImageView];
     [self rearrangeAllViewWithAnimation:YES];

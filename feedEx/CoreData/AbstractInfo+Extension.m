@@ -13,17 +13,29 @@
 - (void)awakeFromInsert {
     self.createdDate = [NSDate date];
 }
-- (void)insertThumbnailAndOriginImage:(UIImage*)image atIndex:(NSUInteger)index {
+- (void)insertPhotoWithThumbnail:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage atIndex:(NSUInteger)index {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
         Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
-        photo.imageData = UIImagePNGRepresentation(image);
-        photo.thumbnailPhoto = [UIImage imageWithImage:image scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
-
-//        [self insertObject:photo inPhotosAtIndex:index]; --> this function seem not work at the moment, what a shame!
+        photo.imageData = UIImagePNGRepresentation(originImage);
+        if (thumbnailImage) {
+            photo.thumbnailPhoto = thumbnailImage;
+        }
+        else {
+            photo.thumbnailPhoto = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+        }
+//        [self insertObject:photo inPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
         NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
         [tempSet insertObject:photo atIndex:index];
         self.photos = tempSet;
     }
+}
+- (Photo*)removePhotoAtIndex:(NSUInteger)index {
+//    [self removeObjectFromPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
+    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
+    Photo *photo = [self.photos objectAtIndex:index];
+    [tempSet removeObjectAtIndex:index];
+    self.photos = tempSet;
+    return  photo;
 }
 @end

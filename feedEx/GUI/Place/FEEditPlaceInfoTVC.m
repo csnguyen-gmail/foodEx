@@ -155,6 +155,16 @@
 - (IBAction)addPhotoTapped:(UIButton *)sender {
     [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
 }
+- (void)setupPhotoScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
+    for (UIImage *thumbnailImage in thumbnailImages) {
+        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
+                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
+        [self.photoScrollView addView:wiggleView atIndex:self.photoScrollView.wiggleViews.count];
+    }
+}
+- (void)removeImageAtIndex:(NSUInteger)index {
+    [self.editPlaceTVCDelegate removeImageAtIndex:index];
+}
 # pragma mark - GKImagePicker Delegate Methods
 - (GKImagePicker *)imagePicker {
     if (!_imagePicker) {
@@ -170,7 +180,7 @@
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];
-    // TODO - manege image array
+    [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
 }
 
 @end

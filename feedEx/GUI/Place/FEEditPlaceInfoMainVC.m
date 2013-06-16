@@ -9,6 +9,8 @@
 #import "FEEditPlaceInfoMainVC.h"
 #import "FECoreDataController.h"
 #import "Address.h"
+#import "Photo.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEEditPlaceInfoMainVC (){
     float _minResizableHeight;
@@ -31,6 +33,7 @@
     
     // edit place info view
     self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceInfoTVC"];
+    self.editPlaceInfoTVC.editPlaceTVCDelegate = self;
     self.editPlaceInfoTVC.tableView.layer.cornerRadius = 10;
     float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height; // for remove last separate line
     self.editPlaceInfoTVC.tableView.frame = CGRectMake(0, 0,
@@ -45,9 +48,13 @@
     self.verticalResizeView.delegate = self;
     _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _maxResizableHeight = self.scrollView.frame.size.height;
-    
+
     // load place
     [self loadPlace];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.coreData.managedObjectContext];
+    [fetchRequest setEntity:entity];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,7 +104,7 @@
     placeInfo.address.longtitude = @(self.mapView.myLocation.coordinate.longitude);
     placeInfo.address.lattittude = @(self.mapView.myLocation.coordinate.latitude);
     placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
-    placeInfo.note = self.editPlaceInfoTVC.noteTextView.text;
+    placeInfo.note = self.editPlaceInfoTVC.noteTextView.usingPlaceholder? @"": self.editPlaceInfoTVC.noteTextView.text;
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
@@ -114,6 +121,7 @@
         [self addLocationObervation];
     }
     else {
+        // common
         self.title = @"Edit Place";
         self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
         self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
@@ -123,11 +131,18 @@
         [self.editPlaceInfoTVC.deleteButton addTarget:self
                                                action:@selector(confirmDelete)
                                      forControlEvents:UIControlEventTouchUpInside];
+        // address
         if (![placeInfo.address.lattittude isEqual: @(0)] && ![placeInfo.address.longtitude isEqual: @(0)]) {
             CLLocation *location = [[CLLocation alloc] initWithLatitude:[placeInfo.address.lattittude floatValue]
                                                               longitude:[placeInfo.address.longtitude floatValue]];
             [self addMarketAt:location snippet:placeInfo.address.address];
         }
+        // photos
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        for (Photo *photo in placeInfo.photos) {
+            [photos addObject:photo.thumbnailPhoto];
+        }
+        [self.editPlaceInfoTVC setupPhotoScrollViewWithArrayOfThumbnailImages:photos];
     }
 }
 - (void)deletePlace {
@@ -142,6 +157,14 @@
 - (void)rollback {
     [self.coreData.managedObjectContext rollback];
     [self dismissModalViewControllerAnimated:YES];
+}
+#pragma mark - FEEditPlaceInfoTVCDelegate
+- (void)addNewThumbnailImage:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
+    [self.placeInfo insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];
+}
+- (void)removeImageAtIndex:(NSUInteger)index {
+    Photo *photo = [self.placeInfo removePhotoAtIndex:index];
+    [self.coreData.managedObjectContext deleteObject:photo];
 }
 #pragma mark - Alert view
 #define ALERT_TAG_DELETE    1001

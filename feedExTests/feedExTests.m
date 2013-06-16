@@ -26,7 +26,7 @@
     NSManagedObjectContext *context = _coredata.managedObjectContext;
     User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     user.name = @"UserA";
-    [user insertThumbnailAndOriginImage:[UIImage imageNamed:@"test_place"] atIndex:0];
+    [user insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:@"test_place"] atIndex:0];
     for (int i = 0; i < 10; i++) {
         Place *place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = [NSString stringWithFormat:@"Place%d", i];

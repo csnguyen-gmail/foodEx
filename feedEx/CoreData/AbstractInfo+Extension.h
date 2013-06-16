@@ -8,5 +8,6 @@
 
 #import "AbstractInfo.h"
 @interface AbstractInfo (Extension)
-- (void)insertThumbnailAndOriginImage:(UIImage*)image atIndex:(NSUInteger)index;
+- (void)insertPhotoWithThumbnail:(UIImage*)thumbnailImage andOriginImage:(UIImage*)originImage atIndex:(NSUInteger)index;
+- (Photo*)removePhotoAtIndex:(NSUInteger)index;
 @end

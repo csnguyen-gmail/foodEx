@@ -25,5 +25,9 @@
 
 // Takes NSData from Core Data and returns a UIImage
 - (id)reverseTransformedValue:(id)value {
-    return [UIImage imageWithData:value];
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        return [UIImage imageWithData:value scale:[[UIScreen mainScreen] scale]];
+    } else {
+        return [UIImage imageWithData:value];
+    }
 }@end
