@@ -17,7 +17,7 @@
 // Dynamic scroll view
 - (void)addNewThumbnailImage:(UIImage*)thumbnailImage andOriginImage:(UIImage*)originImage;
 - (void)removeImageAtIndex:(NSUInteger)index;
-
+- (void)imageMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end
 @interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate>
 @property (weak, nonatomic) id<FEEditPlaceInfoTVCDelegate> editPlaceTVCDelegate;

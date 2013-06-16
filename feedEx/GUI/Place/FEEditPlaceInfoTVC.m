@@ -165,6 +165,9 @@
 - (void)removeImageAtIndex:(NSUInteger)index {
     [self.editPlaceTVCDelegate removeImageAtIndex:index];
 }
+- (void)viewMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+    [self.editPlaceTVCDelegate imageMovedFromIndex:fromIndex toIndex:toIndex];
+}
 # pragma mark - GKImagePicker Delegate Methods
 - (GKImagePicker *)imagePicker {
     if (!_imagePicker) {

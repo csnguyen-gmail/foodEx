@@ -14,6 +14,7 @@
 - (void)exitDraggingMode;
 - (void)enterEditMode;
 - (void)removeImageAtIndex:(NSUInteger)index;
+- (void)viewMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end
 
 @interface FEDynamicScrollView : UIScrollView

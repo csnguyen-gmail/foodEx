@@ -166,6 +166,9 @@
     Photo *photo = [self.placeInfo removePhotoAtIndex:index];
     [self.coreData.managedObjectContext deleteObject:photo];
 }
+- (void)imageMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+    [self.placeInfo movePhotoFromIndex:fromIndex toIndex:toIndex];
+}
 #pragma mark - Alert view
 #define ALERT_TAG_DELETE    1001
 #define ALERT_TAG_DONE      1002

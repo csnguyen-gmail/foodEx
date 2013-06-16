@@ -10,7 +10,9 @@
 #define DYNAMIC_SCROLLVIEW_WIDTH_PADDING 5
 #define DYNAMIC_SCROLLVIEW_HEIGHT_PADDING 5
 
-@interface FEDynamicScrollView()
+@interface FEDynamicScrollView() {
+    NSUInteger _indexViewBeforeDraging;
+}
 @property (nonatomic) float beginDraggingX;
 @property (nonatomic, strong) FEWiggleView *draggingWiggleView;
 @property (nonatomic, strong) FEWiggleView *emptyWiggleView;
@@ -82,6 +84,7 @@
 }
 - (void)enterDraggingModeForView:(FEWiggleView*)view {
     int index = [self.wiggleViews indexOfObject:view];
+    _indexViewBeforeDraging = index;
     self.emptyWiggleView = [[FEWiggleView alloc] init];
     self.emptyWiggleView.frame = view.frame;
     [self.wiggleViews insertObject:self.emptyWiggleView atIndex:index];
@@ -97,9 +100,9 @@
     if (!self.draggingWiggleView) {
         return;
     }
+    int index = [self.wiggleViews indexOfObject:self.emptyWiggleView];
     [UIView animateWithDuration:0.2f
                      animations:^{
-                         int index = [self.wiggleViews indexOfObject:self.emptyWiggleView];
                          [self.wiggleViews insertObject:self.draggingWiggleView atIndex:index];
                          self.draggingWiggleView.dragMode = NO;
                          self.draggingWiggleView.frame = self.emptyWiggleView.frame;
@@ -112,6 +115,7 @@
                      completion:^(BOOL finished) {
                      }];
     [self.dynamicScrollViewDelegate exitDraggingMode];
+    [self.dynamicScrollViewDelegate viewMovedFromIndex:_indexViewBeforeDraging toIndex:index];
 }
 
 - (void)setWaitForPagingTimer:(NSTimer *)waitForPagingTimer {
