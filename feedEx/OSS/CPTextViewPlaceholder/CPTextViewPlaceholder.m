@@ -140,7 +140,14 @@
     [super setTextColor:textColor];
     self.originalTextColor = textColor;
 }
-
+- (void)setText:(NSString *)text {
+    self.usingPlaceholder = NO;
+    [super setText:text];
+}
+- (void)setUsingPlaceholder:(BOOL)usingPlaceholder {
+    _usingPlaceholder = usingPlaceholder;
+    super.textColor = self.originalTextColor;
+}
 - (void)setSelectedRange:(NSRange)selectedRange
 {
     if (self.isUsingPlaceholder) {
