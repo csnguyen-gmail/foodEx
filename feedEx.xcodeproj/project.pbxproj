@@ -98,22 +98,22 @@
 		6FC66FD0176D7C3900C91BC9 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCD176D7C3900C91BC9 /* stop.png */; };
 		6FC66FD1176D7C3900C91BC9 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCE176D7C3900C91BC9 /* stop@2x.png */; };
 		6FC66FD2176D7C3900C91BC9 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCE176D7C3900C91BC9 /* stop@2x.png */; };
-		6FC66FE1176E1A3D00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE0176E1A3C00C91BC9 /* Photo.m */; };
-		6FC66FE2176E1A3D00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE0176E1A3C00C91BC9 /* Photo.m */; };
-		6FC66FE5176E1A3E00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE4176E1A3D00C91BC9 /* Address.m */; };
-		6FC66FE6176E1A3E00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE4176E1A3D00C91BC9 /* Address.m */; };
-		6FC66FE9176E1A3F00C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE8176E1A3F00C91BC9 /* Place.m */; };
-		6FC66FEA176E1A3F00C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FE8176E1A3F00C91BC9 /* Place.m */; };
-		6FC66FED176E1A4100C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FEC176E1A4100C91BC9 /* Tag.m */; };
-		6FC66FEE176E1A4100C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FEC176E1A4100C91BC9 /* Tag.m */; };
-		6FC66FF1176E1A4200C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF0176E1A4200C91BC9 /* Food.m */; };
-		6FC66FF2176E1A4200C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF0176E1A4200C91BC9 /* Food.m */; };
-		6FC66FF5176E1A4300C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF4176E1A4200C91BC9 /* User.m */; };
-		6FC66FF6176E1A4300C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF4176E1A4200C91BC9 /* User.m */; };
-		6FC66FF9176E1A4300C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */; };
-		6FC66FFA176E1A4300C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */; };
 		6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
 		6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
+		6FC67023176F490100C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67022176F490000C91BC9 /* Tag.m */; };
+		6FC67024176F490100C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67022176F490000C91BC9 /* Tag.m */; };
+		6FC67027176F490300C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67026176F490200C91BC9 /* Address.m */; };
+		6FC67028176F490300C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67026176F490200C91BC9 /* Address.m */; };
+		6FC6702B176F490400C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6702A176F490300C91BC9 /* Place.m */; };
+		6FC6702C176F490400C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6702A176F490300C91BC9 /* Place.m */; };
+		6FC6702F176F490600C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6702E176F490500C91BC9 /* User.m */; };
+		6FC67030176F490600C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6702E176F490500C91BC9 /* User.m */; };
+		6FC67033176F490700C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67032176F490600C91BC9 /* Food.m */; };
+		6FC67034176F490700C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67032176F490600C91BC9 /* Food.m */; };
+		6FC67037176F490800C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67036176F490800C91BC9 /* AbstractInfo.m */; };
+		6FC67038176F490800C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67036176F490800C91BC9 /* AbstractInfo.m */; };
+		6FC6703B176F490A00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6703A176F490A00C91BC9 /* Photo.m */; };
+		6FC6703C176F490A00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6703A176F490A00C91BC9 /* Photo.m */; };
 		6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD8CB511748DC410039EAE8 /* FEWiggleView.m */; };
 		6FDF88E2175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
 		6FDF88E3175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
@@ -253,23 +253,23 @@
 		6FC66FC8176D7BA000C91BC9 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		6FC66FCD176D7C3900C91BC9 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		6FC66FCE176D7C3900C91BC9 /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
-		6FC66FDF176E1A3C00C91BC9 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6FC66FE0176E1A3C00C91BC9 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6FC66FE3176E1A3D00C91BC9 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		6FC66FE4176E1A3D00C91BC9 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
-		6FC66FE7176E1A3F00C91BC9 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6FC66FE8176E1A3F00C91BC9 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		6FC66FEB176E1A4100C91BC9 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6FC66FEC176E1A4100C91BC9 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6FC66FEF176E1A4100C91BC9 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6FC66FF0176E1A4200C91BC9 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6FC66FF3176E1A4200C91BC9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6FC66FF4176E1A4200C91BC9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6FC66FF7176E1A4300C91BC9 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6FC66FFC176EF6DD00C91BC9 /* CoredataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoredataCommon.h; sourceTree = "<group>"; };
 		6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Extension.h"; sourceTree = "<group>"; };
 		6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Extension.m"; sourceTree = "<group>"; };
+		6FC67021176F490000C91BC9 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		6FC67022176F490000C91BC9 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		6FC67025176F490200C91BC9 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		6FC67026176F490200C91BC9 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		6FC67029176F490300C91BC9 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6FC6702A176F490300C91BC9 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FC6702D176F490500C91BC9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6FC6702E176F490500C91BC9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6FC67031176F490600C91BC9 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6FC67032176F490600C91BC9 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6FC67035176F490800C91BC9 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6FC67036176F490800C91BC9 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6FC67039176F490900C91BC9 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6FC6703A176F490A00C91BC9 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		6FD8CB501748DC410039EAE8 /* FEWiggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleView.h; sourceTree = "<group>"; };
 		6FD8CB511748DC410039EAE8 /* FEWiggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleView.m; sourceTree = "<group>"; };
 		6FDF88E1175F1A2400C21332 /* test_place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_place.png; sourceTree = "<group>"; };
@@ -393,24 +393,24 @@
 			isa = PBXGroup;
 			children = (
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6FC66FF7176E1A4300C91BC9 /* AbstractInfo.h */,
-				6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */,
+				6FC67039176F490900C91BC9 /* Photo.h */,
+				6FC6703A176F490A00C91BC9 /* Photo.m */,
+				6FC67035176F490800C91BC9 /* AbstractInfo.h */,
+				6FC67036176F490800C91BC9 /* AbstractInfo.m */,
+				6FC67031176F490600C91BC9 /* Food.h */,
+				6FC67032176F490600C91BC9 /* Food.m */,
+				6FC6702D176F490500C91BC9 /* User.h */,
+				6FC6702E176F490500C91BC9 /* User.m */,
+				6FC67029176F490300C91BC9 /* Place.h */,
+				6FC6702A176F490300C91BC9 /* Place.m */,
+				6FC67025176F490200C91BC9 /* Address.h */,
+				6FC67026176F490200C91BC9 /* Address.m */,
+				6FC67021176F490000C91BC9 /* Tag.h */,
+				6FC67022176F490000C91BC9 /* Tag.m */,
 				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
 				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
-				6FC66FF3176E1A4200C91BC9 /* User.h */,
-				6FC66FF4176E1A4200C91BC9 /* User.m */,
-				6FC66FEF176E1A4100C91BC9 /* Food.h */,
-				6FC66FF0176E1A4200C91BC9 /* Food.m */,
-				6FC66FEB176E1A4100C91BC9 /* Tag.h */,
-				6FC66FEC176E1A4100C91BC9 /* Tag.m */,
 				6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */,
 				6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */,
-				6FC66FE7176E1A3F00C91BC9 /* Place.h */,
-				6FC66FE8176E1A3F00C91BC9 /* Place.m */,
-				6FC66FE3176E1A3D00C91BC9 /* Address.h */,
-				6FC66FE4176E1A3D00C91BC9 /* Address.m */,
-				6FC66FDF176E1A3C00C91BC9 /* Photo.h */,
-				6FC66FE0176E1A3C00C91BC9 /* Photo.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
@@ -825,14 +825,14 @@
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
 				6FAD9DFF1765F45400DB606C /* FETestViewController.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
-				6FC66FE1176E1A3D00C91BC9 /* Photo.m in Sources */,
-				6FC66FE5176E1A3E00C91BC9 /* Address.m in Sources */,
-				6FC66FE9176E1A3F00C91BC9 /* Place.m in Sources */,
-				6FC66FED176E1A4100C91BC9 /* Tag.m in Sources */,
-				6FC66FF1176E1A4200C91BC9 /* Food.m in Sources */,
-				6FC66FF5176E1A4300C91BC9 /* User.m in Sources */,
-				6FC66FF9176E1A4300C91BC9 /* AbstractInfo.m in Sources */,
 				6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
+				6FC67023176F490100C91BC9 /* Tag.m in Sources */,
+				6FC67027176F490300C91BC9 /* Address.m in Sources */,
+				6FC6702B176F490400C91BC9 /* Place.m in Sources */,
+				6FC6702F176F490600C91BC9 /* User.m in Sources */,
+				6FC67033176F490700C91BC9 /* Food.m in Sources */,
+				6FC67037176F490800C91BC9 /* AbstractInfo.m in Sources */,
+				6FC6703B176F490A00C91BC9 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,14 +845,14 @@
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
 				6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6FDF88E7175F1D3C00C21332 /* UIImage+Extension.m in Sources */,
-				6FC66FE2176E1A3D00C91BC9 /* Photo.m in Sources */,
-				6FC66FE6176E1A3E00C91BC9 /* Address.m in Sources */,
-				6FC66FEA176E1A3F00C91BC9 /* Place.m in Sources */,
-				6FC66FEE176E1A4100C91BC9 /* Tag.m in Sources */,
-				6FC66FF2176E1A4200C91BC9 /* Food.m in Sources */,
-				6FC66FF6176E1A4300C91BC9 /* User.m in Sources */,
-				6FC66FFA176E1A4300C91BC9 /* AbstractInfo.m in Sources */,
 				6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
+				6FC67024176F490100C91BC9 /* Tag.m in Sources */,
+				6FC67028176F490300C91BC9 /* Address.m in Sources */,
+				6FC6702C176F490400C91BC9 /* Place.m in Sources */,
+				6FC67030176F490600C91BC9 /* User.m in Sources */,
+				6FC67034176F490700C91BC9 /* Food.m in Sources */,
+				6FC67038176F490800C91BC9 /* AbstractInfo.m in Sources */,
+				6FC6703C176F490A00C91BC9 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

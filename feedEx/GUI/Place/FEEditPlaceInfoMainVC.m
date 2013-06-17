@@ -21,7 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) Place *placeInfo;
+@property (strong, nonatomic) NSArray *tags; // of Tag
 @property (assign, nonatomic) BOOL isNewPlace;
+
 @end
 
 @implementation FEEditPlaceInfoMainVC
@@ -78,6 +80,15 @@
     self.isNewPlace = (placeId == nil);
 }
 
+- (NSArray *)tags {
+    if (!_tags) {
+        _tags = [Tag fetchTagsByType:CD_TAG_PLACE
+                             withMOM:self.coreData.managedObjectModel
+                              andMOC:self.coreData.managedObjectContext];
+    }
+    return _tags;
+}
+
 - (Place *)placeInfo {
     if (!_placeInfo) {
         if (self.placeId) {
@@ -107,6 +118,7 @@
     placeInfo.address.lattittude = @(self.mapView.myLocation.coordinate.latitude);
     placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
     placeInfo.note = self.editPlaceInfoTVC.noteTextView.usingPlaceholder? @"": self.editPlaceInfoTVC.noteTextView.text;
+    [self saveTagFromStringTags:[self.editPlaceInfoTVC.tagTextView buildTagArray]];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
@@ -114,7 +126,6 @@
 }
 - (void)loadPlace {
     Place *placeInfo = self.placeInfo;
-    
     
     if (self.isNewPlace) {
         self.title = @"Add Place";
@@ -128,9 +139,8 @@
         self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
         self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
         self.editPlaceInfoTVC.ratingView.rate = [placeInfo.rating floatValue];
-        self.editPlaceInfoTVC.tags = [Tag fetchTagsByType:CD_TAG_PLACE
-                                                  withMOM:self.coreData.managedObjectModel
-                                                   andMOC:self.coreData.managedObjectContext];
+        [self.editPlaceInfoTVC.tagTextView setInitialText:[self buildStringTagsOfPlace]];
+        // TODO: reduce suggestion word after set text
         [self.editPlaceInfoTVC.noteTextView setInitialText:placeInfo.note];
         self.editPlaceInfoTVC.deleteButton.enabled = YES;
         [self.editPlaceInfoTVC.deleteButton addTarget:self
@@ -149,6 +159,7 @@
         }
         [self.editPlaceInfoTVC setupPhotoScrollViewWithArrayOfThumbnailImages:photos];
     }
+    self.editPlaceInfoTVC.tags = [self buildListStringTags];
 }
 - (void)deletePlace {
     [self.indicatorView startAnimating];
@@ -163,6 +174,47 @@
     [self.coreData.managedObjectContext rollback];
     [self dismissModalViewControllerAnimated:YES];
 }
+- (void)saveTagFromStringTags:(NSArray*)stringTags{
+    // TODO: bring to Tag, UT, try cascade on tag relation ship
+    // clear all old tags
+    for (Tag *tag in self.placeInfo.tags) {
+        [tag removeOwnerObject:self.placeInfo];
+    }
+    // add new tags
+    for (NSString *stringTag in stringTags) {
+        // get saving tag
+        Tag *savingTag;
+        for (Tag *tag in self.tags) {
+            if ([tag.label isEqualToString:stringTag]) {
+                savingTag = tag;
+                break;
+            }
+        }
+        // create new one in case there is not existed
+        if (!savingTag) {
+            savingTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:self.coreData.managedObjectContext];
+            savingTag.label = stringTag;
+            savingTag.type = CD_TAG_PLACE;
+        }
+        // add tag
+        [savingTag addOwnerObject:self.placeInfo];
+    }
+}
+- (NSArray *)buildListStringTags {
+    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    for (Tag *tag in self.tags) {
+        [tags addObject:tag.label];
+    }
+    return tags;
+}
+- (NSString *)buildStringTagsOfPlace {
+    NSMutableString *stringTags = [[NSMutableString alloc] init];
+    for (Tag *tag in self.placeInfo.tags) {
+        [stringTags appendFormat:@"%@, ",tag.label];
+    }
+    return stringTags;
+}
+
 #pragma mark - FEEditPlaceInfoTVCDelegate
 - (void)addNewThumbnailImage:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
     [self.placeInfo insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];

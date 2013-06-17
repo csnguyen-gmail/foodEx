@@ -13,4 +13,6 @@
 @interface FETagTextView : CPTextViewPlaceholder<FECustomInputAccessoryViewDelegate, UITextViewDelegate>
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) UIResponder *nextTextField;
+
+- (NSMutableArray*)buildTagArray;
 @end

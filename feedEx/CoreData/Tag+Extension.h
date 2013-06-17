@@ -10,4 +10,5 @@
 
 @interface Tag (Extension)
 + (NSArray*)fetchTagsByType:(NSNumber*)type withMOM:(NSManagedObjectModel*)mom andMOC:(NSManagedObjectContext*)moc;
++ (Tag*)extractTagWithLabel:(NSString*)label andType:(NSNumber*)type andMOC:(NSManagedObjectContext*)moc fromTags:(NSArray*)tags;
 @end
