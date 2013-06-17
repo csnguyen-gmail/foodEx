@@ -11,6 +11,8 @@
 #import "Address.h"
 #import "Photo.h"
 #import "AbstractInfo+Extension.h"
+#import "Tag+Extension.h"
+#import "CoredataCommon.h"
 
 @interface FEEditPlaceInfoMainVC (){
     float _minResizableHeight;
@@ -126,7 +128,10 @@
         self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;
         self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
         self.editPlaceInfoTVC.ratingView.rate = [placeInfo.rating floatValue];
-        self.editPlaceInfoTVC.noteTextView.text = placeInfo.note;
+        self.editPlaceInfoTVC.tags = [Tag fetchTagsByType:CD_TAG_PLACE
+                                                  withMOM:self.coreData.managedObjectModel
+                                                   andMOC:self.coreData.managedObjectContext];
+        [self.editPlaceInfoTVC.noteTextView setInitialText:placeInfo.note];
         self.editPlaceInfoTVC.deleteButton.enabled = YES;
         [self.editPlaceInfoTVC.deleteButton addTarget:self
                                                action:@selector(confirmDelete)

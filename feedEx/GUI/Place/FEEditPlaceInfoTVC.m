@@ -74,12 +74,9 @@
     [self actionWhenViewDisappear];
 }
 #pragma mark - getter setter
-- (NSArray *)tags {
-    if (!_tags) {
-        // TODO - load tags from db
-        _tags = @[@"abc", @"def", @"ghi", @"jkl", @"mno", @"pqr", @"stu", @"vxyz"];
-    }
-    return  _tags;
+- (void)setTags:(NSArray *)tags {
+    _tags = tags;
+    self.tagTextView.tags = tags;
 }
 #pragma mark - Utility
 - (void)actionWhenViewDisappear {
@@ -105,7 +102,6 @@
     self.addressTextField.inputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[barButton]];
     // tag text field
     self.tagTextView.nextTextField = self.noteTextView;
-    self.tagTextView.tags = self.tags;
     // note text view
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
                                                 target:self action:@selector(buttonInAccessoryTapped:)];

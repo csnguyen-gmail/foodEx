@@ -112,6 +112,8 @@
 		6FC66FF6176E1A4300C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF4176E1A4200C91BC9 /* User.m */; };
 		6FC66FF9176E1A4300C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */; };
 		6FC66FFA176E1A4300C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */; };
+		6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
+		6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
 		6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD8CB511748DC410039EAE8 /* FEWiggleView.m */; };
 		6FDF88E2175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
 		6FDF88E3175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
@@ -265,6 +267,9 @@
 		6FC66FF4176E1A4200C91BC9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6FC66FF7176E1A4300C91BC9 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
 		6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6FC66FFC176EF6DD00C91BC9 /* CoredataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoredataCommon.h; sourceTree = "<group>"; };
+		6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Extension.h"; sourceTree = "<group>"; };
+		6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Extension.m"; sourceTree = "<group>"; };
 		6FD8CB501748DC410039EAE8 /* FEWiggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleView.h; sourceTree = "<group>"; };
 		6FD8CB511748DC410039EAE8 /* FEWiggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleView.m; sourceTree = "<group>"; };
 		6FDF88E1175F1A2400C21332 /* test_place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_place.png; sourceTree = "<group>"; };
@@ -390,24 +395,27 @@
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
 				6FC66FF7176E1A4300C91BC9 /* AbstractInfo.h */,
 				6FC66FF8176E1A4300C91BC9 /* AbstractInfo.m */,
+				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
+				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
 				6FC66FF3176E1A4200C91BC9 /* User.h */,
 				6FC66FF4176E1A4200C91BC9 /* User.m */,
 				6FC66FEF176E1A4100C91BC9 /* Food.h */,
 				6FC66FF0176E1A4200C91BC9 /* Food.m */,
 				6FC66FEB176E1A4100C91BC9 /* Tag.h */,
 				6FC66FEC176E1A4100C91BC9 /* Tag.m */,
+				6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */,
+				6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */,
 				6FC66FE7176E1A3F00C91BC9 /* Place.h */,
 				6FC66FE8176E1A3F00C91BC9 /* Place.m */,
 				6FC66FE3176E1A3D00C91BC9 /* Address.h */,
 				6FC66FE4176E1A3D00C91BC9 /* Address.m */,
 				6FC66FDF176E1A3C00C91BC9 /* Photo.h */,
 				6FC66FE0176E1A3C00C91BC9 /* Photo.m */,
-				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
-				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
 				6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */,
+				6FC66FFC176EF6DD00C91BC9 /* CoredataCommon.h */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -824,6 +832,7 @@
 				6FC66FF1176E1A4200C91BC9 /* Food.m in Sources */,
 				6FC66FF5176E1A4300C91BC9 /* User.m in Sources */,
 				6FC66FF9176E1A4300C91BC9 /* AbstractInfo.m in Sources */,
+				6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +852,7 @@
 				6FC66FF2176E1A4200C91BC9 /* Food.m in Sources */,
 				6FC66FF6176E1A4300C91BC9 /* User.m in Sources */,
 				6FC66FFA176E1A4300C91BC9 /* AbstractInfo.m in Sources */,
+				6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

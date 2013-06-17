@@ -140,14 +140,7 @@
     [super setTextColor:textColor];
     self.originalTextColor = textColor;
 }
-- (void)setText:(NSString *)text {
-    self.usingPlaceholder = NO;
-    [super setText:text];
-}
-- (void)setUsingPlaceholder:(BOOL)usingPlaceholder {
-    _usingPlaceholder = usingPlaceholder;
-    super.textColor = self.originalTextColor;
-}
+
 - (void)setSelectedRange:(NSRange)selectedRange
 {
     if (self.isUsingPlaceholder) {
@@ -165,7 +158,14 @@
         [super setSelectedTextRange:selectedTextRange];
     }
 }
-
+- (void)setInitialText:(NSString *)string {
+    if (![string isEqualToString:@""]) {
+        self.usingPlaceholder = NO;
+        super.textColor = self.originalTextColor;
+        super.autocorrectionType = self.originalCorrection;
+        super.text = string;
+    }
+}
 #pragma mark -
 #pragma mark Utilities methods
 
