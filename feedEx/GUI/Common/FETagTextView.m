@@ -91,6 +91,13 @@
 - (void)doneInAccessoryTapped:(UIBarButtonItem*)sender {
     [self resignFirstResponder];
 }
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
+        FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
+        customInputView.suggestionWords = [self rebuildSuggestionWords:self.tags withSelectedWords:[self buildTagArray]];
+        customInputView.filterWord = [self getStringBetweenCommas:self];
+    }
+}
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
@@ -130,6 +137,9 @@
 }
 - (void)formatText {
     NSMutableArray *tags = [self buildTagArray];
+    if (tags == nil) {
+        return;
+    }
     NSMutableString *formatedText = [[NSMutableString alloc] init];
     for (int i = 0; i < tags.count - 1; i++) {
         [formatedText appendFormat:@"%@, ",tags[i]];
@@ -138,6 +148,9 @@
     self.text = formatedText;
 }
 - (NSMutableArray*)buildTagArray{
+    if (self.usingPlaceholder) {
+        return nil;
+    }
     NSArray *tags = [self.text componentsSeparatedByString:@","];
     NSMutableArray *uniqueTags = [[NSMutableArray alloc] init];
     for (NSString *tag in tags) {

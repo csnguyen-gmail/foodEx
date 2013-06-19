@@ -55,10 +55,6 @@
 
     // load place
     [self loadPlace];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.coreData.managedObjectContext];
-    [fetchRequest setEntity:entity];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,10 +109,13 @@
     [self.indicatorView startAnimating];
     Place *placeInfo = self.placeInfo;
     placeInfo.name = self.editPlaceInfoTVC.nameTextField.text;
-    placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
+    if (placeInfo.address == nil) {
+        placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
+    }
     placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
-    placeInfo.address.longtitude = @(self.mapView.myLocation.coordinate.longitude);
-    placeInfo.address.lattittude = @(self.mapView.myLocation.coordinate.latitude);
+    GMSMarker *marker = [self.mapView.markers lastObject];
+    placeInfo.address.longtitude = @(marker.position.longitude);
+    placeInfo.address.lattittude = @(marker.position.latitude);
     placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
     placeInfo.note = self.editPlaceInfoTVC.noteTextView.usingPlaceholder? @"": self.editPlaceInfoTVC.noteTextView.text;
     [placeInfo updateTagWithStringTags:[self.editPlaceInfoTVC.tagTextView buildTagArray]
@@ -144,7 +143,6 @@
         self.editPlaceInfoTVC.addressTextField.text = placeInfo.address.address;
         self.editPlaceInfoTVC.ratingView.rate = [placeInfo.rating floatValue];
         [self.editPlaceInfoTVC.tagTextView setInitialText:[self buildStringTagsOfPlace]];
-        // TODO: reduce suggestion word after set text
         [self.editPlaceInfoTVC.noteTextView setInitialText:placeInfo.note];
         self.editPlaceInfoTVC.deleteButton.enabled = YES;
         [self.editPlaceInfoTVC.deleteButton addTarget:self
@@ -343,11 +341,13 @@
                                                             longitude:location.coordinate.longitude
                                                                  zoom:GMAP_DEFAULT_ZOOM];
     self.mapView.camera = camera;
+    // TODO: draggable marker
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
     marker.map = self.mapView;
     marker.snippet = snippet;
 }
+
 - (void)dealloc {
     [self removeLocationObservation];
 }
