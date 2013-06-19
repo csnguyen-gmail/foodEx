@@ -85,6 +85,7 @@
         _tags = [Tag fetchTagsByType:CD_TAG_PLACE
                              withMOM:self.coreData.managedObjectModel
                               andMOC:self.coreData.managedObjectContext];
+        
     }
     return _tags;
 }
@@ -118,7 +119,10 @@
     placeInfo.address.lattittude = @(self.mapView.myLocation.coordinate.latitude);
     placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
     placeInfo.note = self.editPlaceInfoTVC.noteTextView.usingPlaceholder? @"": self.editPlaceInfoTVC.noteTextView.text;
-    [self saveTagFromStringTags:[self.editPlaceInfoTVC.tagTextView buildTagArray]];
+    [placeInfo updateTagWithStringTags:[self.editPlaceInfoTVC.tagTextView buildTagArray]
+                            andTagType:CD_TAG_PLACE
+                                inTags:self.tags
+                                 byMOC:self.coreData.managedObjectContext];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         [self dismissModalViewControllerAnimated:YES];
@@ -163,6 +167,7 @@
 }
 - (void)deletePlace {
     [self.indicatorView startAnimating];
+    // TODO: clear tag also in case it number of owner is clear.
     [self.coreData.managedObjectContext deleteObject:self.placeInfo];
     [self.navigationController popViewControllerAnimated:YES];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
@@ -174,32 +179,7 @@
     [self.coreData.managedObjectContext rollback];
     [self dismissModalViewControllerAnimated:YES];
 }
-- (void)saveTagFromStringTags:(NSArray*)stringTags{
-    // TODO: bring to Tag, UT, try cascade on tag relation ship
-    // clear all old tags
-    for (Tag *tag in self.placeInfo.tags) {
-        [tag removeOwnerObject:self.placeInfo];
-    }
-    // add new tags
-    for (NSString *stringTag in stringTags) {
-        // get saving tag
-        Tag *savingTag;
-        for (Tag *tag in self.tags) {
-            if ([tag.label isEqualToString:stringTag]) {
-                savingTag = tag;
-                break;
-            }
-        }
-        // create new one in case there is not existed
-        if (!savingTag) {
-            savingTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:self.coreData.managedObjectContext];
-            savingTag.label = stringTag;
-            savingTag.type = CD_TAG_PLACE;
-        }
-        // add tag
-        [savingTag addOwnerObject:self.placeInfo];
-    }
-}
+
 - (NSArray *)buildListStringTags {
     NSMutableArray *tags = [[NSMutableArray alloc] init];
     for (Tag *tag in self.tags) {

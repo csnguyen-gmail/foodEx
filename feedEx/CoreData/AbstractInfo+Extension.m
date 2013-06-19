@@ -43,4 +43,37 @@
     [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
     self.photos = tempSet;
 }
+- (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags byMOC:(NSManagedObjectContext*)moc {
+    for (Tag *tag in self.tags) {
+        [tag removeOwnerObject:self];
+    }
+    // add new tags
+    for (NSString *stringTag in stringTags) {
+        // get saving tag
+        Tag *savingTag;
+        for (Tag *tag in tags) {
+            if ([tag.label isEqualToString:stringTag]) {
+                savingTag = tag;
+                break;
+            }
+        }
+        // create new one in case there is not existed
+        if (!savingTag) {
+            savingTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:moc];
+            savingTag.label = stringTag;
+            savingTag.type = tagtype;
+        }
+        // add tag
+        [savingTag addOwnerObject:self];
+    }
+}
+- (void)deleteAndUpateTagWithMOC:(NSManagedObjectContext *)moc {
+    NSOrderedSet *tempTags = self.tags;
+    [moc deleteObject:self];
+    for (Tag *tag in tempTags) {
+        if (tag.owner.count == 0) {
+            [moc deleteObject:tag];
+        }
+    }
+}
 @end
