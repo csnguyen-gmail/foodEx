@@ -13,8 +13,15 @@
 #import "AbstractInfo+Extension.h"
 #import "Tag+Extension.h"
 #import "CoredataCommon.h"
+#import "GMDraggableMarkerManager.h"
 
-@interface FEEditPlaceInfoMainVC (){
+#define GMAP_LOCATION_OBSERVE_KEY @"myLocation"
+#define GMAP_DEFAULT_ZOOM 15
+#define HCM_LONGTITUDE  106.698333
+#define HCM_LATITUDE    10.7730556
+
+
+@interface FEEditPlaceInfoMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEEditPlaceInfoTVCDelegate,GMDraggableMarkerManagerDelegate>{
     float _minResizableHeight;
     float _maxResizableHeight;
 }
@@ -23,7 +30,7 @@
 @property (strong, nonatomic) Place *placeInfo;
 @property (strong, nonatomic) NSArray *tags; // of Tag
 @property (assign, nonatomic) BOOL isNewPlace;
-
+@property (nonatomic, strong) GMDraggableMarkerManager *draggableMarkerManager;
 @end
 
 @implementation FEEditPlaceInfoMainVC
@@ -34,6 +41,7 @@
     
     // map view
     self.mapView.layer.cornerRadius = 10;
+    self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.mapView delegate:self];
     
     // edit place info view
     self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceInfoTVC"];
@@ -133,6 +141,9 @@
     if (self.isNewPlace) {
         self.title = @"Add Place";
         self.editPlaceInfoTVC.deleteButton.enabled = NO;
+        self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
+                                                          longitude:HCM_LONGTITUDE
+                                                               zoom:GMAP_DEFAULT_ZOOM];
         // get location
         [self addLocationObervation];
     }
@@ -150,9 +161,14 @@
                                      forControlEvents:UIControlEventTouchUpInside];
         // address
         if (![placeInfo.address.lattittude isEqual: @(0)] && ![placeInfo.address.longtitude isEqual: @(0)]) {
-            CLLocation *location = [[CLLocation alloc] initWithLatitude:[placeInfo.address.lattittude floatValue]
-                                                              longitude:[placeInfo.address.longtitude floatValue]];
-            [self addMarketAt:location snippet:placeInfo.address.address];
+            [self addMarketAt:CLLocationCoordinate2DMake([placeInfo.address.lattittude floatValue], [placeInfo.address.longtitude floatValue])
+                      snippet:placeInfo.address.address
+                     mapMoved:YES];
+        }
+        else {
+            self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
+                                                              longitude:HCM_LONGTITUDE
+                                                                   zoom:GMAP_DEFAULT_ZOOM];
         }
         // photos
         NSMutableArray *photos = [[NSMutableArray alloc] init];
@@ -299,8 +315,6 @@
 
 }
 #pragma mark - Map
-#define GMAP_LOCATION_OBSERVE_KEY @"myLocation"
-#define GMAP_DEFAULT_ZOOM 15
 - (void)addLocationObervation {
     if (!self.mapView.myLocationEnabled) {
         self.mapView.myLocationEnabled = YES;
@@ -319,14 +333,9 @@
     if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
     {
         CLLocation* location = self.mapView.myLocation;
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
-                                                                longitude:location.coordinate.longitude
-                                                                     zoom:GMAP_DEFAULT_ZOOM];
-        self.mapView.camera = camera;
+        CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
         [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
-            GMSMarker *marker = [[GMSMarker alloc] init];
-            marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            marker.map = self.mapView;
             if (resp.firstResult != nil) {
                 marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
                 if ([self.editPlaceInfoTVC.addressTextField.text isEqualToString:@""]) {
@@ -336,19 +345,40 @@
         }];
     }
 }
-- (void)addMarketAt:(CLLocation*)location snippet:(NSString*)snippet {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
-                                                            longitude:location.coordinate.longitude
-                                                                 zoom:GMAP_DEFAULT_ZOOM];
-    self.mapView.camera = camera;
-    // TODO: draggable marker
+- (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
+    if (mapMoved) {
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.latitude
+                                                                longitude:location.longitude
+                                                                     zoom:GMAP_DEFAULT_ZOOM];
+        self.mapView.camera = camera;
+    }
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+    marker.position = location;
     marker.map = self.mapView;
-    marker.snippet = snippet;
+    [self.draggableMarkerManager addDraggableMarker:marker];
+    return marker;
 }
 
 - (void)dealloc {
     [self removeLocationObservation];
+}
+
+#pragma mark - GMDraggableMarkerManagerDelegate
+- (void)onMarkerDragEnd:(GMSMarker *)marker {
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:marker.position completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
+        if (resp.firstResult != nil) {
+            NSString *snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            self.editPlaceInfoTVC.addressTextField.text = snippet;
+        }
+    }];
+}
+- (void)onMarkerEmptyDragStartAt:(CLLocationCoordinate2D)location {
+    GMSMarker *marker = [self addMarketAt:location snippet:@"" mapMoved:NO];
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
+        if (resp.firstResult != nil) {
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
+        }
+    }];
 }
 @end
