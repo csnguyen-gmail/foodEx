@@ -25,6 +25,10 @@
     float _minResizableHeight;
     float _maxResizableHeight;
 }
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
+@property (weak, nonatomic) FEEditPlaceInfoTVC *editPlaceInfoTVC;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) Place *placeInfo;
@@ -44,7 +48,7 @@
     self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.mapView delegate:self];
     
     // edit place info view
-    self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceInfoTVC"];
+    self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:[[FEEditPlaceInfoTVC class] description]];
     self.editPlaceInfoTVC.editPlaceTVCDelegate = self;
     self.editPlaceInfoTVC.tableView.layer.cornerRadius = 10;
     float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height; // for remove last separate line
@@ -63,20 +67,6 @@
 
     // load place
     [self loadPlace];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setMapView:nil];
-    [self setScrollView:nil];
-    [self setVerticalResizeView:nil];
-    [self setIndicatorView:nil];
-    [super viewDidUnload];
 }
 #pragma mark - getter setter
 - (void)setPlaceId:(NSManagedObjectID *)placeId {

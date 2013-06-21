@@ -56,19 +56,6 @@
     
 }
 
-- (void)viewDidUnload {
-    [self setNoteTextView:nil];
-    [self setNameTextField:nil];
-    [self setAddressTextField:nil];
-    [self setTagTextView:nil];
-    [self setPhotoScrollView:nil];
-    [self setAddPhotoButton:nil];
-    [self setStopEditButton:nil];
-    [self setDeleteButton:nil];
-    [self setRatingView:nil];
-    [super viewDidUnload];
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self actionWhenViewDisappear];

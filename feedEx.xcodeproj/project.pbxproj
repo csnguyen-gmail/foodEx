@@ -15,6 +15,9 @@
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
+		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
+		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
+		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -77,7 +80,6 @@
 		6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF01763E67900DB606C /* CPTextViewPlaceholder.m */; };
 		6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF517646E0900DB606C /* gradientBar.png */; };
 		6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextView.m */; };
-		6FAD9DFF1765F45400DB606C /* FETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFE1765F45200DB606C /* FETestViewController.m */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
@@ -116,6 +118,7 @@
 		6FC67059177069EC00C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67058177069EC00C91BC9 /* User.m */; };
 		6FC6705A177069EC00C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67058177069EC00C91BC9 /* User.m */; };
 		6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD8CB511748DC410039EAE8 /* FEWiggleView.m */; };
+		6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD91FF617743BB50066A5E5 /* FESearchVC.m */; };
 		6FDF88E2175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
 		6FDF88E3175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
 		6FDF88E6175F1D3C00C21332 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF88E5175F1D3C00C21332 /* UIImage+Extension.m */; };
@@ -152,6 +155,12 @@
 		6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECustomInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
+		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
+		6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingVC.m; sourceTree = "<group>"; };
+		6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchPlaceSettingTVC.h; sourceTree = "<group>"; };
+		6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchPlaceSettingTVC.m; sourceTree = "<group>"; };
+		6F2ADD441774C73F00522406 /* FESearchFoodSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchFoodSettingTVC.h; sourceTree = "<group>"; };
+		6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchFoodSettingTVC.m; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -238,8 +247,6 @@
 		6FAD9DF517646E0900DB606C /* gradientBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBar.png; sourceTree = "<group>"; };
 		6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextView.h; sourceTree = "<group>"; };
 		6FAD9DFB1764FC6000DB606C /* FETagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextView.m; sourceTree = "<group>"; };
-		6FAD9DFD1765F45100DB606C /* FETestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETestViewController.h; sourceTree = "<group>"; };
-		6FAD9DFE1765F45200DB606C /* FETestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETestViewController.m; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -276,6 +283,8 @@
 		6FC67058177069EC00C91BC9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6FD8CB501748DC410039EAE8 /* FEWiggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleView.h; sourceTree = "<group>"; };
 		6FD8CB511748DC410039EAE8 /* FEWiggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleView.m; sourceTree = "<group>"; };
+		6FD91FF517743BB50066A5E5 /* FESearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchVC.h; sourceTree = "<group>"; };
+		6FD91FF617743BB50066A5E5 /* FESearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchVC.m; sourceTree = "<group>"; };
 		6FDF88E1175F1A2400C21332 /* test_place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_place.png; sourceTree = "<group>"; };
 		6FDF88E4175F1D3C00C21332 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		6FDF88E5175F1D3C00C21332 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
@@ -338,6 +347,19 @@
 				6FED8F93175A5A7F00216AC6 /* remove.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		6F2ADD371774C6BB00522406 /* SearchSetting */ = {
+			isa = PBXGroup;
+			children = (
+				6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */,
+				6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */,
+				6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */,
+				6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */,
+				6F2ADD441774C73F00522406 /* FESearchFoodSettingTVC.h */,
+				6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */,
+			);
+			path = SearchSetting;
 			sourceTree = "<group>";
 		};
 		6F5713461761D70F000C69CE /* OSS */ = {
@@ -535,10 +557,11 @@
 			children = (
 				6F9E95B01744EED100DCCF24 /* Common */,
 				6F9E95B31744EED100DCCF24 /* Place */,
-				6FAD9DFD1765F45100DB606C /* FETestViewController.h */,
-				6FAD9DFE1765F45200DB606C /* FETestViewController.m */,
+				6F2ADD371774C6BB00522406 /* SearchSetting */,
 				6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */,
 				6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */,
+				6FD91FF517743BB50066A5E5 /* FESearchVC.h */,
+				6FD91FF617743BB50066A5E5 /* FESearchVC.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -838,7 +861,6 @@
 				6FAD9DB817635A1200DB606C /* DYRateView.m in Sources */,
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
-				6FAD9DFF1765F45400DB606C /* FETestViewController.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
 				6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
 				6FC67040177069EB00C91BC9 /* Place.m in Sources */,
@@ -849,6 +871,10 @@
 				6FC67055177069EC00C91BC9 /* Tag.m in Sources */,
 				6FC67059177069EC00C91BC9 /* User.m in Sources */,
 				6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */,
+				6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */,
+				6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */,
+				6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */,
+				6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
