@@ -18,6 +18,7 @@
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
 		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
+		6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD481775915C00522406 /* FESearchSettingInfo.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -161,6 +162,8 @@
 		6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchPlaceSettingTVC.m; sourceTree = "<group>"; };
 		6F2ADD441774C73F00522406 /* FESearchFoodSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchFoodSettingTVC.h; sourceTree = "<group>"; };
 		6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchFoodSettingTVC.m; sourceTree = "<group>"; };
+		6F2ADD471775915C00522406 /* FESearchSettingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingInfo.h; sourceTree = "<group>"; };
+		6F2ADD481775915C00522406 /* FESearchSettingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingInfo.m; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */,
 				6F2ADD441774C73F00522406 /* FESearchFoodSettingTVC.h */,
 				6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */,
+				6F2ADD471775915C00522406 /* FESearchSettingInfo.h */,
+				6F2ADD481775915C00522406 /* FESearchSettingInfo.m */,
 			);
 			path = SearchSetting;
 			sourceTree = "<group>";
@@ -875,6 +880,7 @@
 				6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */,
 				6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */,
 				6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */,
+				6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

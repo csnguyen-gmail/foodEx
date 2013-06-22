@@ -15,9 +15,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // tracking keyboard
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    FETrackingKeyboardWindow *window =[[FETrackingKeyboardWindow alloc] initWithFrame:screenRect];
-//    self.window = window;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    FETrackingKeyboardWindow *window =[[FETrackingKeyboardWindow alloc] initWithFrame:screenRect];
+    self.window = window;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     // provide key to use Google Map API
