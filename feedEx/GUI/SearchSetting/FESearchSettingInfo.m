@@ -85,11 +85,13 @@
 @end
 
 @implementation FESearchSettingInfo
+#define DISP_TYPE_KEY @"DisplayTypeSetting"
 #define PLACE_SETTING_KEY @"PlaceSetting"
 #define FOOD_SETTING_KEY @"FoodSetting"
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {
+        self.displayType = [decoder decodeIntegerForKey:DISP_TYPE_KEY];
         self.placeSetting = [decoder decodeObjectForKey:PLACE_SETTING_KEY];
         self.foodSetting = [decoder decodeObjectForKey:FOOD_SETTING_KEY];
     }
@@ -97,6 +99,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeInteger:self.displayType forKey:DISP_TYPE_KEY];
     [encoder encodeObject:self.placeSetting forKey:PLACE_SETTING_KEY];
     [encoder encodeObject:self.foodSetting forKey:FOOD_SETTING_KEY];
 }

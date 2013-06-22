@@ -35,6 +35,7 @@
 
 #define SEARCH_SETTING_KEY @"SearchSettingKey"
 @interface FESearchSettingInfo : NSObject<NSCoding>
+@property (nonatomic) NSUInteger displayType;
 @property (nonatomic, strong) FESearchPlaceSettingInfo *placeSetting;
 @property (nonatomic, strong) FESearchFoodSettingInfo *foodSetting;
 @end

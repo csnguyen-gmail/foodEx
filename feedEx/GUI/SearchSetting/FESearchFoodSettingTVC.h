@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface FESearchFoodSettingTVC : UITableViewController
+@property (weak, nonatomic) IBOutlet UITextField *nameTF;
+@property (weak, nonatomic) IBOutlet UITextField *costExprTF;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *bestSC;
 
 @end

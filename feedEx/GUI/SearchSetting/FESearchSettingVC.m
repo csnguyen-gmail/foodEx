@@ -11,6 +11,7 @@
 #import "FESearchFoodSettingTVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
+#import "FESearchSettingInfo.h"
 
 #define TOP_PADDING -22
 @interface FESearchSettingVC ()
@@ -18,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *panelView;
 @property (strong, nonatomic) FESearchPlaceSettingTVC *placeSettingTVC;
 @property (strong, nonatomic) FESearchFoodSettingTVC *foodSettingTVC;
-@property (nonatomic) BOOL isPlace;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *displayTypeSC;
+@property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @end
 
 @implementation FESearchSettingVC
@@ -33,23 +35,71 @@
     [self.panelView addSubview:self.placeSettingTVC.view];
     [self.panelView addSubview:self.foodSettingTVC.view];
     self.foodSettingTVC.view.hidden = YES;
-    self.isPlace = YES;
+    
+    [self loadSetting];
 }
-
-- (IBAction)segmentChange:(UISegmentedControl *)sender {
-    self.isPlace = (sender.selectedSegmentIndex == 0);
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController) {
+        // Back button on Navigation bar tapped
+        [self saveSetting];
+    }
+}
+- (void)swicthToView:(NSUInteger)viewIndex wthAnimated:(BOOL)animated {
+    UIView *backView = (viewIndex == 0) ? self.foodSettingTVC.view : self.placeSettingTVC.view;
+    UIView *frontView = (viewIndex == 0) ? self.placeSettingTVC.view : self.foodSettingTVC.view;;
     [UIView transitionWithView:self.panelView
-                      duration:0.5
-                       options:(self.isPlace?UIViewAnimationOptionTransitionFlipFromRight:UIViewAnimationOptionTransitionFlipFromLeft)
+                      duration:animated ? 0.5 : 0.0
+                       options:(viewIndex == 0 ? UIViewAnimationOptionTransitionFlipFromRight:UIViewAnimationOptionTransitionFlipFromLeft)
                     animations: ^{
-                        self.foodSettingTVC.view.hidden = !self.foodSettingTVC.view.hidden;
-                        self.placeSettingTVC.view.hidden = !self.placeSettingTVC.view.hidden;
-                    }     
+                        backView.hidden = YES;
+                        frontView.hidden = NO;
+                    }
                     completion:^(BOOL finished) {
                     }];
 }
+- (IBAction)segmentChange:(UISegmentedControl *)sender {
+    [self swicthToView:sender.selectedSegmentIndex wthAnimated:YES];
+}
+- (void)loadSetting {
+    NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_SETTING_KEY];
+    if (archivedObject) {
+        self.searchSettingInfo = (FESearchSettingInfo*)[NSKeyedUnarchiver unarchiveObjectWithData:archivedObject];
+    }
+    else {
+        self.searchSettingInfo = [[FESearchSettingInfo alloc] init];
+        self.searchSettingInfo.placeSetting = [[FESearchPlaceSettingInfo alloc] init];
+        self.searchSettingInfo.foodSetting = [[FESearchFoodSettingInfo alloc] init];
+    }
+    self.displayTypeSC.selectedSegmentIndex = self.searchSettingInfo.displayType;
+    [self swicthToView:self.displayTypeSC.selectedSegmentIndex wthAnimated:NO];
+    // Place
+    self.placeSettingTVC.nameTF.text = self.searchSettingInfo.placeSetting.name;
+    self.placeSettingTVC.addressTF.text  = self.searchSettingInfo.placeSetting.address;
+    self.placeSettingTVC.ratingView.rate = self.searchSettingInfo.placeSetting.rating;
+    // Food
+    self.foodSettingTVC.nameTF.text = self.searchSettingInfo.foodSetting.name;
+    self.foodSettingTVC.costExprTF.text  = self.searchSettingInfo.foodSetting.costExpression;
+    self.foodSettingTVC.bestSC.selectedSegmentIndex = self.searchSettingInfo.foodSetting.bestType;
+}
+
+- (void)saveSetting {
+    self.searchSettingInfo.displayType = self.displayTypeSC.selectedSegmentIndex;
+    // Place
+    self.searchSettingInfo.placeSetting.name = self.placeSettingTVC.nameTF.text;
+    self.searchSettingInfo.placeSetting.address = self.placeSettingTVC.addressTF.text;
+    self.searchSettingInfo.placeSetting.rating = self.placeSettingTVC.ratingView.rate;
+    // Food
+    self.searchSettingInfo.foodSetting.name = self.foodSettingTVC.nameTF.text;
+    self.searchSettingInfo.foodSetting.costExpression = self.foodSettingTVC.costExprTF.text;
+    self.searchSettingInfo.foodSetting.bestType = self.self.foodSettingTVC.bestSC.selectedSegmentIndex;
+    NSData *archivedObject = [NSKeyedArchiver archivedDataWithRootObject:self.searchSettingInfo];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:archivedObject forKey:SEARCH_SETTING_KEY];
+    [defaults synchronize];
+}
 - (void)viewDidUnload {
-    [self setPanelView:nil];
+    [self setDisplayTypeSC:nil];
     [super viewDidUnload];
 }
 @end

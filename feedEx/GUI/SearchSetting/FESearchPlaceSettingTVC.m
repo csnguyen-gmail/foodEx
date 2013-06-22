@@ -15,4 +15,10 @@
 @implementation FESearchPlaceSettingTVC
 
 
+- (void)viewDidUnload {
+    [self setNameTF:nil];
+    [self setAddressTF:nil];
+    [self setRatingView:nil];
+    [super viewDidUnload];
+}
 @end

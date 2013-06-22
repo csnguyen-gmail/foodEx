@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYRateView.h"
 
 @interface FESearchPlaceSettingTVC : UITableViewController
+@property (weak, nonatomic) IBOutlet UITextField *nameTF;
+@property (weak, nonatomic) IBOutlet UITextField *addressTF;
+@property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 
 @end
