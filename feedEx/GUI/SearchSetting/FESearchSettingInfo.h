@@ -12,10 +12,8 @@
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic) NSUInteger rating;
 @property (nonatomic, strong) NSString *tags;
-@property (nonatomic, strong) NSString *firstSortString;
-@property (nonatomic) BOOL firstSortIsAscending;
-@property (nonatomic, strong) NSString *secondSortString;
-@property (nonatomic) BOOL secondSortIsAscending;
+@property (nonatomic, strong) NSString *firstSort;
+@property (nonatomic, strong) NSString *secondSort;
 @end
 
 #define FOOD_BEST_ALL   0
@@ -26,11 +24,8 @@
 @property (nonatomic, strong) NSString *tags;
 @property (nonatomic, strong) NSString *costExpression;
 @property (nonatomic) NSUInteger bestType;
-@property (nonatomic, strong) NSString *firstSortString;
-@property (nonatomic) BOOL firstSortIsAscending;
-@property (nonatomic, strong) NSString *secondSortString;
-@property (nonatomic) BOOL secondSortIsAscending;
-
+@property (nonatomic, strong) NSString *firstSort;
+@property (nonatomic, strong) NSString *secondSort;
 @end
 
 #define SEARCH_SETTING_KEY @"SearchSettingKey"

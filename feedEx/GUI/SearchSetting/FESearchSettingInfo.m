@@ -13,10 +13,8 @@
 #define PLACE_SETTING_ADDR @"PlaceSettingAddr"
 #define PLACE_SETTING_RATE @"PlaceSettingRate"
 #define PLACE_SETTING_TAGS @"PlaceSettingTags"
-#define PLACE_SETTING_FIRST_SORT_STR @"PlaceSettingFirstSortStr"
-#define PLACE_SETTING_FIRST_SORT_ASC @"PlaceSettingFirstSortAsc"
-#define PLACE_SETTING_SECOND_SORT_STR @"PlaceSettingSecondSortStr"
-#define PLACE_SETTING_SECOND_SORT_ASC @"PlaceSettingSecondSortAsc"
+#define PLACE_SETTING_FIRST_SORT @"PlaceSettingFirstSort"
+#define PLACE_SETTING_SECOND_SORT @"PlaceSettingSecondSort"
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
@@ -25,10 +23,8 @@
         self.address = [decoder decodeObjectForKey:PLACE_SETTING_ADDR];
         self.rating = [decoder decodeIntegerForKey:PLACE_SETTING_RATE];
         self.tags = [decoder decodeObjectForKey:PLACE_SETTING_TAGS];
-        self.firstSortString = [decoder decodeObjectForKey:PLACE_SETTING_FIRST_SORT_STR];
-        self.firstSortIsAscending = [decoder decodeBoolForKey:PLACE_SETTING_FIRST_SORT_ASC];
-        self.secondSortString = [decoder decodeObjectForKey:PLACE_SETTING_SECOND_SORT_STR];
-        self.secondSortIsAscending = [decoder decodeBoolForKey:PLACE_SETTING_SECOND_SORT_ASC];
+        self.firstSort = [decoder decodeObjectForKey:PLACE_SETTING_FIRST_SORT];
+        self.secondSort = [decoder decodeObjectForKey:PLACE_SETTING_SECOND_SORT];
     }
     return self;
 }
@@ -38,10 +34,8 @@
     [encoder encodeObject:self.address forKey:PLACE_SETTING_ADDR];
     [encoder encodeInteger:self.rating forKey:PLACE_SETTING_RATE];
     [encoder encodeObject:self.tags forKey:PLACE_SETTING_TAGS];
-    [encoder encodeObject:self.firstSortString forKey:PLACE_SETTING_FIRST_SORT_STR];
-    [encoder encodeBool:self.firstSortIsAscending forKey:PLACE_SETTING_FIRST_SORT_ASC];
-    [encoder encodeObject:self.secondSortString forKey:PLACE_SETTING_SECOND_SORT_STR];
-    [encoder encodeBool:self.secondSortIsAscending forKey:PLACE_SETTING_SECOND_SORT_ASC];
+    [encoder encodeObject:self.firstSort forKey:PLACE_SETTING_FIRST_SORT];
+    [encoder encodeObject:self.secondSort forKey:PLACE_SETTING_SECOND_SORT];
 }
 
 @end
@@ -51,10 +45,8 @@
 #define FOOD_SETTING_TAGS @"FoodSettingTags"
 #define FOOD_SETTING_COST_EXPR @"FoodSettingCostExpr"
 #define FOOD_SETTING_BEST_TYPE @"FoodSettingBestType"
-#define FOOD_SETTING_FIRST_SORT_STR @"FoodSettingFirstSortStr"
-#define FOOD_SETTING_FIRST_SORT_ASC @"FoodSettingFirstSortAsc"
-#define FOOD_SETTING_SECOND_SORT_STR @"FoodSettingSecondSortStr"
-#define FOOD_SETTING_SECOND_SORT_ASC @"FoodSettingSecondSortAsc"
+#define FOOD_SETTING_FIRST_SORT @"FoodSettingFirstSort"
+#define FOOD_SETTING_SECOND_SORT @"FoodSettingSecondSort"
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
@@ -63,10 +55,8 @@
         self.tags = [decoder decodeObjectForKey:FOOD_SETTING_TAGS];
         self.costExpression = [decoder decodeObjectForKey:FOOD_SETTING_COST_EXPR];
         self.bestType = [decoder decodeIntegerForKey:FOOD_SETTING_BEST_TYPE];
-        self.firstSortString = [decoder decodeObjectForKey:FOOD_SETTING_FIRST_SORT_STR];
-        self.firstSortIsAscending = [decoder decodeBoolForKey:FOOD_SETTING_FIRST_SORT_ASC];
-        self.secondSortString = [decoder decodeObjectForKey:FOOD_SETTING_SECOND_SORT_STR];
-        self.secondSortIsAscending = [decoder decodeBoolForKey:FOOD_SETTING_SECOND_SORT_ASC];
+        self.firstSort = [decoder decodeObjectForKey:FOOD_SETTING_FIRST_SORT];
+        self.secondSort = [decoder decodeObjectForKey:FOOD_SETTING_SECOND_SORT];
     }
     return self;
 }
@@ -76,10 +66,8 @@
     [encoder encodeObject:self.tags forKey:FOOD_SETTING_TAGS];
     [encoder encodeObject:self.costExpression forKey:FOOD_SETTING_COST_EXPR];
     [encoder encodeInteger:self.bestType forKey:FOOD_SETTING_BEST_TYPE];
-    [encoder encodeObject:self.firstSortString forKey:FOOD_SETTING_FIRST_SORT_STR];
-    [encoder encodeBool:self.firstSortIsAscending forKey:FOOD_SETTING_FIRST_SORT_ASC];
-    [encoder encodeObject:self.secondSortString forKey:FOOD_SETTING_SECOND_SORT_STR];
-    [encoder encodeBool:self.secondSortIsAscending forKey:FOOD_SETTING_SECOND_SORT_ASC];
+    [encoder encodeObject:self.firstSort forKey:FOOD_SETTING_FIRST_SORT];
+    [encoder encodeObject:self.secondSort forKey:FOOD_SETTING_SECOND_SORT];
 }
 
 @end

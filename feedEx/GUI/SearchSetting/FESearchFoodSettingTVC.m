@@ -15,10 +15,4 @@
 @implementation FESearchFoodSettingTVC
 
 
-- (void)viewDidUnload {
-    [self setNameTF:nil];
-    [self setCostExprTF:nil];
-    [self setBestSC:nil];
-    [super viewDidUnload];
-}
 @end

@@ -19,6 +19,8 @@
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
 		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
 		6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD481775915C00522406 /* FESearchSettingInfo.m */; };
+		6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */; };
+		6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD591776897900522406 /* FEActionSheetPicker.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -164,6 +166,10 @@
 		6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchFoodSettingTVC.m; sourceTree = "<group>"; };
 		6F2ADD471775915C00522406 /* FESearchSettingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingInfo.h; sourceTree = "<group>"; };
 		6F2ADD481775915C00522406 /* FESearchSettingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingInfo.m; sourceTree = "<group>"; };
+		6F2ADD4B1775FEBC00522406 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		6F2ADD581776897900522406 /* FEActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEActionSheetPicker.h; sourceTree = "<group>"; };
+		6F2ADD591776897900522406 /* FEActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEActionSheetPicker.m; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -363,13 +369,25 @@
 				6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */,
 				6F2ADD471775915C00522406 /* FESearchSettingInfo.h */,
 				6F2ADD481775915C00522406 /* FESearchSettingInfo.m */,
+				6F2ADD581776897900522406 /* FEActionSheetPicker.h */,
+				6F2ADD591776897900522406 /* FEActionSheetPicker.m */,
 			);
 			path = SearchSetting;
+			sourceTree = "<group>";
+		};
+		6F2ADD4A1775FEBC00522406 /* ActionSheetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				6F2ADD4B1775FEBC00522406 /* AbstractActionSheetPicker.h */,
+				6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */,
+			);
+			path = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
 		6F5713461761D70F000C69CE /* OSS */ = {
 			isa = PBXGroup;
 			children = (
+				6F2ADD4A1775FEBC00522406 /* ActionSheetPicker */,
 				6F63265017730C1B00B5F3FC /* GMDraggableMarkerManager */,
 				6FAD9DEE1763E67900DB606C /* CPTextViewPlaceholder */,
 				6FAD9DAB17635A1200DB606C /* DYRateView */,
@@ -881,6 +899,8 @@
 				6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */,
 				6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */,
 				6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */,
+				6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */,
+				6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

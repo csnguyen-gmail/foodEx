@@ -431,7 +431,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter name here" textAlignment="right" minimumFontSize="17" id="32q-dG-caO">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter name here" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="32q-dG-caO">
                                                     <rect key="frame" x="79" y="7" width="201" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -457,7 +457,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to add filter tags" textAlignment="right" minimumFontSize="17" id="ynq-gK-9Gf">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to add filter tags" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="ynq-gK-9Gf">
                                                     <rect key="frame" x="63" y="7" width="217" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -483,7 +483,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type cost filter expression" textAlignment="right" minimumFontSize="17" id="tnR-ka-343">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type cost filter expression" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="tnR-ka-343">
                                                     <rect key="frame" x="76" y="7" width="204" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -542,7 +542,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" id="NEP-H4-FsQ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="NEP-H4-FsQ">
                                                     <rect key="frame" x="97" y="7" width="183" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -568,7 +568,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" id="Nqi-TS-JmM">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="Nqi-TS-JmM">
                                                     <rect key="frame" x="101" y="7" width="179" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -750,7 +750,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter name here" textAlignment="right" minimumFontSize="17" id="ORr-zc-5PV">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter name here" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="ORr-zc-5PV">
                                                     <rect key="frame" x="79" y="7" width="201" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -776,7 +776,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter address here" textAlignment="right" minimumFontSize="17" id="QgV-G3-KUF">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type filter address here" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="QgV-G3-KUF">
                                                     <rect key="frame" x="96" y="7" width="184" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -803,7 +803,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="OKB-h5-Mpl" customClass="DYRateView">
-                                                    <rect key="frame" x="82" y="11" width="218" height="32"/>
+                                                    <rect key="frame" x="88" y="11" width="205" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -826,7 +826,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to add filter tags" textAlignment="right" minimumFontSize="17" id="R9l-gD-zQa">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to add filter tags" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="R9l-gD-zQa">
                                                     <rect key="frame" x="63" y="7" width="217" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -856,12 +856,15 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" id="I4o-7l-X2j">
-                                                    <rect key="frame" x="97" y="7" width="183" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="I4o-7l-X2j">
+                                                    <rect key="frame" x="83" y="6" width="197" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstSortTapped:" destination="TAE-0I-6OG" eventType="touchDown" id="J9V-U4-sEz"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -882,12 +885,15 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" id="9jC-Ev-8vH">
-                                                    <rect key="frame" x="101" y="7" width="179" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="9jC-Ev-8vH">
+                                                    <rect key="frame" x="84" y="7" width="196" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="secondSortTapped:" destination="TAE-0I-6OG" eventType="touchDown" id="OKV-8w-wo1"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -905,8 +911,10 @@
                     <navigationItem key="navigationItem" title="Search setting" id="fTD-Wt-n7a"/>
                     <connections>
                         <outlet property="addressTF" destination="QgV-G3-KUF" id="d5X-1d-CyP"/>
+                        <outlet property="firstSortTF" destination="I4o-7l-X2j" id="TzL-eL-Lb3"/>
                         <outlet property="nameTF" destination="ORr-zc-5PV" id="D21-OQ-S5A"/>
                         <outlet property="ratingView" destination="OKB-h5-Mpl" id="dcW-bU-gDL"/>
+                        <outlet property="secondSortTF" destination="9jC-Ev-8vH" id="OF9-A7-Jh1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hlp-Go-4oV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -924,6 +932,80 @@
         <image name="spin.png" width="30" height="30"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="CPTextViewPlaceholder" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTextViewPlaceholder.h"/>
+        </class>
+        <class className="DYRateView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DYRateView.h"/>
+        </class>
+        <class className="FEDynamicScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
+        </class>
+        <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
+                <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
+            </relationships>
+        </class>
+        <class className="FEHomeVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
+        </class>
+        <class className="FESearchFoodSettingTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchFoodSettingTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bestSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="costExprTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchPlaceSettingTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchPlaceSettingTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchSettingVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FESearchVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
+        </class>
+        <class className="FETagTextView" superclassName="CPTextViewPlaceholder">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETagTextView.h"/>
+        </class>
+        <class className="FEVerticalResizeControllView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
+        </class>
+        <class className="GMSMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
