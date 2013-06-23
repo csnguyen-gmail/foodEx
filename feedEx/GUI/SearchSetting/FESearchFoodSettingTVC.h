@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FESearchSortBaseTVC.h"
 
-@interface FESearchFoodSettingTVC : UITableViewController
+@interface FESearchFoodSettingTVC : FESearchSortBaseTVC
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *costExprTF;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bestSC;

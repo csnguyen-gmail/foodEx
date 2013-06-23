@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DYRateView.h"
-#define SEPARATED_STR  @"-"
-#define SORT_STRING_FORMAT  @"%@-%@"
-@interface FESearchPlaceSettingTVC : UITableViewController
+#import "FESearchSortBaseTVC.h"
+@interface FESearchPlaceSettingTVC : FESearchSortBaseTVC
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
-@property (weak, nonatomic) IBOutlet UITextField *firstSortTF;
-@property (weak, nonatomic) IBOutlet UITextField *secondSortTF;
-- (void)setFirstSortText:(NSString*)firstSort andSecondSortText:(NSString*)secondSort;
 @end

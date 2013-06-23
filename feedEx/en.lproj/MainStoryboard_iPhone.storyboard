@@ -548,6 +548,9 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstSortTapped:" destination="E4h-Wf-hbQ" eventType="touchDown" id="Hkn-Ao-5h0"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -569,11 +572,14 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select sort condition" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="Nqi-TS-JmM">
-                                                    <rect key="frame" x="101" y="7" width="179" height="30"/>
+                                                    <rect key="frame" x="87" y="7" width="193" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="secondSortTapped:" destination="E4h-Wf-hbQ" eventType="touchDown" id="SpH-ew-zAw"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -591,7 +597,9 @@
                     <connections>
                         <outlet property="bestSC" destination="qXe-n2-9i2" id="jp3-DF-WUs"/>
                         <outlet property="costExprTF" destination="tnR-ka-343" id="l8o-Xu-x9k"/>
+                        <outlet property="firstSortTF" destination="NEP-H4-FsQ" id="gf2-LA-X4b"/>
                         <outlet property="nameTF" destination="32q-dG-caO" id="jvy-WA-j7C"/>
+                        <outlet property="secondSortTF" destination="Nqi-TS-JmM" id="GB3-6r-Hza"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WIc-KF-wt6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -968,7 +976,7 @@
         <class className="FEHomeVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
         </class>
-        <class className="FESearchFoodSettingTVC" superclassName="UITableViewController">
+        <class className="FESearchFoodSettingTVC" superclassName="FESearchSortBaseTVC">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchFoodSettingTVC.h"/>
             <relationships>
                 <relationship kind="outlet" name="bestSC" candidateClass="UISegmentedControl"/>
@@ -976,21 +984,27 @@
                 <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="FESearchPlaceSettingTVC" superclassName="UITableViewController">
+        <class className="FESearchPlaceSettingTVC" superclassName="FESearchSortBaseTVC">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchPlaceSettingTVC.h"/>
             <relationships>
                 <relationship kind="outlet" name="addressTF" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
-                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="FESearchSettingVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
             <relationships>
+                <relationship kind="action" name="segmentChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FESearchSortBaseTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSortBaseTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="FESearchVC" superclassName="UIViewController">

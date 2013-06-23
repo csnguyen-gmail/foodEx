@@ -83,6 +83,8 @@
     self.foodSettingTVC.nameTF.text = self.searchSettingInfo.foodSetting.name;
     self.foodSettingTVC.costExprTF.text  = self.searchSettingInfo.foodSetting.costExpression;
     self.foodSettingTVC.bestSC.selectedSegmentIndex = self.searchSettingInfo.foodSetting.bestType;
+    [self.foodSettingTVC setFirstSortText:self.searchSettingInfo.foodSetting.firstSort
+                        andSecondSortText:self.searchSettingInfo.foodSetting.secondSort];
 }
 
 - (void)saveSetting {
@@ -96,7 +98,9 @@
     // Food
     self.searchSettingInfo.foodSetting.name = self.foodSettingTVC.nameTF.text;
     self.searchSettingInfo.foodSetting.costExpression = self.foodSettingTVC.costExprTF.text;
-    self.searchSettingInfo.foodSetting.bestType = self.self.foodSettingTVC.bestSC.selectedSegmentIndex;
+    self.searchSettingInfo.foodSetting.bestType = self.foodSettingTVC.bestSC.selectedSegmentIndex;
+    self.searchSettingInfo.foodSetting.firstSort = self.foodSettingTVC.firstSortTF.text;
+    self.searchSettingInfo.foodSetting.secondSort = self.foodSettingTVC.secondSortTF.text;
     NSData *archivedObject = [NSKeyedArchiver archivedDataWithRootObject:self.searchSettingInfo];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:archivedObject forKey:SEARCH_SETTING_KEY];

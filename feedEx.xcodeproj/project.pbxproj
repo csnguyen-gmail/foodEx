@@ -21,6 +21,7 @@
 		6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD481775915C00522406 /* FESearchSettingInfo.m */; };
 		6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */; };
 		6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD591776897900522406 /* FEActionSheetPicker.m */; };
+		6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -170,6 +171,8 @@
 		6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		6F2ADD581776897900522406 /* FEActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEActionSheetPicker.h; sourceTree = "<group>"; };
 		6F2ADD591776897900522406 /* FEActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEActionSheetPicker.m; sourceTree = "<group>"; };
+		6F2ADD5B1776EE3200522406 /* FESearchSortBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSortBaseTVC.h; sourceTree = "<group>"; };
+		6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSortBaseTVC.m; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 			children = (
 				6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */,
 				6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */,
+				6F2ADD5B1776EE3200522406 /* FESearchSortBaseTVC.h */,
+				6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */,
 				6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */,
 				6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */,
 				6F2ADD441774C73F00522406 /* FESearchFoodSettingTVC.h */,
@@ -901,6 +906,7 @@
 				6F2ADD491775915C00522406 /* FESearchSettingInfo.m in Sources */,
 				6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */,
 				6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */,
+				6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

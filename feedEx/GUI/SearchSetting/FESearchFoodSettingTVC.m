@@ -14,5 +14,7 @@
 
 @implementation FESearchFoodSettingTVC
 
-
+- (NSArray *)getTypeStrings {
+    return @[@"Name", @"Cost", @"Created date"];
+}
 @end
