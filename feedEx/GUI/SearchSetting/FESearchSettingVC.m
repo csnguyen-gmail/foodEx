@@ -77,10 +77,12 @@
     self.placeSettingTVC.nameTF.text = self.searchSettingInfo.placeSetting.name;
     self.placeSettingTVC.addressTF.text  = self.searchSettingInfo.placeSetting.address;
     self.placeSettingTVC.ratingView.rate = self.searchSettingInfo.placeSetting.rating;
+    self.placeSettingTVC.tagsTF.text = self.searchSettingInfo.placeSetting.tags;
     [self.placeSettingTVC setFirstSortText:self.searchSettingInfo.placeSetting.firstSort
                          andSecondSortText:self.searchSettingInfo.placeSetting.secondSort];
     // Food
     self.foodSettingTVC.nameTF.text = self.searchSettingInfo.foodSetting.name;
+    self.foodSettingTVC.tagsTF.text = self.searchSettingInfo.foodSetting.tags;
     self.foodSettingTVC.costExprTF.text  = self.searchSettingInfo.foodSetting.costExpression;
     self.foodSettingTVC.bestSC.selectedSegmentIndex = self.searchSettingInfo.foodSetting.bestType;
     [self.foodSettingTVC setFirstSortText:self.searchSettingInfo.foodSetting.firstSort
@@ -93,10 +95,12 @@
     self.searchSettingInfo.placeSetting.name = self.placeSettingTVC.nameTF.text;
     self.searchSettingInfo.placeSetting.address = self.placeSettingTVC.addressTF.text;
     self.searchSettingInfo.placeSetting.rating = self.placeSettingTVC.ratingView.rate;
+    self.searchSettingInfo.placeSetting.tags = self.placeSettingTVC.tagsTF.text;
     self.searchSettingInfo.placeSetting.firstSort = self.placeSettingTVC.firstSortTF.text;
     self.searchSettingInfo.placeSetting.secondSort = self.placeSettingTVC.secondSortTF.text;
     // Food
     self.searchSettingInfo.foodSetting.name = self.foodSettingTVC.nameTF.text;
+    self.searchSettingInfo.foodSetting.tags = self.foodSettingTVC.tagsTF.text;
     self.searchSettingInfo.foodSetting.costExpression = self.foodSettingTVC.costExprTF.text;
     self.searchSettingInfo.foodSetting.bestType = self.foodSettingTVC.bestSC.selectedSegmentIndex;
     self.searchSettingInfo.foodSetting.firstSort = self.foodSettingTVC.firstSortTF.text;

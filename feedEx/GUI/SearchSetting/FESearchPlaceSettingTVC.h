@@ -13,4 +13,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
+@property (weak, nonatomic) IBOutlet UITextField *tagsTF;
+@property (weak, nonatomic) IBOutlet UITextField *firstSortTF;
+@property (weak, nonatomic) IBOutlet UITextField *secondSortTF;
+- (IBAction)firstSortTapped:(UITextField *)sender;
+- (IBAction)secondSortTapped:(UITextField *)sender;
+- (IBAction)tagsTapped:(UITextField *)sender;
 @end
