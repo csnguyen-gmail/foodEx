@@ -17,4 +17,14 @@
 - (NSArray *)getTypeStrings {
     return @[@"Name", @"Cost", @"Created date"];
 }
+- (IBAction)firstSortTapped:(UITextField *)sender{
+    [super firstSortTapped:sender];
+}
+- (IBAction)secondSortTapped:(UITextField *)sender{
+    [super secondSortTapped:sender];
+}
+- (IBAction)tagsTapped:(UITextField *)sender{
+    [super tagsTapped:sender];
+}
+
 @end
