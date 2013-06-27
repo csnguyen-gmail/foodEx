@@ -8,12 +8,16 @@
 
 #import "FESearchPlaceSettingTVC.h"
 #import "FEActionSheetPicker.h"
+#import "CoredataCommon.h"
 
 @interface FESearchPlaceSettingTVC ()
 @end
 
 @implementation FESearchPlaceSettingTVC
 #pragma mark - implement super functions
+- (NSNumber *)tagType {
+    return CD_TAG_PLACE;
+}
 - (NSArray*)getTypeStrings {
     return @[@"Name", @"Rating", @"Most visited", @"Created date"];
 }

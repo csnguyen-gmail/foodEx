@@ -7,13 +7,18 @@
 //
 
 #import "FESearchTagVC.h"
+#import "FECoreDataController.h"
+#import "Tag+Extension.h"
+#import "CoredataCommon.h"
+#import "FESearchTagCell.h"
 
 @interface FESearchTagVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *tags; // of Tag string
-
+@property (nonatomic, strong) NSMutableArray *selectedTags; // of NSString
 @property (nonatomic, strong) NSMutableArray *firstCharacters; // of first character of Tag
 @property (nonatomic, strong) NSMutableArray *valuesOfSections; // of array value of section
 @property (nonatomic, strong) NSMutableArray *checksOfSections; // of array check of section
+@property (weak, nonatomic) FECoreDataController * coreData;
 @end
 
 @implementation FESearchTagVC
@@ -22,6 +27,7 @@
 {
     [super viewDidLoad];
     self.title = @"Tags";
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor grayColor]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -30,19 +36,24 @@
         [self.delegate didSelectTags:[self.selectedTags sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     }
 }
-
+- (void)loadTagWithTagType:(NSNumber *)tagType andSelectedTags:(NSArray *)selectTags {
+    self.selectedTags = [selectTags mutableCopy];
+    self.tags = [Tag fetchTagsByType:tagType
+                             withMOM:self.coreData.managedObjectModel
+                              andMOC:self.coreData.managedObjectContext];
+}
 - (void)setTags:(NSArray *)tags {
     _tags = tags;
     self.firstCharacters = [[NSMutableArray alloc] init];
-    for (NSString *tag in self.tags) {
-        NSString *firstChar = [tag substringToIndex:1];
+    for (Tag *tag in self.tags) {
+        NSString *firstChar = [tag.label substringToIndex:1];
         if (![self.firstCharacters containsObject:firstChar]) {
             [self.firstCharacters addObject:firstChar];
         }
     }
     self.valuesOfSections = [[NSMutableArray alloc] init];
     for (NSString *firstCharacter in self.firstCharacters) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", firstCharacter];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.label beginswith[c] %@", firstCharacter];
         NSArray *valuesOfSection = [self.tags filteredArrayUsingPredicate:predicate];
         [self.valuesOfSections addObject:valuesOfSection];
     }
@@ -61,36 +72,13 @@
         [self.checksOfSections addObject:checks];
     }
 }
-- (void)setSelectedTags:(NSMutableArray *)selectedTags {
-    _selectedTags = selectedTags;
-    self.tags = [self loadTagsFromCD];
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
 }
-- (NSArray*)loadTagsFromCD {
-    // TODO
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Aell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Dell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Fell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Hell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Nell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Pell%d", i]];
-    }
-    for (int i = 0; i < 20; i++) {
-        [array addObject:[NSString stringWithFormat:@"Xell%d", i]];
-    }
-    return array;
-}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.firstCharacters.count;
@@ -109,11 +97,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    FESearchTagCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (cell) {
-        cell.textLabel.text = self.valuesOfSections[indexPath.section][indexPath.row];
+        Tag *tag = self.valuesOfSections[indexPath.section][indexPath.row];
+        NSString *tagTypeStr = (([tag.type isEqual: CD_TAG_PLACE]) ? @"place" : @"food");
+        cell.tagName.text = tag.label;
+        cell.tagDetail.text = [NSString stringWithFormat:@"%d %@", tag.owner.count, tagTypeStr];
         BOOL isCheck = [self.checksOfSections[indexPath.section][indexPath.row] boolValue];
-        cell.accessoryView = isCheck ? [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkmark"]] : nil;
+        cell.checkMarkView.image = isCheck ? [UIImage imageNamed:@"checkmark"] : nil;
     }
     for(UIView *view in [tableView subviews]) {
         if([view respondsToSelector:@selector(setIndexColor:)]) {
@@ -125,20 +116,21 @@
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     return self.firstCharacters;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 36;
+}
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Tag *tag = self.valuesOfSections[indexPath.section][indexPath.row];
+    if (tag.owner.count == 0) {
+        return;
+    }
+    FESearchTagCell *cell = (FESearchTagCell*)[tableView cellForRowAtIndexPath:indexPath];
     BOOL newCheck = ![self.checksOfSections[indexPath.section][indexPath.row] boolValue];
     self.checksOfSections[indexPath.section][indexPath.row] = @(newCheck);
-    cell.accessoryView = newCheck ? [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkmark"]] : nil;
-    if (newCheck) {
-        [self.selectedTags addObject:cell.textLabel.text];
-    }
-    else {
-        [self.selectedTags removeObject:cell.textLabel.text];
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    cell.checkMarkView.image = newCheck ? [UIImage imageNamed:@"checkmark"] : nil;
 }
 
 @end

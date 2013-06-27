@@ -10,6 +10,7 @@
 #import "DYRateView.h"
 #import "FESearchSortBaseTVC.h"
 @interface FESearchPlaceSettingTVC : FESearchSortBaseTVC
+@property (weak, nonatomic) NSNumber *tagType;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;

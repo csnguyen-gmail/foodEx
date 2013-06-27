@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FESearchSortBaseTVC : UITableViewController
+@property (weak, nonatomic) NSNumber *tagType; // abstract
 @property (weak, nonatomic) IBOutlet UITextField *tagsTF; // abstract
 @property (weak, nonatomic) IBOutlet UITextField *firstSortTF; // abstract
 @property (weak, nonatomic) IBOutlet UITextField *secondSortTF; // abstract

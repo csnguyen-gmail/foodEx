@@ -124,6 +124,7 @@
 		6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */; };
 		6FCE0DCC1778B1BE006559C9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE0DCA1778B1BE006559C9 /* checkmark.png */; };
 		6FCE0DCD1778B1BE006559C9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE0DCB1778B1BE006559C9 /* checkmark@2x.png */; };
+		6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE0E04177C9A01006559C9 /* FESearchTagCell.m */; };
 		6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD8CB511748DC410039EAE8 /* FEWiggleView.m */; };
 		6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD91FF617743BB50066A5E5 /* FESearchVC.m */; };
 		6FDF88E2175F1A2400C21332 /* test_place.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDF88E1175F1A2400C21332 /* test_place.png */; };
@@ -300,6 +301,8 @@
 		6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchTagVC.m; sourceTree = "<group>"; };
 		6FCE0DCA1778B1BE006559C9 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		6FCE0DCB1778B1BE006559C9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
+		6FCE0E03177C9A01006559C9 /* FESearchTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchTagCell.h; sourceTree = "<group>"; };
+		6FCE0E04177C9A01006559C9 /* FESearchTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchTagCell.m; sourceTree = "<group>"; };
 		6FD8CB501748DC410039EAE8 /* FEWiggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEWiggleView.h; sourceTree = "<group>"; };
 		6FD8CB511748DC410039EAE8 /* FEWiggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEWiggleView.m; sourceTree = "<group>"; };
 		6FD91FF517743BB50066A5E5 /* FESearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchVC.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				6F2ADD591776897900522406 /* FEActionSheetPicker.m */,
 				6FCE0DC717789B9B006559C9 /* FESearchTagVC.h */,
 				6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */,
+				6FCE0E03177C9A01006559C9 /* FESearchTagCell.h */,
+				6FCE0E04177C9A01006559C9 /* FESearchTagCell.m */,
 			);
 			path = SearchSetting;
 			sourceTree = "<group>";
@@ -921,6 +926,7 @@
 				6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */,
 				6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */,
 				6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */,
+				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

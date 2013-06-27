@@ -33,12 +33,8 @@
     if ([[segue identifier] isEqualToString:OPEN_TAG_SELECTION]) {
         FESearchTagVC *searchTagVC = [segue destinationViewController];
         searchTagVC.delegate = self;
-        if (self.tagsTF.text.length == 0) {
-            searchTagVC.selectedTags = [[NSMutableArray alloc] init];
-        }
-        else {
-            searchTagVC.selectedTags = [[self.tagsTF.text componentsSeparatedByString:SEPARATED_TAG_STR] mutableCopy];
-        }
+        NSArray *selectedTags = ((self.tagsTF.text.length == 0) ? @[] : [self.tagsTF.text componentsSeparatedByString:SEPARATED_TAG_STR]);
+        [searchTagVC loadTagWithTagType:self.tagType andSelectedTags:selectedTags];
     }
 }
 

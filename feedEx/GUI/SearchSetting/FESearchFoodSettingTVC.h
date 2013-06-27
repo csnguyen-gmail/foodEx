@@ -10,6 +10,7 @@
 #import "FESearchSortBaseTVC.h"
 
 @interface FESearchFoodSettingTVC : FESearchSortBaseTVC
+@property (weak, nonatomic) NSNumber *tagType;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *tagsTF;
 @property (weak, nonatomic) IBOutlet UITextField *costExprTF;

@@ -7,13 +7,16 @@
 //
 
 #import "FESearchFoodSettingTVC.h"
+#import "CoredataCommon.h"
 
 @interface FESearchFoodSettingTVC ()
 
 @end
 
 @implementation FESearchFoodSettingTVC
-
+- (NSNumber *)tagType {
+    return CD_TAG_FOOD;
+}
 - (NSArray *)getTypeStrings {
     return @[@"Name", @"Cost", @"Created date"];
 }

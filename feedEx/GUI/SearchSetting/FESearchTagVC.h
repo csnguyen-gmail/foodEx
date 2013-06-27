@@ -14,5 +14,6 @@
 
 @interface FESearchTagVC : UIViewController
 @property (nonatomic, weak) id<FESearchTagVCDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *selectedTags; // of NSString
+
+- (void)loadTagWithTagType:(NSNumber*)tagType andSelectedTags:(NSArray*)selectTags;
 @end
