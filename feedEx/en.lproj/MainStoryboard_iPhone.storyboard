@@ -664,12 +664,20 @@
                                     <outlet property="delegate" destination="nwS-81-RT7" id="hzL-7z-Itd"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="3Ps-4f-IWn">
+                                <rect key="frame" x="0.0" y="190" width="320" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tyd-9Y-gl2"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="indicatorView" destination="3Ps-4f-IWn" id="pcT-ub-9bz"/>
+                        <outlet property="tableView" destination="Oex-ms-jPs" id="2us-hY-iRa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="new-j8-9if" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1014,6 +1022,116 @@
         <image name="spin.png" width="30" height="30"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="CPTextViewPlaceholder" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTextViewPlaceholder.h"/>
+        </class>
+        <class className="DYRateView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DYRateView.h"/>
+        </class>
+        <class className="FEDynamicScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
+        </class>
+        <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
+                <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
+            </relationships>
+        </class>
+        <class className="FEHomeVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
+        </class>
+        <class className="FESearchFoodSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchFoodSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="bestSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="costExprTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchPlaceSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchPlaceSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchSettingVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FESearchSortBaseTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSortBaseTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkMarkView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tagDetail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FESearchVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
+        </class>
+        <class className="FETagTextView" superclassName="CPTextViewPlaceholder">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETagTextView.h"/>
+        </class>
+        <class className="FEVerticalResizeControllView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
+        </class>
+        <class className="GMSMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
