@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E6E6D91E-9BFC-4CD7-BA2D-955F25B38283</string>
+	<key>IDESourceControlProjectName</key>
+	<string>feedEx</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C48D0C9D-7D57-45CE-B2AD-970430D29A23</key>
+		<string>https://github.com/csnguyen-gmail/foodEx.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>feedEx.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C48D0C9D-7D57-45CE-B2AD-970430D29A23</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/csnguyen-gmail/foodEx.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C48D0C9D-7D57-45CE-B2AD-970430D29A23</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C48D0C9D-7D57-45CE-B2AD-970430D29A23</string>
+			<key>IDESourceControlWCCName</key>
+			<string>foodEx</string>
+		</dict>
+	</array>
+</dict>
+</plist>
