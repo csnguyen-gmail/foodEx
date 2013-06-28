@@ -35,7 +35,18 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController) {
-        // TODO
+        if ([self.delegate respondsToSelector:@selector(didSelectTags:)]) {
+            NSMutableArray* stringTags = [[NSMutableArray alloc] init];
+            for (int i = 0; i < self.checksOfSections.count; i++) {
+                NSArray *checks = self.checksOfSections[i];
+                for (int j = 0; j < checks.count; j++) {
+                    if ([checks[j] boolValue]) {
+                        [stringTags addObject:[self.valuesOfSections[i][j] label]];
+                    }
+                }
+            }
+            [self.delegate didSelectTags:stringTags];
+        }
     }
 }
 - (void)loadTagWithTagType:(NSNumber *)tagType andSelectedTags:(NSArray *)selectTags {
@@ -59,8 +70,8 @@
     self.checksOfSections = [[NSMutableArray alloc] init];
     for (NSArray *section in self.valuesOfSections) {
         NSMutableArray *checks = [[NSMutableArray alloc] init];
-        for (NSString *value in section) {
-            if ([selectTags containsObject:value]) {
+        for (Tag *tag in section) {
+            if ([selectTags containsObject:tag.label]) {
                 [checks addObject:@(YES)];
             }
             else {
