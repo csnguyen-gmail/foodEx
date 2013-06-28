@@ -165,7 +165,7 @@
         [self.coreData.managedObjectContext deleteObject:tag];
         [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
             [self.indicatorView stopAnimating];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }
 }

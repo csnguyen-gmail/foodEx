@@ -136,7 +136,7 @@
     [self exitEditMode];
 }
 - (IBAction)addPhotoTapped:(UIButton *)sender {
-    [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
+    [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
 }
 - (void)setupPhotoScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
     for (UIImage *thumbnailImage in thumbnailImages) {

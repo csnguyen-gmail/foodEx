@@ -145,13 +145,6 @@
 			remoteGlobalIDString = 6F5E91E4172385780059055F;
 			remoteInfo = feedEx;
 		};
-		6FA7DEB0172E8000004404E6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6FA7DE96172E7FFF004404E6;
-			remoteInfo = feedExDatabaseGenerate;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -237,7 +230,6 @@
 		6F9E95C11745E44000DCCF24 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		6F9E95CF17465D9200DCCF24 /* FEDynamicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEDynamicScrollView.h; sourceTree = "<group>"; };
 		6F9E95D017465D9200DCCF24 /* FEDynamicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDynamicScrollView.m; sourceTree = "<group>"; };
-		6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = feedExDatabaseGenerate.xcodeproj; path = feedExDatabaseGenerate/feedExDatabaseGenerate.xcodeproj; sourceTree = "<group>"; };
 		6FAD9DAD17635A1200DB606C /* DYRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRateView.h; sourceTree = "<group>"; };
 		6FAD9DAE17635A1200DB606C /* DYRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRateView.m; sourceTree = "<group>"; };
 		6FAD9DB017635A1200DB606C /* StarEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarEmpty.png; sourceTree = "<group>"; };
@@ -492,7 +484,6 @@
 		6F5E91DC172385770059055F = {
 			isa = PBXGroup;
 			children = (
-				6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */,
 				6F5E91EE172385780059055F /* feedEx */,
 				6F5E9215172385780059055F /* feedExTests */,
 				6F5E91E7172385780059055F /* Frameworks */,
@@ -642,14 +633,6 @@
 			path = Place;
 			sourceTree = "<group>";
 		};
-		6FA7DEAD172E8000004404E6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6FA7DEB1172E8000004404E6 /* feedExDatabaseGenerate */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6FAD9DAB17635A1200DB606C /* DYRateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,12 +753,6 @@
 			mainGroup = 6F5E91DC172385770059055F;
 			productRefGroup = 6F5E91E6172385780059055F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 6FA7DEAD172E8000004404E6 /* Products */;
-					ProjectRef = 6FA7DEAC172E8000004404E6 /* feedExDatabaseGenerate.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				6F5E91E4172385780059055F /* feedEx */,
@@ -783,16 +760,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		6FA7DEB1172E8000004404E6 /* feedExDatabaseGenerate */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = feedExDatabaseGenerate;
-			remoteRef = 6FA7DEB0172E8000004404E6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6F5E91E3172385780059055F /* Resources */ = {
@@ -1029,6 +996,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EA694E32-491C-4905-8CBF-1DB86D16C5F3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -1059,6 +1027,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -1075,10 +1044,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
 				INFOPLIST_FILE = "feedEx/feedEx-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "25FABE07-33E6-483C-BA59-F658403CDD4D";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1096,10 +1066,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
 				INFOPLIST_FILE = "feedEx/feedEx-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "25FABE07-33E6-483C-BA59-F658403CDD4D";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

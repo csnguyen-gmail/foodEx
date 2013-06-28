@@ -122,7 +122,7 @@
                                  byMOC:self.coreData.managedObjectContext];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 - (void)loadPlace {
@@ -176,12 +176,12 @@
     [self.navigationController popViewControllerAnimated:YES];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 - (void)rollback {
     [self.coreData.managedObjectContext rollback];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSArray *)buildListStringTags {

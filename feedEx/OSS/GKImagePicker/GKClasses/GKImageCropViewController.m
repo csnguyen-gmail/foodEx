@@ -120,6 +120,7 @@
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
 	
 	CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
     [UIImage endImageContext];
     
     return viewImage;
