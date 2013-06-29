@@ -31,6 +31,7 @@
     if (cell == nil) {
         cell = [[FEPlaceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell.ratingView setupSmallStarEditable:NO];
     cell.nameLbl.text = [NSString stringWithFormat:@"Name%d", indexPath.row];
     cell.addressLbl.text = [NSString stringWithFormat:@"Address%d", indexPath.row];
     cell.tagLbl.text = [NSString stringWithFormat:@"Tag%d", indexPath.row];

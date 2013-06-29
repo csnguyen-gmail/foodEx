@@ -28,7 +28,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #import "DYRateView.h"
 
 static NSString *DefaultFullStarImageFilename = @"StarFullLarge";
-static NSString *DefaultEmptyStarImageFilename = @"StarEmptyLarge.png";
+static NSString *DefaultEmptyStarImageFilename = @"StarEmptyLarge";
+static NSString *DefaultSmallFullStarImageFilename = @"StarFull";
+static NSString *DefaultSmallEmptyStarImageFilename = @"StarEmpty";
 
 @interface DYRateView () {
     CGPoint _origin;
@@ -38,35 +40,26 @@ static NSString *DefaultEmptyStarImageFilename = @"StarEmptyLarge.png";
 
 @implementation DYRateView
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setupWithfullStar:[UIImage imageNamed:DefaultFullStarImageFilename]
-                      emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
-    }
-    return self;
+- (void)setupSmallStarEditable:(BOOL)editable {
+    [self setupWithfullStar:[UIImage imageNamed:DefaultSmallFullStarImageFilename]
+                  emptyStar:[UIImage imageNamed:DefaultSmallEmptyStarImageFilename]
+                    padding:2 editable:editable];
+}
+- (void)setupBigStarEditable:(BOOL)editable {
+    [self setupWithfullStar:[UIImage imageNamed:DefaultFullStarImageFilename]
+                  emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]
+                    padding:20 editable:editable];
 }
 
-- (id)initWithFrame:(CGRect)frame {
-    return [self initWithFrame:frame fullStar:[UIImage imageNamed:DefaultFullStarImageFilename] emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
-}
-
-- (id)initWithFrame:(CGRect)frame fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupWithfullStar:fullStarImage emptyStar:emptyStarImage];
-    }
-    return self;
-}
-
-- (void)setupWithfullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
+- (void)setupWithfullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage padding:(CGFloat)padding editable:(BOOL)editable{
     self.opaque = NO;
     self.backgroundColor = [UIColor clearColor];
     _fullStarImage = fullStarImage;
     _emptyStarImage = emptyStarImage;
-    _padding = 20;
+    _padding = padding;
     _numOfStars = 5;
     self.alignment = RateViewAlignmentCenter;
-    self.editable = YES;
+    self.editable = editable;
 }
 
 - (void)drawRect:(CGRect)rect

@@ -14,6 +14,10 @@
 @end
 
 @implementation FESearchPlaceSettingTVC
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.ratingView setupBigStarEditable:YES];
+}
 #pragma mark - implement super functions
 - (NSNumber *)tagType {
     return CD_TAG_PLACE;

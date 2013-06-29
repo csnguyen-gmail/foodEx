@@ -45,8 +45,7 @@ typedef enum {
 @property (nonatomic, strong) UIImage *fullStarImage;
 @property (nonatomic, strong) UIImage *emptyStarImage;
 @property (nonatomic, weak) id<DYRateViewDelegate> delegate;
-
-- (DYRateView *)initWithFrame:(CGRect)frame;
-- (DYRateView *)initWithFrame:(CGRect)rect fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage;
+- (void)setupSmallStarEditable:(BOOL)editable;
+- (void)setupBigStarEditable:(BOOL)editable;
 
 @end

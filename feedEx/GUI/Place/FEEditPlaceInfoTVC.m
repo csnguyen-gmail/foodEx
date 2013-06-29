@@ -52,6 +52,8 @@
     self.photoScrollView.dynamicScrollViewDelegate = self;
     self.addPhotoButton.hidden = NO;
     self.stopEditButton.hidden = YES;
+    // rating view
+    [self.ratingView setupBigStarEditable:YES];
     // set up imput accesory view
     [self setupInputAccesoryView];
     
