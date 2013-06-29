@@ -106,17 +106,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    FESearchTagCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (cell) {
-        Tag *tag = self.valuesOfSections[indexPath.section][indexPath.row];
-        cell.tagName.text = tag.label;
-        cell.tagDetail.text = [NSString stringWithFormat:@"(%d)", tag.owner.count];
-        cell.tagName.textColor = (tag.owner.count == 0) ? [UIColor darkGrayColor] : [UIColor whiteColor];
-        cell.tagDetail.textColor = cell.tagName.textColor;
-        BOOL isCheck = [self.checksOfSections[indexPath.section][indexPath.row] boolValue];
-        cell.checkMarkView.image = isCheck ? [UIImage imageNamed:@"checkmark"] : nil;
-        
+    FESearchTagCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[FESearchTagCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    Tag *tag = self.valuesOfSections[indexPath.section][indexPath.row];
+    cell.tagName.text = tag.label;
+    cell.tagDetail.text = [NSString stringWithFormat:@"(%d)", tag.owner.count];
+    cell.tagName.textColor = (tag.owner.count == 0) ? [UIColor darkGrayColor] : [UIColor whiteColor];
+    cell.tagDetail.textColor = cell.tagName.textColor;
+    BOOL isCheck = [self.checksOfSections[indexPath.section][indexPath.row] boolValue];
+    cell.checkMarkView.image = isCheck ? [UIImage imageNamed:@"checkmark"] : nil;
     for(UIView *view in [tableView subviews]) {
         if([view respondsToSelector:@selector(setIndexColor:)]) {
             [view performSelector:@selector(setIndexColor:) withObject:[UIColor whiteColor]];
