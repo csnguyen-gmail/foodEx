@@ -7,32 +7,34 @@
 //
 
 #import "FESearchVC.h"
+#import "FEPlaceListTVC.h"
 
 @interface FESearchVC ()
-
+@property (weak, nonatomic) IBOutlet UIView *placeHolderView;
+@property (weak, nonatomic) FEPlaceListTVC *placeListView;
 @end
 
 @implementation FESearchVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    [self addChildViewController:self.placeListView];
+    [self.placeHolderView addSubview:self.placeListView.view];
+    [self showViewByType:0]; // TODO
+}
+- (IBAction)showTypeChange:(UISegmentedControl *)sender {
+    [self showViewByType:sender.selectedSegmentIndex];
+}
+- (void)showViewByType:(NSInteger)type {
+    // TODO
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - getter setter
+- (FEPlaceListTVC *)placeListView {
+    if (!_placeListView) {
+        _placeListView = [self.storyboard instantiateViewControllerWithIdentifier:[[FEPlaceListTVC class] description]];
+    }
+    return _placeListView;
 }
-
 @end

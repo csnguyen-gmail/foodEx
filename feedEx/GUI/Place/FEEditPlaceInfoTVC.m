@@ -163,7 +163,8 @@
 - (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
     [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     UIImage *originImage = image;
-    UIImage *thumbnailImage = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(64.0, 64.0)];
+    UIImage *thumbnailImage = [UIImage imageWithImage:originImage
+                                         scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];
