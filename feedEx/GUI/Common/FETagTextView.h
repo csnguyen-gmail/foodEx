@@ -10,9 +10,13 @@
 #import "FECustomInputAccessoryView.h"
 #import "CPTextViewPlaceholder.h"
 
-@interface FETagTextView : CPTextViewPlaceholder<FECustomInputAccessoryViewDelegate, UITextViewDelegate>
+@interface FETagTextView : CPTextViewPlaceholder<FECustomInputAccessoryViewDelegate>
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) UIResponder *nextTextField;
 
 - (NSMutableArray*)buildTagArray;
+- (void)didBeginEditing;
+- (void)didChangeSelection;
+- (void)didEndEditing;
+- (BOOL)shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 @end

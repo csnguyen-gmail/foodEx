@@ -19,7 +19,7 @@
 - (void)removeImageAtIndex:(NSUInteger)index;
 - (void)imageMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end
-@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate>
+@interface FEEditPlaceInfoTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) id<FEEditPlaceInfoTVCDelegate> editPlaceTVCDelegate;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;

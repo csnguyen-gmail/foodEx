@@ -33,7 +33,8 @@
     // common setup
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.noteTextView.placeholder = @"Add note here";
-    self.tagTextView.placeholder = @"Add tag here, separated by comma";
+    self.tagTextView.placeholder = @"Add tag here, separated by [,]";
+    self.tagTextView.delegate = self;
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
     self.tableView.bounces = NO;
@@ -167,6 +168,26 @@
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];
     [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
+}
+# pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    FETagTextView *tagTextView = (FETagTextView*)textView;
+    [tagTextView didBeginEditing];
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    FETagTextView *tagTextView = (FETagTextView*)textView;
+    [tagTextView didChangeSelection];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    FETagTextView *tagTextView = (FETagTextView*)textView;
+    [tagTextView didEndEditing];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    FETagTextView *tagTextView = (FETagTextView*)textView;
+    return [tagTextView shouldChangeTextInRange:range replacementText:text];
 }
 
 @end

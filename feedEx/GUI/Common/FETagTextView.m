@@ -16,52 +16,15 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        super.delegate = self;
         [self setup];
     }
     return self;
 }
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        super.delegate = self;
         [self setup];
     }
     return self;
-}
-#pragma mark - setDelegate
-// override setDelegate: method in which we store supplied delegate to a variable (forwardDelegate);
-- (void) setDelegate:(id)delegate {
-    forwardDelegate = delegate;
-}
-// by overriding respondsToSelector:, forwardInvocation: and methodSignatureForSelector: we either call method on self or forward it to saved forwardDelegate.
-- (BOOL) respondsToSelector:(SEL)selector
-{
-    if ([super respondsToSelector:selector]) {
-        return YES;
-    } else {
-        return [forwardDelegate respondsToSelector:selector];
-    }
-}
-
-- (void) forwardInvocation:(NSInvocation *)invocation
-{
-    if ([super respondsToSelector:[invocation selector]]) {
-        [super forwardInvocation:invocation];
-    } else if ([forwardDelegate respondsToSelector:[invocation selector]]) {
-        [invocation invokeWithTarget:forwardDelegate];
-    } else {
-        [self doesNotRecognizeSelector:[invocation selector]];
-    }
-}
-
-- (NSMethodSignature *) methodSignatureForSelector:(SEL)selector
-{
-    NSMethodSignature *signature = [super methodSignatureForSelector:selector];
-    if (signature) {
-        return signature;
-    } else {
-        return [forwardDelegate methodSignatureForSelector:selector];
-    }
 }
 #pragma mark - setter getter
 - (void)setup {
@@ -91,18 +54,18 @@
 - (void)doneInAccessoryTapped:(UIBarButtonItem*)sender {
     [self resignFirstResponder];
 }
-- (void)textViewDidBeginEditing:(UITextView *)textView {
+- (void)didBeginEditing{
     if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
         FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
         customInputView.suggestionWords = [self rebuildSuggestionWords:self.tags withSelectedWords:[self buildTagArray]];
-        customInputView.filterWord = [self getStringBetweenCommas:self];
+        customInputView.filterWord = [self getStringBetweenCommas];
     }
 }
 
-- (void)textViewDidChangeSelection:(UITextView *)textView {
+- (void)didChangeSelection{
     if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
         FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
-        customInputView.filterWord = [self getStringBetweenCommas:textView];
+        customInputView.filterWord = [self getStringBetweenCommas];
     }
 }
 //- (void)textViewDidChange:(UITextView *)textView {   // don't using textViewDidChange to prevent it's called before textDidChange of super
@@ -111,15 +74,15 @@
     if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
         FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
         customInputView.suggestionWords = [self rebuildSuggestionWords:self.tags withSelectedWords:[self buildTagArray]];
-        customInputView.filterWord = [self getStringBetweenCommas:self];
+        customInputView.filterWord = [self getStringBetweenCommas];
     }
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView{
+- (void)didEndEditing{
     [self formatText];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+- (BOOL)shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text rangeOfString:@"\n"].length != 0) {
         return NO;
     }
@@ -161,17 +124,17 @@
     }
     return uniqueTags;
 }
-- (NSString*)getStringBetweenCommas:(UITextView*)textView {
-    NSString *text = [textView.text substringWithRange:[self getRangeBetweenCommas:textView]];
+- (NSString*)getStringBetweenCommas {
+    NSString *text = [self.text substringWithRange:[self getRangeBetweenCommas]];
     text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return text;
 }
-- (NSRange)getRangeBetweenCommas:(UITextView *)textView {
+- (NSRange)getRangeBetweenCommas {
     if (self.isUsingPlaceholder) {
         return NSMakeRange(0, 0);
     }
-    NSRange selectedRange = textView.selectedRange;
-    NSString *text = textView.text;
+    NSRange selectedRange = self.selectedRange;
+    NSString *text = self.text;
     NSRange startCommaRange = [text rangeOfString:@","
                                           options:(NSCaseInsensitiveSearch|NSBackwardsSearch)
                                             range:NSMakeRange(0, selectedRange.location)];
@@ -191,7 +154,7 @@
 }
 - (void)suggestionWordTapped:(NSString *)word {
     NSString *text = self.text;
-    NSRange range = [self getRangeBetweenCommas:self];
+    NSRange range = [self getRangeBetweenCommas];
     NSString *replaceString;
     if (self.isUsingPlaceholder || (text.length == (range.location + range.length))) {
         replaceString = [NSString stringWithFormat:@" %@, ", word];
