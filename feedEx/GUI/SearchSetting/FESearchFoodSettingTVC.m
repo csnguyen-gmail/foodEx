@@ -18,7 +18,7 @@
     return CD_TAG_FOOD;
 }
 - (NSArray *)getTypeStrings {
-    return @[@"Name", @"Cost", @"Created date"];
+    return [FOOD_SORT_TYPE_STRING_DICT allKeys];
 }
 - (IBAction)firstSortTapped:(UITextField *)sender{
     [super firstSortTapped:sender];

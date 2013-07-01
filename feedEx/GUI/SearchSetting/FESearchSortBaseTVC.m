@@ -17,7 +17,6 @@
 @implementation FESearchSortBaseTVC
 #define OPEN_TAG_SELECTION @"openTagsSelection"
 #define SORT_STRING_FORMAT  @"%@-%@"
-#define DIRECTION_STRING_LIST   @[@"Ascending", @"Descending"]
 #define TYPE_WIDTH 160
 #define DIRECTION_WIDTH 420 - TYPE_WIDTH
 - (void)viewDidLoad {

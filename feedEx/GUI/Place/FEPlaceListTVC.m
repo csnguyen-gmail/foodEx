@@ -38,11 +38,10 @@
 #pragma mark - Core data
 - (void)queryDatabase {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];;
     
-    // TODO: speed up by query by Tag
-//    https://developer.apple.com/library/mac/#documentation/DataManagement/Conceptual/CoreDataSnippets/Articles/fetchExpressions.html
+    // filtering
     if (self.placeSetting.name.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", self.placeSetting.name];
         [predicates addObject:predicate];
@@ -64,9 +63,29 @@
         }
         [predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:tagPredicates]];
     }
-    
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
-    request.entity = entity;
+    // TODO: speed up by query by Tag
+    // https://developer.apple.com/library/mac/#documentation/DataManagement/Conceptual/CoreDataSnippets/Articles/fetchExpressions.html
+
+    // sorting
+    NSMutableArray *sorts = [[NSMutableArray alloc] init];
+    if (self.placeSetting.firstSort.length > 0) {
+        NSArray *sortsString = [self.placeSetting.firstSort componentsSeparatedByString:SEPARATED_SORT_STR];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:PLACE_SORT_TYPE_STRING_DICT[sortsString[0]]
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
+                                                              selector:nil];
+        [sorts addObject:sort];
+    }
+    if (self.placeSetting.secondSort.length > 0) {
+        NSArray *sortsString = [self.placeSetting.secondSort componentsSeparatedByString:SEPARATED_SORT_STR];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:PLACE_SORT_TYPE_STRING_DICT[sortsString[0]]
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
+                                                              selector:nil];
+        [sorts addObject:sort];
+    }
+    request.sortDescriptors = sorts;
+
+    
     NSError *error = nil;
     NSArray *results = [self.coreData.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {

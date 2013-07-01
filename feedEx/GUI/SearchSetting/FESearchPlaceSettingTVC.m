@@ -23,7 +23,7 @@
     return CD_TAG_PLACE;
 }
 - (NSArray*)getTypeStrings {
-    return @[@"Name", @"Rating", @"Most visited", @"Created date"];
+    return [PLACE_SORT_TYPE_STRING_DICT allKeys];
 }
 - (IBAction)firstSortTapped:(UITextField *)sender{
     [super firstSortTapped:sender];
