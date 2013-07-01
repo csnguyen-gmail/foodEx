@@ -137,6 +137,7 @@
 		6FED8F97175A5A7F00216AC6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F91175A5A7E00216AC6 /* pause.png */; };
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
 		6FED8F99175A5A7F00216AC6 /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F93175A5A7F00216AC6 /* remove.png */; };
+		6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +314,8 @@
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
 		6FED8F93175A5A7F00216AC6 /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
 		6FFBBA9A17819CE20049E1E9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		6FFBBAA11781E13B0049E1E9 /* FEPlaceBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceBaseTVC.h; sourceTree = "<group>"; };
+		6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceBaseTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -637,6 +640,8 @@
 				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
 				6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */,
 				6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */,
+				6FFBBAA11781E13B0049E1E9 /* FEPlaceBaseTVC.h */,
+				6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */,
 				6F9E95B61744EED100DCCF24 /* FEEditPlaceInfoTVC.h */,
 				6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEEditPlaceInfoMainVC.h */,
@@ -908,6 +913,7 @@
 				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
+				6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

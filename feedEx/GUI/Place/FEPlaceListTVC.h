@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FESearchSettingInfo.h"
+#import "FEPlaceBaseTVC.h"
 
-@interface FEPlaceListTVC : UITableViewController
-@property (strong, nonatomic) FESearchPlaceSettingInfo *placeSetting;
+@interface FEPlaceListTVC : FEPlaceBaseTVC
 @end
