@@ -8,11 +8,54 @@
 
 #import "FEPlaceListTVC.h"
 #import "FEPlaceListCell.h"
-@interface FEPlaceListTVC ()
+#import "FECoreDataController.h"
+#import "CoredataCommon.h"
+#import "Place.h"
+#import "Address.h"
+#import "AbstractInfo+Extension.h"
 
+@interface FEPlaceListTVC ()
+@property (weak, nonatomic) FECoreDataController * coreData;
+@property (strong, nonatomic) NSArray *places; // array of Places
 @end
 
 @implementation FEPlaceListTVC
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+#pragma mark - getter setter
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
+}
+- (void)setPlaceSetting:(FESearchPlaceSettingInfo *)placeSetting {
+    _placeSetting = placeSetting;
+    [self queryDatabase];
+}
+#pragma mark - Core data
+- (void)queryDatabase {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    
+    if (self.placeSetting.name.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", self.placeSetting.name];
+        [predicates addObject:predicate];
+    }
+    
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+    request.entity = entity;
+    NSError *error = nil;
+    NSArray *results = [self.coreData.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return;
+    }
+    self.places = results;
+    [self.tableView reloadData];
+}
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -21,24 +64,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.places.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"PlaceListCell";
     FEPlaceListCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[FEPlaceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell.ratingView setupSmallStarEditable:NO];
-    cell.nameLbl.text = [NSString stringWithFormat:@"Name%d", indexPath.row];
-    cell.addressLbl.text = [NSString stringWithFormat:@"Address%d", indexPath.row];
-    cell.tagLbl.text = [NSString stringWithFormat:@"Tag%d", indexPath.row];
-    cell.ratingView.rate = indexPath.row % 6;
-
-    
+    [self updateCell:cell withPlaceInfo:self.places[indexPath.row]];
     return cell;
+}
+
+- (void)updateCell:(FEPlaceListCell*)cell withPlaceInfo:(Place*)place {
+    cell.nameLbl.text = place.name;
+    cell.addressLbl.text = place.address.address;
+    cell.tagLbl.text = [place buildTagsString];
+    cell.ratingView.rate = [place.rating integerValue];
 }
 
 

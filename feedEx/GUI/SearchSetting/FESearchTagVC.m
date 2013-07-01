@@ -13,7 +13,6 @@
 #import "FESearchTagCell.h"
 
 @interface FESearchTagVC ()<UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic) BOOL hasEditing;
 @property (nonatomic, strong) NSMutableArray *firstCharacters; // of first character of Tag
 @property (nonatomic, strong) NSMutableArray *valuesOfSections; // of array value of section
 @property (nonatomic, strong) NSMutableArray *checksOfSections; // of array check of section
@@ -28,7 +27,6 @@
 {
     [super viewDidLoad];
     self.title = @"Tags";
-    self.hasEditing = NO;
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor grayColor]];
 }
 

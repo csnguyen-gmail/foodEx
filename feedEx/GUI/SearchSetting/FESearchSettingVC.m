@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+#import <math.h>
 #import "FESearchSettingVC.h"
 #import "FESearchPlaceSettingTVC.h"
 #import "FESearchFoodSettingTVC.h"
-#import <QuartzCore/QuartzCore.h>
-#import <math.h>
-#import "FESearchSettingInfo.h"
+
 
 #define TOP_PADDING -22
 @interface FESearchSettingVC ()
@@ -43,6 +43,7 @@
     if (self.isMovingFromParentViewController) {
         // Back button on Navigation bar tapped
         [self saveSetting];
+        [self.delegate didFinishSearchSetting:self.searchSettingInfo hasModification:YES];// TODO
     }
 }
 - (void)swicthToView:(NSUInteger)viewIndex wthAnimated:(BOOL)animated {

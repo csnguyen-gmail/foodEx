@@ -76,4 +76,16 @@
         }
     }
 }
+- (NSString *)buildTagsString {
+    if (self.tags.count == 0) {
+        return  nil;
+    }
+    NSMutableString *tagsString = [[NSMutableString alloc] init];
+    int i;
+    for (i = 0; i < self.tags.count - 1; i++) {
+        [tagsString appendFormat:@"%@, ", [self.tags[i] label]];
+    }
+    [tagsString appendString:[self.tags[i] label]];
+    return tagsString;
+}
 @end

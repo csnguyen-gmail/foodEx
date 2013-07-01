@@ -353,7 +353,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="97" id="bgP-MZ-bzv" customClass="FEPlaceListCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceListCell" rowHeight="97" id="bgP-MZ-bzv" customClass="FEPlaceListCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -475,7 +475,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="nvA-0H-NOV">
                             <connections>
-                                <segue destination="lfQ-fj-1yo" kind="push" id="fWK-TH-6ec"/>
+                                <segue destination="lfQ-fj-1yo" kind="push" identifier="FESearchSettingVC" id="fWK-TH-6ec"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1117,6 +1117,7 @@
         <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
             <relationships>
+                <relationship kind="action" name="doneButtonTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

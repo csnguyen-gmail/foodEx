@@ -40,6 +40,14 @@ static NSString *DefaultSmallEmptyStarImageFilename = @"StarEmpty";
 
 @implementation DYRateView
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        // default
+        [self setupSmallStarEditable:NO];
+    }
+    return self;
+}
+
 - (void)setupSmallStarEditable:(BOOL)editable {
     [self setupWithfullStar:[UIImage imageNamed:DefaultSmallFullStarImageFilename]
                   emptyStar:[UIImage imageNamed:DefaultSmallEmptyStarImageFilename]

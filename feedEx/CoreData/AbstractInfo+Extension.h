@@ -14,4 +14,5 @@
 - (void)movePhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 - (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags byMOC:(NSManagedObjectContext*)moc;
 - (void)deleteAndUpateTagWithMOC:(NSManagedObjectContext*)moc;
+- (NSString*)buildTagsString;
 @end
