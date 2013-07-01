@@ -312,6 +312,7 @@
 		6FED8F91175A5A7E00216AC6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
 		6FED8F93175A5A7F00216AC6 /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
+		6FFBBA9A17819CE20049E1E9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +625,7 @@
 				6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */,
 				6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */,
 				6FAD9DFB1764FC6000DB606C /* FETagTextView.m */,
+				6FFBBA9A17819CE20049E1E9 /* Common.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

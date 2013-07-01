@@ -13,6 +13,7 @@
 #import "Place.h"
 #import "Address.h"
 #import "AbstractInfo+Extension.h"
+#import "Common.h"
 
 @interface FEPlaceListTVC ()
 @property (weak, nonatomic) FECoreDataController * coreData;
@@ -40,9 +41,28 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
     
+    // TODO: speed up by query by Tag
+//    https://developer.apple.com/library/mac/#documentation/DataManagement/Conceptual/CoreDataSnippets/Articles/fetchExpressions.html
     if (self.placeSetting.name.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", self.placeSetting.name];
         [predicates addObject:predicate];
+    }
+    if (self.placeSetting.address.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"address.address CONTAINS[cd] %@", self.placeSetting.address];
+        [predicates addObject:predicate];
+    }
+    if (self.placeSetting.rating != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rating == %@", @(self.placeSetting.rating)];
+        [predicates addObject:predicate];
+    }
+    if (self.placeSetting.tags.length > 0) {
+        NSArray *tagsString = [self.placeSetting.tags componentsSeparatedByString:SEPARATED_TAG_STR];
+        NSMutableArray *tagPredicates = [[NSMutableArray alloc] init];
+        for (NSString *tag in tagsString) {
+            NSPredicate *tagPredicate = [NSPredicate predicateWithFormat:@"tags.label CONTAINS[cd] %@", tag];
+            [tagPredicates addObject:tagPredicate];
+        }
+        [predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:tagPredicates]];
     }
     
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];

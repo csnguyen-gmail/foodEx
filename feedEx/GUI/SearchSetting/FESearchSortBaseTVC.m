@@ -16,8 +16,6 @@
 
 @implementation FESearchSortBaseTVC
 #define OPEN_TAG_SELECTION @"openTagsSelection"
-#define SEPARATED_SORT_STR  @"-"
-#define SEPARATED_TAG_STR  @", "
 #define SORT_STRING_FORMAT  @"%@-%@"
 #define DIRECTION_STRING_LIST   @[@"Ascending", @"Descending"]
 #define TYPE_WIDTH 160
