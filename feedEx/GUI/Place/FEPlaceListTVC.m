@@ -11,6 +11,7 @@
 #import "Place.h"
 #import "Address.h"
 #import "AbstractInfo+Extension.h"
+#import "Photo.h"
 
 @interface FEPlaceListTVC ()
 @end
@@ -40,6 +41,7 @@
     cell.addressLbl.text = place.address.address;
     cell.tagLbl.text = [place buildTagsString];
     cell.ratingView.rate = [place.rating integerValue];
+    cell.thumbnailView.image = [[place.photos firstObject] thumbnailPhoto];
 }
 
 

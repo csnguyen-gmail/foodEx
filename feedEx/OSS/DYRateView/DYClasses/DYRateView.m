@@ -27,11 +27,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "DYRateView.h"
 
-static NSString *DefaultFullStarImageFilename = @"StarFullLarge";
-static NSString *DefaultEmptyStarImageFilename = @"StarEmptyLarge";
-static NSString *DefaultSmallFullStarImageFilename = @"StarFull";
-static NSString *DefaultSmallEmptyStarImageFilename = @"StarEmpty";
-
 @interface DYRateView () {
     CGPoint _origin;
     NSInteger _numOfStars;
@@ -43,19 +38,25 @@ static NSString *DefaultSmallEmptyStarImageFilename = @"StarEmpty";
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         // default
-        [self setupSmallStarEditable:NO];
+        [self setupTinyStarEditable:NO];
     }
     return self;
 }
 
+- (void)setupTinyStarEditable:(BOOL)editable {
+    [self setupWithfullStar:[UIImage imageNamed:@"StarFullTiny"]
+                  emptyStar:[UIImage imageNamed:@"StarEmptyTiny"]
+                    padding:1 editable:editable];
+}
+
 - (void)setupSmallStarEditable:(BOOL)editable {
-    [self setupWithfullStar:[UIImage imageNamed:DefaultSmallFullStarImageFilename]
-                  emptyStar:[UIImage imageNamed:DefaultSmallEmptyStarImageFilename]
+    [self setupWithfullStar:[UIImage imageNamed:@"StarFull"]
+                  emptyStar:[UIImage imageNamed:@"StarEmpty"]
                     padding:2 editable:editable];
 }
 - (void)setupBigStarEditable:(BOOL)editable {
-    [self setupWithfullStar:[UIImage imageNamed:DefaultFullStarImageFilename]
-                  emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]
+    [self setupWithfullStar:[UIImage imageNamed:@"StarFullLarge"]
+                  emptyStar:[UIImage imageNamed:@"StarEmptyLarge"]
                     padding:20 editable:editable];
 }
 

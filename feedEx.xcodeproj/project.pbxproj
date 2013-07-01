@@ -138,6 +138,10 @@
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
 		6FED8F99175A5A7F00216AC6 /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F93175A5A7F00216AC6 /* remove.png */; };
 		6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */; };
+		6FFBBAA81781EB8B0049E1E9 /* StarEmptyTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA41781EB890049E1E9 /* StarEmptyTiny.png */; };
+		6FFBBAA91781EB8B0049E1E9 /* StarEmptyTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */; };
+		6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */; };
+		6FFBBAAB1781EB8B0049E1E9 /* StarFullTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -316,6 +320,10 @@
 		6FFBBA9A17819CE20049E1E9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		6FFBBAA11781E13B0049E1E9 /* FEPlaceBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceBaseTVC.h; sourceTree = "<group>"; };
 		6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceBaseTVC.m; sourceTree = "<group>"; };
+		6FFBBAA41781EB890049E1E9 /* StarEmptyTiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarEmptyTiny.png; sourceTree = "<group>"; };
+		6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarEmptyTiny@2x.png"; sourceTree = "<group>"; };
+		6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarFullTiny.png; sourceTree = "<group>"; };
+		6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarFullTiny@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -671,6 +679,10 @@
 		6FAD9DAF17635A1200DB606C /* DYImages */ = {
 			isa = PBXGroup;
 			children = (
+				6FFBBAA41781EB890049E1E9 /* StarEmptyTiny.png */,
+				6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */,
+				6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */,
+				6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */,
 				6FAD9DB017635A1200DB606C /* StarEmpty.png */,
 				6FAD9DB117635A1200DB606C /* StarEmpty@2x.png */,
 				6FAD9DB217635A1200DB606C /* StarEmptyLarge.png */,
@@ -828,6 +840,10 @@
 				6FC66FD1176D7C3900C91BC9 /* stop@2x.png in Resources */,
 				6FCE0DCC1778B1BE006559C9 /* checkmark.png in Resources */,
 				6FCE0DCD1778B1BE006559C9 /* checkmark@2x.png in Resources */,
+				6FFBBAA81781EB8B0049E1E9 /* StarEmptyTiny.png in Resources */,
+				6FFBBAA91781EB8B0049E1E9 /* StarEmptyTiny@2x.png in Resources */,
+				6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */,
+				6FFBBAAB1781EB8B0049E1E9 /* StarFullTiny@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
