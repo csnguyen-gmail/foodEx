@@ -142,6 +142,8 @@
 		6FFBBAA91781EB8B0049E1E9 /* StarEmptyTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */; };
 		6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */; };
 		6FFBBAAB1781EB8B0049E1E9 /* StarFullTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */; };
+		6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */; };
+		6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB11787D2440049E1E9 /* ReflectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +326,10 @@
 		6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarEmptyTiny@2x.png"; sourceTree = "<group>"; };
 		6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarFullTiny.png; sourceTree = "<group>"; };
 		6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarFullTiny@2x.png"; sourceTree = "<group>"; };
+		6FFBBAAC1787CB580049E1E9 /* FERoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FERoundImageView.h; sourceTree = "<group>"; };
+		6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FERoundImageView.m; sourceTree = "<group>"; };
+		6FFBBAB01787D2440049E1E9 /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
+		6FFBBAB11787D2440049E1E9 /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +422,7 @@
 		6F5713461761D70F000C69CE /* OSS */ = {
 			isa = PBXGroup;
 			children = (
+				6FFBBAAF1787D2440049E1E9 /* ReflectionView */,
 				6F2ADD4A1775FEBC00522406 /* ActionSheetPicker */,
 				6F63265017730C1B00B5F3FC /* GMDraggableMarkerManager */,
 				6FAD9DEE1763E67900DB606C /* CPTextViewPlaceholder */,
@@ -637,6 +644,8 @@
 				6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */,
 				6FAD9DFB1764FC6000DB606C /* FETagTextView.m */,
 				6FFBBA9A17819CE20049E1E9 /* Common.h */,
+				6FFBBAAC1787CB580049E1E9 /* FERoundImageView.h */,
+				6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -721,6 +730,15 @@
 				6FAD9DE31763C1E700DB606C /* spin@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		6FFBBAAF1787D2440049E1E9 /* ReflectionView */ = {
+			isa = PBXGroup;
+			children = (
+				6FFBBAB01787D2440049E1E9 /* ReflectionView.h */,
+				6FFBBAB11787D2440049E1E9 /* ReflectionView.m */,
+			);
+			path = ReflectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -930,6 +948,8 @@
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
 				6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */,
+				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
+				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

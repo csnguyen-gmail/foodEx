@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FESearchSettingInfo.h"
+#import <CoreLocation/CoreLocation.h>
+
 @interface FEPlaceBaseTVC : UITableViewController
 @property (strong, nonatomic) FESearchPlaceSettingInfo *placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
+@property (strong, nonatomic) CLLocation *currentLocation;
 @end

@@ -26,6 +26,10 @@
     _placeSetting = placeSetting;
     [self queryDatabase];
 }
+- (void)setCurrentLocation:(CLLocation *)currentLocation {
+    _currentLocation = currentLocation;
+    [self.tableView reloadData];
+}
 #pragma mark - Core data
 - (void)queryDatabase {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

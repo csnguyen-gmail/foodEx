@@ -27,18 +27,5 @@
          startingLineNumber = "55"
          endingLineNumber = "55">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "feedEx/GUI/Place/FEPlaceListCell.m"
-         timestampString = "394191752.17975"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
-         landmarkName = "@implementation FEPlaceListCell"
-         landmarkType = "3">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -10,11 +10,14 @@
 #import "FEPlaceListTVC.h"
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface FESearchVC()<FESearchSettingVCDelegate>
+@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *placeHolderView;
 @property (weak, nonatomic) FEPlaceListTVC *placeListView;
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
+@property (nonatomic, strong) CLLocation *currentLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
 @implementation FESearchVC
@@ -31,8 +34,13 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self.locationManager startUpdatingLocation];
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.locationManager stopUpdatingLocation];
+}
+#pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
     [self showViewByType:sender.selectedSegmentIndex];
 }
@@ -41,6 +49,15 @@
 }
 
 #pragma mark - getter setter
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    }
+    return _locationManager;
+}
 - (FEPlaceListTVC *)placeListView {
     if (!_placeListView) {
         _placeListView = [self.storyboard instantiateViewControllerWithIdentifier:[[FEPlaceListTVC class] description]];
@@ -74,5 +91,13 @@
         self.searchSettingInfo = searchSetting;
         self.placeListView.placeSetting = self.searchSettingInfo.placeSetting;
     }
+}
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    [self locationManager:manager didUpdateLocations:@[oldLocation, newLocation]];
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.placeListView.currentLocation = [locations lastObject];
+    [manager stopUpdatingLocation];
 }
 @end

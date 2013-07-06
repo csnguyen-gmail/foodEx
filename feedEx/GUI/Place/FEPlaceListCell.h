@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
-@property (weak, nonatomic) IBOutlet UILabel *tagLbl;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLbl;
+@property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
 @end
