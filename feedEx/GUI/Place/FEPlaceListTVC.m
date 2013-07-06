@@ -80,10 +80,10 @@
                 cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
             }
         } else {
-            cell.textLabel.text = @"";
+            cell.distanceLbl.text = @"";
         }
     } else {
-        cell.textLabel.text = @"";
+        cell.distanceLbl.text = @"";
     }
 }
 
