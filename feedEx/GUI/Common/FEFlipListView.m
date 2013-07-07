@@ -9,8 +9,9 @@
 #import "FEFlipListView.h"
 @interface FEFlipListView()
 @property (nonatomic, strong) UIView *frontView;
-@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
-@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeRecognizer;
+//@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
+//@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation FEFlipListView
@@ -33,16 +34,19 @@
 
 - (void)setup {
     self.backgroundColor = [UIColor clearColor];
-    self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeFrom:)];
-    self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeFrom:)];
-    self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self addGestureRecognizer:self.leftSwipeRecognizer];
-    [self addGestureRecognizer:self.rightSwipeRecognizer];
+//    self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeFrom:)];
+//    self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+//    self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeFrom:)];
+//    self.rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+//    [self addGestureRecognizer:self.leftSwipeRecognizer];
+//    [self addGestureRecognizer:self.rightSwipeRecognizer];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    [self addGestureRecognizer:self.tapRecognizer];
 }
 - (void)dealloc {
-    [self removeGestureRecognizer:self.leftSwipeRecognizer];
-    [self removeGestureRecognizer:self.rightSwipeRecognizer];
+//    [self removeGestureRecognizer:self.leftSwipeRecognizer];
+//    [self removeGestureRecognizer:self.rightSwipeRecognizer];
+    [self removeGestureRecognizer:self.tapRecognizer];
 }
 #pragma mark - abstract functions
 - (UIView*)getViewAtIndex:(NSUInteger)index {
@@ -61,33 +65,40 @@
     }
 }
 #pragma mark - event handler
--(void)handleLeftSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
-    [self handleSwipeFrom:recognizer];
+-(void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
+    [self handleSwipe:UISwipeGestureRecognizerDirectionLeft];
 }
--(void)handleRightSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
-    [self handleSwipeFrom:recognizer];
-}
--(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+//-(void)handleLeftSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+//    [self handleSwipe:recognizer.direction];
+//}
+//-(void)handleRightSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+//    [self handleSwipe:recognizer.direction];
+//}
+-(void)handleSwipe:(UISwipeGestureRecognizerDirection)direction {
+    if (self.datasource.count == 0) {
+        return;
+    }
     UIView *nextView;
     UIViewAnimationOptions animationOpt;
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+    if (direction == UISwipeGestureRecognizerDirectionRight) {
         animationOpt = UIViewAnimationOptionTransitionFlipFromLeft;
         if (self.currentViewIndex != 0) {
             self.currentViewIndex--;
-            nextView = [self getViewAtIndex:self.currentViewIndex];
+        }
+        else {
+            self.currentViewIndex = self.datasource.count - 1;
         }
     }
     else {
         animationOpt = UIViewAnimationOptionTransitionFlipFromRight;
         if (self.currentViewIndex < (self.datasource.count - 1)) {
             self.currentViewIndex++;
-            nextView = [self getViewAtIndex:self.currentViewIndex];
+        }
+        else {
+            self.currentViewIndex = 0;
         }
     }
-    if (nextView == nil) {
-        return;
-    }
-    
+    nextView = [self getViewAtIndex:self.currentViewIndex];
     [UIView transitionWithView:self
                       duration:0.5
                        options:animationOpt
