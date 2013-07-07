@@ -14,4 +14,6 @@
 @property (strong, nonatomic) FESearchPlaceSettingInfo *placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
 @property (strong, nonatomic) CLLocation *currentLocation;
+
+- (void)didChangeDataSource; // optional abstract function
 @end

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DYRateView.h"
+#import "FEFlipPhotosView.h"
 
 @interface FEPlaceListCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
+@property (weak, nonatomic) IBOutlet FEFlipPhotosView *flipPhotosView;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;

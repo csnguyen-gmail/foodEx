@@ -14,7 +14,8 @@
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FEPlaceListTVC ()
+@interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate>
+@property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @end
 
 @implementation FEPlaceListTVC
@@ -33,17 +34,21 @@
     if (cell == nil) {
         cell = [[FEPlaceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [self updateCell:cell withPlaceInfo:self.places[indexPath.row]];
+    [self updateCell:cell withPlaceInfo:self.places[indexPath.row] atIndexPath:indexPath];
     return cell;
 }
 #define TAG_PADDING 5.0
 #define TAG_HORIZON_MARGIN 10.0
 #define TAG_VERTICAL_MARGIN 5.0
-- (void)updateCell:(FEPlaceListCell*)cell withPlaceInfo:(Place*)place {
+- (void)updateCell:(FEPlaceListCell*)cell withPlaceInfo:(Place*)place atIndexPath:(NSIndexPath*)indexPath{
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
     cell.ratingView.rate = [place.rating integerValue];
-    cell.thumbnailView.image = [[place.photos firstObject] thumbnailPhoto];
+    cell.flipPhotosView.rowIndex = indexPath.row;
+    cell.flipPhotosView.delegate = self;
+    cell.flipPhotosView.usingThumbnail = YES;
+    [cell.flipPhotosView setDatasource:[place.photos array]
+                     withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
     [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if (place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
@@ -91,10 +96,21 @@
     return 90;
 }
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO
+}
+#pragma mark - FEFlipPhotosViewDelegate
+- (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
+    self.imageIndexes[row] = @(index);
+}
+
+#pragma mark - implement abstract functions
+- (void)didChangeDataSource {
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
+    for (int i = 0; i< self.places.count; i++) {
+        [self.imageIndexes addObject:@(0)];
+    }
 }
 
 @end

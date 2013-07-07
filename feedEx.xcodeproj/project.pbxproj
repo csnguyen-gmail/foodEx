@@ -144,6 +144,8 @@
 		6FFBBAAB1781EB8B0049E1E9 /* StarFullTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */; };
 		6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */; };
 		6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB11787D2440049E1E9 /* ReflectionView.m */; };
+		6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */; };
+		6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,6 +332,10 @@
 		6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FERoundImageView.m; sourceTree = "<group>"; };
 		6FFBBAB01787D2440049E1E9 /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
 		6FFBBAB11787D2440049E1E9 /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
+		6FFBBAB617892EEC0049E1E9 /* FEFlipListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipListView.h; sourceTree = "<group>"; };
+		6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipListView.m; sourceTree = "<group>"; };
+		6FFBBAB917893A760049E1E9 /* FEFlipPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipPhotosView.h; sourceTree = "<group>"; };
+		6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipPhotosView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -646,6 +652,10 @@
 				6FFBBA9A17819CE20049E1E9 /* Common.h */,
 				6FFBBAAC1787CB580049E1E9 /* FERoundImageView.h */,
 				6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */,
+				6FFBBAB617892EEC0049E1E9 /* FEFlipListView.h */,
+				6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */,
+				6FFBBAB917893A760049E1E9 /* FEFlipPhotosView.h */,
+				6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -950,6 +960,8 @@
 				6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
+				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
+				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

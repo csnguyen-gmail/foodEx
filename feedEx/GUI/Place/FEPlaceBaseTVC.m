@@ -88,6 +88,11 @@
         return;
     }
     self.places = results;
+    [self didChangeDataSource];
     [self.tableView reloadData];
+}
+#pragma mark - abstract function
+- (void)didChangeDataSource{
+    // implement at inherited class
 }
 @end
