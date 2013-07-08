@@ -13,12 +13,20 @@
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FEPlaceDetailVC.h"
 
-@interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate>
+@interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
+@property (nonatomic) NSUInteger selectedRow;
 @end
 
 @implementation FEPlaceListTVC
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"placeDetail"]) {
+        FEPlaceDetailVC *placeDetailVC = [segue destinationViewController];
+        placeDetailVC.place = self.places[self.selectedRow];
+    }
+}
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -41,6 +49,7 @@
 #define TAG_HORIZON_MARGIN 10.0
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell withPlaceInfo:(Place*)place atIndexPath:(NSIndexPath*)indexPath{
+    cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
     cell.ratingView.rate = [place.rating integerValue];
@@ -104,7 +113,11 @@
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
 }
-
+#pragma mark - FEPlaceListCellDelegate
+- (void)didSelectPlaceDetailAtCell:(FEPlaceListCell *)cell {
+    self.selectedRow = [[self.tableView indexPathForCell:cell] row];
+    [self performSegueWithIdentifier:@"placeDetail" sender:self];
+}
 #pragma mark - implement abstract functions
 - (void)didChangeDataSource {
     self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];

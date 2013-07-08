@@ -8,6 +8,7 @@
 
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
+#import "Common.h"
 
 @implementation AbstractInfo (Extension)
 - (void)awakeFromInsert {

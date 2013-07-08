@@ -351,31 +351,31 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" id="KQd-u8-YkG">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceListCell" rowHeight="90" id="bgP-MZ-bzv" customClass="FEPlaceListCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceListCell" rowHeight="90" id="bgP-MZ-bzv" customClass="FEPlaceListCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="exn-YR-JuH">
-                                            <rect key="frame" x="78" y="4" width="223" height="21"/>
+                                            <rect key="frame" x="78" y="4" width="203" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wFb-Xj-Xlp">
-                                            <rect key="frame" x="78" y="24" width="222" height="21"/>
+                                            <rect key="frame" x="78" y="24" width="237" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8kC-8H-aBW">
-                                            <rect key="frame" x="78" y="41" width="222" height="21"/>
+                                            <rect key="frame" x="78" y="41" width="237" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -387,7 +387,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7vq-kq-1lu">
-                                            <rect key="frame" x="78" y="65" width="222" height="22"/>
+                                            <rect key="frame" x="78" y="65" width="237" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </scrollView>
                                         <view contentMode="scaleToFill" id="7Au-zV-0SZ" customClass="FEFlipPhotosView">
@@ -395,6 +395,21 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" id="qcv-zJ-6Ub">
+                                            <rect key="frame" x="283" y="6" width="18" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="informationBtnTapped:" destination="bgP-MZ-bzv" eventType="touchUpInside" id="eWP-Tg-Ddu"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -414,10 +429,74 @@
                             <outlet property="delegate" destination="SzI-OX-CQb" id="Jz1-5m-p1P"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="nN5-fG-BRM" kind="push" identifier="placeDetail" id="eDW-Ly-5HO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMV-pA-cGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11548" y="182"/>
+            <point key="canvasLocation" x="-11534" y="194"/>
+        </scene>
+        <!--Place DetailVC-->
+        <scene sceneID="vBR-q4-hlz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="nN5-fG-BRM" customClass="FEPlaceDetailVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c45-hE-Ukw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kXp-sK-zhb">
+                                <rect key="frame" x="250" y="6" width="65" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" id="RXN-B4-t7b">
+                                <rect key="frame" x="7" y="7" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="UcQ-QN-9Y5">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view alpha="0.40000000000000013" contentMode="scaleToFill" id="Mrn-K7-oAV">
+                                        <rect key="frame" x="0.0" y="215" width="240" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Place" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3bL-yB-4iS">
+                                        <rect key="frame" x="8" y="218" width="156" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="F0r-dR-FXE" customClass="DYRateView">
+                                        <rect key="frame" x="169" y="223" width="66" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="UVG-jd-9vW">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="dkb-rk-LKn"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="placeImageView" destination="UcQ-QN-9Y5" id="kp3-ug-T7y"/>
+                        <outlet property="placeNameLbl" destination="3bL-yB-4iS" id="G8g-XN-FTs"/>
+                        <outlet property="ratingView" destination="F0r-dR-FXE" id="4ah-WR-rnf"/>
+                        <outlet property="tagsScrollView" destination="kXp-sK-zhb" id="hUF-MQ-7pd"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-11110" y="182"/>
         </scene>
         <!--View Controller - Share-->
         <scene sceneID="BHQ-rT-NaT">
@@ -1110,6 +1189,152 @@
         <image name="spin.png" width="30" height="30"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="CPTextViewPlaceholder" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTextViewPlaceholder.h"/>
+        </class>
+        <class className="DYRateView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DYRateView.h"/>
+        </class>
+        <class className="FEDynamicScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
+        </class>
+        <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
+                <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
+            </relationships>
+        </class>
+        <class className="FEFlipListView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipListView.h"/>
+        </class>
+        <class className="FEFlipPhotosView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipPhotosView.h"/>
+        </class>
+        <class className="FEHomeVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
+        </class>
+        <class className="FEPlaceBaseTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceBaseTVC.h"/>
+        </class>
+        <class className="FEPlaceDetailVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="placeImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="placeNameLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="tagsScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
+            <relationships>
+                <relationship kind="action" name="informationBtnTapped:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
+                <relationship kind="outlet" name="nameLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="tagsScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceListTVC" superclassName="FEPlaceBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListTVC.h"/>
+        </class>
+        <class className="FESearchFoodSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchFoodSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="bestSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="costExprTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchPlaceSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchPlaceSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchSettingVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FESearchSortBaseTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSortBaseTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkMarkView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tagDetail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FESearchVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="placeHolderView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FETagTextView" superclassName="CPTextViewPlaceholder">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETagTextView.h"/>
+        </class>
+        <class className="FEVerticalResizeControllView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
+        </class>
+        <class className="GMSMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

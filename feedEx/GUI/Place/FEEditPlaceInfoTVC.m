@@ -10,6 +10,7 @@
 #import "FECustomInputAccessoryView.h"
 #import "FEAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Common.h"
 
 @interface FEEditPlaceInfoTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
@@ -164,9 +165,10 @@
 }
 - (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
     [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
-    UIImage *originImage = image;
-    UIImage *thumbnailImage = [UIImage imageWithImage:originImage
-                                         scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+    UIImage *originImage = [UIImage imageWithImage:image
+                                      scaledToSize:NORMAL_SIZE];
+    UIImage *thumbnailImage = [UIImage imageWithImage:image
+                                         scaledToSize:THUMBNAIL_SIZE];
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0];

@@ -146,6 +146,7 @@
 		6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB11787D2440049E1E9 /* ReflectionView.m */; };
 		6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */; };
 		6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */; };
+		6FFBBABE178B264D0049E1E9 /* FEPlaceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBABD178B264A0049E1E9 /* FEPlaceDetailVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -336,6 +337,8 @@
 		6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipListView.m; sourceTree = "<group>"; };
 		6FFBBAB917893A760049E1E9 /* FEFlipPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipPhotosView.h; sourceTree = "<group>"; };
 		6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipPhotosView.m; sourceTree = "<group>"; };
+		6FFBBABC178B26480049E1E9 /* FEPlaceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDetailVC.h; sourceTree = "<group>"; };
+		6FFBBABD178B264A0049E1E9 /* FEPlaceDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,6 +676,8 @@
 				6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEEditPlaceInfoMainVC.h */,
 				6F9E95B51744EED100DCCF24 /* FEEditPlaceInfoMainVC.m */,
+				6FFBBABC178B26480049E1E9 /* FEPlaceDetailVC.h */,
+				6FFBBABD178B264A0049E1E9 /* FEPlaceDetailVC.m */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
 				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
+				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

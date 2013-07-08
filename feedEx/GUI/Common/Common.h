@@ -15,4 +15,12 @@
 #define PLACE_SORT_TYPE_STRING_DICT @{@"Name":@"name", @"Rating":@"rating", @"Most visited":@"timesCheckin", @"Created date":@"createdDate"}
 #define FOOD_SORT_TYPE_STRING_DICT @{@"Name":@"name", @"Cost":@"cost", @"Is best":@"isBest", @"Created date":@"createdDate"}
 
+#define THUMBNAIL_WIDTH 64
+#define THUMBNAIL_HEIGHT 64
+#define THUMBNAIL_SIZE CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
+#define NORMAL_WIDTH 240
+#define NORMAL_HEIGHT 240
+#define NORMAL_SIZE CGSizeMake(NORMAL_WIDTH, NORMAL_HEIGHT)
+
+
 #endif
