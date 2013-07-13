@@ -31,9 +31,7 @@
 @property (weak, nonatomic) FEEditPlaceInfoTVC *editPlaceInfoTVC;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
-@property (strong, nonatomic) Place *placeInfo;
 @property (strong, nonatomic) NSArray *tags; // of Tag
-@property (assign, nonatomic) BOOL isNewPlace;
 @property (nonatomic, strong) GMDraggableMarkerManager *draggableMarkerManager;
 @end
 
@@ -69,11 +67,6 @@
     [self loadPlace];
 }
 #pragma mark - getter setter
-- (void)setPlaceId:(NSManagedObjectID *)placeId {
-    _placeId = placeId;
-    self.isNewPlace = (placeId == nil);
-}
-
 - (NSArray *)tags {
     if (!_tags) {
         _tags = [Tag fetchTagsByType:CD_TAG_PLACE
@@ -84,18 +77,6 @@
     return _tags;
 }
 
-- (Place *)placeInfo {
-    if (!_placeInfo) {
-        if (self.placeId) {
-            _placeInfo = (Place*)[self.coreData.managedObjectContext existingObjectWithID:self.placeId error:nil];
-            _placeId = [_placeInfo objectID];
-        }
-        else {
-            _placeInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
-        }
-    }
-    return _placeInfo;
-}
 - (FECoreDataController *)coreData {
     if (!_coreData) {
         _coreData = [FECoreDataController sharedInstance];
@@ -126,10 +107,9 @@
     }];
 }
 - (void)loadPlace {
-    Place *placeInfo = self.placeInfo;
-    
-    if (self.isNewPlace) {
+    if (self.placeInfo == nil) {
         self.title = @"Add Place";
+        self.placeInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
         self.editPlaceInfoTVC.deleteButton.enabled = NO;
         self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
                                                           longitude:HCM_LONGTITUDE
@@ -138,6 +118,7 @@
         [self addLocationObervation];
     }
     else {
+        Place *placeInfo = self.placeInfo;
         // common
         self.title = @"Edit Place";
         self.editPlaceInfoTVC.nameTextField.text = placeInfo.name;

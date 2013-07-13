@@ -194,5 +194,4 @@
     FETagTextView *tagTextView = (FETagTextView*)textView;
     return [tagTextView shouldChangeTextInRange:range replacementText:text];
 }
-
 @end

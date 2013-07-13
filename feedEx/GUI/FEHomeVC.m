@@ -27,29 +27,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"addPlace"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        FEEditPlaceInfoMainVC *addPlaceInfoMainVC = navigationController.viewControllers[0];
-        addPlaceInfoMainVC.placeId = nil;
-    }
-    else if ([[segue identifier] isEqualToString:@"editPlace"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        FEEditPlaceInfoMainVC *editPlaceInfoMainVC = navigationController.viewControllers[0];
-        
-        FECoreDataController *coreData = [FECoreDataController sharedInstance];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coreData.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSError *error = nil;
-        NSArray *fetchedObjects = [coreData.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        if (fetchedObjects) {
-            Place *place = [fetchedObjects lastObject];
-            editPlaceInfoMainVC.placeId = [place objectID];
-        }
-    }
+- (IBAction)addPlace:(UIButton *)sender {
+    UINavigationController *editPlaceNav = [self.storyboard instantiateViewControllerWithIdentifier:@"editPlaceNavigation"];
+    FEEditPlaceInfoMainVC *addPlaceInfoMainVC = editPlaceNav.viewControllers[0];
+    addPlaceInfoMainVC.placeInfo = nil;
+    [self presentModalViewController:editPlaceNav animated:YES];
 }
-
 
 @end

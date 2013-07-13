@@ -13,6 +13,5 @@
 #import "Place.h"
 
 @interface FEEditPlaceInfoMainVC : UIViewController
-@property (strong, nonatomic) NSManagedObjectID *placeId;
-
+@property (strong, nonatomic) Place *placeInfo;
 @end

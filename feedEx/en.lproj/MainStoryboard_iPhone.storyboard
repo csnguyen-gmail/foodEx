@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcE-fA-Guu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10824" y="-1092"/>
+            <point key="canvasLocation" x="-11684" y="-1752"/>
         </scene>
         <!--View Controller - Foods-->
         <scene sceneID="IY2-28-w7x">
@@ -72,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ce2-oA-sNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10064" y="-1092"/>
+            <point key="canvasLocation" x="-10980" y="-1752"/>
         </scene>
         <!--Edit Place InfoTVC-->
         <scene sceneID="zta-bW-gde">
@@ -256,7 +256,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="60" id="Ey9-Sd-Q8m">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="deleteRow" rowHeight="60" id="Ey9-Sd-Q8m">
                                         <rect key="frame" x="0.0" y="424" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -304,12 +304,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQm-z0-Ojv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10502" y="-1044"/>
+            <point key="canvasLocation" x="-11362" y="-1704"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="n8e-FW-mTs">
             <objects>
-                <navigationController id="fwP-jD-tNt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="editPlaceNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fwP-jD-tNt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home.png" id="XTt-59-xz7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Hp-LM-fNE">
@@ -327,7 +327,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53W-tL-NSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11387" y="-1092"/>
+            <point key="canvasLocation" x="-12079" y="-1752"/>
         </scene>
         <!--View Controller - Map-->
         <scene sceneID="c2i-Eq-6gF">
@@ -435,12 +435,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMV-pA-cGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11534" y="194"/>
+            <point key="canvasLocation" x="-11582" y="288"/>
         </scene>
         <!--Place DetailVC-->
         <scene sceneID="vBR-q4-hlz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="nN5-fG-BRM" customClass="FEPlaceDetailVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c45-hE-Ukw">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -484,7 +483,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="UVG-jd-9vW">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="dkb-rk-LKn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="dkb-rk-LKn">
+                            <connections>
+                                <action selector="editPlaceBtnTapped:" destination="nN5-fG-BRM" id="iP6-ye-o6G"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -495,8 +498,9 @@
                         <outlet property="tagsScrollView" destination="kXp-sK-zhb" id="hUF-MQ-7pd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11110" y="182"/>
+            <point key="canvasLocation" x="-11158" y="288"/>
         </scene>
         <!--View Controller - Share-->
         <scene sceneID="BHQ-rT-NaT">
@@ -908,22 +912,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fwP-jD-tNt" kind="modal" identifier="addPlace" id="Zr2-Ha-xXr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="TkG-g7-pm7">
-                                <rect key="frame" x="120" y="20" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="Edit place" backgroundImage="gradientBar.png">
-                                    <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="fwP-jD-tNt" kind="modal" identifier="editPlace" id="Cfz-bD-eYG"/>
+                                    <action selector="addPlace:" destination="EyA-Zw-MAO" eventType="touchUpInside" id="sue-BV-uxJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1202,6 +1191,7 @@
         <class className="FEEditPlaceInfoMainVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoMainVC.h"/>
             <relationships>
+                <relationship kind="action" name="doneButtonTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
@@ -1211,6 +1201,8 @@
         <class className="FEEditPlaceInfoTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEEditPlaceInfoTVC.h"/>
             <relationships>
+                <relationship kind="action" name="addPhotoTapped:" candidateClass="UIButton"/>
+                <relationship kind="action" name="stopEditButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
@@ -1230,6 +1222,9 @@
         </class>
         <class className="FEHomeVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
+            <relationships>
+                <relationship kind="action" name="addPlace:" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="FEPlaceBaseTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceBaseTVC.h"/>
@@ -1237,6 +1232,7 @@
         <class className="FEPlaceDetailVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailVC.h"/>
             <relationships>
+                <relationship kind="action" name="editPlaceBtnTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="placeImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="placeNameLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
@@ -1289,6 +1285,7 @@
         <class className="FESearchSettingVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
             <relationships>
+                <relationship kind="action" name="segmentChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
             </relationships>
@@ -1322,6 +1319,7 @@
         <class className="FESearchVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
             <relationships>
+                <relationship kind="action" name="showTypeChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="placeHolderView" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -1341,7 +1339,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Zr2-Ha-xXr"/>
         <segue reference="HYA-B4-9JT"/>
     </inferredMetricsTieBreakers>
 </document>

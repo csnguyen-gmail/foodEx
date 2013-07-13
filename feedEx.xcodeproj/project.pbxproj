@@ -666,6 +666,8 @@
 		6F9E95B31744EED100DCCF24 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				6FFBBABC178B26480049E1E9 /* FEPlaceDetailVC.h */,
+				6FFBBABD178B264A0049E1E9 /* FEPlaceDetailVC.m */,
 				6FDC9118177ED6AA00E2BF5B /* FEPlaceListCell.h */,
 				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
 				6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */,
@@ -676,8 +678,6 @@
 				6F9E95B71744EED100DCCF24 /* FEEditPlaceInfoTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEEditPlaceInfoMainVC.h */,
 				6F9E95B51744EED100DCCF24 /* FEEditPlaceInfoMainVC.m */,
-				6FFBBABC178B26480049E1E9 /* FEPlaceDetailVC.h */,
-				6FFBBABD178B264A0049E1E9 /* FEPlaceDetailVC.m */,
 			);
 			path = Place;
 			sourceTree = "<group>";
