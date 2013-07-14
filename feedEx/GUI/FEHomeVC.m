@@ -7,7 +7,7 @@
 //
 
 #import "FEHomeVC.h"
-#import "FEEditPlaceInfoMainVC.h"
+#import "FEPlaceEditMainVC.h"
 #import "FECoreDataController.h"
 #import "Place.h"
 @interface FEHomeVC ()
@@ -29,7 +29,7 @@
 
 - (IBAction)addPlace:(UIButton *)sender {
     UINavigationController *editPlaceNav = [self.storyboard instantiateViewControllerWithIdentifier:@"editPlaceNavigation"];
-    FEEditPlaceInfoMainVC *addPlaceInfoMainVC = editPlaceNav.viewControllers[0];
+    FEPlaceEditMainVC *addPlaceInfoMainVC = editPlaceNav.viewControllers[0];
     addPlaceInfoMainVC.placeInfo = nil;
     [self presentModalViewController:editPlaceNav animated:YES];
 }

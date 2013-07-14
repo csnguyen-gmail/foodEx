@@ -11,7 +11,7 @@
 #import "Photo.h"
 #import "Tag.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FEEditPlaceInfoMainVC.h"
+#import "FEPlaceEditMainVC.h"
 
 @interface FEPlaceDetailVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *placeImageView;
@@ -56,7 +56,7 @@
 }
 - (IBAction)editPlaceBtnTapped:(UIBarButtonItem *)sender {
     UINavigationController *editPlaceNav = [self.storyboard instantiateViewControllerWithIdentifier:@"editPlaceNavigation"];
-    FEEditPlaceInfoMainVC *editPlaceInfoMainVC = editPlaceNav.viewControllers[0];
+    FEPlaceEditMainVC *editPlaceInfoMainVC = editPlaceNav.viewControllers[0];
     editPlaceInfoMainVC.placeInfo = self.place;
     [self presentModalViewController:editPlaceNav animated:YES];
 }

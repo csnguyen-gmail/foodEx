@@ -14,7 +14,7 @@
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FEPlaceDetailVC.h"
-
+// TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
