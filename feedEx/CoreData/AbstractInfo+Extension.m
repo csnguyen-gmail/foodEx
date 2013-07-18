@@ -31,13 +31,16 @@
         self.photos = tempSet;
     }
 }
-- (Photo*)removePhotoAtIndex:(NSUInteger)index {
+- (void)removePhotoAtIndex:(NSUInteger)index {
 //    [self removeObjectFromPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
-    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
-    Photo *photo = [self.photos objectAtIndex:index];
-    [tempSet removeObjectAtIndex:index];
-    self.photos = tempSet;
-    return  photo;
+    NSManagedObjectContext *context = self.managedObjectContext;
+    if (context) {
+        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
+        Photo *photo = [self.photos objectAtIndex:index];
+        [tempSet removeObjectAtIndex:index];
+        self.photos = tempSet;
+        [context deleteObject:photo];
+    }
 }
 - (void)movePhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];

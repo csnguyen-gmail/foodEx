@@ -28,6 +28,7 @@
 		6F3287F217929CD300648277 /* heart_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3287EE17929CD200648277 /* heart_grey@2x.png */; };
 		6F3287F317929CD300648277 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3287EF17929CD200648277 /* heart_selected.png */; };
 		6F3287F417929CD300648277 /* heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3287F017929CD300648277 /* heart_selected@2x.png */; };
+		6F342464179832C100A8A95E /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F342463179832C100A8A95E /* Place+Extension.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -194,6 +195,8 @@
 		6F3287EE17929CD200648277 /* heart_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_grey@2x.png"; sourceTree = "<group>"; };
 		6F3287EF17929CD200648277 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		6F3287F017929CD300648277 /* heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected@2x.png"; sourceTree = "<group>"; };
+		6F342462179832C100A8A95E /* Place+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Extension.h"; sourceTree = "<group>"; };
+		6F342463179832C100A8A95E /* Place+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Extension.m"; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
 				6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */,
 				6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */,
+				6F342462179832C100A8A95E /* Place+Extension.h */,
+				6F342463179832C100A8A95E /* Place+Extension.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
@@ -998,6 +1003,7 @@
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailVC.m in Sources */,
 				6F3287E91791131D00648277 /* FEFoodEditTVC.m in Sources */,
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
+				6F342464179832C100A8A95E /* Place+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

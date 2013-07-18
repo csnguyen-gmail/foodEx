@@ -192,8 +192,7 @@
     [self.placeInfo insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
-    Photo *photo = [self.placeInfo removePhotoAtIndex:index];
-    [self.coreData.managedObjectContext deleteObject:photo];
+    [self.placeInfo removePhotoAtIndex:index];
 }
 - (void)imageMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     [self.placeInfo movePhotoFromIndex:fromIndex toIndex:toIndex];

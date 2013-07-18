@@ -76,8 +76,7 @@
     }
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
-    Photo *photo = [self.food removePhotoAtIndex:index];
-    [self.coreData.managedObjectContext deleteObject:photo];
+    [self.food removePhotoAtIndex:index];
 }
 - (void)viewMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     [self.food movePhotoFromIndex:fromIndex toIndex:toIndex];

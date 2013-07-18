@@ -11,6 +11,7 @@
 #import "FEFoodEditListCell.h"
 #import "GKImagePicker.h"
 #import "Common.h"
+#import "Place+Extension.h"
 
 @interface FEFoodEditTVC ()<FEFoodEditListCellDelegate, GKImagePickerDelegate>
 @property (weak, nonatomic) FECoreDataController * coreData;
@@ -27,10 +28,7 @@
 }
 #pragma mark - event handler
 -(void)addFood:(UIRefreshControl *)sender {
-    Food *food =  [NSEntityDescription insertNewObjectForEntityForName:@"Food" inManagedObjectContext:self.coreData.managedObjectContext];
-    food.placeOwner = self.place;
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.place insertFoodsAtIndex:0];
     [self.tableView reloadData];
     [sender endRefreshing];
 }
@@ -117,14 +115,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.place removeFoodAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        // TODO
     }
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    // TODO
+    [self.place moveFoodFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
 
