@@ -14,16 +14,11 @@
 @end
 
 @implementation FEFoodEditListCell
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        self.nameTF.delegate = self;
-        self.foodsScrollView.dynamicScrollViewDelegate = self;
-    }
-    return self;
-}
+- (void)awakeFromNib {
+    self.nameTF.delegate = self;
+    self.foodsScrollView.dynamicScrollViewDelegate = self;
 
+}
 #pragma mark - getter setter
 - (FECoreDataController *)coreData {
     if (!_coreData) {

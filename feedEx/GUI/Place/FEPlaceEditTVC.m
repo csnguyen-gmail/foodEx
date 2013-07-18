@@ -47,8 +47,6 @@
     self.deleteButton.layer.cornerRadius = 10;
     self.deleteButton.layer.masksToBounds = YES;
     // photo scroll view
-    NSMutableArray *wiggleViews = [[NSMutableArray alloc] init];
-    self.photoScrollView.wiggleViews = wiggleViews;
     self.photoScrollView.dynamicScrollViewDelegate = self;
     // rating view
     [self.ratingView setupBigStarEditable:YES];

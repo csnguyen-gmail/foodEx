@@ -21,6 +21,7 @@
 @end
 
 @implementation FEDynamicScrollView
+@synthesize wiggleViews = _wiggleViews;
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self setup];
@@ -47,6 +48,12 @@
         _longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
     }
     return _longGesture;
+}
+- (NSMutableArray *)wiggleViews {
+    if (!_wiggleViews) {
+        _wiggleViews = [[NSMutableArray alloc] init];
+    }
+    return _wiggleViews;
 }
 - (void)setWiggleViews:(NSMutableArray *)wiggleViews {
     _wiggleViews = wiggleViews;
