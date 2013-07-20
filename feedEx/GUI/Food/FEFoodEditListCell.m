@@ -11,14 +11,14 @@
 #import "FECoreDataController.h"
 @interface FEFoodEditListCell()<UITextFieldDelegate, FEDynamicScrollViewDelegate>
 @property (weak, nonatomic) FECoreDataController * coreData;
+@property (weak, nonatomic) IBOutlet UIView *highlightView;
 @end
 
 @implementation FEFoodEditListCell
 - (void)awakeFromNib {
     self.nameTF.delegate = self;
-    self.nameTF.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
     self.foodsScrollView.dynamicScrollViewDelegate = self;
-
+    self.highlightView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
 }
 #pragma mark - getter setter
 - (FECoreDataController *)coreData {
