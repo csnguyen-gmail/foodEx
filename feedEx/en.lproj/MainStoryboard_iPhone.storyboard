@@ -40,9 +40,9 @@
                                 <action selector="doneButtonTapped:" destination="Def-J3-3Bg" id="xAD-U2-eYS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Foods" id="Uvk-5I-Zzt">
+                        <barButtonItem key="rightBarButtonItem" title="Foods" id="fMJ-Hq-qQF">
                             <connections>
-                                <segue destination="FkP-Hn-1ZE" kind="push" identifier="foods" id="EdG-Pn-gPY"/>
+                                <segue destination="1to-LW-Lm7" kind="push" identifier="foods" id="Ag1-Sh-dey"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -275,106 +275,107 @@
             </objects>
             <point key="canvasLocation" x="-11362" y="-1704"/>
         </scene>
-        <!--Food EditTVC - Foods-->
-        <scene sceneID="xK9-Ps-NS2">
+        <!--Food EditVC - Food-->
+        <scene sceneID="YXx-yX-eOl">
             <objects>
-                <tableViewController id="FkP-Hn-1ZE" customClass="FEFoodEditTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="133" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ayx-TS-bKS">
+                <viewController id="1to-LW-Lm7" customClass="FEFoodEditVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eo3-w2-ndI">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FQT-RN-Fji">
+                                <rect key="frame" x="5" y="5" width="309" height="362"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vT0-Sb-TAU">
+                                        <rect key="frame" x="0.0" y="0.0" width="309" height="362"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="FoodListCell" rowHeight="112" id="JHq-8a-Mtm" customClass="FEFoodEditListCell">
+                                                <rect key="frame" x="0.0" y="22" width="309" height="112"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="111"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="1GT-d3-Lpw" customClass="FEDynamicScrollView">
+                                                            <rect key="frame" x="45" y="29" width="222" height="82"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </scrollView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d7Q-Xc-XrN">
+                                                            <rect key="frame" x="274" y="55" width="29" height="29"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                                            <state key="normal" backgroundImage="camera.png">
+                                                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="selected" backgroundImage="stop.png"/>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="photoButtonTapped:" destination="JHq-8a-Mtm" eventType="touchUpInside" id="yYm-OV-PiL"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZSl-h2-fpJ">
+                                                            <rect key="frame" x="5" y="54" width="32" height="32"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                                            <state key="normal" backgroundImage="heart_grey.png">
+                                                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="selected" backgroundImage="heart_selected.png"/>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="isBestButtonTapped:" destination="JHq-8a-Mtm" eventType="touchUpInside" id="R9i-DJ-SaV"/>
+                                                            </connections>
+                                                        </button>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type food name here" textAlignment="center" minimumFontSize="17" id="fG1-cW-1qv">
+                                                            <rect key="frame" x="0.0" y="-1" width="309" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="DPe-jq-EXe" id="Mci-ja-pnC"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="foodsScrollView" destination="1GT-d3-Lpw" id="vE3-Aj-Z4J"/>
+                                                    <outlet property="isBestButton" destination="ZSl-h2-fpJ" id="cpR-5k-Q5Y"/>
+                                                    <outlet property="nameTF" destination="fG1-cW-1qv" id="2fn-nt-dJC"/>
+                                                    <outlet property="photoButton" destination="d7Q-Xc-XrN" id="J8i-a0-Xid"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1to-LW-Lm7" id="dV4-zg-0Lf"/>
+                                            <outlet property="delegate" destination="1to-LW-Lm7" id="lla-XD-BKh"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="FoodListCell" rowHeight="112" id="A8w-zF-eeu" customClass="FEFoodEditListCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="112"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="ObZ-Qe-WXw" customClass="FEDynamicScrollView">
-                                            <rect key="frame" x="45" y="29" width="232" height="82"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </scrollView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ljj-ok-6Xg">
-                                            <rect key="frame" x="285" y="55" width="29" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                            <state key="normal" backgroundImage="camera.png">
-                                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" backgroundImage="stop.png"/>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="photoButtonTapped:" destination="A8w-zF-eeu" eventType="touchUpInside" id="Pc3-S8-xLg"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PHg-ft-I8j">
-                                            <rect key="frame" x="5" y="54" width="32" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                            <state key="normal" backgroundImage="heart_grey.png">
-                                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" backgroundImage="heart_selected.png"/>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="isBestButtonTapped:" destination="A8w-zF-eeu" eventType="touchUpInside" id="Vym-E0-w67"/>
-                                            </connections>
-                                        </button>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type food name here" textAlignment="center" minimumFontSize="17" id="LoK-Tu-mbl">
-                                            <rect key="frame" x="0.0" y="-1" width="320" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="DPe-jq-EXe" id="7qW-6w-DJq"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="foodsScrollView" destination="ObZ-Qe-WXw" id="d3V-Eg-534"/>
-                                    <outlet property="isBestButton" destination="PHg-ft-I8j" id="qRE-4Y-Nq5"/>
-                                    <outlet property="nameTF" destination="LoK-Tu-mbl" id="l5v-GL-tf8"/>
-                                    <outlet property="photoButton" destination="ljj-ok-6Xg" id="sRh-gD-7kz"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="FkP-Hn-1ZE" id="H9y-Yc-IXK"/>
-                            <outlet property="delegate" destination="FkP-Hn-1ZE" id="7TJ-cj-Up0"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Foods" id="U23-Z8-3O8">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="dcF-9r-8B2">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="FkP-Hn-1ZE" id="FGT-BB-vid"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="MWA-Fu-fYA">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <attributedString key="attributedTitle">
-                            <fragment content="Swipe down to add new food">
-                                <attributes>
-                                    <font key="NSFont" metaFont="toolTip"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </refreshControl>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gid-XR-K4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Food" id="esZ-2P-RvQ"/>
+                    <connections>
+                        <outlet property="scrollView" destination="FQT-RN-Fji" id="cNs-Ik-1el"/>
+                        <outlet property="tableView" destination="vT0-Sb-TAU" id="jbP-GU-uMq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NqW-Ox-C9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10960" y="-1763"/>
+            <point key="canvasLocation" x="-10928" y="-1732"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="n8e-FW-mTs">
@@ -1275,8 +1276,12 @@
                 <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
             </relationships>
         </class>
-        <class className="FEFoodEditTVC" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditTVC.h"/>
+        <class className="FEFoodEditVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="FEHomeVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
@@ -1287,6 +1292,7 @@
         <class className="FEPlaceDetailVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailVC.h"/>
             <relationships>
+                <relationship kind="action" name="editPlaceBtnTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="placeImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="placeNameLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
@@ -1296,6 +1302,7 @@
         <class className="FEPlaceEditMainVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditMainVC.h"/>
             <relationships>
+                <relationship kind="action" name="doneButtonTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
@@ -1305,7 +1312,6 @@
         <class className="FEPlaceEditTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditTVC.h"/>
             <relationships>
-                <relationship kind="action" name="photoButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
@@ -1319,6 +1325,7 @@
         <class className="FEPlaceListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
             <relationships>
+                <relationship kind="action" name="informationBtnTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
@@ -1405,9 +1412,6 @@
         </class>
         <class className="GMSMapView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
-        </class>
-        <class className="UIRefreshControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

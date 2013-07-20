@@ -1,40 +1,70 @@
 //
-//  FEEditFoodsTVC.m
+//  FEFoodEditVC.m
 //  feedEx
 //
-//  Created by csnguyen on 7/13/13.
+//  Created by csnguyen on 7/20/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEFoodEditTVC.h"
+#import "FEFoodEditVC.h"
 #import "FECoreDataController.h"
 #import "FEFoodEditListCell.h"
 #import "GKImagePicker.h"
 #import "Common.h"
 #import "Place+Extension.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface FEFoodEditTVC ()<FEFoodEditListCellDelegate, GKImagePickerDelegate>
+
+@interface FEFoodEditVC ()<FEFoodEditListCellDelegate, GKImagePickerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) GKImagePicker *imagePicker;
 @property (weak, nonatomic) FEFoodEditListCell *currentCell;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
-@implementation FEFoodEditTVC
+@implementation FEFoodEditVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.refreshControl addTarget:self action:@selector(addFood:) forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editFood:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFood:)];
+    self.navigationItem.rightBarButtonItems = @[addButton, editButton];
+    
+    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
+    self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
+    self.tableView.layer.cornerRadius = 10;
+    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
+    
+    self.scrollView.layer.cornerRadius = 10;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
+    self.scrollView.autoresizesSubviews = NO;
 }
 #pragma mark - event handler
--(void)addFood:(UIRefreshControl *)sender {
+- (void)addFood:(UIBarButtonItem *)sender {
     [self.place insertFoodsAtIndex:0];
-    [self.tableView reloadData];
-    [sender endRefreshing];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+    
+    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight - 1);
+    }];
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
 }
-- (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
-    sender.title = self.tableView.editing ? @"Edit" : @"Done";
+- (void)editFood:(UIBarButtonItem *)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
+    UIBarButtonItem *addButton = self.navigationItem.rightBarButtonItems[0];
+    if (self.tableView.editing) {
+        sender.title = @"Done";
+        sender.tintColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+        addButton.enabled = NO;
+    } else {
+        sender.title = @"Edit";
+        sender.tintColor = [UIColor darkGrayColor];
+        addButton.enabled = YES;
+    }
 }
 
 #pragma mark - setter gettr
@@ -129,4 +159,10 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [self setScrollView:nil];
+    [super viewDidUnload];
+}
 @end
+

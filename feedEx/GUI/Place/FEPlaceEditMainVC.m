@@ -14,7 +14,7 @@
 #import "Tag+Extension.h"
 #import "CoredataCommon.h"
 #import "GMDraggableMarkerManager.h"
-#import "FEFoodEditTVC.h"
+#import "FEFoodEditVC.h"
 
 #define GMAP_LOCATION_OBSERVE_KEY @"myLocation"
 #define GMAP_DEFAULT_ZOOM 15
@@ -50,13 +50,11 @@
     self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:[[FEPlaceEditTVC class] description]];
     self.editPlaceInfoTVC.editPlaceTVCDelegate = self;
     self.editPlaceInfoTVC.tableView.layer.cornerRadius = 10;
-    float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height; // for remove last separate line
-    self.editPlaceInfoTVC.tableView.frame = CGRectMake(0, 0,
-                                                       self.scrollView.bounds.size.width,
-                                                       tableHeight);
+    float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height - 1; // for remove last separate line
+    self.editPlaceInfoTVC.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
     [self addChildViewController:self.editPlaceInfoTVC];
     self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight - 1);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
     [self.scrollView addSubview:self.editPlaceInfoTVC.tableView];
     self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
@@ -69,8 +67,8 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"foods"]) {
-        FEFoodEditTVC *foodEditTVC = [segue destinationViewController];
-        foodEditTVC.place = self.placeInfo;
+        FEFoodEditVC *foodEditVC = [segue destinationViewController];
+        foodEditVC.place = self.placeInfo;
     }
 }
 #pragma mark - getter setter

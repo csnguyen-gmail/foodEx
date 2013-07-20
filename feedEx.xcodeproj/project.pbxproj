@@ -15,6 +15,7 @@
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
+		6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */; };
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
 		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
@@ -22,7 +23,6 @@
 		6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */; };
 		6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD591776897900522406 /* FEActionSheetPicker.m */; };
 		6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */; };
-		6F3287E91791131D00648277 /* FEFoodEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3287E81791131D00648277 /* FEFoodEditTVC.m */; };
 		6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3287EB179273A500648277 /* FEFoodEditListCell.m */; };
 		6F3287F117929CD300648277 /* heart_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3287ED17929CD200648277 /* heart_grey.png */; };
 		6F3287F217929CD300648277 /* heart_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3287EE17929CD200648277 /* heart_grey@2x.png */; };
@@ -173,6 +173,8 @@
 		6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECustomInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
+		6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditVC.h; sourceTree = "<group>"; };
+		6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditVC.m; sourceTree = "<group>"; };
 		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
 		6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingVC.m; sourceTree = "<group>"; };
 		6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchPlaceSettingTVC.h; sourceTree = "<group>"; };
@@ -187,8 +189,6 @@
 		6F2ADD591776897900522406 /* FEActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEActionSheetPicker.m; sourceTree = "<group>"; };
 		6F2ADD5B1776EE3200522406 /* FESearchSortBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSortBaseTVC.h; sourceTree = "<group>"; };
 		6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSortBaseTVC.m; sourceTree = "<group>"; };
-		6F3287E71791131D00648277 /* FEFoodEditTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditTVC.h; sourceTree = "<group>"; };
-		6F3287E81791131D00648277 /* FEFoodEditTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditTVC.m; sourceTree = "<group>"; };
 		6F3287EA179273A500648277 /* FEFoodEditListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditListCell.h; sourceTree = "<group>"; };
 		6F3287EB179273A500648277 /* FEFoodEditListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditListCell.m; sourceTree = "<group>"; };
 		6F3287ED17929CD200648277 /* heart_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_grey.png; sourceTree = "<group>"; };
@@ -448,10 +448,10 @@
 		6F3287E6179112F400648277 /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				6F3287E71791131D00648277 /* FEFoodEditTVC.h */,
-				6F3287E81791131D00648277 /* FEFoodEditTVC.m */,
 				6F3287EA179273A500648277 /* FEFoodEditListCell.h */,
 				6F3287EB179273A500648277 /* FEFoodEditListCell.m */,
+				6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */,
+				6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -1001,9 +1001,9 @@
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
 				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailVC.m in Sources */,
-				6F3287E91791131D00648277 /* FEFoodEditTVC.m in Sources */,
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
 				6F342464179832C100A8A95E /* Place+Extension.m in Sources */,
+				6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,6 +47,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.food.name = textField.text;
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 #pragma mark - Photos
 - (void)enterDraggingMode {
     [self.delegate enterDraggingMode];
