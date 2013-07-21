@@ -44,13 +44,19 @@
     self.food.isBest = @(self.isBestButton.selected);
 }
 #pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self.delegate cellDidBeginEditing:self];
+}
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.food.name = textField.text;
+    [self.delegate cellDidEndEditing:self];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+
+
 #pragma mark - Photos
 - (void)enterDraggingMode {
     [self.delegate enterDraggingMode];

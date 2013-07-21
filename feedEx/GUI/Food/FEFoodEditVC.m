@@ -21,37 +21,50 @@
 @property (weak, nonatomic) FEFoodEditListCell *currentCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) UITableViewCell *activeCellView;
+@property (nonatomic) CGFloat keyboardDelta;
 @end
 
 @implementation FEFoodEditVC
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editFood:)];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFood:)];
     self.navigationItem.rightBarButtonItems = @[addButton, editButton];
-    
-    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
-    self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
     self.tableView.layer.cornerRadius = 10;
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
-    
     self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
     self.scrollView.autoresizesSubviews = NO;
+    [self adjustScrollViewFollowTable];
+}
+- (void)adjustScrollViewFollowTable {
+    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
+    }];
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark - event handler
 - (void)addFood:(UIBarButtonItem *)sender {
     [self.place insertFoodsAtIndex:0];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-    
-    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
-    [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight - 1);
-    }];
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
+    [self adjustScrollViewFollowTable];
 }
 - (void)editFood:(UIBarButtonItem *)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
@@ -66,7 +79,34 @@
         addButton.enabled = YES;
     }
 }
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    CGPoint origin = [self.view convertPoint:self.activeCellView.frame.origin fromView:self.tableView] ;
+    self.keyboardDelta = (origin.y + self.activeCellView.frame.size.height) - (self.view.frame.size.height - kbSize.height);
+    if (self.keyboardDelta > 0) {
+        CGRect frame = self.tableView.frame;
+        frame.origin.y -= self.keyboardDelta;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.frame = frame;
+        }];
+    }
+}
 
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    if (self.keyboardDelta > 0) {
+        CGRect frame = self.tableView.frame;
+        frame.origin.y += self.keyboardDelta;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.frame = frame;
+        }];
+    }
+}
 #pragma mark - setter gettr
 - (FECoreDataController *)coreData {
     if (!_coreData) {
@@ -93,6 +133,12 @@
 - (void)selectImageAtCell:(FEFoodEditListCell *)cell {
     self.currentCell = cell;
     [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
+}
+- (void)cellDidBeginEditing:(UITableViewCell *)cell {
+    self.activeCellView = cell;
+}
+- (void)cellDidEndEditing:(UITableViewCell *)cell {
+    self.activeCellView = nil;
 }
 # pragma mark - GKImagePicker Delegate Methods
 - (GKImagePicker *)imagePicker {
@@ -148,6 +194,7 @@
         [self.place removeFoodAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self adjustScrollViewFollowTable];
     }
 }
 

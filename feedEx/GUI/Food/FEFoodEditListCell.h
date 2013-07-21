@@ -14,6 +14,8 @@
 - (void)enterDraggingMode;
 - (void)exitDraggingMode;
 - (void)selectImageAtCell:(FEFoodEditListCell*)cell;
+- (void)cellDidBeginEditing:(UITableViewCell *)cell;
+- (void)cellDidEndEditing:(UITableViewCell *)cell;
 @end
 
 @interface FEFoodEditListCell : UITableViewCell
