@@ -206,10 +206,5 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-- (void)viewDidUnload {
-    [self setTableView:nil];
-    [self setScrollView:nil];
-    [super viewDidUnload];
-}
 @end
 
