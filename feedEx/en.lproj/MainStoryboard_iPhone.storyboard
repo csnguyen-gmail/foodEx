@@ -9,7 +9,7 @@
             <objects>
                 <viewController id="Def-J3-3Bg" customClass="FEPlaceEditMainVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjP-k1-UbI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="09r-gX-IP9">
@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="Gb5-Vv-gVp" customClass="GMSMapView">
-                                <rect key="frame" x="5" y="282" width="310" height="84"/>
+                                <rect key="frame" x="5" y="282" width="310" height="172"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -27,7 +27,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="jpr-37-GkY">
-                                <rect key="frame" x="141" y="168" width="37" height="37"/>
+                                <rect key="frame" x="141" y="212" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
@@ -63,7 +63,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FEPlaceEditTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DPe-jq-EXe" customClass="FEPlaceEditTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ILQ-kI-24g">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -280,15 +280,15 @@
             <objects>
                 <viewController id="1to-LW-Lm7" customClass="FEFoodEditVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eo3-w2-ndI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FQT-RN-Fji">
-                                <rect key="frame" x="5" y="5" width="309" height="362"/>
+                                <rect key="frame" x="5" y="5" width="309" height="450"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vT0-Sb-TAU">
-                                        <rect key="frame" x="0.0" y="0.0" width="309" height="362"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="309" height="450"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -418,7 +418,7 @@
             <objects>
                 <viewController id="ulv-7l-1CU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CNu-xc-WpN">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -433,7 +433,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FEPlaceListTVC" id="SzI-OX-CQb" customClass="FEPlaceListTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" id="KQd-u8-YkG">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -526,11 +526,11 @@
             <objects>
                 <viewController id="nN5-fG-BRM" customClass="FEPlaceDetailVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c45-hE-Ukw">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kXp-sK-zhb">
-                                <rect key="frame" x="5" y="253" width="311" height="22"/>
+                                <rect key="frame" x="5" y="252" width="311" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -625,6 +625,30 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="LMg-em-1JH">
+                                <rect key="frame" x="5" y="278" width="310" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="FfL-0I-Fgw" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="172"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view alpha="0.40000000000000002" contentMode="scaleToFill" id="6HR-J3-QNY">
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="fCh-aU-Mc1">
+                                        <rect key="frame" x="5" y="0.0" width="300" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -637,9 +661,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="backgroundView" destination="RXN-B4-t7b" id="WAU-8r-qdk"/>
+                        <outlet property="addressLbl" destination="fCh-aU-Mc1" id="qBL-3e-cHv"/>
+                        <outlet property="imageBgView" destination="RXN-B4-t7b" id="h3C-w1-VgJ"/>
+                        <outlet property="mapBgView" destination="LMg-em-1JH" id="1Hs-ai-0Hm"/>
+                        <outlet property="mapView" destination="FfL-0I-Fgw" id="HCW-hM-Q50"/>
                         <outlet property="placeImageView" destination="UcQ-QN-9Y5" id="kp3-ug-T7y"/>
                         <outlet property="placeNameLbl" destination="3bL-yB-4iS" id="G8g-XN-FTs"/>
                         <outlet property="ratingView" destination="F0r-dR-FXE" id="4ah-WR-rnf"/>
@@ -655,7 +682,7 @@
             <objects>
                 <viewController id="2bk-8F-b1d" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rM8-Qi-Pvx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -670,7 +697,7 @@
             <objects>
                 <viewController id="haI-V5-AdH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zuF-TL-roK">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -685,11 +712,11 @@
             <objects>
                 <viewController id="bLx-XL-Bzk" customClass="FESearchVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i07-dj-fOf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="A31-y6-Hn3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -729,7 +756,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FESearchFoodSettingTVC" id="E4h-Wf-hbQ" customClass="FESearchFoodSettingTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4Xf-9o-UNz">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -935,11 +962,11 @@
             <objects>
                 <viewController id="nwS-81-RT7" customClass="FESearchTagVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gdp-bA-PGx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Oex-ms-jPs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1007,7 +1034,7 @@
             <objects>
                 <viewController id="lfQ-fj-1yo" customClass="FESearchSettingVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IU9-7Z-cZ8">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ZuY-4I-C36">
@@ -1045,7 +1072,7 @@
             <objects>
                 <viewController id="EyA-Zw-MAO" customClass="FEHomeVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j2l-8W-mSt">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="YOa-pM-PU4">
@@ -1118,7 +1145,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FESearchPlaceSettingTVC" id="TAE-0I-6OG" customClass="FESearchPlaceSettingTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="prQ-Lc-6D1">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1380,8 +1407,10 @@
         <class className="FEPlaceDetailVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailVC.h"/>
             <relationships>
-                <relationship kind="action" name="editPlaceBtnTapped:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="backgroundView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageBgView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapBgView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
                 <relationship kind="outlet" name="placeImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="placeNameLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
@@ -1413,7 +1442,6 @@
         <class className="FEPlaceListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
             <relationships>
-                <relationship kind="action" name="informationBtnTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
@@ -1505,7 +1533,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="HYA-B4-9JT"/>

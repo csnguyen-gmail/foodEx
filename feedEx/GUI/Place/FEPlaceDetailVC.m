@@ -13,13 +13,19 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FEPlaceEditMainVC.h"
 #import "FEPlaceDetailFoodCell.h"
+#import "Address.h"
+#import "Common.h"
 
 @interface FEPlaceDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *placeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *placeNameLbl;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
-@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIView *imageBgView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLbl;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIView *mapBgView;
+
 @end
 
 @implementation FEPlaceDetailVC
@@ -28,14 +34,33 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.imageBgView.layer.cornerRadius = 10.0;
+    self.imageBgView.layer.masksToBounds = YES;
+    self.imageBgView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.imageBgView.layer.borderWidth = 2.0;
+
     self.placeNameLbl.text = self.place.name;
     self.ratingView.rate = [self.place.rating floatValue];
     self.placeImageView.image = [[UIImage alloc] initWithData:[[self.place.photos firstObject] imageData]];
-    self.backgroundView.layer.cornerRadius = 10.0;
-    self.backgroundView.layer.masksToBounds = YES;
-    self.backgroundView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.backgroundView.layer.borderWidth = 2.0;
-
+    self.addressLbl.text = self.place.address.address;
+    // map
+    self.mapBgView.layer.cornerRadius = 10.0;
+    self.mapBgView.layer.masksToBounds = YES;
+    float lattittude = [self.place.address.lattittude floatValue];
+    float longtitude = [self.place.address.longtitude floatValue];
+    if (longtitude != 0 && lattittude != 0) {
+        self.mapView.camera = [GMSCameraPosition cameraWithLatitude:lattittude
+                                                          longitude:longtitude
+                                                               zoom:GMAP_DEFAULT_ZOOM];
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake(lattittude, longtitude);
+        marker.map = self.mapView;
+    }
+    else {
+        self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
+                                                          longitude:HCM_LONGTITUDE
+                                                               zoom:GMAP_DEFAULT_ZOOM];
+    }
     if (self.place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
         for (Tag *tag in self.place.tags) {
@@ -94,5 +119,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 72;
 }
-
+- (void)viewDidUnload {
+    [self setMapView:nil];
+    [self setMapBgView:nil];
+    [super viewDidUnload];
+}
 @end

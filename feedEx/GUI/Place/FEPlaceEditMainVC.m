@@ -15,12 +15,7 @@
 #import "CoredataCommon.h"
 #import "GMDraggableMarkerManager.h"
 #import "FEFoodEditVC.h"
-
-#define GMAP_LOCATION_OBSERVE_KEY @"myLocation"
-#define GMAP_DEFAULT_ZOOM 15
-#define HCM_LONGTITUDE  106.698333
-#define HCM_LATITUDE    10.7730556
-
+#import "Common.h"
 
 @interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate,GMDraggableMarkerManagerDelegate>{
     float _minResizableHeight;
