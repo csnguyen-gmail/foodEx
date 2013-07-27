@@ -20,9 +20,9 @@
 @property (strong, nonatomic) GKImagePicker *imagePicker;
 @property (weak, nonatomic) FEFoodEditListCell *currentCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) UITableViewCell *activeCellView;
 @property (nonatomic) CGFloat keyboardDelta;
+@property (nonatomic) CGFloat maxTableHeight;
 @end
 
 @implementation FEFoodEditVC
@@ -34,17 +34,6 @@
     self.navigationItem.rightBarButtonItems = @[addButton, editButton];
     self.tableView.layer.cornerRadius = 10;
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
-    self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.autoresizesSubviews = NO;
-    [self adjustScrollViewFollowTable];
-}
-- (void)adjustScrollViewFollowTable {
-    float tableHeight = [self.tableView rectForSection:0].size.height - 1; // for remove last separate line
-    [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
-    }];
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -53,18 +42,36 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-
+    self.maxTableHeight = self.tableView.frame.size.height;
+    [self adjustTableHeight];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
+- (void)adjustTableHeight {
+    float tableHeight = [self.tableView rectForSection:0].size.height - 1;
+    if (tableHeight > self.maxTableHeight) {
+        tableHeight = self.maxTableHeight;
+    }
+    else if (tableHeight == -1) {
+        tableHeight = 0;
+    }
+    CGRect frame = self.tableView.frame;
+    if (frame.size.height != tableHeight) {
+        frame.size.height = tableHeight;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.frame = frame;
+        }];
+    }
+}
+
 #pragma mark - event handler
 - (void)addFood:(UIBarButtonItem *)sender {
     [self.place insertFoodsAtIndex:0];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-    [self adjustScrollViewFollowTable];
+    [self adjustTableHeight];
 }
 - (void)editFood:(UIBarButtonItem *)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
@@ -194,7 +201,7 @@
         [self.place removeFoodAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self adjustScrollViewFollowTable];
+        [self adjustTableHeight];
     }
 }
 
