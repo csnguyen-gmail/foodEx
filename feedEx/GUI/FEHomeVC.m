@@ -27,11 +27,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addPlace:(UIButton *)sender {
-    UINavigationController *editPlaceNav = [self.storyboard instantiateViewControllerWithIdentifier:@"editPlaceNavigation"];
-    FEPlaceEditMainVC *addPlaceInfoMainVC = editPlaceNav.viewControllers[0];
-    addPlaceInfoMainVC.placeInfo = nil;
-    [self presentModalViewController:editPlaceNav animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"addPlace"]) {
+        UINavigationController *navigation = [segue destinationViewController];
+        FEPlaceEditMainVC *addPlaceInfoMainVC = navigation.viewControllers[0];
+        addPlaceInfoMainVC.placeInfo = nil;
+    }
 }
-
 @end

@@ -86,11 +86,13 @@
     }
 
 }
-- (IBAction)editPlaceBtnTapped:(UIBarButtonItem *)sender {
-    UINavigationController *editPlaceNav = [self.storyboard instantiateViewControllerWithIdentifier:@"editPlaceNavigation"];
-    FEPlaceEditMainVC *editPlaceInfoMainVC = editPlaceNav.viewControllers[0];
-    editPlaceInfoMainVC.placeInfo = self.place;
-    [self presentModalViewController:editPlaceNav animated:YES];
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"editPlace"]) {
+        UINavigationController *navigation = [segue destinationViewController];
+        FEPlaceEditMainVC *addPlaceInfoMainVC = navigation.viewControllers[0];
+        addPlaceInfoMainVC.placeInfo = self.place;
+    }
 }
 #pragma mark - common
 - (void)updateCell:(FEPlaceDetailFoodCell*)cell withFood:(Food*)food atIndexPath:(NSIndexPath*)indexPath {
