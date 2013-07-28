@@ -179,9 +179,4 @@
     self.checksOfSections[indexPath.section][indexPath.row] = @(newCheck);
     cell.checkMarkView.image = newCheck ? [UIImage imageNamed:@"checkmark"] : nil;
 }
-
-- (void)viewDidUnload {
-    [self setTableView:nil];
-    [super viewDidUnload];
-}
 @end

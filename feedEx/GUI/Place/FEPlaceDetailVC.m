@@ -118,9 +118,4 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 72;
 }
-- (void)viewDidUnload {
-    [self setMapView:nil];
-    [self setMapBgView:nil];
-    [super viewDidUnload];
-}
 @end

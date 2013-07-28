@@ -21,6 +21,12 @@
 @end
 
 @implementation FEPlaceListTVC
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
+    self.tableView.layer.cornerRadius = 10;
+
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailVC *placeDetailVC = [segue destinationViewController];
@@ -68,7 +74,7 @@
             tagLbl.text = tag.label;
             tagLbl.font = font;
             tagLbl.textColor = [UIColor whiteColor];
-            tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.2];
+            tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
             tagLbl.layer.cornerRadius = 5;
             tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
             tagLbl.layer.borderWidth = 0.8;
