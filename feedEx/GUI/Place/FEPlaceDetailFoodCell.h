@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Food.h"
 
-@interface FEPlaceDetailFoodCell : UITableViewCell
+@interface FEPlaceDetailFoodCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UIImageView *foodImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *isBestImageView;

@@ -15,7 +15,7 @@
     self.backView.layer.cornerRadius = 10.0;
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.backView.layer.borderWidth = 2.0;
+    self.backView.layer.borderWidth = 1.5;
 
 }
 - (void)setFood:(Food *)food {

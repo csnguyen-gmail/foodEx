@@ -13,7 +13,7 @@
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FEPlaceDetailVC.h"
+#import "FEPlaceDetailMainVC.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -29,7 +29,7 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
-        FEPlaceDetailVC *placeDetailVC = [segue destinationViewController];
+        FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
         placeDetailVC.place = self.places[self.selectedRow];
     }
 }
@@ -70,6 +70,8 @@
             tagSize.width += TAG_HORIZON_MARGIN;
             tagSize.height += TAG_VERTICAL_MARGIN;
             UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
+            tagLbl.adjustsFontSizeToFitWidth = YES;
+            tagLbl.minimumScaleFactor = 0.1;
             tagLbl.textAlignment = NSTextAlignmentCenter;
             tagLbl.text = tag.label;
             tagLbl.font = font;
