@@ -653,18 +653,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="tUJ-DY-BmM">
-                                                    <rect key="frame" x="0.0" y="2" width="310" height="67"/>
+                                                    <rect key="frame" x="5" y="0.0" width="296" height="74"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Yx-cY-D5n">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="49" id="6Yx-cY-D5n">
                                                         <size key="itemSize" width="64" height="64"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="6" minY="3" maxX="6" maxY="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="foodCell" id="tJh-V0-fQn" customClass="FEPlaceDetailFoodCell">
-                                                            <rect key="frame" x="6" y="3" width="64" height="64"/>
+                                                            <rect key="frame" x="0.0" y="5" width="64" height="64"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -1551,6 +1551,7 @@
         <class className="FEPlaceListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
             <relationships>
+                <relationship kind="action" name="informationBtnTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
