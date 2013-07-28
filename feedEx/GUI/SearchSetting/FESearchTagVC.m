@@ -104,10 +104,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    FESearchTagCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[FESearchTagCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    FESearchTagCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Tag *tag = self.valuesOfSections[indexPath.section][indexPath.row];
     cell.tagName.text = tag.label;
     cell.tagDetail.text = [NSString stringWithFormat:@"(%d)", tag.owner.count];

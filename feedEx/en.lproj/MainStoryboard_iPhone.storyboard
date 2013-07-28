@@ -29,9 +29,9 @@
                             <containerView contentMode="scaleToFill" id="c4M-Tq-89u">
                                 <rect key="frame" x="5" y="6" width="310" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="DPe-jq-EXe" kind="embed" id="xwT-Eh-5xA"/>
+                                    <segue destination="DPe-jq-EXe" kind="embed" identifier="placeEdit" id="xwT-Eh-5xA"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -52,6 +52,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editPlaceInfoView" destination="c4M-Tq-89u" id="HZ5-MZ-D5o"/>
                         <outlet property="indicatorView" destination="jpr-37-GkY" id="jDa-u5-uec"/>
                         <outlet property="mapView" destination="Gb5-Vv-gVp" id="3uC-nM-uHW"/>
                         <outlet property="verticalResizeView" destination="1y9-um-8HV" id="nzi-8f-P67"/>
@@ -59,13 +60,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcE-fA-Guu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10257" y="-1264"/>
+            <point key="canvasLocation" x="-9529" y="-1256"/>
         </scene>
         <!--Place EditTVC-->
         <scene sceneID="zta-bW-gde">
             <objects>
                 <tableViewController storyboardIdentifier="FEPlaceEditTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DPe-jq-EXe" customClass="FEPlaceEditTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ILQ-kI-24g">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ILQ-kI-24g">
                         <rect key="frame" x="0.0" y="0.0" width="310" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -276,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQm-z0-Ojv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9859" y="-1646"/>
+            <point key="canvasLocation" x="-8821" y="-1702"/>
         </scene>
         <!--Food EditVC - Food-->
         <scene sceneID="YXx-yX-eOl">
@@ -383,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NqW-Ox-C9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9501" y="-1244"/>
+            <point key="canvasLocation" x="-8821" y="-1268"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="n8e-FW-mTs">
@@ -406,7 +407,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53W-tL-NSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10652" y="-1264"/>
+            <point key="canvasLocation" x="-9924" y="-1256"/>
         </scene>
         <!--View Controller - Map-->
         <scene sceneID="c2i-Eq-6gF">
@@ -428,7 +429,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FEPlaceListTVC" id="SzI-OX-CQb" customClass="FEPlaceListTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" id="KQd-u8-YkG">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -514,14 +515,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMV-pA-cGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11595" y="-468"/>
+            <point key="canvasLocation" x="-10888" y="-508"/>
         </scene>
         <!--Place DetailVC-->
         <scene sceneID="vBR-q4-hlz">
             <objects>
                 <viewController id="nN5-fG-BRM" customClass="FEPlaceDetailVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c45-hE-Ukw">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="362"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kXp-sK-zhb">
@@ -621,11 +622,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="LMg-em-1JH">
-                                <rect key="frame" x="5" y="278" width="310" height="172"/>
+                                <rect key="frame" x="5" y="278" width="310" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="FfL-0I-Fgw" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="172"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -670,7 +671,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11171" y="-468"/>
+            <point key="canvasLocation" x="-10464" y="-508"/>
         </scene>
         <!--View Controller - Share-->
         <scene sceneID="BHQ-rT-NaT">
@@ -710,11 +711,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="A31-y6-Hn3">
+                            <containerView contentMode="scaleToFill" id="uVL-zx-plR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                                <connections>
+                                    <segue destination="SzI-OX-CQb" kind="embed" identifier="placeList" id="dk9-bE-rNB"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -738,9 +742,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="placeHolderView" destination="A31-y6-Hn3" id="MjW-TF-v1Q"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Os-0o-wTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -751,7 +752,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FESearchFoodSettingTVC" id="E4h-Wf-hbQ" customClass="FESearchFoodSettingTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4Xf-9o-UNz">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -950,18 +951,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WIc-KF-wt6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10459" y="252"/>
+            <point key="canvasLocation" x="-10080" y="586"/>
         </scene>
         <!--Search TagVC-->
         <scene sceneID="6Vf-Lf-WE6">
             <objects>
                 <viewController id="nwS-81-RT7" customClass="FESearchTagVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gdp-bA-PGx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Oex-ms-jPs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1022,7 +1023,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="new-j8-9if" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10069" y="252"/>
+            <point key="canvasLocation" x="-9517" y="377"/>
         </scene>
         <!--Search SettingVC - Search setting-->
         <scene sceneID="dH6-ve-pvq">
@@ -1045,8 +1046,26 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" id="j0J-wG-3F7">
-                                <rect key="frame" x="0.0" y="57" width="320" height="310"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="57" width="320" height="398"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <containerView contentMode="scaleToFill" id="Q6m-xN-s0x">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="TAE-0I-6OG" kind="embed" identifier="searchPlaceSetting" id="ABT-jk-ylP"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView contentMode="scaleToFill" id="KW3-fk-cCU">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="E4h-Wf-hbQ" kind="embed" identifier="searchFoodSetting" id="pW6-cY-lw4"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1055,12 +1074,14 @@
                     <navigationItem key="navigationItem" title="Search setting" id="kzf-zM-iq2"/>
                     <connections>
                         <outlet property="displayTypeSC" destination="ZuY-4I-C36" id="xTW-iz-yCp"/>
+                        <outlet property="foodSettingView" destination="KW3-fk-cCU" id="JMo-C5-zDO"/>
                         <outlet property="panelView" destination="j0J-wG-3F7" id="hxh-NG-HjR"/>
+                        <outlet property="placeSettingView" destination="Q6m-xN-s0x" id="PJT-GE-2Z1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WU5-RU-rb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11141" y="252"/>
+            <point key="canvasLocation" x="-10789" y="261"/>
         </scene>
         <!--HomeVC - Home-->
         <scene sceneID="xa6-30-qn7">
@@ -1140,7 +1161,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FESearchPlaceSettingTVC" id="TAE-0I-6OG" customClass="FESearchPlaceSettingTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="prQ-Lc-6D1">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1335,7 +1356,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hlp-Go-4oV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10816" y="252"/>
+            <point key="canvasLocation" x="-10080" y="71"/>
         </scene>
     </scenes>
     <resources>

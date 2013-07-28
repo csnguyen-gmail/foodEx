@@ -45,18 +45,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    //Fixes iOS 5.x cursor when becomeFirstResponder
-    if ([UIDevice currentDevice].systemVersion.floatValue < 6.000000) {
-        if (self.isUsingPlaceholder && self.isFirstResponder) {
-            self.text = @"";
-        }
-    }
-}
-
 #pragma mark -
 #pragma mark Notifications
 
@@ -98,10 +86,6 @@
             //User pasted a text equals to placeholder or setText was called
             if ([newText isEqualToString:self.placeholder]) {
                 [self sendCursorToEnd];
-                //this is necessary for iOS 5.x
-            } else if (newText.length == 0) {
-                [self setupPlaceholder];
-                return;
             }
             
             self.text = newText;

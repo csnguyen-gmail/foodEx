@@ -13,8 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
-@property (weak, nonatomic) IBOutlet UIView *placeHolderView;
-@property (weak, nonatomic) FEPlaceListTVC *placeListView;
+@property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -25,12 +24,7 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    // TODO
-    self.placeListView.view.frame = CGRectOffset(self.placeListView.view.frame, 0, -20);
-    self.placeListView.placeSetting = self.searchSettingInfo.placeSetting;
-    [self addChildViewController:self.placeListView];
-    [self.placeHolderView addSubview:self.placeListView.view];
-    [self showViewByType:0]; // TODO
+    self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -42,12 +36,8 @@
 }
 #pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
-    [self showViewByType:sender.selectedSegmentIndex];
-}
-- (void)showViewByType:(NSInteger)type {
     // TODO
 }
-
 #pragma mark - getter setter
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
@@ -57,12 +47,6 @@
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     }
     return _locationManager;
-}
-- (FEPlaceListTVC *)placeListView {
-    if (!_placeListView) {
-        _placeListView = [self.storyboard instantiateViewControllerWithIdentifier:[[FEPlaceListTVC class] description]];
-    }
-    return _placeListView;
 }
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
@@ -80,7 +64,10 @@
     return _searchSettingInfo;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:[[FESearchSettingVC class] description]]) {
+    if ([[segue identifier] isEqualToString:@"placeList"]) {
+        self.placeListTVC = [segue destinationViewController];
+    }
+    else if ([[segue identifier] isEqualToString:[[FESearchSettingVC class] description]]) {
         FESearchSettingVC *searchSettingVC = [segue destinationViewController];
         searchSettingVC.delegate = self;
     }
@@ -89,7 +76,7 @@
 - (void)didFinishSearchSetting:(FESearchSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
         self.searchSettingInfo = searchSetting;
-        self.placeListView.placeSetting = self.searchSettingInfo.placeSetting;
+        self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting;
     }
 }
 #pragma mark - CLLocationManagerDelegate
@@ -97,7 +84,7 @@
     [self locationManager:manager didUpdateLocations:@[oldLocation, newLocation]];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    self.placeListView.currentLocation = [locations lastObject];
+    self.placeListTVC.currentLocation = [locations lastObject];
     [manager stopUpdatingLocation];
 }
 @end

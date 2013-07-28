@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *panelView;
 @property (strong, nonatomic) FESearchPlaceSettingTVC *placeSettingTVC;
 @property (strong, nonatomic) FESearchFoodSettingTVC *foodSettingTVC;
+@property (weak, nonatomic) IBOutlet UIView *placeSettingView;
+@property (weak, nonatomic) IBOutlet UIView *foodSettingView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *displayTypeSC;
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @end
@@ -26,16 +28,6 @@
 @implementation FESearchSettingVC
 
 - (void)viewDidLoad {
-    self.placeSettingTVC = [self.storyboard instantiateViewControllerWithIdentifier:[[FESearchPlaceSettingTVC class] description]];
-    self.foodSettingTVC = [self.storyboard instantiateViewControllerWithIdentifier:[[FESearchFoodSettingTVC class] description]];
-    self.placeSettingTVC.view.frame = CGRectOffset(self.placeSettingTVC.view.frame, 0, TOP_PADDING);
-    self.foodSettingTVC.view.frame = CGRectOffset(self.foodSettingTVC.view.frame, 0, TOP_PADDING);
-    [self addChildViewController:self.placeSettingTVC];
-    [self addChildViewController:self.foodSettingTVC];
-    [self.panelView addSubview:self.placeSettingTVC.view];
-    [self.panelView addSubview:self.foodSettingTVC.view];
-    self.foodSettingTVC.view.hidden = YES;
-    
     [self loadSetting];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -46,9 +38,18 @@
         [self.delegate didFinishSearchSetting:self.searchSettingInfo hasModification:YES];// TODO
     }
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"searchFoodSetting"]) {
+        self.foodSettingTVC = [segue destinationViewController];
+    }
+    else if ([[segue identifier] isEqualToString:@"searchPlaceSetting"]) {
+        self.placeSettingTVC = [segue destinationViewController];
+    }
+    
+}
 - (void)swicthToView:(NSUInteger)viewIndex wthAnimated:(BOOL)animated {
-    UIView *backView = (viewIndex == 0) ? self.foodSettingTVC.view : self.placeSettingTVC.view;
-    UIView *frontView = (viewIndex == 0) ? self.placeSettingTVC.view : self.foodSettingTVC.view;;
+    UIView *backView = (viewIndex == 0) ? self.foodSettingView : self.placeSettingView;
+    UIView *frontView = (viewIndex == 0) ? self.placeSettingView : self.foodSettingView;
     [UIView transitionWithView:self.panelView
                       duration:animated ? 0.5 : 0.0
                        options:(viewIndex == 0 ? UIViewAnimationOptionTransitionFlipFromRight:UIViewAnimationOptionTransitionFlipFromLeft)
@@ -110,9 +111,5 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:archivedObject forKey:SEARCH_SETTING_KEY];
     [defaults synchronize];
-}
-- (void)viewDidUnload {
-    [self setDisplayTypeSC:nil];
-    [super viewDidUnload];
 }
 @end

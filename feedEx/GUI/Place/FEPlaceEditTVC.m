@@ -37,7 +37,6 @@
     self.tagTextView.delegate = self;
     // make rounded rectangle table
     self.tableView.layer.cornerRadius = 10;
-    self.tableView.bounces = NO;
     self.noteTextView.layer.cornerRadius = 10;
     self.noteTextView.layer.borderWidth = 1;
     self.noteTextView.layer.borderColor = [[UIColor grayColor] CGColor];

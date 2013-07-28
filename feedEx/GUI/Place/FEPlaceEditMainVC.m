@@ -22,9 +22,9 @@
     float _maxResizableHeight;
 }
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
 @property (weak, nonatomic) FEPlaceEditTVC *editPlaceInfoTVC;
+@property (weak, nonatomic) IBOutlet UIView *editPlaceInfoView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) NSArray *tags; // of Tag
@@ -42,20 +42,11 @@
     self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.mapView delegate:self];
     
     // edit place info view
-    self.editPlaceInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:[[FEPlaceEditTVC class] description]];
     self.editPlaceInfoTVC.editPlaceTVCDelegate = self;
-    self.editPlaceInfoTVC.tableView.layer.cornerRadius = 10;
-    float tableHeight = [self.editPlaceInfoTVC.tableView rectForSection:0].size.height - 1; // for remove last separate line
-    self.editPlaceInfoTVC.tableView.frame = CGRectMake(0, 0, self.scrollView.bounds.size.width, tableHeight);
-    [self addChildViewController:self.editPlaceInfoTVC];
-    self.scrollView.layer.cornerRadius = 10;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, tableHeight);
-    [self.scrollView addSubview:self.editPlaceInfoTVC.tableView];
-    self.scrollView.autoresizesSubviews = NO;
     // vertical resize controller view
     self.verticalResizeView.delegate = self;
     _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
-    _maxResizableHeight = self.scrollView.frame.size.height;
+    _maxResizableHeight = self.editPlaceInfoView.frame.size.height;
 
     // load place
     [self loadPlace];
@@ -64,6 +55,9 @@
     if ([[segue identifier] isEqualToString:@"foods"]) {
         FEFoodEditVC *foodEditVC = [segue destinationViewController];
         foodEditVC.place = self.placeInfo;
+    }
+    else if ([[segue identifier] isEqualToString:@"placeEdit"]) {
+        self.editPlaceInfoTVC = [segue destinationViewController];
     }
 }
 #pragma mark - getter setter
@@ -238,7 +232,7 @@
 #pragma mark - FEVerticalResizeControlDelegate
 - (void)verticalResizeControllerDidChanged:(float)delta {
     UIView *lowerView = self.mapView;
-    UIView *upperView = self.scrollView;
+    UIView *upperView = self.editPlaceInfoView;
     UIView *verticalControllerView = self.verticalResizeView;
     if (delta == .0f) {
         return;
@@ -272,10 +266,10 @@
 - (void)verticalResizeControllerDidTapped {
     float delta;
     if (self.verticalResizeView.frame.origin.y < self.view.frame.size.height / 2) {
-        delta = self.scrollView.frame.size.height - _maxResizableHeight;
+        delta = self.editPlaceInfoView.frame.size.height - _maxResizableHeight;
     }
     else {
-        delta = self.scrollView.frame.size.height - _minResizableHeight;
+        delta = self.editPlaceInfoView.frame.size.height - _minResizableHeight;
     }
     
     [UIView animateWithDuration:.3f animations:^{
