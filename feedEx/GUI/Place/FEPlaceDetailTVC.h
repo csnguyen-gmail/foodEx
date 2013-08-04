@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Place.h"
+@protocol FEPlaceDetailTVCDelegate<NSObject>
+- (void)didSelectItemAtIndexPath:(NSUInteger)index;
+@end
 
 @interface FEPlaceDetailTVC : UITableViewController
 @property (nonatomic, strong) Place *place;
+@property (nonatomic, weak) id<FEPlaceDetailTVCDelegate> placeDetailTVCDelegate;
 @end

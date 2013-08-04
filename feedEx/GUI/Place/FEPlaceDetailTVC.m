@@ -86,4 +86,8 @@
     [self updateCell:cell withFood:self.place.foods[indexPath.row] atIndexPath:indexPath];
     return cell;
 }
+#pragma mark - Collection view delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.placeDetailTVCDelegate didSelectItemAtIndexPath:indexPath.row];
+}
 @end

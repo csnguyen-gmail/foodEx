@@ -67,6 +67,8 @@
 		6F85EA23179BE078000D21E9 /* heart_selected_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */; };
 		6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EA25179BE13D000D21E9 /* FEPlaceDetailFoodCell.m */; };
 		6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */; };
+		6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */; };
+		6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */; };
 		6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */; };
 		6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */; };
 		6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */; };
@@ -256,6 +258,10 @@
 		6F85EA25179BE13D000D21E9 /* FEPlaceDetailFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDetailFoodCell.m; sourceTree = "<group>"; };
 		6F89E7E117AE22C2007BDAFA /* FEFlipPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipPlaceView.h; sourceTree = "<group>"; };
 		6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipPlaceView.m; sourceTree = "<group>"; };
+		6F89E7E417AE3E53007BDAFA /* FEFoodDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodDetailVC.h; sourceTree = "<group>"; };
+		6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodDetailVC.m; sourceTree = "<group>"; };
+		6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipFoodView.h; sourceTree = "<group>"; };
+		6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipFoodView.m; sourceTree = "<group>"; };
 		6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETrackingKeyboardWindow.h; sourceTree = "<group>"; };
 		6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETrackingKeyboardWindow.m; sourceTree = "<group>"; };
 		6F9E95B11744EED100DCCF24 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
@@ -467,6 +473,8 @@
 				6F3287EB179273A500648277 /* FEFoodEditListCell.m */,
 				6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */,
 				6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */,
+				6F89E7E417AE3E53007BDAFA /* FEFoodDetailVC.h */,
+				6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -707,6 +715,8 @@
 				6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */,
 				6F89E7E117AE22C2007BDAFA /* FEFlipPlaceView.h */,
 				6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */,
+				6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */,
+				6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1030,6 +1040,8 @@
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
+				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
+				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
