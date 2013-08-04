@@ -11,15 +11,6 @@
 
 @implementation FERoundImageView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
 - (id)initWithImage:(UIImage *)image {
     self = [super initWithImage:image];
     if (self) {
@@ -28,13 +19,6 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return  self;
-}
 - (void)setup {
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;

@@ -12,15 +12,13 @@
 #import "Photo.h"
 #import "FEPlaceDetailFoodCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FEFlipPlaceView.h"
 
 @interface FEPlaceDetailTVC()<UICollectionViewDataSource, UICollectionViewDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *placeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *placeNameLbl;
-@property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
-@property (weak, nonatomic) IBOutlet UIView *imageBgView;
 @property (weak, nonatomic) IBOutlet UICollectionView *foodCollectionView;
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
+@property (weak, nonatomic) IBOutlet FEFlipPlaceView *flipPlaceView;
 @end
 
 @implementation FEPlaceDetailTVC
@@ -31,11 +29,6 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.tableView.layer.cornerRadius = 10;
-
-    self.imageBgView.layer.cornerRadius = 10.0;
-    self.imageBgView.layer.masksToBounds = YES;
-//    self.imageBgView.layer.borderColor = [[UIColor whiteColor] CGColor];
-//    self.imageBgView.layer.borderWidth = 1.5;
     
     self.noteTextView.layer.cornerRadius = 10;
     self.noteTextView.layer.borderWidth = 1;
@@ -43,9 +36,9 @@
 }
 - (void)setPlace:(Place *)place {
     _place = place;
-    self.placeNameLbl.text = self.place.name;
-    self.ratingView.rate = [self.place.rating floatValue];
-    self.placeImageView.image = [[UIImage alloc] initWithData:[[self.place.photos firstObject] imageData]];
+    self.flipPlaceView.name = place.name;
+    self.flipPlaceView.rating = [place.rating integerValue];
+    [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
     self.noteTextView.text = self.place.note;
     if (self.place.tags.count > 0) {
         CGFloat contentWidth = 0.0;

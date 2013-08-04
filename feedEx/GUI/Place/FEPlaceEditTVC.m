@@ -18,12 +18,10 @@
 @end
 
 @implementation FEPlaceEditTVC
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionWhenViewDisappear) name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
-    }
-    return self;
+- (void)awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionWhenViewDisappear) name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
 }
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
 }

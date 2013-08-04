@@ -22,17 +22,8 @@
 
 @implementation FEDynamicScrollView
 @synthesize wiggleViews = _wiggleViews;
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setup];
-    }
-    return self;
-}
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self setup];
-    }
-    return self;
+- (void)awakeFromNib {
+    [self setup];
 }
 - (void)setup {
     // add gesture recognizer

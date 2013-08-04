@@ -15,21 +15,8 @@
 @end
 
 @implementation FEFlipListView
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return  self;
+- (void)awakeFromNib {
+    [self setup];
 }
 
 - (void)setup {
@@ -66,7 +53,8 @@
 }
 #pragma mark - event handler
 -(void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
-    [self handleSwipe:UISwipeGestureRecognizerDirectionLeft];
+    CGPoint location = [recognizer locationInView:self.frontView];
+    [self handleSwipe:(location.x < (self.frontView.frame.size.width / 2) ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionRight)];
 }
 //-(void)handleLeftSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
 //    [self handleSwipe:recognizer.direction];
@@ -100,7 +88,7 @@
     }
     nextView = [self getViewAtIndex:self.currentViewIndex];
     [UIView transitionWithView:self
-                      duration:0.5
+                      duration:0.4
                        options:animationOpt
                     animations: ^{
                         [self.frontView removeFromSuperview];

@@ -66,6 +66,7 @@
 		6F85EA22179BE078000D21E9 /* heart_selected_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA20179BE078000D21E9 /* heart_selected_min.png */; };
 		6F85EA23179BE078000D21E9 /* heart_selected_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */; };
 		6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EA25179BE13D000D21E9 /* FEPlaceDetailFoodCell.m */; };
+		6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */; };
 		6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */; };
 		6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */; };
 		6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */; };
@@ -253,6 +254,8 @@
 		6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected_min@2x.png"; sourceTree = "<group>"; };
 		6F85EA24179BE13D000D21E9 /* FEPlaceDetailFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDetailFoodCell.h; sourceTree = "<group>"; };
 		6F85EA25179BE13D000D21E9 /* FEPlaceDetailFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDetailFoodCell.m; sourceTree = "<group>"; };
+		6F89E7E117AE22C2007BDAFA /* FEFlipPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipPlaceView.h; sourceTree = "<group>"; };
+		6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipPlaceView.m; sourceTree = "<group>"; };
 		6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETrackingKeyboardWindow.h; sourceTree = "<group>"; };
 		6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETrackingKeyboardWindow.m; sourceTree = "<group>"; };
 		6F9E95B11744EED100DCCF24 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
@@ -702,6 +705,8 @@
 				6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */,
 				6FFBBAB917893A760049E1E9 /* FEFlipPhotosView.h */,
 				6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */,
+				6F89E7E117AE22C2007BDAFA /* FEFlipPlaceView.h */,
+				6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1024,6 +1029,7 @@
 				6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */,
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
+				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
