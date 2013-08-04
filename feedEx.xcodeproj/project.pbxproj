@@ -69,6 +69,9 @@
 		6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */; };
 		6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */; };
 		6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */; };
+		6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */; };
+		6F89E7EF17AE88D2007BDAFA /* FEPlaceGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */; };
+		6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */; };
 		6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */; };
 		6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */; };
 		6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */; };
@@ -262,6 +265,12 @@
 		6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodDetailVC.m; sourceTree = "<group>"; };
 		6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipFoodView.h; sourceTree = "<group>"; };
 		6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipFoodView.m; sourceTree = "<group>"; };
+		6F89E7EA17AE886E007BDAFA /* FEPlaceGridCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceGridCVC.h; sourceTree = "<group>"; };
+		6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceGridCVC.m; sourceTree = "<group>"; };
+		6F89E7ED17AE88D1007BDAFA /* FEPlaceGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceGridCell.h; sourceTree = "<group>"; };
+		6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceGridCell.m; sourceTree = "<group>"; };
+		6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDataSource.h; sourceTree = "<group>"; };
+		6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDataSource.m; sourceTree = "<group>"; };
 		6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETrackingKeyboardWindow.h; sourceTree = "<group>"; };
 		6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETrackingKeyboardWindow.m; sourceTree = "<group>"; };
 		6F9E95B11744EED100DCCF24 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
@@ -740,6 +749,12 @@
 				6F9E95B71744EED100DCCF24 /* FEPlaceEditTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEPlaceEditMainVC.h */,
 				6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */,
+				6F89E7EA17AE886E007BDAFA /* FEPlaceGridCVC.h */,
+				6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */,
+				6F89E7ED17AE88D1007BDAFA /* FEPlaceGridCell.h */,
+				6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */,
+				6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */,
+				6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -1042,6 +1057,9 @@
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
+				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
+				6F89E7EF17AE88D2007BDAFA /* FEPlaceGridCell.m in Sources */,
+				6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

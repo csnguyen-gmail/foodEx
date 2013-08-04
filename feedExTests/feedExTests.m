@@ -15,6 +15,7 @@
 #import "AbstractInfo+Extension.h"
 #import "CoredataCommon.h"
 #import "Tag.h"
+#import "Common.h"
 
 
 @implementation feedExTests{

@@ -10,6 +10,7 @@
 #import "FESearchSettingInfo.h"
 #import <CoreLocation/CoreLocation.h>
 
+// TODO: will be replace by FEPlaceDataSource
 @interface FEPlaceBaseTVC : UITableViewController
 @property (strong, nonatomic) FESearchPlaceSettingInfo *placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
