@@ -34,8 +34,8 @@
 
     self.imageBgView.layer.cornerRadius = 10.0;
     self.imageBgView.layer.masksToBounds = YES;
-    self.imageBgView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.imageBgView.layer.borderWidth = 1.5;
+//    self.imageBgView.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    self.imageBgView.layer.borderWidth = 1.5;
     
     self.noteTextView.layer.cornerRadius = 10;
     self.noteTextView.layer.borderWidth = 1;
@@ -48,16 +48,16 @@
     self.placeImageView.image = [[UIImage alloc] initWithData:[[self.place.photos firstObject] imageData]];
     self.noteTextView.text = self.place.note;
     if (self.place.tags.count > 0) {
-        CGFloat contentHeight = 0.0;
+        CGFloat contentWidth = 0.0;
         for (Tag *tag in self.place.tags) {
             UIFont *font = [UIFont systemFontOfSize:10];
             CGSize tagSize = [tag.label sizeWithFont:font];
-            tagSize.height += TAG_VERTICAL_MARGIN;
-            tagSize.width = self.tagsScrollView.frame.size.width;
-            UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, contentHeight, tagSize.width, tagSize.height)];
+            tagSize.height = self.tagsScrollView.frame.size.height;
+            tagSize.width += TAG_HORIZON_MARGIN;
+            UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
             tagLbl.textAlignment = NSTextAlignmentCenter;
-            tagLbl.adjustsFontSizeToFitWidth = YES;
-            tagLbl.minimumScaleFactor = 0.1;
+//            tagLbl.adjustsFontSizeToFitWidth = YES;
+//            tagLbl.minimumScaleFactor = 0.1;
             tagLbl.text = [NSString stringWithFormat:@" %@ ", tag.label];
             tagLbl.font = font;
             tagLbl.textColor = [UIColor whiteColor];
@@ -66,10 +66,10 @@
             tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
             tagLbl.layer.borderWidth = 0.8;
             [self.tagsScrollView addSubview:tagLbl];
-            contentHeight += tagSize.height + TAG_PADDING;
+            contentWidth += tagSize.width + TAG_PADDING;
         }
         CGSize size = self.tagsScrollView.contentSize;
-        size.height = contentHeight;
+        size.width = contentWidth;
         self.tagsScrollView.contentSize = size;
     }
     [self.foodCollectionView reloadData];

@@ -38,8 +38,8 @@
 - (void)setup {
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.layer.borderWidth = 1.5;
+//    self.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    self.layer.borderWidth = 1.5;
     
 //    // drop shadow
 //    [self.layer setShadowColor:[UIColor blackColor].CGColor];
