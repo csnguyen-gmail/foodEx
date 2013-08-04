@@ -12,6 +12,7 @@
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
 #import <CoreLocation/CoreLocation.h>
+#import "FEPlaceDataSource.h"
 
 #define PLACE_DISP_TYPE @"PlaceDispType"
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *placeGridView;
+@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @end
 
 @implementation FESearchVC
@@ -32,8 +34,8 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting;
-    // TODO
+    self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting; // TODO will be removed
+    [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,6 +75,13 @@
         hiddenView.hidden = YES;
     }
     self.dispTypeSC.selectedSegmentIndex = type;
+    if (type == 0) {
+        // TODO
+        self.placeGridCVC.placeDataSource = nil;
+    }
+    else {
+        self.placeGridCVC.placeDataSource = self.placeDataSource;
+    }
 }
 #pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
@@ -103,6 +112,12 @@
         
     }
     return _searchSettingInfo;
+}
+- (FEPlaceDataSource *)placeDataSource {
+    if (!_placeDataSource) {
+        _placeDataSource = [[FEPlaceDataSource alloc] init];
+    }
+    return _placeDataSource;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeList"]) {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FEPlaceDataSource.h"
 
 @interface FEPlaceGridCVC : UICollectionViewController
-@property (nonatomic, strong) NSArray *places; // array of Place
+@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @end

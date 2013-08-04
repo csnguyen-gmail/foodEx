@@ -21,9 +21,11 @@
 - (void)setFood:(Food *)food {
     _food = food;
     self.isBestImageView.hidden = !food.isBest;
-    Photo *photo = self.food.photos[0];
-    self.foodImageView.image = photo.thumbnailPhoto;
-    self.foodNameTF.text = food.name;
+    if (self.food.photos.count != 0) {
+        Photo *photo = self.food.photos[0];
+        self.foodImageView.image = photo.thumbnailPhoto;
+        self.foodNameTF.text = food.name;
+    }
 }
 
 @end

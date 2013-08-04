@@ -13,10 +13,20 @@
 
 @implementation FEPlaceGridCVC
 - (void)updateCell:(FEPlaceGridCell*)cell atIndex:(NSUInteger)index{
-    Place *place = self.places[index];
-    Photo *photo = place.photos[0];
-    UIImage *image = [[UIImage alloc] initWithData:photo.imageData];
-    cell.placeImageView.image = image;
+    Place *place = self.placeDataSource.places[index];
+    if (place.photos.count != 0) {
+        Photo *photo = place.photos[0];
+        UIImage *image = [[UIImage alloc] initWithData:photo.imageData];
+        cell.placeImageView.image = image;
+    }
+    else {
+        cell.placeImageView.image = nil;
+    }
+}
+#pragma mark - getter setter
+- (void)setPlaceDataSource:(FEPlaceDataSource *)placeDataSource {
+    _placeDataSource = placeDataSource;
+    [self.collectionView reloadData];
 }
 #pragma mark - Collection view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -24,7 +34,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.places.count;
+    return self.placeDataSource.places.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"placeCell";
@@ -32,9 +42,9 @@
     [self updateCell:cell atIndex:indexPath.row];
     return cell;
 }
-#pragma mark - Collection view delegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-}
+//#pragma mark - Collection view delegate
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
 
 @end
