@@ -1590,7 +1590,6 @@
         <class className="FEFoodDetailVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodDetailVC.h"/>
             <relationships>
-                <relationship kind="action" name="closeTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="flipFoodView" candidateClass="FEFlipFoodView"/>
             </relationships>
@@ -1598,8 +1597,6 @@
         <class className="FEFoodEditListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditListCell.h"/>
             <relationships>
-                <relationship kind="action" name="isBestButtonTapped:" candidateClass="UIButton"/>
-                <relationship kind="action" name="photoButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="foodsScrollView" candidateClass="FEDynamicScrollView"/>
                 <relationship kind="outlet" name="highlightView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="isBestButton" candidateClass="UIButton"/>
@@ -1615,9 +1612,6 @@
         </class>
         <class className="FEHomeVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
-        </class>
-        <class className="FEPlaceBaseTVC" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceBaseTVC.h"/>
         </class>
         <class className="FEPlaceDetailFoodCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailFoodCell.h"/>
@@ -1651,7 +1645,6 @@
         <class className="FEPlaceEditMainVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditMainVC.h"/>
             <relationships>
-                <relationship kind="action" name="doneButtonTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="editPlaceInfoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
@@ -1683,7 +1676,6 @@
         <class className="FEPlaceListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
             <relationships>
-                <relationship kind="action" name="informationBtnTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
@@ -1692,7 +1684,7 @@
                 <relationship kind="outlet" name="tagsScrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-        <class className="FEPlaceListTVC" superclassName="FEPlaceBaseTVC">
+        <class className="FEPlaceListTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListTVC.h"/>
         </class>
         <class className="FESearchFoodSettingTVC" superclassName="FESearchSortBaseTVC">
@@ -1761,7 +1753,6 @@
         <class className="FESearchVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
             <relationships>
-                <relationship kind="action" name="showTypeChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="dispTypeSC" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="placeGridView" candidateClass="UIView"/>
@@ -1788,9 +1779,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

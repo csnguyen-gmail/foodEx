@@ -11,19 +11,16 @@
 #import "FEPlaceGridCVC.h"
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
-#import <CoreLocation/CoreLocation.h>
 #import "FEPlaceDataSource.h"
 
 #define PLACE_DISP_TYPE @"PlaceDispType"
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
-@property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
-@property (weak, nonatomic) FEPlaceGridCVC *placeGridCVC;
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
-@property (nonatomic, strong) CLLocation *currentLocation;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (nonatomic) NSUInteger placeDispType; // List or Grid
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
+@property (weak, nonatomic) FEPlaceGridCVC *placeGridCVC;
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *placeGridView;
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
@@ -34,17 +31,22 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting; // TODO will be removed
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.locationManager startUpdatingLocation];
+    [self.placeDataSource updateLocation:^(CLLocation *location) {
+        if (self.placeDispType == 0) {
+            [self.placeListTVC.tableView reloadData];
+        }
+        else {
+            [self.placeGridCVC.collectionView reloadData];
+        }
+    }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.locationManager stopUpdatingLocation];
 }
 - (void)loadPlaceDisplayType {
     _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];
@@ -75,11 +77,15 @@
         hiddenView.hidden = YES;
     }
     self.dispTypeSC.selectedSegmentIndex = type;
+    [self updatePlaceDateSourceWithType:type];
+}
+- (void)updatePlaceDateSourceWithType:(NSUInteger)type {
     if (type == 0) {
-        // TODO
+        self.placeListTVC.placeDataSource = self.placeDataSource;
         self.placeGridCVC.placeDataSource = nil;
     }
     else {
+        self.placeListTVC.placeDataSource = nil;
         self.placeGridCVC.placeDataSource = self.placeDataSource;
     }
 }
@@ -89,15 +95,6 @@
     [self switchPlaceDispToType:sender.selectedSegmentIndex withAnimation:YES];
 }
 #pragma mark - getter setter
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        _locationManager.distanceFilter = kCLDistanceFilterNone;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    }
-    return _locationManager;
-}
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
         NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_SETTING_KEY];
@@ -135,15 +132,7 @@
 - (void)didFinishSearchSetting:(FESearchSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
         self.searchSettingInfo = searchSetting;
-        self.placeListTVC.placeSetting = self.searchSettingInfo.placeSetting;
+        [self updatePlaceDateSourceWithType:self.placeDispType];
     }
-}
-#pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    [self locationManager:manager didUpdateLocations:@[oldLocation, newLocation]];
-}
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    self.placeListTVC.currentLocation = [locations lastObject];
-    [manager stopUpdatingLocation];
 }
 @end

@@ -24,6 +24,7 @@
     [self queryDatabase];
 }
 - (void)updateLocation:(LocationUpdateCompletionBlock)completion {
+    [self.locationManager stopUpdatingLocation];
     [self.locationManager startUpdatingLocation];
     self.locationUpdateCompletionBlock = completion;
 }
@@ -108,5 +109,6 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     self.currentLocation = newLocation;
     self.locationUpdateCompletionBlock(newLocation);
+    [manager stopUpdatingLocation];
 }
 @end

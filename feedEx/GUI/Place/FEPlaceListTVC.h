@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FEPlaceBaseTVC.h"
+#import "FEPlaceDataSource.h"
 
-@interface FEPlaceListTVC : FEPlaceBaseTVC
+@interface FEPlaceListTVC : UITableViewController
+@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @end

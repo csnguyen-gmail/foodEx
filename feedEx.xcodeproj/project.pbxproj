@@ -152,7 +152,6 @@
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
 		6FED8F99175A5A7F00216AC6 /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F93175A5A7F00216AC6 /* remove.png */; };
 		6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF9139017A52BCF00FC38FB /* FEPlaceDetailTVC.m */; };
-		6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */; };
 		6FFBBAA81781EB8B0049E1E9 /* StarEmptyTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA41781EB890049E1E9 /* StarEmptyTiny.png */; };
 		6FFBBAA91781EB8B0049E1E9 /* StarEmptyTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */; };
 		6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */; };
@@ -365,8 +364,6 @@
 		6FF9138F17A52BCE00FC38FB /* FEPlaceDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDetailTVC.h; sourceTree = "<group>"; };
 		6FF9139017A52BCF00FC38FB /* FEPlaceDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDetailTVC.m; sourceTree = "<group>"; };
 		6FFBBA9A17819CE20049E1E9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		6FFBBAA11781E13B0049E1E9 /* FEPlaceBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceBaseTVC.h; sourceTree = "<group>"; };
-		6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceBaseTVC.m; sourceTree = "<group>"; };
 		6FFBBAA41781EB890049E1E9 /* StarEmptyTiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarEmptyTiny.png; sourceTree = "<group>"; };
 		6FFBBAA51781EB890049E1E9 /* StarEmptyTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarEmptyTiny@2x.png"; sourceTree = "<group>"; };
 		6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarFullTiny.png; sourceTree = "<group>"; };
@@ -743,8 +740,6 @@
 				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
 				6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */,
 				6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */,
-				6FFBBAA11781E13B0049E1E9 /* FEPlaceBaseTVC.h */,
-				6FFBBAA21781E13B0049E1E9 /* FEPlaceBaseTVC.m */,
 				6F9E95B61744EED100DCCF24 /* FEPlaceEditTVC.h */,
 				6F9E95B71744EED100DCCF24 /* FEPlaceEditTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEPlaceEditMainVC.h */,
@@ -1043,7 +1038,6 @@
 				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
-				6FFBBAA31781E13B0049E1E9 /* FEPlaceBaseTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,

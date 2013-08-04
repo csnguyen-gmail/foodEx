@@ -30,90 +30,106 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        placeDetailVC.place = self.places[self.selectedRow];
+        placeDetailVC.place = self.placeDataSource.places[self.selectedRow];
     }
 }
+#pragma mark - getter setter
+- (void)setPlaceDataSource:(FEPlaceDataSource *)placeDataSource {
+    _placeDataSource = placeDataSource;
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.placeDataSource.places.count];
+    for (int i = 0; i< self.placeDataSource.places.count; i++) {
+        [self.imageIndexes addObject:@(0)];
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.places.count;
+    return self.placeDataSource.places.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlaceListCell";
     FEPlaceListCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [self updateCell:cell withPlaceInfo:self.places[indexPath.row] atIndexPath:indexPath];
+    [self updateCell:cell atIndexPath:indexPath.row];
     return cell;
 }
 #define TAG_PADDING 5.0
 #define TAG_HORIZON_MARGIN 10.0
 #define TAG_VERTICAL_MARGIN 5.0
-- (void)updateCell:(FEPlaceListCell*)cell withPlaceInfo:(Place*)place atIndexPath:(NSIndexPath*)indexPath{
-    cell.delegate = self;
-    cell.nameLbl.text = place.name;
-    cell.addressLbl.text = place.address.address;
-    cell.ratingView.rate = [place.rating integerValue];
-    cell.flipPhotosView.rowIndex = indexPath.row;
-    cell.flipPhotosView.delegate = self;
-    cell.flipPhotosView.usingThumbnail = YES;
-    [cell.flipPhotosView setDatasource:[place.photos array]
-                     withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
-    [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    if (place.tags.count > 0) {
-        CGFloat contentWidth = 0.0;
-        for (Tag *tag in place.tags) {
-            UIFont *font = [UIFont systemFontOfSize:10];
-            CGSize tagSize = [tag.label sizeWithFont:font];
-            tagSize.width += TAG_HORIZON_MARGIN;
-            tagSize.height += TAG_VERTICAL_MARGIN;
-            UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
-            tagLbl.adjustsFontSizeToFitWidth = YES;
-            tagLbl.minimumScaleFactor = 0.1;
-            tagLbl.textAlignment = NSTextAlignmentCenter;
-            tagLbl.text = tag.label;
-            tagLbl.font = font;
-            tagLbl.textColor = [UIColor whiteColor];
-            tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
-            tagLbl.layer.cornerRadius = 5;
-            tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
-            tagLbl.layer.borderWidth = 0.8;
-            [cell.tagsScrollView addSubview:tagLbl];
-            contentWidth += tagSize.width + TAG_PADDING;
+- (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
+    Place *place = self.placeDataSource.places[index];
+    if (place.photos.count != 0) {
+        cell.delegate = self;
+        cell.nameLbl.text = place.name;
+        cell.addressLbl.text = place.address.address;
+        cell.ratingView.rate = [place.rating integerValue];
+        cell.flipPhotosView.rowIndex = index;
+        cell.flipPhotosView.delegate = self;
+        cell.flipPhotosView.usingThumbnail = YES;
+        [cell.flipPhotosView setDatasource:[place.photos array]
+                         withSelectedIndex:[self.imageIndexes[index] integerValue]];
+        [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        if (place.tags.count > 0) {
+            CGFloat contentWidth = 0.0;
+            for (Tag *tag in place.tags) {
+                UIFont *font = [UIFont systemFontOfSize:10];
+                CGSize tagSize = [tag.label sizeWithFont:font];
+                tagSize.width += TAG_HORIZON_MARGIN;
+                tagSize.height += TAG_VERTICAL_MARGIN;
+                UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
+                tagLbl.adjustsFontSizeToFitWidth = YES;
+                tagLbl.minimumScaleFactor = 0.1;
+                tagLbl.textAlignment = NSTextAlignmentCenter;
+                tagLbl.text = tag.label;
+                tagLbl.font = font;
+                tagLbl.textColor = [UIColor whiteColor];
+                tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
+                tagLbl.layer.cornerRadius = 5;
+                tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
+                tagLbl.layer.borderWidth = 0.8;
+                [cell.tagsScrollView addSubview:tagLbl];
+                contentWidth += tagSize.width + TAG_PADDING;
+            }
+            CGSize size = cell.tagsScrollView.contentSize;
+            size.width = contentWidth;
+            cell.tagsScrollView.contentSize = size;
         }
-        CGSize size = cell.tagsScrollView.contentSize;
-        size.width = contentWidth;
-        cell.tagsScrollView.contentSize = size;
-    }
-    if (self.currentLocation) {
-        double placeLon = [place.address.longtitude doubleValue];
-        double placeLat = [place.address.lattittude doubleValue];
-        if (placeLon != 0.0 && placeLat != 0.0){
-            CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:placeLat longitude:placeLon];
-            CLLocationDistance distance = [placeLocation distanceFromLocation:self.currentLocation];
-            if (distance < 1000) {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
+        if (self.placeDataSource.currentLocation) {
+            double placeLon = [place.address.longtitude doubleValue];
+            double placeLat = [place.address.lattittude doubleValue];
+            if (placeLon != 0.0 && placeLat != 0.0){
+                CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:placeLat longitude:placeLon];
+                CLLocationDistance distance = [placeLocation distanceFromLocation:self.placeDataSource.currentLocation];
+                if (distance < 1000) {
+                    cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
+                } else {
+                    cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
+                }
             } else {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
+                cell.distanceLbl.text = @"";
             }
         } else {
             cell.distanceLbl.text = @"";
         }
-    } else {
-        cell.distanceLbl.text = @"";
+    }
+    else {
+        // TODO
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 89;
 }
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO
-}
+//#pragma mark - Table view delegate
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // TODO
+//}
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
@@ -122,13 +138,6 @@
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListCell *)cell {
     self.selectedRow = [[self.tableView indexPathForCell:cell] row];
     [self performSegueWithIdentifier:@"placeDetail" sender:self];
-}
-#pragma mark - implement abstract functions
-- (void)didChangeDataSource {
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
-    for (int i = 0; i< self.places.count; i++) {
-        [self.imageIndexes addObject:@(0)];
-    }
 }
 
 @end
