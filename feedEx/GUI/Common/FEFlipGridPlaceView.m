@@ -1,16 +1,23 @@
 //
-//  FEFlipPlaceView.m
+//  FEFlipGridPlaceView.m
 //  feedEx
 //
-//  Created by csnguyen on 8/4/13.
+//  Created by csnguyen on 8/7/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEFlipPlaceView.h"
+#import "FEFlipGridPlaceView.h"
+#import "Photo.h"
 #import "Photo.h"
 #import "DYRateView.h"
 
-@implementation FEFlipPlaceView
+@implementation FEFlipGridPlaceView
+// overwrite super class
+- (void)setCurrentViewIndex:(NSUInteger)currentViewIndex {
+    super.currentViewIndex = currentViewIndex;
+    [self.delegate didChangeCurrentIndex:currentViewIndex atRow:self.rowIndex];
+}
+
 - (UIView *)getViewAtIndex:(NSUInteger)index {
     CGRect rect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
     UIView *bgView = [[UIView alloc] initWithFrame:rect];
@@ -26,20 +33,31 @@
     UIView *greyView = [[UIView alloc] initWithFrame:rect];
     greyView.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
     
-    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(11.0, 2.0, 151.0, 21.0)];
+    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 2.0, 74.0, 21.0)];
     nameLbl.textColor = [UIColor whiteColor];
     nameLbl.backgroundColor = [UIColor clearColor];
+    nameLbl.adjustsFontSizeToFitWidth = YES;
+    nameLbl.minimumScaleFactor = 0.5;
     nameLbl.text = self.name;
     
-    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(169.0, 6.0, 66.0, 12.0)];
+    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(77.0, 7.0, 66.0, 12.0)];
     ratingView.backgroundColor = [UIColor clearColor];
-    ratingView.rate = self.rating;
     
+    UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    CGRect frame = detailBtn.frame;
+    frame.origin = CGPointMake(118.0, 118.0);
+    detailBtn.frame = frame;
+    [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    ratingView.rate = self.rating;
     [bgView addSubview:imageView];
     [bgView addSubview:greyView];
     [bgView addSubview:nameLbl];
     [bgView addSubview:ratingView];
+    [bgView addSubview:detailBtn];
     return bgView;
 }
-
+- (void)detailBtnTapped {
+    [self.delegate didSelectPlaceAtRow:self.rowIndex];
+}
 @end

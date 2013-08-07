@@ -11,6 +11,7 @@
 #import "FERoundImageView.h"
 
 @implementation FEFlipPhotosView
+// overwrite super class
 - (void)setCurrentViewIndex:(NSUInteger)currentViewIndex {
     super.currentViewIndex = currentViewIndex;
     [self.delegate didChangeCurrentIndex:currentViewIndex atRow:self.rowIndex];

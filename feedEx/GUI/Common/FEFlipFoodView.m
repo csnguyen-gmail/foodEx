@@ -8,14 +8,13 @@
 
 #import "FEFlipFoodView.h"
 #import "Photo.h"
-#import <QuartzCore/QuartzCore.h>
 
 
 @implementation FEFlipFoodView
 - (UIView *)getViewAtIndex:(NSUInteger)index {
     CGRect rect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
     UIView *bgView = [[UIView alloc] initWithFrame:rect];
-    bgView.layer.cornerRadius = 10.0;
+    bgView.layer.cornerRadius = 10;
     bgView.layer.masksToBounds = YES;
     
     Photo *photo = self.datasource[index];

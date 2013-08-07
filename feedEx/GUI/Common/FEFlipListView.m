@@ -7,6 +7,7 @@
 //
 
 #import "FEFlipListView.h"
+
 @interface FEFlipListView()
 @property (nonatomic, strong) UIView *frontView;
 //@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
@@ -21,6 +22,8 @@
 
 - (void)setup {
     self.backgroundColor = [UIColor clearColor];
+    self.layer.cornerRadius = 10.0;
+    self.layer.masksToBounds = YES;
 //    self.leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeFrom:)];
 //    self.leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
 //    self.rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeFrom:)];

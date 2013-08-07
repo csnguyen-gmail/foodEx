@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
 @interface FEFlipListView : UIView
 @property (nonatomic, strong) NSArray *datasource;
 @property (nonatomic) NSUInteger currentViewIndex;

@@ -36,6 +36,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // TODO: update only when database change or search setting change
     [self.placeDataSource updateLocation:^(CLLocation *location) {
         if (self.placeDispType == 0) {
             [self.placeListTVC.tableView reloadData];

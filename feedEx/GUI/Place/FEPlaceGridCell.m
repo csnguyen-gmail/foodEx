@@ -9,5 +9,4 @@
 #import "FEPlaceGridCell.h"
 
 @implementation FEPlaceGridCell
-
 @end

@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcE-fA-Guu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9529" y="-1256"/>
+            <point key="canvasLocation" x="-9383" y="-1256"/>
         </scene>
         <!--Place EditTVC-->
         <scene sceneID="zta-bW-gde">
@@ -408,7 +408,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53W-tL-NSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9924" y="-1256"/>
+            <point key="canvasLocation" x="-9778" y="-1256"/>
         </scene>
         <!--View Controller - Map-->
         <scene sceneID="c2i-Eq-6gF">
@@ -517,7 +517,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMV-pA-cGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10984" y="-300"/>
+            <point key="canvasLocation" x="-10929" y="-526"/>
         </scene>
         <!--Place Detail MainVC - Detail place-->
         <scene sceneID="vBR-q4-hlz">
@@ -579,7 +579,7 @@
                     <navigationItem key="navigationItem" title="Detail place" id="UVG-jd-9vW">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="dkb-rk-LKn">
                             <connections>
-                                <segue destination="fwP-jD-tNt" kind="modal" identifier="editPlace" id="OkE-8Z-2rC"/>
+                                <segue destination="fwP-jD-tNt" kind="modal" identifier="editPlace" modalTransitionStyle="flipHorizontal" id="OkE-8Z-2rC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -597,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10560" y="-300"/>
+            <point key="canvasLocation" x="-10414" y="-300"/>
         </scene>
         <!--Food DetailVC-->
         <scene sceneID="ZLz-x8-vhn">
@@ -644,7 +644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfS-pb-fhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9956" y="-27"/>
+            <point key="canvasLocation" x="-9810" y="-27"/>
         </scene>
         <!--Place DetailTVC-->
         <scene sceneID="1fd-QS-ppT">
@@ -797,7 +797,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCF-Uu-qQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9941" y="-453"/>
+            <point key="canvasLocation" x="-9810" y="-475"/>
         </scene>
         <!--View Controller - Share-->
         <scene sceneID="BHQ-rT-NaT">
@@ -852,7 +852,7 @@
                                     <containerView contentMode="scaleToFill" id="sHH-PB-Hn2">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="444"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="ytn-sB-SNz" kind="embed" identifier="placeGrid" id="q0q-nJ-jYX"/>
                                         </connections>
@@ -902,30 +902,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="308" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xg2-Du-D3m">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="xg2-Du-D3m">
                             <size key="itemSize" width="140" height="140"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="11" minY="6" maxX="11" maxY="6"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeCell" id="MFH-4w-eDn" customClass="FEPlaceGridCell">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                <rect key="frame" x="11" y="6" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="N0g-6Q-vmd">
+                                        <view contentMode="scaleToFill" id="zGO-1a-8kx" customClass="FEFlipGridPlaceView">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <size key="customSize" width="140" height="140"/>
                                 <connections>
-                                    <outlet property="placeImageView" destination="N0g-6Q-vmd" id="4Rd-Gl-qdA"/>
+                                    <outlet property="flipPlaceGridView" destination="zGO-1a-8kx" id="kGK-tD-gcH"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -934,10 +936,13 @@
                             <outlet property="delegate" destination="ytn-sB-SNz" id="rX2-4u-wPL"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="nN5-fG-BRM" kind="push" identifier="placeDetail" id="VJo-7D-IoS"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXq-G0-iKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10914" y="538"/>
+            <point key="canvasLocation" x="-10923" y="83"/>
         </scene>
         <!--Search Food SettingTVC-->
         <scene sceneID="2Cf-BB-5rj">
@@ -1578,6 +1583,9 @@
         <class className="FEFlipFoodView" superclassName="FEFlipListView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipFoodView.h"/>
         </class>
+        <class className="FEFlipGridPlaceView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipGridPlaceView.h"/>
+        </class>
         <class className="FEFlipListView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipListView.h"/>
         </class>
@@ -1597,6 +1605,8 @@
         <class className="FEFoodEditListCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditListCell.h"/>
             <relationships>
+                <relationship kind="action" name="isBestButtonTapped:" candidateClass="UIButton"/>
+                <relationship kind="action" name="photoButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="foodsScrollView" candidateClass="FEDynamicScrollView"/>
                 <relationship kind="outlet" name="highlightView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="isBestButton" candidateClass="UIButton"/>
@@ -1645,6 +1655,7 @@
         <class className="FEPlaceEditMainVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditMainVC.h"/>
             <relationships>
+                <relationship kind="action" name="doneButtonTapped:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="editPlaceInfoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
@@ -1654,6 +1665,7 @@
         <class className="FEPlaceEditTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditTVC.h"/>
             <relationships>
+                <relationship kind="action" name="photoButtonTapped:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
@@ -1670,7 +1682,7 @@
         <class className="FEPlaceGridCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceGridCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="placeImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="flipPlaceGridView" candidateClass="FEFlipGridPlaceView"/>
             </relationships>
         </class>
         <class className="FEPlaceListCell" superclassName="UITableViewCell">
@@ -1718,6 +1730,7 @@
         <class className="FESearchSettingVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
             <relationships>
+                <relationship kind="action" name="segmentChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="foodSettingView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
@@ -1753,6 +1766,7 @@
         <class className="FESearchVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
             <relationships>
+                <relationship kind="action" name="showTypeChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="dispTypeSC" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="placeGridView" candidateClass="UIView"/>
@@ -1787,6 +1801,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="eDW-Ly-5HO"/>
         <segue reference="LCh-08-MT1"/>
         <segue reference="OkE-8Z-2rC"/>
     </inferredMetricsTieBreakers>

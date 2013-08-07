@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FEFlipGridPlaceView.h"
+#import "Place.h"
 
 @interface FEPlaceGridCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *placeImageView;
+@property (weak, nonatomic) IBOutlet FEFlipGridPlaceView *flipPlaceGridView;
 @end

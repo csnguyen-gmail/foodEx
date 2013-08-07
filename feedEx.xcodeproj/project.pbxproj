@@ -101,6 +101,7 @@
 		6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF517646E0900DB606C /* gradientBar.png */; };
 		6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextView.m */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
+		6FBD839417B2070A0082449F /* FEFlipGridPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -308,6 +309,8 @@
 		6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextView.h; sourceTree = "<group>"; };
 		6FAD9DFB1764FC6000DB606C /* FETagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextView.m; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
+		6FBD839217B2070A0082449F /* FEFlipGridPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipGridPlaceView.h; sourceTree = "<group>"; };
+		6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipGridPlaceView.m; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -723,6 +726,8 @@
 				6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */,
 				6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */,
 				6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */,
+				6FBD839217B2070A0082449F /* FEFlipGridPlaceView.h */,
+				6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1054,6 +1059,7 @@
 				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
 				6F89E7EF17AE88D2007BDAFA /* FEPlaceGridCell.m in Sources */,
 				6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */,
+				6FBD839417B2070A0082449F /* FEFlipGridPlaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
