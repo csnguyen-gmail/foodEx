@@ -133,6 +133,7 @@
 - (void)didFinishSearchSetting:(FESearchSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
         self.searchSettingInfo = searchSetting;
+        [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
         [self updatePlaceDateSourceWithType:self.placeDispType];
     }
 }

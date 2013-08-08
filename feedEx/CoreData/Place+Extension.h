@@ -8,9 +8,11 @@
 
 #import "Place.h"
 #import "Food.h"
+#import "FESearchSettingInfo.h"
 
 @interface Place (Extension)
 - (void)insertFoodsAtIndex:(NSUInteger)index;
 - (void)removeFoodAtIndex:(NSUInteger)index;
 - (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
++ (NSArray*)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo*)placeSettingInfo withMOC:(NSManagedObjectContext*)moc;
 @end
