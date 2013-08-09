@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FESearchVC : UIViewController
-
+@property (nonatomic) BOOL needUpdateDatabase;
 @end

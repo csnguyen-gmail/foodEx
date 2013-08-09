@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.needUpdateDatabase = YES;
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
@@ -37,14 +38,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // TODO: update only when database change or search setting change
-    [self.placeDataSource updateLocation:^(CLLocation *location) {
-        if (self.placeDispType == 0) {
-            [self.placeListTVC.tableView reloadData];
-        }
-        else {
-            [self.placeGridCVC.collectionView reloadData];
-        }
-    }];
+    if (self.needUpdateDatabase) {
+        [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
+        [self updatePlaceDateSourceWithType:self.placeDispType];
+        // TODO: update locatio only in case User refresh
+        [self.placeDataSource updateLocation:^(CLLocation *location) {
+            if (self.placeDispType == 0) {
+                [self.placeListTVC.tableView reloadData];
+            }
+            else {
+                [self.placeGridCVC.collectionView reloadData];
+            }
+        }];
+        self.needUpdateDatabase = NO;
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -133,8 +140,7 @@
 - (void)didFinishSearchSetting:(FESearchSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
         self.searchSettingInfo = searchSetting;
-        [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
-        [self updatePlaceDateSourceWithType:self.placeDispType];
+        self.needUpdateDatabase = YES;
     }
 }
 @end

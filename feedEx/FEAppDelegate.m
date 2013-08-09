@@ -9,6 +9,13 @@
 #import "FEAppDelegate.h"
 #import "FETrackingKeyboardWindow.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <CoreData/CoreData.h>
+#import "FESearchVC.h"
+#import "FEMapVC.h"
+@interface FEAppDelegate()
+@property (nonatomic, weak) FESearchVC *searchVC;
+@property (nonatomic, weak) FEMapVC *mapVC;
+@end
 
 @implementation FEAppDelegate
 
@@ -20,10 +27,25 @@
     self.window = window;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     self.window.rootViewController = [storyboard instantiateInitialViewController];
+    UITabBarController *tabbarVC = (UITabBarController*)self.window.rootViewController;
+    UINavigationController *searchNC = tabbarVC.childViewControllers[1];
+    self.searchVC = searchNC.childViewControllers[0];
+    self.mapVC = tabbarVC.childViewControllers[2];
     // provide key to use Google Map API
     [GMSServices provideAPIKey:@"AIzaSyAFoi1LNE9wzQbTjwX1LuPKEbvIP9WVfKA"];
+    // tracking Coredata change
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleDataModelChange:)
+                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:nil];
     return YES;
 }
+- (void)handleDataModelChange:(NSNotification *)note
+{
+    self.searchVC.needUpdateDatabase = YES;
+    self.mapVC.needUpdateDatabase = YES;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -51,6 +73,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                  object:nil];
 }
 
 @end

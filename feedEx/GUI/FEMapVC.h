@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FEMapVC : UIViewController
-
+@property (nonatomic) BOOL needUpdateDatabase;
 @end
