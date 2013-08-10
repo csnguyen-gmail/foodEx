@@ -297,7 +297,7 @@
     if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
     {
         CLLocation* location = self.mapView.myLocation;
-        CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
         GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
         [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
             if (resp.firstResult != nil) {

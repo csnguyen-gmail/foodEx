@@ -13,6 +13,7 @@
 #import "FEPlaceDataSource.h"
 #import "Place+Extension.h"
 #import "Address.h"
+#import "FEDirection.h"
 
 @interface FEMapVC()
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -43,7 +44,7 @@
             marker.map = nil;
         }
         for (Place *place in self.places) {
-            CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake([place.address.lattittude floatValue], [place.address.longtitude floatValue]);
+            CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
             [self addMarketAt:location2d snippet:place.name mapMoved:NO];
         }
         self.needUpdateDatabase = NO;
@@ -80,7 +81,7 @@
     if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
     {
         CLLocation* location = self.mapView.myLocation;
-        CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
         GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:NO];
         marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
         
@@ -89,6 +90,23 @@
             bounds = [bounds includingCoordinate:marker.position];
         }
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+        
+        // TODO:test only
+        Place *place1 = self.places[0];
+        Place *place2 = self.places[1];
+        CLLocationCoordinate2D locPlace1 = {[place1.address.lattittude floatValue], [place1.address.longtitude floatValue]};
+        CLLocationCoordinate2D locPlace2 = {[place2.address.lattittude floatValue], [place2.address.longtitude floatValue]};
+        [FEDirection getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+            GMSMutablePath *path = [GMSMutablePath path];
+            for (NSValue *value in locations) {
+                CLLocationCoordinate2D location;
+                [value getValue:&location];
+                [path addCoordinate:location];
+            }
+            GMSPolyline *route = [GMSPolyline polylineWithPath:path];
+            route.strokeWidth = 3;
+            route.map = self.mapView;
+        }];
     }
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
