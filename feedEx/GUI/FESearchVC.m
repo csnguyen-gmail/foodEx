@@ -37,7 +37,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // TODO: update only when database change or search setting change
     if (self.needUpdateDatabase) {
         [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
         [self updatePlaceDateSourceWithType:self.placeDispType];

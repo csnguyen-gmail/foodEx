@@ -10,22 +10,44 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "Common.h"
 #import "FECoreDataController.h"
+#import "FEPlaceDataSource.h"
+#import "Place+Extension.h"
+#import "Address.h"
 
 @interface FEMapVC()
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
 @property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *places;
+@property (nonatomic, strong) FESearchPlaceSettingInfo *searchPlaceSettingInfo;
 @end
 
 @implementation FEMapVC
 // TODO: when to update database
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.needUpdateDatabase = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton = YES;
     [self addLocationObervation];
 }
 - (void)dealloc {
     [self removeLocationObservation];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.needUpdateDatabase) {
+        self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
+                                                withMOC:self.coreData.managedObjectContext];
+        for (GMSMarker *marker in self.mapView.markers) {
+            marker.map = nil;
+        }
+        for (Place *place in self.places) {
+            CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake([place.address.lattittude floatValue], [place.address.longtitude floatValue]);
+            [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+        }
+        self.needUpdateDatabase = NO;
+    }
 }
 
 #pragma mark - getter setter
@@ -35,7 +57,6 @@
     }
     return _coreData;
 }
-
 #pragma mark - Map
 - (void)addLocationObervation {
     self.indicationView.hidden = NO;
@@ -60,8 +81,14 @@
     {
         CLLocation* location = self.mapView.myLocation;
         CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
+        GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:NO];
         marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
+        
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:location2d coordinate:location2d];
+        for (GMSMarker *marker in self.mapView.markers) {
+            bounds = [bounds includingCoordinate:marker.position];
+        }
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
     }
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
@@ -73,6 +100,7 @@
     }
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = location;
+    marker.snippet = snippet;
     marker.map = self.mapView;
     return marker;
 }

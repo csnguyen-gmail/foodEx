@@ -318,6 +318,7 @@
     }
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = location;
+    marker.snippet = snippet;
     marker.map = self.mapView;
     [self.draggableMarkerManager addDraggableMarker:marker];
     return marker;

@@ -419,18 +419,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="qeW-0E-8QB" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" style="gray" id="Djq-0m-QDB">
-                                <rect key="frame" x="150" y="240" width="20" height="20"/>
+                                <rect key="frame" x="150" y="262" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="lQu-jg-GK6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map.png" id="Sa0-ob-7ag"/>
+                    <toolbarItems/>
                     <connections>
                         <outlet property="indicationView" destination="Djq-0m-QDB" id="kH5-eA-gzf"/>
                         <outlet property="mapView" destination="qeW-0E-8QB" id="bqZ-0m-3e5"/>
@@ -1585,6 +1591,234 @@
         <image name="spin.png" width="30" height="30"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="CPTextViewPlaceholder" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTextViewPlaceholder.h"/>
+        </class>
+        <class className="DYRateView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DYRateView.h"/>
+        </class>
+        <class className="FEDynamicScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEDynamicScrollView.h"/>
+        </class>
+        <class className="FEFlipFoodView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipFoodView.h"/>
+        </class>
+        <class className="FEFlipGridPlaceView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipGridPlaceView.h"/>
+        </class>
+        <class className="FEFlipListView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipListView.h"/>
+        </class>
+        <class className="FEFlipPhotosView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipPhotosView.h"/>
+        </class>
+        <class className="FEFlipPlaceView" superclassName="FEFlipListView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFlipPlaceView.h"/>
+        </class>
+        <class className="FEFoodDetailVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodDetailVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bgView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="flipFoodView" candidateClass="FEFlipFoodView"/>
+            </relationships>
+        </class>
+        <class className="FEFoodEditListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditListCell.h"/>
+            <relationships>
+                <relationship kind="action" name="isBestButtonTapped:" candidateClass="UIButton"/>
+                <relationship kind="action" name="photoButtonTapped:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foodsScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="highlightView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="isBestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="FEFoodEditVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEFoodEditVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FEHomeVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEHomeVC.h"/>
+        </class>
+        <class className="FEMapVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEMapVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicationView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceDetailFoodCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailFoodCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foodImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="foodNameTF" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="isBestImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceDetailMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="foodDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapBgView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="placeDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceDetailTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceDetailTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="flipPlaceView" candidateClass="FEFlipPlaceView"/>
+                <relationship kind="outlet" name="foodCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="tagsScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceEditMainVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditMainVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="editPlaceInfoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="GMSMapView"/>
+                <relationship kind="outlet" name="verticalResizeView" candidateClass="FEVerticalResizeControllView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceEditTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceEditTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="CPTextViewPlaceholder"/>
+                <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photoScrollView" candidateClass="FEDynamicScrollView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="tagTextView" candidateClass="FETagTextView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceGridCVC" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceGridCVC.h"/>
+        </class>
+        <class className="FEPlaceGridCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceGridCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="flipPlaceGridView" candidateClass="FEFlipGridPlaceView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="distanceLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flipPhotosView" candidateClass="FEFlipPhotosView"/>
+                <relationship kind="outlet" name="nameLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="tagsScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="FEPlaceListTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEPlaceListTVC.h"/>
+        </class>
+        <class className="FESearchFoodSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchFoodSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="bestSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="costExprTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchPlaceSettingTVC" superclassName="FESearchSortBaseTVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchPlaceSettingTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="DYRateView"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchSettingVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSettingVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayTypeSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="foodSettingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="panelView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="placeSettingView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FESearchSortBaseTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchSortBaseTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="firstSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="secondSortTapped:" candidateClass="UITextField"/>
+                <relationship kind="action" name="tagsTapped:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondSortTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tagsTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkMarkView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tagDetail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FESearchTagVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchTagVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FESearchVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FESearchVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dispTypeSC" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="placeGridView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="placeListView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FETagTextView" superclassName="CPTextViewPlaceholder">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FETagTextView.h"/>
+        </class>
+        <class className="FEVerticalResizeControllView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FEVerticalResizeControllView.h"/>
+        </class>
+        <class className="GMSMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GMSMapView.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
