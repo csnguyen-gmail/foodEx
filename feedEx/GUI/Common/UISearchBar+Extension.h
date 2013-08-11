@@ -1,5 +1,5 @@
 //
-//  FEPlaceListSearchMapTVC.h
+//  UISearchBar+Extension.h
 //  feedEx
 //
 //  Created by csnguyen on 8/11/13.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FEPlaceListSearchMapTVC : UITableViewController
-@property (nonatomic, strong) NSArray *places;
+@interface UISearchBar (Extension)
+- (void)setSearchBarReturnKeyType:(UIReturnKeyType)returnKeyType;
+
 @end

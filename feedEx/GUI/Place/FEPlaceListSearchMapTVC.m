@@ -14,7 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 // TODO using batch size
 @interface FEPlaceListSearchMapTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
-@property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
+@property (nonatomic, strong) NSMutableDictionary *imageIdDict; // pair of ObjectID and NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
 @end
 
@@ -23,17 +23,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
+    self.imageIdDict = [NSMutableDictionary dictionary];
 }
 #pragma mark - getter setter
 - (void)setPlaces:(NSArray *)places {
     _places = places;
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
-    for (int i = 0; i< self.places.count; i++) {
-        [self.imageIndexes addObject:@(0)];
-    }
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
+- (NSUInteger)getImageIndexOfObjId:(NSManagedObjectID*)objId{
+    NSNumber *index;
+    index = self.imageIdDict[objId];
+    if (index == nil) {
+        index = @(0);
+        self.imageIdDict[objId] = index;
+    }
+    return [index integerValue];
+}
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -63,7 +68,7 @@
         cell.flipPhotosView.delegate = self;
         cell.flipPhotosView.usingThumbnail = YES;
         [cell.flipPhotosView setDatasource:[place.photos array]
-                         withSelectedIndex:[self.imageIndexes[index] integerValue]];
+                         withSelectedIndex:[self getImageIndexOfObjId:place.objectID]];
         [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         if (place.tags.count > 0) {
             CGFloat contentWidth = 0.0;
@@ -90,16 +95,12 @@
             size.width = contentWidth;
             cell.tagsScrollView.contentSize = size;
         }
-        if (self.distances) {
-            CLLocationDistance distance = [self.distances[index] doubleValue];
-            if (distance != -1){
-                if (distance < 1000) {
-                    cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
-                } else {
-                    cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
-                }
+        CLLocationDistance distance = [place.distance doubleValue];
+        if (distance != -1){
+            if (distance < 1000) {
+                cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
             } else {
-                cell.distanceLbl.text = @"";
+                cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
             }
         } else {
             cell.distanceLbl.text = @"";
@@ -120,7 +121,8 @@
 //}
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
-    self.imageIndexes[row] = @(index);
+    Place *place = self.places[row];
+    self.imageIdDict[place.objectID] = @(index);
 }
 #pragma mark - FEPlaceListCellDelegate
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListCell *)cell {

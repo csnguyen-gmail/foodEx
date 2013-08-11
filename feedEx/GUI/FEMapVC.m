@@ -16,6 +16,7 @@
 #import "FEDirection.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
+#import "UISearchBar+Extension.h"
 
 @interface FEMapVC()<UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -38,6 +39,7 @@
     self.mapView.settings.compassButton = YES;
     [self addLocationObervation];
     [self hideSearchResultWithAnimated:NO];
+    [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
 }
 - (void)dealloc {
     [self removeLocationObservation];
@@ -55,9 +57,6 @@
             CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
             [self addMarketAt:location2d snippet:place.name mapMoved:NO];
         }
-        // TODO test search only
-        self.placeListTVC.places = self.places;
-        self.placeListTVC.distances = nil;
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -74,6 +73,18 @@
     return _coreData;
 }
 #pragma mark - Search
+- (NSArray*)queryByPlace:(NSString*)placeName {
+    NSArray *filteredPlaces;
+    // filtering
+    if (placeName.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", placeName];
+        filteredPlaces = [self.places filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        filteredPlaces = self.places;
+    }
+    return filteredPlaces;
+}
 - (void)hideSearchResultWithAnimated:(BOOL)animted{
     CGRect newFrame = self.seacrhResultView.frame;
     newFrame.origin.y = -newFrame.size.height;
@@ -95,12 +106,17 @@
                      }];
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    // keep text before edit for resume in case Cancel
+    self.searchText = searchBar.text;
     // ignore text edit observation in case search bar
     FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate stopObservingFirstResponder];
-    // keep text before edit for resume in case Cancel
-    self.searchText = searchBar.text;
+    self.placeListTVC.places = [self queryByPlace:searchBar.text];
     [self showSearchResult];
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.placeListTVC.places = [self queryByPlace:searchText];
+    self.searchText = searchBar.text;
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     // restore text edit observation

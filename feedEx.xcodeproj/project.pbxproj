@@ -105,6 +105,8 @@
 		6FBD839A17B320880082449F /* FEMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839917B320870082449F /* FEMapVC.m */; };
 		6FBD83A617B6A3BD0082449F /* FEDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83A517B6A3BC0082449F /* FEDirection.m */; };
 		6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */; };
+		6FBD83B217B79F570082449F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83B117B79F560082449F /* Place.m */; };
+		6FBD83B517B7A3A40082449F /* UISearchBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83B417B7A3A30082449F /* UISearchBar+Extension.m */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -127,8 +129,6 @@
 		6FC66FD2176D7C3900C91BC9 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCE176D7C3900C91BC9 /* stop@2x.png */; };
 		6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
 		6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */; };
-		6FC67040177069EB00C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6703F177069EB00C91BC9 /* Place.m */; };
-		6FC67041177069EB00C91BC9 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6703F177069EB00C91BC9 /* Place.m */; };
 		6FC67045177069EC00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67044177069EC00C91BC9 /* Address.m */; };
 		6FC67046177069EC00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67044177069EC00C91BC9 /* Address.m */; };
 		6FC67049177069EC00C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67048177069EC00C91BC9 /* Food.m */; };
@@ -320,6 +320,10 @@
 		6FBD83A517B6A3BC0082449F /* FEDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDirection.m; sourceTree = "<group>"; };
 		6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListSearchMapTVC.h; sourceTree = "<group>"; };
 		6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListSearchMapTVC.m; sourceTree = "<group>"; };
+		6FBD83B017B79F560082449F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6FBD83B117B79F560082449F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FBD83B317B7A3A10082449F /* UISearchBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+Extension.h"; sourceTree = "<group>"; };
+		6FBD83B417B7A3A30082449F /* UISearchBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+Extension.m"; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -339,8 +343,6 @@
 		6FC66FFC176EF6DD00C91BC9 /* CoredataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoredataCommon.h; sourceTree = "<group>"; };
 		6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Extension.h"; sourceTree = "<group>"; };
 		6FC67002176F1FAE00C91BC9 /* Tag+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Extension.m"; sourceTree = "<group>"; };
-		6FC6703E177069EB00C91BC9 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6FC6703F177069EB00C91BC9 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6FC67043177069EC00C91BC9 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		6FC67044177069EC00C91BC9 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		6FC67047177069EC00C91BC9 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
@@ -557,6 +559,8 @@
 			isa = PBXGroup;
 			children = (
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
+				6FBD83B017B79F560082449F /* Place.h */,
+				6FBD83B117B79F560082449F /* Place.m */,
 				6FC67057177069EC00C91BC9 /* User.h */,
 				6FC67058177069EC00C91BC9 /* User.m */,
 				6FC67053177069EC00C91BC9 /* Tag.h */,
@@ -569,8 +573,6 @@
 				6FC67048177069EC00C91BC9 /* Food.m */,
 				6FC67043177069EC00C91BC9 /* Address.h */,
 				6FC67044177069EC00C91BC9 /* Address.m */,
-				6FC6703E177069EB00C91BC9 /* Place.h */,
-				6FC6703F177069EB00C91BC9 /* Place.m */,
 				6F12E65D17354099007A38DA /* AbstractInfo+Extension.h */,
 				6F12E65E17354099007A38DA /* AbstractInfo+Extension.m */,
 				6FC67001176F1FAD00C91BC9 /* Tag+Extension.h */,
@@ -741,6 +743,8 @@
 				6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */,
 				6FBD83A417B6A3BA0082449F /* FEDirection.h */,
 				6FBD83A517B6A3BC0082449F /* FEDirection.m */,
+				6FBD83B317B7A3A10082449F /* UISearchBar+Extension.h */,
+				6FBD83B417B7A3A30082449F /* UISearchBar+Extension.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1038,7 +1042,6 @@
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
 				6FC67003176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
-				6FC67040177069EB00C91BC9 /* Place.m in Sources */,
 				6FC67045177069EC00C91BC9 /* Address.m in Sources */,
 				6FC67049177069EC00C91BC9 /* Food.m in Sources */,
 				6FC6704D177069EC00C91BC9 /* Photo.m in Sources */,
@@ -1078,6 +1081,8 @@
 				6FBD839A17B320880082449F /* FEMapVC.m in Sources */,
 				6FBD83A617B6A3BD0082449F /* FEDirection.m in Sources */,
 				6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */,
+				6FBD83B217B79F570082449F /* Place.m in Sources */,
+				6FBD83B517B7A3A40082449F /* UISearchBar+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,7 +1096,6 @@
 				6F12E6601735409A007A38DA /* AbstractInfo+Extension.m in Sources */,
 				6FDF88E7175F1D3C00C21332 /* UIImage+Extension.m in Sources */,
 				6FC67004176F1FAF00C91BC9 /* Tag+Extension.m in Sources */,
-				6FC67041177069EB00C91BC9 /* Place.m in Sources */,
 				6FC67046177069EC00C91BC9 /* Address.m in Sources */,
 				6FC6704A177069EC00C91BC9 /* Food.m in Sources */,
 				6FC6704E177069EC00C91BC9 /* Photo.m in Sources */,
