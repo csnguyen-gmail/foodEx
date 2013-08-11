@@ -8,14 +8,12 @@
 
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEPlaceListCell.h"
-#import "Place.h"
 #import "Address.h"
 #import "Tag.h"
 #import <CoreLocation/CoreLocation.h>
 // TODO using batch size
 @interface FEPlaceListSearchMapTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableDictionary *imageIdDict; // pair of ObjectID and NSUinteger
-@property (nonatomic) NSUInteger selectedRow;
 @end
 
 
@@ -126,7 +124,8 @@
 }
 #pragma mark - FEPlaceListCellDelegate
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListCell *)cell {
-    // TODO
+    NSUInteger row = [[self.tableView indexPathForCell:cell] row];
+    [self.searchDelegate searchMapDidSelectPlace:self.places[row]];
 }
 
 @end
