@@ -38,6 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.needUpdateDatabase) {
+        self.needUpdateDatabase = NO;
         [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
         [self updatePlaceDateSourceWithType:self.placeDispType];
         // TODO: update locatio only in case User refresh
@@ -49,7 +50,6 @@
                 [self.placeGridCVC.collectionView reloadData];
             }
         }];
-        self.needUpdateDatabase = NO;
     }
 }
 - (void)viewWillDisappear:(BOOL)animated {

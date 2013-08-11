@@ -12,4 +12,6 @@
 
 @interface FEAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
+- (void)startObservingFirstResponder;
+- (void)stopObservingFirstResponder;
 @end

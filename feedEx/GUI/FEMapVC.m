@@ -14,13 +14,19 @@
 #import "Place+Extension.h"
 #import "Address.h"
 #import "FEDirection.h"
+#import "FEPlaceListSearchMapTVC.h"
+#import "FEAppDelegate.h"
 
-@interface FEMapVC()
+@interface FEMapVC()<UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
 @property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *places;
 @property (nonatomic, strong) FESearchPlaceSettingInfo *searchPlaceSettingInfo;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchPlaceBar;
+@property (weak, nonatomic) IBOutlet UIView *seacrhResultView;
+@property (weak, nonatomic) FEPlaceListSearchMapTVC *placeListTVC;
+@property (strong, nonatomic) NSString *searchText;
 @end
 
 @implementation FEMapVC
@@ -31,6 +37,7 @@
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self addLocationObervation];
+    [self hideSearchResultWithAnimated:NO];
 }
 - (void)dealloc {
     [self removeLocationObservation];
@@ -38,6 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.needUpdateDatabase) {
+        self.needUpdateDatabase = NO;
         self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
                                                 withMOC:self.coreData.managedObjectContext];
         for (GMSMarker *marker in self.mapView.markers) {
@@ -47,7 +55,14 @@
             CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
             [self addMarketAt:location2d snippet:place.name mapMoved:NO];
         }
-        self.needUpdateDatabase = NO;
+        // TODO test search only
+        self.placeListTVC.places = self.places;
+        self.placeListTVC.distances = nil;
+    }
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"placeList"]) {
+        self.placeListTVC = [segue destinationViewController];
     }
 }
 
@@ -57,6 +72,48 @@
         _coreData = [FECoreDataController sharedInstance];
     }
     return _coreData;
+}
+#pragma mark - Search
+- (void)hideSearchResultWithAnimated:(BOOL)animted{
+    CGRect newFrame = self.seacrhResultView.frame;
+    newFrame.origin.y = -newFrame.size.height;
+    if (animted) {
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             self.seacrhResultView.frame = newFrame;
+                         }];
+    } else {
+        self.seacrhResultView.frame = newFrame;
+    }
+}
+- (void)showSearchResult {
+    CGRect newFrame = self.seacrhResultView.frame;
+    newFrame.origin.y = self.searchPlaceBar.frame.origin.y + self.searchPlaceBar.frame.size.height;
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.seacrhResultView.frame = newFrame;
+                     }];
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    // ignore text edit observation in case search bar
+    FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate stopObservingFirstResponder];
+    // keep text before edit for resume in case Cancel
+    self.searchText = searchBar.text;
+    [self showSearchResult];
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    // restore text edit observation
+    FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate startObservingFirstResponder];
+    [self hideSearchResultWithAnimated:YES];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    searchBar.text = self.searchText;
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
 }
 #pragma mark - Map
 - (void)addLocationObervation {

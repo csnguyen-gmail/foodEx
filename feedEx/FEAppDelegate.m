@@ -40,6 +40,16 @@
                                                object:nil];
     return YES;
 }
+// tracking Text field/view change
+- (void)startObservingFirstResponder {
+    FETrackingKeyboardWindow *window = (FETrackingKeyboardWindow*)self.window;
+    [window startObservingFirstResponder];
+}
+- (void)stopObservingFirstResponder {
+    FETrackingKeyboardWindow *window = (FETrackingKeyboardWindow*)self.window;
+    [window stopObservingFirstResponder];
+}
+// tracking Core data change
 - (void)handleDataModelChange:(NSNotification *)note
 {
     self.searchVC.needUpdateDatabase = YES;

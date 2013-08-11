@@ -27,6 +27,7 @@
     [center removeObserver:self name:UITextFieldTextDidEndEditingNotification object:nil];
     [center removeObserver:self name:UITextViewTextDidBeginEditingNotification object:nil];
     [center removeObserver:self name:UITextViewTextDidEndEditingNotification object:nil];
+    currentFirstResponder_ = nil;
 }
 
 - (void)observeBeginEditing:(NSNotification *)note {

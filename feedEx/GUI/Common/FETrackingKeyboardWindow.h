@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface FETrackingKeyboardWindow : UIWindow
+- (void)startObservingFirstResponder;
+- (void)stopObservingFirstResponder;
 
 @end
