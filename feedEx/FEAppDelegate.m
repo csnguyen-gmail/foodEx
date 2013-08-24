@@ -41,6 +41,7 @@
     // appearance
     [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     return YES;
 }
 // tracking Text field/view change

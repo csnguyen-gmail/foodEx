@@ -17,6 +17,12 @@
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
+@property (strong, nonatomic) UIBarButtonItem *editBtn;
+@property (strong, nonatomic) UIBarButtonItem *searchBtn;
+@property (strong, nonatomic) UIBarButtonItem *shareBtn;
+@property (strong, nonatomic) UIBarButtonItem *deleteBtn;
+@property (strong, nonatomic) UIToolbar *toolBar;
+@property (nonatomic) BOOL isEditMode;
 @property (nonatomic) NSUInteger placeDispType; // List or Grid
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
@@ -31,20 +37,33 @@
 {
     [super viewDidLoad];
     self.needUpdateDatabase = YES;
+    // perpare GUI
+    // navigation bar
+    self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
+                                                   target:self action:@selector(editAction:)];
+    self.searchBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+                                                                   target:self action:@selector(searchAction:)];
+    self.navigationItem.rightBarButtonItems = @[self.editBtn, self.searchBtn];
+    // tool bar
+    self.toolBar = [[UIToolbar alloc] init];
+    self.shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStyleBordered
+                                                    target:self action:@selector(shareAction:)];
+    self.deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered
+                                                     target:self action:@selector(deleteAction:)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                           target:nil action:nil];
+
+    self.deleteBtn.tintColor = [UIColor redColor];
+    self.toolBar.items = @[self.deleteBtn, space, self.shareBtn];
+    [self.view addSubview:self.toolBar];
     
-    // create a edit button
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
-                                                                                target:self action:@selector(editAction:)];
-    // create a search button
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                  target:self action:@selector(searchAction:)];
-    self.navigationItem.rightBarButtonItems = @[searchButton, editButton];
-    
+    // load data
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
     if (self.needUpdateDatabase) {
         self.needUpdateDatabase = NO;
         [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
@@ -113,7 +132,40 @@
     [self performSegueWithIdentifier:@"searchSettingVC" sender:self];
 }
 - (void)editAction:(UIBarButtonItem *)sender {
+    self.isEditMode = !self.isEditMode;
+}
+- (void)shareAction:(UIBarButtonItem *)sender {
     // TODO
+    self.isEditMode = !self.isEditMode;
+}
+- (void)deleteAction:(UIBarButtonItem *)sender {
+    // TODO
+    self.isEditMode = !self.isEditMode;
+}
+- (void)setIsEditMode:(BOOL)isEditMode {
+    _isEditMode = isEditMode;
+    [UIView animateWithDuration:YES ? 0.2f :0.0f
+                     animations:^{
+                         self.searchBtn.enabled = !isEditMode;
+                         self.dispTypeSC.enabled = !isEditMode;
+                         self.dispTypeSC.userInteractionEnabled = !isEditMode;
+                         self.editBtn.title = isEditMode ? @"Done" : @"Edit";
+                         CGFloat delta = (isEditMode ? -1 : 1) * self.toolBar.frame.size.height;
+                         // adjust listView height
+                         CGRect listRect = self.placeListTVC.view.frame;
+                         listRect.size.height += delta;
+                         self.placeListTVC.view.frame = listRect;
+                         // adjust gridView height
+                         CGRect gridRect = self.placeGridCVC.view.frame;
+                         gridRect.size.height += delta;
+                         self.placeGridCVC.view.frame = gridRect;
+                         // adjust toolbar y
+                         CGRect toolbarRect = self.toolBar.frame;
+                         toolbarRect.origin.y += delta;
+                         self.toolBar.frame = toolbarRect;
+                     }
+                     completion:^(BOOL finished) {
+                     }];
 }
 
 #pragma mark - getter setter
