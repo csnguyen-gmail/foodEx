@@ -17,8 +17,10 @@
 #define FR_GetTagByType_Type            @"TYPE"
 
 // Tag
+#define CD_TAG_USER     @(0)
 #define CD_TAG_PLACE    @(1)
 #define CD_TAG_FOOD     @(2)
+
 
 
 #endif
