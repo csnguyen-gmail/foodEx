@@ -80,6 +80,7 @@
 		6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */; };
 		6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F96B5CD17C8728600935AEA /* NSData+Extension.m */; };
 		6F96B5D017C872FB00935AEA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */; };
+		6F989DE517C885FF005D6B7C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F989DE417C885FF005D6B7C /* MessageUI.framework */; };
 		6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */; };
 		6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B21744EED100DCCF24 /* FEVerticalResizeControllView.m */; };
 		6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */; };
@@ -291,6 +292,7 @@
 		6F96B5CC17C8728600935AEA /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
 		6F96B5CD17C8728600935AEA /* NSData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Extension.m"; sourceTree = "<group>"; };
 		6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		6F989DE417C885FF005D6B7C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6F98CBB017535BD8007780E2 /* FETrackingKeyboardWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETrackingKeyboardWindow.h; sourceTree = "<group>"; };
 		6F98CBB117535BD8007780E2 /* FETrackingKeyboardWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETrackingKeyboardWindow.m; sourceTree = "<group>"; };
 		6F9E95B11744EED100DCCF24 /* FEVerticalResizeControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEVerticalResizeControllView.h; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F989DE517C885FF005D6B7C /* MessageUI.framework in Frameworks */,
 				6F96B5D017C872FB00935AEA /* libz.1.2.5.dylib in Frameworks */,
 				6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */,
 				6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */,
@@ -646,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */,
+				6F989DE417C885FF005D6B7C /* MessageUI.framework */,
 				6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */,
 				6F5C32C9172B828D00BCF8F7 /* GoogleMaps.framework */,
 				6FBFE641172578860073A178 /* AVFoundation.framework */,
