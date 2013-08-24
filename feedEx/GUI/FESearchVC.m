@@ -31,7 +31,15 @@
 {
     [super viewDidLoad];
     self.needUpdateDatabase = YES;
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    // create a edit button
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
+                                                                                target:self action:@selector(editAction:)];
+    // create a search button
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+                                                                                  target:self action:@selector(searchAction:)];
+    self.navigationItem.rightBarButtonItems = @[searchButton, editButton];
+    
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
@@ -101,6 +109,13 @@
     self.placeDispType = sender.selectedSegmentIndex;
     [self switchPlaceDispToType:sender.selectedSegmentIndex withAnimation:YES];
 }
+- (void)searchAction:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"searchSettingVC" sender:self];
+}
+- (void)editAction:(UIBarButtonItem *)sender {
+    // TODO
+}
+
 #pragma mark - getter setter
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
@@ -130,7 +145,7 @@
     else if ([[segue identifier] isEqualToString:@"placeGrid"]) {
         self.placeGridCVC = [segue destinationViewController];
     }
-    else if ([[segue identifier] isEqualToString:[[FESearchSettingVC class] description]]) {
+    else if ([[segue identifier] isEqualToString:@"searchSettingVC"]) {
         FESearchSettingVC *searchSettingVC = [segue destinationViewController];
         searchSettingVC.delegate = self;
     }

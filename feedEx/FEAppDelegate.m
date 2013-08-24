@@ -38,6 +38,9 @@
                                              selector:@selector(handleDataModelChange:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
                                                object:nil];
+    // appearance
+    [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
     return YES;
 }
 // tracking Text field/view change

@@ -35,8 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    
     // map view
     self.mapView.layer.cornerRadius = 10;
     self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.mapView delegate:self];
