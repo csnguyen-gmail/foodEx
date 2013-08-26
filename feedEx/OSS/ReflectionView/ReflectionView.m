@@ -183,7 +183,7 @@ CGImageRef CreateGradientImage(int pixelsWide, int pixelsHigh)
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
     
     // Create the bitmap context to draw into
-    CGContextRef gradientContext = CGBitmapContextCreate(NULL, pixelsWide, pixelsHigh, 8, 0, colorSpace, kCGImageAlphaNone);
+    CGContextRef gradientContext = CGBitmapContextCreate(NULL, pixelsWide, pixelsHigh, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
     
     // Define start and end color stops (alpha values required even though not used in the gradient)
     CGFloat colors[] = {0.0, 1.0, 1.0, 1.0};

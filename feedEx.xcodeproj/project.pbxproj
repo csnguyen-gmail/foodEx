@@ -937,6 +937,11 @@
 				CLASSPREFIX = FE;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = csnguyen;
+				TargetAttributes = {
+					6F5E91E4172385780059055F = {
+						DevelopmentTeam = 6U2T56TY47;
+					};
+				};
 			};
 			buildConfigurationList = 6F5E91E0172385770059055F /* Build configuration list for PBXProject "feedEx" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1260,8 +1265,8 @@
 		6F5E9221172385780059055F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chuong Tat Thieu (ZE9MJ5ALP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chuong Tat Thieu (ZE9MJ5ALP4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1272,7 +1277,7 @@
 				INFOPLIST_FILE = "feedEx/feedEx-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25FABE07-33E6-483C-BA59-F658403CDD4D";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1282,8 +1287,8 @@
 		6F5E9222172385780059055F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chuong Tat Thieu (ZE9MJ5ALP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chuong Tat Thieu (ZE9MJ5ALP4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1294,7 +1299,7 @@
 				INFOPLIST_FILE = "feedEx/feedEx-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25FABE07-33E6-483C-BA59-F658403CDD4D";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
