@@ -18,6 +18,7 @@
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
+@property (nonatomic, strong) UIView *selectedBackgroundView;
 @end
 
 @implementation FEPlaceListTVC
@@ -25,7 +26,6 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.tableView.layer.cornerRadius = 10;
-
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
@@ -42,7 +42,17 @@
     }
     [self.tableView reloadData];
 }
-
+- (UIView *)selectedBackgroundView {
+    if (_selectedBackgroundView == nil) {
+        _selectedBackgroundView = [[UIView alloc] init];
+    }
+    return _selectedBackgroundView;
+}
+- (void)setIsEditMode:(BOOL)isEditMode {
+    _isEditMode = isEditMode;
+    self.tableView.editing = isEditMode;
+    [self.tableView reloadData];
+}
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -62,6 +72,8 @@
 #define TAG_HORIZON_MARGIN 10.0
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
+    cell.selectedBackgroundView = self.selectedBackgroundView;
+    cell.informationBtn.enabled = !self.isEditMode;
     Place *place = self.placeDataSource.places[index];
     if (place.photos.count != 0) {
         cell.delegate = self;
@@ -99,6 +111,7 @@
             size.width = contentWidth;
             cell.tagsScrollView.contentSize = size;
         }
+        // TODO
         if (self.placeDataSource.currentLocation) {
             double placeLon = [place.address.longtitude doubleValue];
             double placeLat = [place.address.lattittude doubleValue];
@@ -125,11 +138,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 89;
 }
-//#pragma mark - Table view delegate
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // TODO
-//}
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);

@@ -12,9 +12,15 @@
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
 #import "FEPlaceDataSource.h"
+#import "FEDataSerialize.h"
+#import <MessageUI/MessageUI.h>
+#import "Common.h"
+#import "Place.h"
 
 #define PLACE_DISP_TYPE @"PlaceDispType"
-@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate>
+#define LIST_TYPE 0
+#define GRID_TYPE 1
+@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (strong, nonatomic) UIBarButtonItem *editBtn;
@@ -68,9 +74,9 @@
         self.needUpdateDatabase = NO;
         [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
         [self updatePlaceDateSourceWithType:self.placeDispType];
-        // TODO: update locatio only in case User refresh
+        // TODO: update location only in case User refresh
         [self.placeDataSource updateLocation:^(CLLocation *location) {
-            if (self.placeDispType == 0) {
+            if (self.placeDispType == LIST_TYPE) {
                 [self.placeListTVC.tableView reloadData];
             }
             else {
@@ -81,6 +87,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self setIsEditMode:NO];
 }
 - (void)loadPlaceDisplayType {
     _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];
@@ -135,7 +142,27 @@
     self.isEditMode = !self.isEditMode;
 }
 - (void)shareAction:(UIBarButtonItem *)sender {
-    // TODO
+    NSArray *selectedPlaces = [self getSelectedPlaces];
+    // TODO: User
+    NSData *sendingData = [FEDataSerialize serializePlaces:selectedPlaces ofUser:nil];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
+    NSDate *now = [[NSDate alloc] init];
+    NSString *filename = [NSString stringWithFormat:ATTACHED_FILENAME_FORMAT, [dateFormatter stringFromDate:now]];
+    NSMutableString *body = [[NSMutableString alloc] initWithString:MAIL_BODY];
+    for (Place *place in selectedPlaces) {
+        [body appendString:[NSString stringWithFormat:@"+%@\n", place.name]];
+    }
+    
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    [picker setSubject:MAIL_SUBJECT];
+    [picker addAttachmentData:sendingData mimeType:ATTACHED_FILETYPE fileName:filename];
+    [picker setToRecipients:[NSArray array]];
+    [picker setMessageBody:body isHTML:NO];
+    [picker setMailComposeDelegate:self];
+    [self presentViewController:picker animated:YES completion:nil];
+    
     self.isEditMode = !self.isEditMode;
 }
 - (void)deleteAction:(UIBarButtonItem *)sender {
@@ -163,11 +190,30 @@
                          CGRect toolbarRect = self.toolBar.frame;
                          toolbarRect.origin.y += delta;
                          self.toolBar.frame = toolbarRect;
+                         if (self.placeDispType == LIST_TYPE) {
+                             self.placeListTVC.isEditMode = isEditMode;
+                         }
+                         else {
+                             // TODO
+                         }
                      }
                      completion:^(BOOL finished) {
                      }];
+    
 }
-
+- (NSArray*)getSelectedPlaces {
+    NSMutableArray *selectedPlaces = [NSMutableArray array];
+    if (self.placeDispType == LIST_TYPE) {
+        NSArray *selectedRows = [self.placeListTVC.tableView indexPathsForSelectedRows];
+        for (NSIndexPath *index in selectedRows) {
+            [selectedPlaces addObject:self.placeDataSource.places[index.row]];
+        }
+    }
+    else {
+        // TODO
+    }
+    return selectedPlaces;
+}
 #pragma mark - getter setter
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
@@ -209,4 +255,12 @@
         self.needUpdateDatabase = YES;
     }
 }
+#pragma mark MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

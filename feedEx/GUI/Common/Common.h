@@ -27,5 +27,13 @@
 #define HCM_LONGTITUDE  106.698333
 #define HCM_LATITUDE    10.7730556
 
+// Mail
+#define ATTACHED_FILENAME_FORMAT @"places_%@.fex"
+#define ATTACHED_FILENAME_DATE_FORMAT @"yyyyMMddHHmmss"
+#define ATTACHED_FILETYPE @"application/fex"
+#define MAIL_SUBJECT @"Share Places in FoodEx application by CSNGuyen."
+#define MAIL_BODY @"Share places:\n"
+
+
 
 #endif

@@ -11,4 +11,5 @@
 
 @interface FEPlaceListTVC : UITableViewController
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
+@property (nonatomic) BOOL isEditMode;
 @end
