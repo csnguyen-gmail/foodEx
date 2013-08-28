@@ -72,6 +72,9 @@
                                         blockingDecode:(BlockingDecode)blockDecode
 {
     NSString* class = [dict objectForKey:@"class"];
+    if (class == nil) {
+        return nil;
+    }
     NSManagedObject* newObject =
 	(NSManagedObject*)[NSEntityDescription insertNewObjectForEntityForName:class
                                                     inManagedObjectContext:context];

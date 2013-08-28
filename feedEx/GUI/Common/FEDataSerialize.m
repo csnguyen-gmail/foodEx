@@ -10,6 +10,9 @@
 #import "NSManagedObject+Extension.h"
 #import "Place.h"
 #import "NSData+Extension.h"
+#import "FECoreDataController.h"
+#import "CoredataCommon.h"
+#import "Tag.h"
 
 @implementation FEDataSerialize
 /////////////////////
@@ -17,7 +20,9 @@
 // +user: USER
 // +places: Array of PLACE
 /////////////////////
-+ (NSData *)serializePlaces:(NSArray *)places ofUser:(User *)user {
++ (NSData *)serializePlaces:(NSDictionary *)placeInfo {
+    User *user = placeInfo[USER_KEY];
+    NSArray *places = placeInfo[PLACES_KEY];
     NSMutableDictionary *rootDict = [[NSMutableDictionary alloc] initWithCapacity:2];
     // User
     NSDictionary *userDict = [user toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
@@ -83,5 +88,66 @@
     data = [data gzipDeflate];
     
     return data;
+}
++(NSDictionary *)deserializePlaces:(NSData *)data {
+    FECoreDataController *coreData = [FECoreDataController sharedInstance];
+    BlockingValidation blockValidation = ^NSManagedObject *(NSManagedObject *managedObject)
+    {
+        if ([managedObject isKindOfClass:NSClassFromString(@"Tag")]) {
+            Tag *tag = (Tag*)managedObject;
+            NSFetchRequest *fetchRequest = [coreData.managedObjectModel fetchRequestFromTemplateWithName:FR_GetTagByType
+                                                                                    substitutionVariables:@{FR_GetTagByType_Type:tag.type}];
+            NSArray *tags = [coreData.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+            for (Tag *tempTag in tags) {
+                if (![tempTag.objectID isEqual:tag.objectID]) {
+                    if ([tempTag.label isEqual:tag.label]) {
+                        [coreData.managedObjectContext deleteObject:tag];
+                        return tempTag;
+                    }
+                }
+            }
+        }
+        return managedObject;
+    };
+    BlockingDecode blockDecode = ^id(NSString *key, id value)
+    {
+        // convert to UIImage for thumbnail
+        if ([key isEqualToString:@"thumbnailPhoto"]) {
+            value = [UIImage imageWithData:value scale:[[UIScreen mainScreen] scale]];
+        }
+        return value;
+    };
+    // unzip data
+    data = [data gzipInflate];
+    // decode to NSDictionary
+    NSDictionary *rootDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    // User
+    NSDictionary *userDict = rootDict[USER_KEY];
+    User *user = (User*)[NSManagedObject createManagedObjectFromDictionary:userDict inContext:coreData.managedObjectContext
+                                                        blockingValidation:blockValidation
+                                                            blockingDecode:blockDecode];
+    // Places
+    NSArray *arrayOfPlaceDict = rootDict[PLACES_KEY];
+    NSMutableArray *places = [NSMutableArray array];
+    for (NSDictionary *placeDict in arrayOfPlaceDict) {
+        Place *place = (Place*)[NSManagedObject createManagedObjectFromDictionary:placeDict inContext:coreData.managedObjectContext
+                                                               blockingValidation:blockValidation
+                                                                   blockingDecode:blockDecode];
+        [places insertObject:place atIndex:0];
+    }
+    if (places.count == 0) {
+        return  nil;
+    }
+    // Save to disk
+    NSError *error = [coreData saveToPersistenceStoreAndWait];
+    if (error) {
+        return nil;
+    }
+    NSMutableDictionary *placeInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+    if (user) {
+        placeInfo[USER_KEY] = user;
+    }
+    placeInfo[PLACES_KEY] = places;
+    return placeInfo;
 }
 @end

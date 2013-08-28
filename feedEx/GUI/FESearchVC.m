@@ -14,13 +14,18 @@
 #import "FEPlaceDataSource.h"
 #import "FEDataSerialize.h"
 #import <MessageUI/MessageUI.h>
+#import "FECoreDataController.h"
 #import "Common.h"
 #import "Place.h"
+#import "UIAlertView+Extension.h"
 
 #define PLACE_DISP_TYPE @"PlaceDispType"
 #define LIST_TYPE 0
 #define GRID_TYPE 1
-@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate>
+
+#define ALERT_DELETE_CONFIRM 0
+#define ALERT_DELETING 1
+@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (strong, nonatomic) UIBarButtonItem *editBtn;
@@ -144,7 +149,8 @@
 - (void)shareAction:(UIBarButtonItem *)sender {
     NSArray *selectedPlaces = [self getSelectedPlaces];
     // TODO: User
-    NSData *sendingData = [FEDataSerialize serializePlaces:selectedPlaces ofUser:nil];
+    NSDictionary *placeInfo = @{PLACES_KEY:selectedPlaces};
+    NSData *sendingData = [FEDataSerialize serializePlaces:placeInfo];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
@@ -166,8 +172,13 @@
     self.isEditMode = !self.isEditMode;
 }
 - (void)deleteAction:(UIBarButtonItem *)sender {
-    // TODO
-    self.isEditMode = !self.isEditMode;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Do you want to delete?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes", nil];
+    alertView.tag = ALERT_DELETE_CONFIRM;
+    [alertView show];
 }
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
@@ -255,12 +266,45 @@
         self.needUpdateDatabase = YES;
     }
 }
-#pragma mark MFMailComposeViewControllerDelegate
-
+#pragma mark - MFMailComposeViewControllerDelegate
 - (void)mailComposeController:(MFMailComposeViewController *)controller
 		  didFinishWithResult:(MFMailComposeResult)result
 						error:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == ALERT_DELETE_CONFIRM) {
+        // YES button
+        if (buttonIndex == 1) {
+            // show loading alert
+            UIAlertView *processingAlertView = [UIAlertView indicatorAlertWithTitle:nil
+                                                                            message:@"Deleting data out of database..."
+                                                                           delegate:nil];
+            processingAlertView.tag = ALERT_DELETING;
+            [processingAlertView show];
+            // start thread
+            NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+            [operationQueue addOperationWithBlock:^{
+                FECoreDataController *coreData = [FECoreDataController sharedInstance];
+                NSArray *selectedPlaces = [self getSelectedPlaces];
+                for (Place *place in selectedPlaces) {
+                    [coreData.managedObjectContext deleteObject:place];
+                }
+                [coreData saveToPersistenceStoreAndWait];
+                [processingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.isEditMode = !self.isEditMode;
+                }];
+            }];
+        }
+        else {
+            
+        }
+    }
+    else {
+        
+    }
+    
+}
 @end

@@ -13,6 +13,7 @@
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
+		6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22457917CDBB7900E3C1A0 /* FETabBarController.m */; };
 		6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */; };
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
@@ -69,6 +70,7 @@
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
 		6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F63265217730C1B00B5F3FC /* GMDraggableMarkerManager.m */; };
+		6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */; };
 		6F85EA22179BE078000D21E9 /* heart_selected_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA20179BE078000D21E9 /* heart_selected_min.png */; };
 		6F85EA23179BE078000D21E9 /* heart_selected_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */; };
 		6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F85EA25179BE13D000D21E9 /* FEPlaceDetailFoodCell.m */; };
@@ -108,6 +110,7 @@
 		6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF01763E67900DB606C /* CPTextViewPlaceholder.m */; };
 		6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF517646E0900DB606C /* gradientBar.png */; };
 		6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextView.m */; };
+		6FB1F99217CE5B2A005078B3 /* UIAlertView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB1F99117CE5B2A005078B3 /* UIAlertView+Extension.m */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
 		6FBD839417B2070A0082449F /* FEFlipGridPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */; };
 		6FBD839A17B320880082449F /* FEMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839917B320870082449F /* FEMapVC.m */; };
@@ -187,6 +190,8 @@
 		6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECustomInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
+		6F22457817CDBB7900E3C1A0 /* FETabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETabBarController.h; sourceTree = "<group>"; };
+		6F22457917CDBB7900E3C1A0 /* FETabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETabBarController.m; sourceTree = "<group>"; };
 		6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditVC.h; sourceTree = "<group>"; };
 		6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditVC.m; sourceTree = "<group>"; };
 		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
@@ -273,6 +278,8 @@
 		6F63265117730C1B00B5F3FC /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
 		6F63265217730C1B00B5F3FC /* GMDraggableMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDraggableMarkerManager.m; sourceTree = "<group>"; };
 		6F63265317730C1B00B5F3FC /* GMDraggableMarkerManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManagerDelegate.h; sourceTree = "<group>"; };
+		6F6406CA17CBAB66000A9D1D /* FEDataSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEDataSerialize.h; sourceTree = "<group>"; };
+		6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDataSerialize.m; sourceTree = "<group>"; };
 		6F85EA20179BE078000D21E9 /* heart_selected_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected_min.png; sourceTree = "<group>"; };
 		6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected_min@2x.png"; sourceTree = "<group>"; };
 		6F85EA24179BE13D000D21E9 /* FEPlaceDetailFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDetailFoodCell.h; sourceTree = "<group>"; };
@@ -328,6 +335,8 @@
 		6FAD9DF517646E0900DB606C /* gradientBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBar.png; sourceTree = "<group>"; };
 		6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextView.h; sourceTree = "<group>"; };
 		6FAD9DFB1764FC6000DB606C /* FETagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextView.m; sourceTree = "<group>"; };
+		6FB1F99017CE5B2A005078B3 /* UIAlertView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extension.h"; sourceTree = "<group>"; };
+		6FB1F99117CE5B2A005078B3 /* UIAlertView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extension.m"; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6FBD839217B2070A0082449F /* FEFlipGridPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipGridPlaceView.h; sourceTree = "<group>"; };
 		6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipGridPlaceView.m; sourceTree = "<group>"; };
@@ -512,6 +521,8 @@
 				6F30B72D17C47BE300A1D389 /* NSManagedObject+Extension.m */,
 				6F96B5CC17C8728600935AEA /* NSData+Extension.h */,
 				6F96B5CD17C8728600935AEA /* NSData+Extension.m */,
+				6FB1F99017CE5B2A005078B3 /* UIAlertView+Extension.h */,
+				6FB1F99117CE5B2A005078B3 /* UIAlertView+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -745,6 +756,8 @@
 				6FD91FF617743BB50066A5E5 /* FESearchVC.m */,
 				6FBD839817B320870082449F /* FEMapVC.h */,
 				6FBD839917B320870082449F /* FEMapVC.m */,
+				6F22457817CDBB7900E3C1A0 /* FETabBarController.h */,
+				6F22457917CDBB7900E3C1A0 /* FETabBarController.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -780,6 +793,8 @@
 				6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */,
 				6FBD83A417B6A3BA0082449F /* FEDirection.h */,
 				6FBD83A517B6A3BC0082449F /* FEDirection.m */,
+				6F6406CA17CBAB66000A9D1D /* FEDataSerialize.h */,
+				6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -941,6 +956,9 @@
 					6F5E91E4172385780059055F = {
 						DevelopmentTeam = 6U2T56TY47;
 					};
+					6F5E920D172385780059055F = {
+						TestTargetID = 6F5E91E4172385780059055F;
+					};
 				};
 			};
 			buildConfigurationList = 6F5E91E0172385770059055F /* Build configuration list for PBXProject "feedEx" */;
@@ -1077,7 +1095,9 @@
 				6F5713601761D70F000C69CE /* GKImageCropView.m in Sources */,
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
 				6F5713621761D70F000C69CE /* GKImagePicker.m in Sources */,
+				6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */,
 				6F5713631761D70F000C69CE /* GKResizeableCropOverlayView.m in Sources */,
+				6FB1F99217CE5B2A005078B3 /* UIAlertView+Extension.m in Sources */,
 				6FAD9DB817635A1200DB606C /* DYRateView.m in Sources */,
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
@@ -1111,6 +1131,7 @@
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
+				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
 				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
@@ -1220,7 +1241,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "EA694E32-491C-4905-8CBF-1DB86D16C5F3";
@@ -1250,7 +1271,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "EA694E32-491C-4905-8CBF-1DB86D16C5F3";
@@ -1309,6 +1330,7 @@
 		6F5E9224172385780059055F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/feedEx.app/feedEx";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -1321,6 +1343,7 @@
 				);
 				INFOPLIST_FILE = "feedExTests/feedExTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1328,6 +1351,7 @@
 		6F5E9225172385780059055F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/feedEx.app/feedEx";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -1336,6 +1360,7 @@
 				GCC_PREFIX_HEADER = "feedEx/feedEx-Prefix.pch";
 				INFOPLIST_FILE = "feedExTests/feedExTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
