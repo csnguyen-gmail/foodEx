@@ -44,10 +44,21 @@
 @end
 
 @implementation FESearchVC
+- (void)awakeFromNib {
+    // tracking Coredata change
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleDataModelChange:)
+                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                  object:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.needUpdateDatabase = YES;
     // perpare GUI
     // navigation bar
     self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
@@ -75,20 +86,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
-    if (self.needUpdateDatabase) {
-        self.needUpdateDatabase = NO;
-        [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
-        [self updatePlaceDateSourceWithType:self.placeDispType];
-        // TODO: update location only in case User refresh
-        [self.placeDataSource updateLocation:^(CLLocation *location) {
-            if (self.placeDispType == LIST_TYPE) {
-                [self.placeListTVC.tableView reloadData];
-            }
-            else {
-                [self.placeGridCVC.collectionView reloadData];
-            }
-        }];
-    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -96,6 +93,24 @@
         [self setIsEditMode:NO];
     }
 }
+#pragma mark - handler DataModel changed
+- (void)handleDataModelChange:(NSNotification *)note {
+    [self refetchData];
+}
+- (void)refetchData {
+    [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
+    [self updatePlaceDateSourceWithType:self.placeDispType];
+    // TODO: update location only in case User refresh
+    [self.placeDataSource updateLocation:^(CLLocation *location) {
+        if (self.placeDispType == LIST_TYPE) {
+            [self.placeListTVC.tableView reloadData];
+        }
+        else {
+            [self.placeGridCVC.collectionView reloadData];
+        }
+    }];
+}
+#pragma mark - utility
 - (void)loadPlaceDisplayType {
     _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];
     [self switchPlaceDispToType:self.placeDispType withAnimation:NO];
@@ -265,7 +280,7 @@
 - (void)didFinishSearchSetting:(FESearchSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
         self.searchSettingInfo = searchSetting;
-        self.needUpdateDatabase = YES;
+        [self refetchData];
     }
 }
 #pragma mark - MFMailComposeViewControllerDelegate

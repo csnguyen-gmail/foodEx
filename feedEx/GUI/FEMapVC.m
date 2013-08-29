@@ -31,10 +31,22 @@
 @end
 
 @implementation FEMapVC
-// TODO: when to update database
+- (void)awakeFromNib {
+    // tracking Coredata change
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleDataModelChange:)
+                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                  object:nil];
+    [self removeLocationObservation];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.needUpdateDatabase = YES;
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self addLocationObervation];
@@ -42,27 +54,21 @@
     [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
     self.placeListTVC.searchDelegate = self;
 }
-- (void)dealloc {
-    [self removeLocationObservation];
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.needUpdateDatabase) {
-        self.needUpdateDatabase = NO;
-        self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
-                                                withMOC:self.coreData.managedObjectContext];
-        for (GMSMarker *marker in self.mapView.markers) {
-            marker.map = nil;
-        }
-        for (Place *place in self.places) {
-            CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-            [self addMarketAt:location2d snippet:place.name mapMoved:NO];
-        }
-    }
-}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeList"]) {
         self.placeListTVC = [segue destinationViewController];
+    }
+}
+#pragma mark - handler DataModel changed
+- (void)handleDataModelChange:(NSNotification *)note {
+    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
+                                            withMOC:self.coreData.managedObjectContext];
+    for (GMSMarker *marker in self.mapView.markers) {
+        marker.map = nil;
+    }
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
     }
 }
 
