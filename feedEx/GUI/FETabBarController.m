@@ -48,11 +48,11 @@
         // YES button
         if (buttonIndex == 1) {
             // show loading alert
-            UIAlertView *alertView = [UIAlertView indicatorAlertWithTitle:nil
-                                                                  message:@"Importing data to database..."
-                                                                 delegate:nil];
-            alertView.tag = LOADING_DLG;
-            [alertView show];
+            UIAlertView *loadingAlertView = [UIAlertView indicatorAlertWithTitle:nil
+                                                                         message:@"Importing data to database..."
+                                                                        delegate:nil];
+            loadingAlertView.tag = LOADING_DLG;
+            [loadingAlertView show];
             // start thread
             NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
             [operationQueue addOperationWithBlock:^{
@@ -72,7 +72,7 @@
                     tilte = @"Error";
                     body = [[NSMutableString alloc] initWithString:@"Importing data is not suitable"];
                 }
-                [alertView dismissWithClickedButtonIndex:0 animated:NO];
+                [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
                 UIAlertView *resultAlert = [[UIAlertView alloc] initWithTitle:tilte
                                                                       message:body
                                                                      delegate:self cancelButtonTitle:@"OK"
