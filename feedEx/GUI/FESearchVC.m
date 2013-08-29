@@ -92,7 +92,9 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self setIsEditMode:NO];
+    if (self.isEditMode) {
+        [self setIsEditMode:NO];
+    }
 }
 - (void)loadPlaceDisplayType {
     _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];

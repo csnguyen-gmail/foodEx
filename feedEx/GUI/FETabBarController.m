@@ -23,27 +23,23 @@
 #define LOADING_DLG 1
 #define FINISH_DLG 2
 @implementation FETabBarController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    UINavigationController *searchNC = self.childViewControllers[1];
-    self.searchVC = searchNC.childViewControllers[0];
-    self.mapVC = self.childViewControllers[2];
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)awakeFromNib {
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChange:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
                                                object:nil];
-
 }
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSManagedObjectContextObjectsDidChangeNotification
                                                   object:nil];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UINavigationController *searchNC = self.childViewControllers[1];
+    self.searchVC = searchNC.childViewControllers[0];
+    self.mapVC = self.childViewControllers[2];
 }
 
 #pragma mark - handler function
