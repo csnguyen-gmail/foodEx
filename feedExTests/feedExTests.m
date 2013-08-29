@@ -19,6 +19,7 @@
 #import "NSManagedObject+Extension.h"
 #import "Tag+Extension.h"
 #import "NSData+Extension.h"
+#import "OriginPhoto.h"
 
 #define TEST_IMAGE @"heart_selected"
 
@@ -46,7 +47,7 @@
     for (int i = 0; i < 10; i++) {
         Place *place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = [NSString stringWithFormat:@"Place%d", i];
-        place.userOwner = user;
+        place.owner = user;
         place.rating = @(i % 6);
         place.timesCheckin = @(i);
         place.note = @"hello";
@@ -59,7 +60,7 @@
             Food *food = [NSEntityDescription insertNewObjectForEntityForName:@"Food" inManagedObjectContext:context];
             food.name = [NSString stringWithFormat:@"Food%d_%d", i, j];
             food.isBest = @(j%2==0);
-            food.placeOwner = place;
+            food.owner = place;
             [food insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE] atIndex:0];
             Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
             tag.label = [NSString stringWithFormat:@"FoodTag%i%i", i, j];
@@ -157,7 +158,7 @@
     Photo *firstPhotoOfUser = [user.photos objectAtIndex:0];
     // check origin Photo
     NSData *originData = UIImagePNGRepresentation(loadedImage);
-    NSData *storeData = firstPhotoOfUser.imageData;
+    NSData *storeData = firstPhotoOfUser.originPhoto.imageData;
     if (![originData isEqualToData:storeData]){
        STFail(@"Not match original image");
     }
@@ -200,25 +201,8 @@
         NSDictionary *dict = [user toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
             BOOL preventRelationship=NO;
             // Manual prevent reverse relationship
-            if ([obj isKindOfClass:NSClassFromString(@"Tag")]){
-                if([relationship isEqualToString:@"owner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Photo")]){
-                if([relationship isEqualToString:@"owner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Place")]){
-                if([relationship isEqualToString:@"userOwner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Food")]){
-                if([relationship isEqualToString:@"placeOwner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Address")]){
-                if([relationship isEqualToString:@"placeOwner"])
-                    preventRelationship=YES;
+            if([relationship isEqualToString:@"owner"]) {
+                preventRelationship=YES;
             }
             return preventRelationship;
         } blockingEncode:^id(id obj) {
@@ -271,7 +255,7 @@
         for (int i = 0; i < decodeUser.photos.count; i++) {
             Photo *decodePhoto = decodeUser.photos[i];
             Photo *photo = user.photos[i];
-            if (![decodePhoto.imageData isEqualToData:photo.imageData]) {
+            if (![decodePhoto.originPhoto.imageData isEqualToData:photo.originPhoto.imageData]) {
                 STFail(@"Blob data assignment is wrong");
             }
             NSData *decodeImage = UIImagePNGRepresentation(decodePhoto.thumbnailPhoto);

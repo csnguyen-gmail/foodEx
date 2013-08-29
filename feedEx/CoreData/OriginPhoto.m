@@ -1,19 +1,18 @@
 //
-//  Tag.m
+//  OriginPhoto.m
 //  feedEx
 //
 //  Created by csnguyen on 8/29/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "Tag.h"
-#import "AbstractInfo.h"
+#import "OriginPhoto.h"
+#import "Photo.h"
 
 
-@implementation Tag
+@implementation OriginPhoto
 
-@dynamic label;
-@dynamic type;
+@dynamic imageData;
 @dynamic owner;
 
 @end

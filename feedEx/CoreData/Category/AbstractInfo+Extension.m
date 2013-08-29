@@ -8,6 +8,7 @@
 
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
+#import "OriginPhoto.h"
 #import "Common.h"
 
 @implementation AbstractInfo (Extension)
@@ -17,14 +18,16 @@
 - (void)insertPhotoWithThumbnail:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage atIndex:(NSUInteger)index {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
+        OriginPhoto *originPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"OriginPhoto" inManagedObjectContext:context];
+        originPhoto.imageData = UIImagePNGRepresentation(originImage);
         Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
-        photo.imageData = UIImagePNGRepresentation(originImage);
         if (thumbnailImage) {
             photo.thumbnailPhoto = thumbnailImage;
         }
         else {
             photo.thumbnailPhoto = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
         }
+        photo.originPhoto = originPhoto;
 //        [self insertObject:photo inPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
         NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
         [tempSet insertObject:photo atIndex:index];

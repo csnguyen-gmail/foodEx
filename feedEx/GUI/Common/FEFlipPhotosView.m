@@ -9,6 +9,7 @@
 #import "FEFlipPhotosView.h"
 #import "Photo.h"
 #import "FERoundImageView.h"
+#import "OriginPhoto.h"
 
 @implementation FEFlipPhotosView
 // overwrite super class
@@ -18,7 +19,7 @@
 }
 - (UIView *)getViewAtIndex:(NSUInteger)index {
     Photo *photo = self.datasource[index];
-    UIImage *image = self.usingThumbnail ? photo.thumbnailPhoto : [[UIImage alloc] initWithData:photo.imageData];
+    UIImage *image = self.usingThumbnail ? photo.thumbnailPhoto : [[UIImage alloc] initWithData:photo.originPhoto.imageData];
     FERoundImageView *imageView = [[FERoundImageView alloc] initWithImage:image];
     return imageView;
 }

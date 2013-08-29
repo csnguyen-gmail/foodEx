@@ -9,6 +9,7 @@
 #import "FEFlipPlaceView.h"
 #import "Photo.h"
 #import "DYRateView.h"
+#import "OriginPhoto.h"
 
 @implementation FEFlipPlaceView
 - (UIView *)getViewAtIndex:(NSUInteger)index {
@@ -18,7 +19,7 @@
     bgView.layer.masksToBounds = YES;
     
     Photo *photo = self.datasource[index];
-    UIImage *image = [[UIImage alloc] initWithData:photo.imageData];
+    UIImage *image = [[UIImage alloc] initWithData:photo.originPhoto.imageData];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.frame = bgView.frame;
     

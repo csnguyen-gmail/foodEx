@@ -28,13 +28,8 @@
     NSDictionary *userDict = [user toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
         BOOL preventRelationship=NO;
         // Manual prevent reverse relationship
-        if ([obj isKindOfClass:NSClassFromString(@"Tag")]){
-            if([relationship isEqualToString:@"owner"])
-                preventRelationship=YES;
-        }
-        else if ([obj isKindOfClass:NSClassFromString(@"Photo")]){
-            if([relationship isEqualToString:@"owner"])
-                preventRelationship=YES;
+        if([relationship isEqualToString:@"owner"]) {
+            preventRelationship=YES;
         }
         return preventRelationship;
     } blockingEncode:^id(id obj) {
@@ -53,21 +48,8 @@
         NSDictionary *placeDict = [place toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
             BOOL preventRelationship=NO;
             // Manual prevent reverse relationship
-            if ([obj isKindOfClass:NSClassFromString(@"Tag")]){
-                if([relationship isEqualToString:@"owner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Photo")]){
-                if([relationship isEqualToString:@"owner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Food")]){
-                if([relationship isEqualToString:@"placeOwner"])
-                    preventRelationship=YES;
-            }
-            else if ([obj isKindOfClass:NSClassFromString(@"Address")]){
-                if([relationship isEqualToString:@"placeOwner"])
-                    preventRelationship=YES;
+            if([relationship isEqualToString:@"owner"]) {
+                preventRelationship=YES;
             }
             return preventRelationship;
         } blockingEncode:^id(id obj) {

@@ -116,7 +116,6 @@
 		6FBD839A17B320880082449F /* FEMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839917B320870082449F /* FEMapVC.m */; };
 		6FBD83A617B6A3BD0082449F /* FEDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83A517B6A3BC0082449F /* FEDirection.m */; };
 		6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */; };
-		6FBD83B217B79F570082449F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83B117B79F560082449F /* Place.m */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -137,18 +136,6 @@
 		6FC66FD0176D7C3900C91BC9 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCD176D7C3900C91BC9 /* stop.png */; };
 		6FC66FD1176D7C3900C91BC9 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCE176D7C3900C91BC9 /* stop@2x.png */; };
 		6FC66FD2176D7C3900C91BC9 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FC66FCE176D7C3900C91BC9 /* stop@2x.png */; };
-		6FC67045177069EC00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67044177069EC00C91BC9 /* Address.m */; };
-		6FC67046177069EC00C91BC9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67044177069EC00C91BC9 /* Address.m */; };
-		6FC67049177069EC00C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67048177069EC00C91BC9 /* Food.m */; };
-		6FC6704A177069EC00C91BC9 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67048177069EC00C91BC9 /* Food.m */; };
-		6FC6704D177069EC00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6704C177069EC00C91BC9 /* Photo.m */; };
-		6FC6704E177069EC00C91BC9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6704C177069EC00C91BC9 /* Photo.m */; };
-		6FC67051177069EC00C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67050177069EC00C91BC9 /* AbstractInfo.m */; };
-		6FC67052177069EC00C91BC9 /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67050177069EC00C91BC9 /* AbstractInfo.m */; };
-		6FC67055177069EC00C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67054177069EC00C91BC9 /* Tag.m */; };
-		6FC67056177069EC00C91BC9 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67054177069EC00C91BC9 /* Tag.m */; };
-		6FC67059177069EC00C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67058177069EC00C91BC9 /* User.m */; };
-		6FC6705A177069EC00C91BC9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC67058177069EC00C91BC9 /* User.m */; };
 		6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */; };
 		6FCE0DCC1778B1BE006559C9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE0DCA1778B1BE006559C9 /* checkmark.png */; };
 		6FCE0DCD1778B1BE006559C9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCE0DCB1778B1BE006559C9 /* checkmark@2x.png */; };
@@ -157,6 +144,14 @@
 		6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD91FF617743BB50066A5E5 /* FESearchVC.m */; };
 		6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */; };
 		6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */; };
+		6FE638FD17CF98C10043339B /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE638FC17CF98C10043339B /* Address.m */; };
+		6FE6390017CF98C10043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE638FF17CF98C10043339B /* User.m */; };
+		6FE6390317CF98C10043339B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390217CF98C10043339B /* Photo.m */; };
+		6FE6390617CF98C10043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390517CF98C10043339B /* Tag.m */; };
+		6FE6390917CF98C20043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390817CF98C20043339B /* OriginPhoto.m */; };
+		6FE6390C17CF98C20043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390B17CF98C20043339B /* AbstractInfo.m */; };
+		6FE6390F17CF98C20043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390E17CF98C20043339B /* Food.m */; };
+		6FE6391217CF98C20043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391117CF98C20043339B /* Place.m */; };
 		6FED8F96175A5A7F00216AC6 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F90175A5A7E00216AC6 /* pause@2x.png */; };
 		6FED8F97175A5A7F00216AC6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F91175A5A7E00216AC6 /* pause.png */; };
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
@@ -346,8 +341,6 @@
 		6FBD83A517B6A3BC0082449F /* FEDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDirection.m; sourceTree = "<group>"; };
 		6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListSearchMapTVC.h; sourceTree = "<group>"; };
 		6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListSearchMapTVC.m; sourceTree = "<group>"; };
-		6FBD83B017B79F560082449F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6FBD83B117B79F560082449F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -365,18 +358,6 @@
 		6FC66FCD176D7C3900C91BC9 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		6FC66FCE176D7C3900C91BC9 /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
 		6FC66FFC176EF6DD00C91BC9 /* CoredataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoredataCommon.h; sourceTree = "<group>"; };
-		6FC67043177069EC00C91BC9 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		6FC67044177069EC00C91BC9 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
-		6FC67047177069EC00C91BC9 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6FC67048177069EC00C91BC9 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6FC6704B177069EC00C91BC9 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6FC6704C177069EC00C91BC9 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6FC6704F177069EC00C91BC9 /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6FC67050177069EC00C91BC9 /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
-		6FC67053177069EC00C91BC9 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6FC67054177069EC00C91BC9 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6FC67057177069EC00C91BC9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6FC67058177069EC00C91BC9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6FCE0DC717789B9B006559C9 /* FESearchTagVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchTagVC.h; sourceTree = "<group>"; };
 		6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchTagVC.m; sourceTree = "<group>"; };
 		6FCE0DCA1778B1BE006559C9 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
@@ -391,6 +372,22 @@
 		6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListCell.m; sourceTree = "<group>"; };
 		6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListTVC.h; sourceTree = "<group>"; };
 		6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListTVC.m; sourceTree = "<group>"; };
+		6FE638FB17CF98C10043339B /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		6FE638FC17CF98C10043339B /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		6FE638FE17CF98C10043339B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6FE638FF17CF98C10043339B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6FE6390117CF98C10043339B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6FE6390217CF98C10043339B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		6FE6390417CF98C10043339B /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		6FE6390517CF98C10043339B /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		6FE6390717CF98C20043339B /* OriginPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginPhoto.h; sourceTree = "<group>"; };
+		6FE6390817CF98C20043339B /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
+		6FE6390A17CF98C20043339B /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6FE6390B17CF98C20043339B /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6FE6390D17CF98C20043339B /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6FE6390E17CF98C20043339B /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6FE6391017CF98C20043339B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6FE6391117CF98C20043339B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6FED8F90175A5A7E00216AC6 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		6FED8F91175A5A7E00216AC6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
@@ -614,20 +611,22 @@
 			children = (
 				6F30B71F17BF6DB600A1D389 /* Category */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6FBD83B017B79F560082449F /* Place.h */,
-				6FBD83B117B79F560082449F /* Place.m */,
-				6FC67057177069EC00C91BC9 /* User.h */,
-				6FC67058177069EC00C91BC9 /* User.m */,
-				6FC67053177069EC00C91BC9 /* Tag.h */,
-				6FC67054177069EC00C91BC9 /* Tag.m */,
-				6FC6704F177069EC00C91BC9 /* AbstractInfo.h */,
-				6FC67050177069EC00C91BC9 /* AbstractInfo.m */,
-				6FC6704B177069EC00C91BC9 /* Photo.h */,
-				6FC6704C177069EC00C91BC9 /* Photo.m */,
-				6FC67047177069EC00C91BC9 /* Food.h */,
-				6FC67048177069EC00C91BC9 /* Food.m */,
-				6FC67043177069EC00C91BC9 /* Address.h */,
-				6FC67044177069EC00C91BC9 /* Address.m */,
+				6FE6391017CF98C20043339B /* Place.h */,
+				6FE6391117CF98C20043339B /* Place.m */,
+				6FE6390D17CF98C20043339B /* Food.h */,
+				6FE6390E17CF98C20043339B /* Food.m */,
+				6FE6390A17CF98C20043339B /* AbstractInfo.h */,
+				6FE6390B17CF98C20043339B /* AbstractInfo.m */,
+				6FE6390717CF98C20043339B /* OriginPhoto.h */,
+				6FE6390817CF98C20043339B /* OriginPhoto.m */,
+				6FE6390417CF98C10043339B /* Tag.h */,
+				6FE6390517CF98C10043339B /* Tag.m */,
+				6FE6390117CF98C10043339B /* Photo.h */,
+				6FE6390217CF98C10043339B /* Photo.m */,
+				6FE638FE17CF98C10043339B /* User.h */,
+				6FE638FF17CF98C10043339B /* User.m */,
+				6FE638FB17CF98C10043339B /* Address.h */,
+				6FE638FC17CF98C10043339B /* Address.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
@@ -1082,6 +1081,7 @@
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
+				6FE6390917CF98C20043339B /* OriginPhoto.m in Sources */,
 				6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */,
 				6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */,
 				6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */,
@@ -1091,6 +1091,7 @@
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 				6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */,
 				6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */,
+				6FE6391217CF98C20043339B /* Place.m in Sources */,
 				6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */,
 				6F5713601761D70F000C69CE /* GKImageCropView.m in Sources */,
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
@@ -1102,14 +1103,10 @@
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
-				6FC67045177069EC00C91BC9 /* Address.m in Sources */,
-				6FC67049177069EC00C91BC9 /* Food.m in Sources */,
-				6FC6704D177069EC00C91BC9 /* Photo.m in Sources */,
-				6FC67051177069EC00C91BC9 /* AbstractInfo.m in Sources */,
-				6FC67055177069EC00C91BC9 /* Tag.m in Sources */,
-				6FC67059177069EC00C91BC9 /* User.m in Sources */,
+				6FE6390017CF98C10043339B /* User.m in Sources */,
 				6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */,
 				6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */,
+				6FE6390C17CF98C20043339B /* AbstractInfo.m in Sources */,
 				6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */,
 				6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */,
 				6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */,
@@ -1119,6 +1116,9 @@
 				6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */,
 				6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */,
 				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
+				6FE6390317CF98C10043339B /* Photo.m in Sources */,
+				6FE6390617CF98C10043339B /* Tag.m in Sources */,
+				6FE6390F17CF98C20043339B /* Food.m in Sources */,
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
@@ -1132,6 +1132,7 @@
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
 				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
+				6FE638FD17CF98C10043339B /* Address.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
 				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
@@ -1141,7 +1142,6 @@
 				6FBD839A17B320880082449F /* FEMapVC.m in Sources */,
 				6FBD83A617B6A3BD0082449F /* FEDirection.m in Sources */,
 				6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */,
-				6FBD83B217B79F570082449F /* Place.m in Sources */,
 				6F30B70617BF40D300A1D389 /* NSString+Extension.m in Sources */,
 				6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */,
 				6F30B70817BF40D300A1D389 /* UISearchBar+Extension.m in Sources */,
@@ -1160,12 +1160,6 @@
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
-				6FC67046177069EC00C91BC9 /* Address.m in Sources */,
-				6FC6704A177069EC00C91BC9 /* Food.m in Sources */,
-				6FC6704E177069EC00C91BC9 /* Photo.m in Sources */,
-				6FC67052177069EC00C91BC9 /* AbstractInfo.m in Sources */,
-				6FC67056177069EC00C91BC9 /* Tag.m in Sources */,
-				6FC6705A177069EC00C91BC9 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

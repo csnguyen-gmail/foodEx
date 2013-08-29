@@ -2,7 +2,7 @@
 //  Address.m
 //  feedEx
 //
-//  Created by csnguyen on 6/17/13.
+//  Created by csnguyen on 8/29/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -15,6 +15,6 @@
 @dynamic address;
 @dynamic lattittude;
 @dynamic longtitude;
-@dynamic placeOwner;
+@dynamic owner;
 
 @end

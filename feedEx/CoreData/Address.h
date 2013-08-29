@@ -2,7 +2,7 @@
 //  Address.h
 //  feedEx
 //
-//  Created by csnguyen on 6/17/13.
+//  Created by csnguyen on 8/29/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSNumber * lattittude;
 @property (nonatomic, retain) NSNumber * longtitude;
-@property (nonatomic, retain) Place *placeOwner;
+@property (nonatomic, retain) Place *owner;
 
 @end
