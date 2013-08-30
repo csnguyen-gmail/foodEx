@@ -300,7 +300,7 @@
         [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
             if (resp.firstResult != nil) {
                 marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
-                if ([self.editPlaceInfoTVC.addressTextField.text isEqualToString:@""]) {
+                if (self.editPlaceInfoTVC.addressTextField.text.length == 0) {
                     self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
                 }
             }

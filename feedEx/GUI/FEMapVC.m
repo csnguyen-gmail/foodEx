@@ -188,7 +188,7 @@
     {
         CLLocation* location = self.mapView.myLocation;
         CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
-        GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:NO];
+        GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];
         marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
         
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:location2d coordinate:location2d];
