@@ -31,12 +31,20 @@
 @end
 
 @implementation FEMapVC
-- (void)awakeFromNib {
+- (void)viewDidLoad {
+    [super viewDidLoad];
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChange:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
                                                object:nil];
+
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton = YES;
+    [self addLocationObervation];
+    [self hideSearchResultWithAnimated:NO];
+    [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
+    self.placeListTVC.searchDelegate = self;
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -45,15 +53,6 @@
     [self removeLocationObservation];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.compassButton = YES;
-    [self addLocationObervation];
-    [self hideSearchResultWithAnimated:NO];
-    [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
-    self.placeListTVC.searchDelegate = self;
-}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeList"]) {
         self.placeListTVC = [segue destinationViewController];
@@ -61,15 +60,21 @@
 }
 #pragma mark - handler DataModel changed
 - (void)handleDataModelChange:(NSNotification *)note {
-    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
-                                            withMOC:self.coreData.managedObjectContext];
-    for (GMSMarker *marker in self.mapView.markers) {
-        marker.map = nil;
-    }
-    for (Place *place in self.places) {
-        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
-    }
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        // reload data source
+        self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
+                                                withMOC:self.coreData.managedObjectContext];
+        // rebuild marker
+        for (GMSMarker *marker in self.mapView.markers) {
+            marker.map = nil;
+        }
+        for (Place *place in self.places) {
+            CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+            [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+        }
+        // fix marker
+        [self fixMapView];
+    }];
 }
 
 #pragma mark - getter setter
@@ -186,17 +191,20 @@
     [self removeLocationObservation];
     if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
     {
-        CLLocation* location = self.mapView.myLocation;
-        CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
-        GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];
-        marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
-        
-        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:location2d coordinate:location2d];
-        for (GMSMarker *marker in self.mapView.markers) {
-            bounds = [bounds includingCoordinate:marker.position];
-        }
-        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+        [self fixMapView];
     }
+}
+- (void)fixMapView {
+    CLLocation* location = self.mapView.myLocation;
+    CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
+    GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];
+    marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
+    
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:location2d coordinate:location2d];
+    for (GMSMarker *marker in self.mapView.markers) {
+        bounds = [bounds includingCoordinate:marker.position];
+    }
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {

@@ -144,14 +144,22 @@
 		6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD91FF617743BB50066A5E5 /* FESearchVC.m */; };
 		6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */; };
 		6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */; };
-		6FE638FD17CF98C10043339B /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE638FC17CF98C10043339B /* Address.m */; };
-		6FE6390017CF98C10043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE638FF17CF98C10043339B /* User.m */; };
-		6FE6390317CF98C10043339B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390217CF98C10043339B /* Photo.m */; };
-		6FE6390617CF98C10043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390517CF98C10043339B /* Tag.m */; };
-		6FE6390917CF98C20043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390817CF98C20043339B /* OriginPhoto.m */; };
-		6FE6390C17CF98C20043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390B17CF98C20043339B /* AbstractInfo.m */; };
-		6FE6390F17CF98C20043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6390E17CF98C20043339B /* Food.m */; };
-		6FE6391217CF98C20043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391117CF98C20043339B /* Place.m */; };
+		6FE6391517D0853F0043339B /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391417D0853F0043339B /* Address.m */; };
+		6FE6391617D0853F0043339B /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391417D0853F0043339B /* Address.m */; };
+		6FE6391917D0853F0043339B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391817D0853F0043339B /* Photo.m */; };
+		6FE6391A17D0853F0043339B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391817D0853F0043339B /* Photo.m */; };
+		6FE6391D17D085400043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391C17D085400043339B /* AbstractInfo.m */; };
+		6FE6391E17D085400043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391C17D085400043339B /* AbstractInfo.m */; };
+		6FE6392117D085400043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392017D085400043339B /* Place.m */; };
+		6FE6392217D085400043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392017D085400043339B /* Place.m */; };
+		6FE6392517D085400043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392417D085400043339B /* User.m */; };
+		6FE6392617D085400043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392417D085400043339B /* User.m */; };
+		6FE6392917D085400043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392817D085400043339B /* Food.m */; };
+		6FE6392A17D085400043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392817D085400043339B /* Food.m */; };
+		6FE6392D17D085400043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392C17D085400043339B /* Tag.m */; };
+		6FE6392E17D085400043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392C17D085400043339B /* Tag.m */; };
+		6FE6393117D085400043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393017D085400043339B /* OriginPhoto.m */; };
+		6FE6393217D085400043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393017D085400043339B /* OriginPhoto.m */; };
 		6FED8F96175A5A7F00216AC6 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F90175A5A7E00216AC6 /* pause@2x.png */; };
 		6FED8F97175A5A7F00216AC6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F91175A5A7E00216AC6 /* pause.png */; };
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
@@ -372,22 +380,22 @@
 		6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListCell.m; sourceTree = "<group>"; };
 		6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListTVC.h; sourceTree = "<group>"; };
 		6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListTVC.m; sourceTree = "<group>"; };
-		6FE638FB17CF98C10043339B /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		6FE638FC17CF98C10043339B /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
-		6FE638FE17CF98C10043339B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6FE638FF17CF98C10043339B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6FE6390117CF98C10043339B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6FE6390217CF98C10043339B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6FE6390417CF98C10043339B /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6FE6390517CF98C10043339B /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6FE6390717CF98C20043339B /* OriginPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginPhoto.h; sourceTree = "<group>"; };
-		6FE6390817CF98C20043339B /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
-		6FE6390A17CF98C20043339B /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
-		6FE6390B17CF98C20043339B /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
-		6FE6390D17CF98C20043339B /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		6FE6390E17CF98C20043339B /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6FE6391017CF98C20043339B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6FE6391117CF98C20043339B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FE6391317D0853F0043339B /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		6FE6391417D0853F0043339B /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		6FE6391717D0853F0043339B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		6FE6391817D0853F0043339B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		6FE6391B17D085400043339B /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
+		6FE6391C17D085400043339B /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
+		6FE6391F17D085400043339B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6FE6392017D085400043339B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FE6392317D085400043339B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6FE6392417D085400043339B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6FE6392717D085400043339B /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		6FE6392817D085400043339B /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6FE6392B17D085400043339B /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		6FE6392C17D085400043339B /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		6FE6392F17D085400043339B /* OriginPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginPhoto.h; sourceTree = "<group>"; };
+		6FE6393017D085400043339B /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
 		6FED8F90175A5A7E00216AC6 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		6FED8F91175A5A7E00216AC6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
@@ -611,22 +619,22 @@
 			children = (
 				6F30B71F17BF6DB600A1D389 /* Category */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6FE6391017CF98C20043339B /* Place.h */,
-				6FE6391117CF98C20043339B /* Place.m */,
-				6FE6390D17CF98C20043339B /* Food.h */,
-				6FE6390E17CF98C20043339B /* Food.m */,
-				6FE6390A17CF98C20043339B /* AbstractInfo.h */,
-				6FE6390B17CF98C20043339B /* AbstractInfo.m */,
-				6FE6390717CF98C20043339B /* OriginPhoto.h */,
-				6FE6390817CF98C20043339B /* OriginPhoto.m */,
-				6FE6390417CF98C10043339B /* Tag.h */,
-				6FE6390517CF98C10043339B /* Tag.m */,
-				6FE6390117CF98C10043339B /* Photo.h */,
-				6FE6390217CF98C10043339B /* Photo.m */,
-				6FE638FE17CF98C10043339B /* User.h */,
-				6FE638FF17CF98C10043339B /* User.m */,
-				6FE638FB17CF98C10043339B /* Address.h */,
-				6FE638FC17CF98C10043339B /* Address.m */,
+				6FE6392F17D085400043339B /* OriginPhoto.h */,
+				6FE6393017D085400043339B /* OriginPhoto.m */,
+				6FE6392B17D085400043339B /* Tag.h */,
+				6FE6392C17D085400043339B /* Tag.m */,
+				6FE6392717D085400043339B /* Food.h */,
+				6FE6392817D085400043339B /* Food.m */,
+				6FE6392317D085400043339B /* User.h */,
+				6FE6392417D085400043339B /* User.m */,
+				6FE6391F17D085400043339B /* Place.h */,
+				6FE6392017D085400043339B /* Place.m */,
+				6FE6391B17D085400043339B /* AbstractInfo.h */,
+				6FE6391C17D085400043339B /* AbstractInfo.m */,
+				6FE6391717D0853F0043339B /* Photo.h */,
+				6FE6391817D0853F0043339B /* Photo.m */,
+				6FE6391317D0853F0043339B /* Address.h */,
+				6FE6391417D0853F0043339B /* Address.m */,
 				6F12E62D173513B8007A38DA /* PngImageTransformer.h */,
 				6F12E62E173513B8007A38DA /* PngImageTransformer.m */,
 				6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */,
@@ -1081,7 +1089,7 @@
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
-				6FE6390917CF98C20043339B /* OriginPhoto.m in Sources */,
+				6FE6393117D085400043339B /* OriginPhoto.m in Sources */,
 				6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */,
 				6F9E95B81744EED100DCCF24 /* FEVerticalResizeControllView.m in Sources */,
 				6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */,
@@ -1091,7 +1099,7 @@
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 				6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */,
 				6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */,
-				6FE6391217CF98C20043339B /* Place.m in Sources */,
+				6FE6392117D085400043339B /* Place.m in Sources */,
 				6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */,
 				6F5713601761D70F000C69CE /* GKImageCropView.m in Sources */,
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
@@ -1102,11 +1110,11 @@
 				6FAD9DB817635A1200DB606C /* DYRateView.m in Sources */,
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
+				6FE6392517D085400043339B /* User.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
-				6FE6390017CF98C10043339B /* User.m in Sources */,
 				6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */,
 				6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */,
-				6FE6390C17CF98C20043339B /* AbstractInfo.m in Sources */,
+				6FE6391D17D085400043339B /* AbstractInfo.m in Sources */,
 				6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */,
 				6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */,
 				6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */,
@@ -1116,9 +1124,9 @@
 				6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */,
 				6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */,
 				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
-				6FE6390317CF98C10043339B /* Photo.m in Sources */,
-				6FE6390617CF98C10043339B /* Tag.m in Sources */,
-				6FE6390F17CF98C20043339B /* Food.m in Sources */,
+				6FE6392D17D085400043339B /* Tag.m in Sources */,
+				6FE6391917D0853F0043339B /* Photo.m in Sources */,
+				6FE6392917D085400043339B /* Food.m in Sources */,
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
@@ -1130,9 +1138,9 @@
 				6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */,
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
+				6FE6391517D0853F0043339B /* Address.m in Sources */,
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
 				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
-				6FE638FD17CF98C10043339B /* Address.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
 				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
@@ -1157,8 +1165,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FE6392A17D085400043339B /* Food.m in Sources */,
+				6FE6392617D085400043339B /* User.m in Sources */,
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
+				6FE6391E17D085400043339B /* AbstractInfo.m in Sources */,
+				6FE6392E17D085400043339B /* Tag.m in Sources */,
+				6FE6392217D085400043339B /* Place.m in Sources */,
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
+				6FE6391617D0853F0043339B /* Address.m in Sources */,
+				6FE6391A17D0853F0043339B /* Photo.m in Sources */,
+				6FE6393217D085400043339B /* OriginPhoto.m in Sources */,
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

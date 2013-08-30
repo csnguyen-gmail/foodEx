@@ -44,21 +44,15 @@
 @end
 
 @implementation FESearchVC
-- (void)awakeFromNib {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChange:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
                                                object:nil];
-}
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSManagedObjectContextObjectsDidChangeNotification
-                                                  object:nil];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+
     // perpare GUI
     // navigation bar
     self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
@@ -83,6 +77,12 @@
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                  object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
@@ -95,7 +95,9 @@
 }
 #pragma mark - handler DataModel changed
 - (void)handleDataModelChange:(NSNotification *)note {
-    [self refetchData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self refetchData];
+    }];
 }
 - (void)refetchData {
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
