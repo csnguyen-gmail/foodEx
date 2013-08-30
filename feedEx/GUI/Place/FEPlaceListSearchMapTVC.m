@@ -57,55 +57,50 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     Place *place = self.places[index];
-    if (place.photos.count != 0) {
-        cell.delegate = self;
-        cell.nameLbl.text = place.name;
-        cell.addressLbl.text = place.address.address;
-        cell.ratingView.rate = [place.rating integerValue];
-        cell.flipPhotosView.rowIndex = index;
-        cell.flipPhotosView.delegate = self;
-        cell.flipPhotosView.usingThumbnail = YES;
-        [cell.flipPhotosView setDatasource:[place.photos array]
-                         withSelectedIndex:[self getImageIndexOfObjId:place.objectID]];
-        [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        if (place.tags.count > 0) {
-            CGFloat contentWidth = 0.0;
-            for (Tag *tag in place.tags) {
-                UIFont *font = [UIFont systemFontOfSize:10];
-                CGSize tagSize = [tag.label sizeWithFont:font];
-                tagSize.width += TAG_HORIZON_MARGIN;
-                tagSize.height += TAG_VERTICAL_MARGIN;
-                UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
-                tagLbl.adjustsFontSizeToFitWidth = YES;
-                tagLbl.minimumScaleFactor = 0.1;
-                tagLbl.textAlignment = NSTextAlignmentCenter;
-                tagLbl.text = tag.label;
-                tagLbl.font = font;
-                tagLbl.textColor = [UIColor whiteColor];
-                tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
-                tagLbl.layer.cornerRadius = 5;
-                tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
-                tagLbl.layer.borderWidth = 0.8;
-                [cell.tagsScrollView addSubview:tagLbl];
-                contentWidth += tagSize.width + TAG_PADDING;
-            }
-            CGSize size = cell.tagsScrollView.contentSize;
-            size.width = contentWidth;
-            cell.tagsScrollView.contentSize = size;
+    cell.delegate = self;
+    cell.nameLbl.text = place.name;
+    cell.addressLbl.text = place.address.address;
+    cell.ratingView.rate = [place.rating integerValue];
+    cell.flipPhotosView.rowIndex = index;
+    cell.flipPhotosView.delegate = self;
+    cell.flipPhotosView.usingThumbnail = YES;
+    [cell.flipPhotosView setDatasource:[place.photos array]
+                     withSelectedIndex:[self getImageIndexOfObjId:place.objectID]];
+    [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    if (place.tags.count > 0) {
+        CGFloat contentWidth = 0.0;
+        for (Tag *tag in place.tags) {
+            UIFont *font = [UIFont systemFontOfSize:10];
+            CGSize tagSize = [tag.label sizeWithFont:font];
+            tagSize.width += TAG_HORIZON_MARGIN;
+            tagSize.height += TAG_VERTICAL_MARGIN;
+            UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
+            tagLbl.adjustsFontSizeToFitWidth = YES;
+            tagLbl.minimumScaleFactor = 0.1;
+            tagLbl.textAlignment = NSTextAlignmentCenter;
+            tagLbl.text = tag.label;
+            tagLbl.font = font;
+            tagLbl.textColor = [UIColor whiteColor];
+            tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
+            tagLbl.layer.cornerRadius = 5;
+            tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
+            tagLbl.layer.borderWidth = 0.8;
+            [cell.tagsScrollView addSubview:tagLbl];
+            contentWidth += tagSize.width + TAG_PADDING;
         }
-        CLLocationDistance distance = [place.distance doubleValue];
-        if (distance != -1){
-            if (distance < 1000) {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
-            } else {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
-            }
-        } else {
-            cell.distanceLbl.text = @"";
-        }
+        CGSize size = cell.tagsScrollView.contentSize;
+        size.width = contentWidth;
+        cell.tagsScrollView.contentSize = size;
     }
-    else {
-        // TODO
+    CLLocationDistance distance = [place.distance doubleValue];
+    if (distance != -1){
+        if (distance < 1000) {
+            cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
+        } else {
+            cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
+        }
+    } else {
+        cell.distanceLbl.text = @"";
     }
 }
 

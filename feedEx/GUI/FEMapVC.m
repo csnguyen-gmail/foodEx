@@ -33,12 +33,6 @@
 @implementation FEMapVC
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // tracking Coredata change
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleDataModelChange:)
-                                                 name:NSManagedObjectContextDidSaveNotification
-                                               object:nil];
-
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self addLocationObervation];
@@ -47,9 +41,6 @@
     self.placeListTVC.searchDelegate = self;
 }
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSManagedObjectContextDidSaveNotification
-                                                  object:nil];
     [self removeLocationObservation];
 }
 
@@ -60,22 +51,19 @@
 }
 #pragma mark - handler DataModel changed
 - (void)handleDataModelChange:(NSNotification *)note {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        // reload data source
-        self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
-                                                withMOC:self.coreData.managedObjectContext];
-        // rebuild marker
-        for (GMSMarker *marker in self.mapView.markers) {
-            marker.map = nil;
-        }
-        for (Place *place in self.places) {
-            CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-            [self addMarketAt:location2d snippet:place.name mapMoved:NO];
-        }
-        NSLog(@"Data change");
-        // fix marker
-        [self fixMapView];
-    }];
+    // reload data source
+    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
+                                            withMOC:self.coreData.managedObjectContext];
+    // rebuild marker
+    for (GMSMarker *marker in self.mapView.markers) {
+        marker.map = nil;
+    }
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+    }
+    // fix marker
+    [self fixMapView];
 }
 
 #pragma mark - getter setter
@@ -172,7 +160,6 @@
 }
 #pragma mark - Map
 - (void)addLocationObervation {
-    self.indicationView.hidden = NO;
     [self.indicationView startAnimating];
     if (!self.mapView.myLocationEnabled) {
         self.mapView.myLocationEnabled = YES;
@@ -181,7 +168,6 @@
 }
 - (void)removeLocationObservation {
     [self.indicationView stopAnimating];
-    self.indicationView.hidden = YES;
     if (self.mapView.myLocationEnabled) {
         self.mapView.myLocationEnabled = NO;
         [self.mapView removeObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY];
@@ -196,7 +182,6 @@
     }
 }
 - (void)fixMapView {
-    NSLog(@"fix");
     CLLocation* location = self.mapView.myLocation;
     CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
     GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];

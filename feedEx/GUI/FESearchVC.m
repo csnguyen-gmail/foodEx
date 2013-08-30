@@ -47,12 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // tracking Coredata change
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleDataModelChange:)
-                                                 name:NSManagedObjectContextDidSaveNotification
-                                               object:nil];
-
     // perpare GUI
     // navigation bar
     self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
@@ -77,11 +71,6 @@
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
 }
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSManagedObjectContextDidSaveNotification
-                                                  object:nil];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -95,9 +84,7 @@
 }
 #pragma mark - handler DataModel changed
 - (void)handleDataModelChange:(NSNotification *)note {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self refetchData];
-    }];
+    [self refetchData];
 }
 - (void)refetchData {
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
