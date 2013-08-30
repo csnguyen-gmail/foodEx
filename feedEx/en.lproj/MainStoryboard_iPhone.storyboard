@@ -978,6 +978,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="tXU-BB-m8E">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -998,6 +1002,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dispTypeSC" destination="CJy-fC-g8z" id="Wg5-rt-K96"/>
+                        <outlet property="indicatorView" destination="tXU-BB-m8E" id="LU7-z5-3nY"/>
                         <outlet property="mainView" destination="SDz-7k-mRy" id="UXV-ZC-jxA"/>
                         <outlet property="placeGridView" destination="sHH-PB-Hn2" id="fsQ-9u-s5w"/>
                         <outlet property="placeListView" destination="uVL-zx-plR" id="EVi-cK-hxq"/>

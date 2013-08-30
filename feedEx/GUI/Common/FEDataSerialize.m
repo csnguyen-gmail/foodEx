@@ -115,7 +115,7 @@
         Place *place = (Place*)[NSManagedObject createManagedObjectFromDictionary:placeDict inContext:coreData.managedObjectContext
                                                                blockingValidation:blockValidation
                                                                    blockingDecode:blockDecode];
-        [places insertObject:place atIndex:0];
+        [places addObject:place];
     }
     if (places.count == 0) {
         return  nil;

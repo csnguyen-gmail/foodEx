@@ -36,7 +36,7 @@
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChange:)
-                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                                 name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
 
     self.mapView.settings.myLocationButton = YES;
@@ -48,7 +48,7 @@
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                    name:NSManagedObjectContextDidSaveNotification
                                                   object:nil];
     [self removeLocationObservation];
 }
@@ -72,6 +72,7 @@
             CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
             [self addMarketAt:location2d snippet:place.name mapMoved:NO];
         }
+        NSLog(@"Data change");
         // fix marker
         [self fixMapView];
     }];
@@ -195,6 +196,7 @@
     }
 }
 - (void)fixMapView {
+    NSLog(@"fix");
     CLLocation* location = self.mapView.myLocation;
     CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
     GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];

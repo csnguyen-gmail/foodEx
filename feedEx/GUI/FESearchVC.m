@@ -24,7 +24,6 @@
 #define GRID_TYPE 1
 
 #define ALERT_DELETE_CONFIRM 0
-#define ALERT_DELETING 1
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
@@ -41,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *placeGridView;
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @end
 
 @implementation FESearchVC
@@ -50,7 +50,7 @@
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChange:)
-                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                                 name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
 
     // perpare GUI
@@ -79,7 +79,7 @@
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSManagedObjectContextObjectsDidChangeNotification
+                                                    name:NSManagedObjectContextDidSaveNotification
                                                   object:nil];
 }
 
@@ -296,12 +296,7 @@
     if (alertView.tag == ALERT_DELETE_CONFIRM) {
         // YES button
         if (buttonIndex == 1) {
-            // show loading alert
-            UIAlertView *processingAlertView = [UIAlertView indicatorAlertWithTitle:nil
-                                                                            message:@"Deleting data out of database..."
-                                                                           delegate:nil];
-            processingAlertView.tag = ALERT_DELETING;
-            [processingAlertView show];
+            [self.indicatorView startAnimating];
             // start thread
             NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
             [operationQueue addOperationWithBlock:^{
@@ -311,19 +306,12 @@
                     [coreData.managedObjectContext deleteObject:place];
                 }
                 [coreData saveToPersistenceStoreAndWait];
-                [processingAlertView dismissWithClickedButtonIndex:0 animated:NO];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.indicatorView stopAnimating];
                     self.isEditMode = !self.isEditMode;
                 }];
             }];
         }
-        else {
-            
-        }
-    }
-    else {
-        
-    }
-    
+    }    
 }
 @end

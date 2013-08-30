@@ -81,13 +81,6 @@
                 [resultAlert show];
             }];
         }
-        else {
-            
-        }
     }
-    else {
-        
-    }
-    
 }
 @end
