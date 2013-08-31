@@ -53,13 +53,13 @@
     <fetchRequest name="GetTagByType" entity="Tag" predicateString="type == $TYPE"/>
     <fetchRequest name="GetUser" entity="User"/>
     <elements>
-        <element name="AbstractInfo" positionX="-101" positionY="-135" width="128" height="118"/>
-        <element name="Address" positionX="-117" positionY="257" width="128" height="103"/>
-        <element name="Food" positionX="144" positionY="128" width="128" height="88"/>
-        <element name="Photo" positionX="106" positionY="-135" width="128" height="88"/>
-        <element name="Place" positionX="-101" positionY="34" width="128" height="161"/>
-        <element name="Tag" positionX="-326" positionY="-135" width="128" height="88"/>
-        <element name="User" positionX="-324" positionY="109" width="128" height="86"/>
-        <element name="OriginPhoto" positionX="162" positionY="9" width="128" height="73"/>
+        <element name="AbstractInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Address" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Food" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="OriginPhoto" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Place" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -160,6 +160,8 @@
 		6FE6393217D085400043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393017D085400043339B /* OriginPhoto.m */; };
 		6FE6393517D1A0640043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393417D1A0640043339B /* Place.m */; };
 		6FE6393617D1A0640043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393417D1A0640043339B /* Place.m */; };
+		6FE6393917D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */; };
+		6FE6393A17D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */; };
 		6FED8F96175A5A7F00216AC6 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F90175A5A7E00216AC6 /* pause@2x.png */; };
 		6FED8F97175A5A7F00216AC6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F91175A5A7E00216AC6 /* pause.png */; };
 		6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F92175A5A7E00216AC6 /* remove@2x.png */; };
@@ -396,6 +398,8 @@
 		6FE6393017D085400043339B /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
 		6FE6393317D1A0640043339B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		6FE6393417D1A0640043339B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6FE6393717D1B8950043339B /* FEPlaceListSearchMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListSearchMapCell.h; sourceTree = "<group>"; };
+		6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListSearchMapCell.m; sourceTree = "<group>"; };
 		6FED8F90175A5A7E00216AC6 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		6FED8F91175A5A7E00216AC6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6FED8F92175A5A7E00216AC6 /* remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove@2x.png"; sourceTree = "<group>"; };
@@ -831,6 +835,8 @@
 				6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */,
 				6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */,
 				6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */,
+				6FE6393717D1B8950043339B /* FEPlaceListSearchMapCell.h */,
+				6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -1158,6 +1164,7 @@
 				6F30B72817BF6DB700A1D389 /* Tag+Extension.m in Sources */,
 				6F30B72E17C47BE300A1D389 /* NSManagedObject+Extension.m in Sources */,
 				6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */,
+				6FE6393917D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,6 +1181,7 @@
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6FE6391617D0853F0043339B /* Address.m in Sources */,
 				6FE6391A17D0853F0043339B /* Photo.m in Sources */,
+				6FE6393A17D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */,
 				6FE6393217D085400043339B /* OriginPhoto.m in Sources */,
 				6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */,
 			);
