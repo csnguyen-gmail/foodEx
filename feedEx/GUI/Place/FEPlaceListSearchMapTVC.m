@@ -92,16 +92,7 @@
         size.width = contentWidth;
         cell.tagsScrollView.contentSize = size;
     }
-    CLLocationDistance distance = [place.distance doubleValue];
-    if (distance != -1){
-        if (distance < 1000) {
-            cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
-        } else {
-            cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
-        }
-    } else {
-        cell.distanceLbl.text = @"";
-    }
+    cell.distanceLbl.text = place.distanceInfo;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

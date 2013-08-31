@@ -28,7 +28,7 @@
         <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AbstractInfo" inverseName="photos" inverseEntity="AbstractInfo" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">
-        <attribute name="distance" optional="YES" transient="YES" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
+        <attribute name="distanceInfo" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="0" syncable="YES"/>
         <attribute name="timesCheckin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="address" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Address" inverseName="owner" inverseEntity="Address" syncable="YES"/>

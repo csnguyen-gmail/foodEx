@@ -13,7 +13,7 @@
 #import "FEPlaceDataSource.h"
 #import "Place+Extension.h"
 #import "Address.h"
-#import "FEDirection.h"
+#import "FEMapUtility.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
 #import "UISearchBar+Extension.h"
@@ -35,6 +35,7 @@
     [super viewDidLoad];
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
+    [self reloadDataSource];
     [self addLocationObervation];
     [self hideSearchResultWithAnimated:NO];
     [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
@@ -52,18 +53,9 @@
 #pragma mark - handler DataModel changed
 - (void)handleDataModelChange:(NSNotification *)note {
     // reload data source
-    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
-                                            withMOC:self.coreData.managedObjectContext];
-    // rebuild marker
-    for (GMSMarker *marker in self.mapView.markers) {
-        marker.map = nil;
-    }
-    for (Place *place in self.places) {
-        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
-    }
-    // fix marker
-    [self fixMapView];
+    [self reloadDataSource];
+    // update map information
+    [self updateMapInfo];
 }
 
 #pragma mark - getter setter
@@ -138,7 +130,7 @@
     CLLocation* location = self.mapView.myLocation;
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
     CLLocationCoordinate2D locPlace2 = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-    [FEDirection getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+    [FEMapUtility getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
         // clear all old polylines
         for (GMSPolyline *polyline in self.mapView.polylines) {
             polyline.map = nil;
@@ -176,22 +168,51 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     [self removeLocationObservation];
-    if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
-    {
-        [self fixMapView];
+    if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]]) {
+        [self updateMapInfo];
     }
 }
-- (void)fixMapView {
-    CLLocation* location = self.mapView.myLocation;
-    CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
-    GMSMarker *marker = [self addMarketAt:location2d snippet:@"You are here!" mapMoved:NO];
+- (void)reloadDataSource {
+    // reload data source
+    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
+                                            withMOC:self.coreData.managedObjectContext];
+    // rebuild marker
+    for (GMSMarker *marker in self.mapView.markers) {
+        marker.map = nil;
+    }
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+    }
+}
+- (void)updateMapInfo {
+    // fit Markers location
+    CLLocation* myLocation = self.mapView.myLocation;
+    CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
+    GMSMarker *marker = [self addMarketAt:myLocation2d snippet:@"You are here!" mapMoved:NO];
     marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
     
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:location2d coordinate:location2d];
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation2d coordinate:myLocation2d];
     for (GMSMarker *marker in self.mapView.markers) {
         bounds = [bounds includingCoordinate:marker.position];
     }
     [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+    // refesh distance
+    NSMutableArray *destLocations = [NSMutableArray array];
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
+    }
+    [FEMapUtility getDistanceFrom:myLocation2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
+        for (int i = 0; i < distances.count; i++) {
+            NSDictionary *distanceInfo = distances[i];
+            NSString *distanceStr = distanceInfo[@"distance"];
+            NSString *durationStr = distanceInfo[@"duration"];
+            Place *place = self.places[i];
+            place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
+        }
+    }];
+
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {

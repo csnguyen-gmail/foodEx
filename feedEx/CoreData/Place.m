@@ -2,7 +2,7 @@
 //  Place.m
 //  feedEx
 //
-//  Created by csnguyen on 8/30/13.
+//  Created by csnguyen on 8/31/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 
 @implementation Place
 
-@dynamic distance;
+@dynamic distanceInfo;
 @dynamic rating;
 @dynamic timesCheckin;
 @dynamic address;
