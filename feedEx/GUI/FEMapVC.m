@@ -36,6 +36,7 @@
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self reloadDataSource];
+    [self fitMarkerInBound];
     [self addLocationObervation];
     [self hideSearchResultWithAnimated:NO];
     [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
@@ -212,7 +213,12 @@
             place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
         }
     }];
-
+}
+- (void)fitMarkerInBound {
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
+    for (GMSMarker *marker in self.mapView.markers) {
+        bounds = [bounds includingCoordinate:marker.position];
+    }
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {
