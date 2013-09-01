@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FEPlaceDataSource.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface FEPlaceListTVC : UITableViewController
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @property (nonatomic) BOOL isEditMode;
+@property (nonatomic, strong) CLLocation *currentLocation;
 @end

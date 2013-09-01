@@ -70,6 +70,9 @@
                                for (NSDictionary *element in elements) {
                                    NSDictionary *distance = element[@"distance"];
                                    NSDictionary *duration = element[@"duration"];
+                                   if (distance == nil || duration == nil) {
+                                       continue;
+                                   }
                                    NSDictionary *info = @{@"distance":distance[@"text"], @"duration":duration[@"text"]};
                                    [distances addObject:info];
                                }

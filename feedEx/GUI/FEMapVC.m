@@ -33,7 +33,6 @@
 @implementation FEMapVC
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self reloadDataSource];
     [self fitMarkerInBound];

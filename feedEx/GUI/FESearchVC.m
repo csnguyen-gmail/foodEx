@@ -18,6 +18,7 @@
 #import "Common.h"
 #import "Place.h"
 #import "UIAlertView+Extension.h"
+#import "FEAppDelegate.h"
 
 #define PLACE_DISP_TYPE @"PlaceDispType"
 #define LIST_TYPE 0
@@ -73,9 +74,15 @@
     // core data changed tracking register
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
                                                  name:CORE_DATA_UPDATED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
+                                                 name:LOCATION_UPDATED object:nil];
+    // get location
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,17 +102,23 @@
 - (void)refetchData {
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self updatePlaceDateSourceWithType:self.placeDispType];
-    // TODO: update location only in case User refresh
-    [self.placeDataSource updateLocation:^(CLLocation *location) {
-        if (self.placeDispType == LIST_TYPE) {
-            [self.placeListTVC.tableView reloadData];
-        }
-        else {
-            [self.placeGridCVC.collectionView reloadData];
-        }
-    }];
+    [self reloadGUI];
+}
+#pragma mark - handle location change
+- (void)locationChanged:(NSNotification*)info {
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    CLLocation* location = [delegate getCurrentLocation];
+    self.placeListTVC.currentLocation = location;
 }
 #pragma mark - utility
+- (void)reloadGUI {
+    if (self.placeDispType == LIST_TYPE) {
+        [self.placeListTVC.tableView reloadData];
+    }
+    else {
+        [self.placeGridCVC.collectionView reloadData];
+    }
+}
 - (void)loadPlaceDisplayType {
     _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];
     [self switchPlaceDispToType:self.placeDispType withAnimation:NO];

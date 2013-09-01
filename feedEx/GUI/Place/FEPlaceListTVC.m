@@ -14,6 +14,7 @@
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FEPlaceDetailMainVC.h"
+#import "FEMapUtility.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.tableView.layer.cornerRadius = 10;
+    [self.refreshControl addTarget:self action:@selector(refreshGUITriggered) forControlEvents:UIControlEventValueChanged];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
@@ -52,6 +54,30 @@
     _isEditMode = isEditMode;
     self.tableView.editing = isEditMode;
     [self.tableView reloadData];
+}
+- (void)setCurrentLocation:(CLLocation *)currentLocation {
+    _currentLocation = currentLocation;
+    // refesh distance
+    CLLocationCoordinate2D location2d = {currentLocation.coordinate.latitude, currentLocation.coordinate.longitude};
+    NSMutableArray *destLocations = [NSMutableArray array];
+    for (Place *place in self.placeDataSource.places) {
+        CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
+    }
+    [FEMapUtility getDistanceFrom:location2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
+        for (int i = 0; i < distances.count; i++) {
+            NSDictionary *distanceInfo = distances[i];
+            NSString *distanceStr = distanceInfo[@"distance"];
+            NSString *durationStr = distanceInfo[@"duration"];
+            Place *place = self.placeDataSource.places[i];
+            place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
+        }
+        [self.tableView reloadData];
+    }];
+}
+- (void) refreshGUITriggered {
+    // TODO
+    [self.refreshControl endRefreshing];
 }
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -110,24 +136,7 @@
         size.width = contentWidth;
         cell.tagsScrollView.contentSize = size;
     }
-    // TODO
-    if (self.placeDataSource.currentLocation) {
-        double placeLon = [place.address.longtitude doubleValue];
-        double placeLat = [place.address.lattittude doubleValue];
-        if (placeLon != 0.0 && placeLat != 0.0){
-            CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:placeLat longitude:placeLon];
-            CLLocationDistance distance = [placeLocation distanceFromLocation:self.placeDataSource.currentLocation];
-            if (distance < 1000) {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %d meters from here.", (int)distance];
-            } else {
-                cell.distanceLbl.text = [NSString stringWithFormat:@"About %.2f kilometers from here.", distance / 1000];
-            }
-        } else {
-            cell.distanceLbl.text = @"";
-        }
-    } else {
-        cell.distanceLbl.text = @"";
-    }
+    cell.distanceLbl.text = place.distanceInfo;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
