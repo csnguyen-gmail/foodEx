@@ -67,6 +67,7 @@
     }
     self.updatingLocation = YES;
     [self.locationManager startUpdatingLocation];
+    NSLog(@"update");
 }
 #define ALLOW_PERIOD_FROM_LAST_UPDATE 15.0 // second
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -75,9 +76,11 @@
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < ALLOW_PERIOD_FROM_LAST_UPDATE) {
+        self.updatingLocation = NO;
         [self.locationManager stopUpdatingLocation];
         self.currentLocation = location;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"location: %@", location);
             [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_UPDATED
                                                                 object:nil userInfo:@{@"location":location}];
         }];

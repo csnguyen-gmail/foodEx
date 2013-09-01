@@ -33,14 +33,6 @@
 @end
 
 @implementation FEPlaceEditMainVC
-- (void)awakeFromNib {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
-                                                 name:LOCATION_UPDATED object:nil];
-}
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
-    
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,7 +48,14 @@
     _maxResizableHeight = self.editPlaceInfoView.frame.size.height;
     // load place
     [self loadPlace];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
+                                                 name:LOCATION_UPDATED object:nil];
 }
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"foods"]) {
         FEFoodEditVC *foodEditVC = [segue destinationViewController];

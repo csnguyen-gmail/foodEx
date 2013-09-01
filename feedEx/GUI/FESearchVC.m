@@ -44,14 +44,6 @@
 @end
 
 @implementation FESearchVC
-- (void)awakeFromNib {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
-                                                 name:CORE_DATA_UPDATED object:nil];
-}
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,6 +70,12 @@
     // load data
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
     [self loadPlaceDisplayType];
+    // core data changed tracking register
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
+                                                 name:CORE_DATA_UPDATED object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

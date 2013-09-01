@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #define NTF_APP_WILL_RESIGN_ACTIVE @"applicationWillResignActive"
 
@@ -15,4 +16,5 @@
 - (void)startObservingFirstResponder;
 - (void)stopObservingFirstResponder;
 - (void)updateLocation;
+- (CLLocation*)getCurrentLocation;
 @end

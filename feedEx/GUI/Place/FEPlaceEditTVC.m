@@ -18,13 +18,6 @@
 @end
 
 @implementation FEPlaceEditTVC
-- (void)awakeFromNib {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionWhenViewDisappear) name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,6 +42,11 @@
     [self.ratingView setupBigStarEditable:YES];
     // set up imput accesory view
     [self setupInputAccesoryView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionWhenViewDisappear) name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NTF_APP_WILL_RESIGN_ACTIVE object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

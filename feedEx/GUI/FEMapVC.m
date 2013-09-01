@@ -31,26 +31,29 @@
 @end
 
 @implementation FEMapVC
-- (void)awakeFromNib {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
-                                                 name:CORE_DATA_UPDATED object:nil];
-}
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
-    [self removeLocationObservation];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self reloadDataSource];
     [self fitMarkerInBound];
-    [self addLocationObervation]; // TODO replace by IOS location tracking system
     [self hideSearchResultWithAnimated:NO];
     [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
     self.placeListTVC.searchDelegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
+                                                 name:CORE_DATA_UPDATED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
+                                                 name:LOCATION_UPDATED object:nil];
+    // get location
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
+    [self.indicationView startAnimating];
 }
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeList"]) {
@@ -134,7 +137,8 @@
 #pragma mark - FEPlaceListSearchMapTVCDelegate
 - (void)searchMapDidSelectPlace:(Place *)place {
     [self.searchPlaceBar resignFirstResponder];
-    CLLocation* location = self.mapView.myLocation;
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    CLLocation* location = [delegate getCurrentLocation];
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
     CLLocationCoordinate2D locPlace2 = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
     [FEMapUtility getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
@@ -158,26 +162,9 @@
     }];
 }
 #pragma mark - Map
-- (void)addLocationObervation {
-    [self.indicationView startAnimating];
-    if (!self.mapView.myLocationEnabled) {
-        self.mapView.myLocationEnabled = YES;
-        [self.mapView addObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY options:NSKeyValueObservingOptionNew context: nil];
-    }
-}
-- (void)removeLocationObservation {
+- (void)locationChanged:(NSNotification*)info {
     [self.indicationView stopAnimating];
-    if (self.mapView.myLocationEnabled) {
-        self.mapView.myLocationEnabled = NO;
-        [self.mapView removeObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY];
-    }
-}
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [self removeLocationObservation];
-    if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]]) {
-        [self updateMapInfo];
-    }
+    [self updateMapInfo];
 }
 - (void)reloadDataSource {
     // reload data source
@@ -194,7 +181,8 @@
 }
 - (void)updateMapInfo {
     // fit Markers location
-    CLLocation* myLocation = self.mapView.myLocation;
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    CLLocation* myLocation = [delegate getCurrentLocation];
     if (myLocation == nil) {
         return;
     }
