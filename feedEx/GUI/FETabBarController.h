@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface FETabBarController : UITabBarController
+@property (nonatomic, strong) CLLocation *currentLocation;
 - (void)showReceiveMailComfirmWithUrl:(NSURL *)url;
+- (void)updateLocation;
 @end

@@ -33,7 +33,9 @@
 #define ATTACHED_FILETYPE @"application/fex"
 #define MAIL_SUBJECT @"Share Places in FoodEx application by CSNGuyen."
 #define MAIL_BODY @"Share places:\n"
-
+// Center notification
+#define CORE_DATA_UPDATED @"CoreDataUpdated"
+#define LOCATION_UPDATED @"LocationUpdated"
 
 
 #endif

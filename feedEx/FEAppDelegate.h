@@ -14,4 +14,5 @@
 @property (strong, nonatomic) UIWindow *window;
 - (void)startObservingFirstResponder;
 - (void)stopObservingFirstResponder;
+- (void)updateLocation;
 @end

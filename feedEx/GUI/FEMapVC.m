@@ -31,19 +31,25 @@
 @end
 
 @implementation FEMapVC
+- (void)awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
+                                                 name:CORE_DATA_UPDATED object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
+    [self removeLocationObservation];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.compassButton = YES;
     [self reloadDataSource];
     [self fitMarkerInBound];
-    [self addLocationObervation];
+    [self addLocationObervation]; // TODO replace by IOS location tracking system
     [self hideSearchResultWithAnimated:NO];
     [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
     self.placeListTVC.searchDelegate = self;
-}
-- (void)dealloc {
-    [self removeLocationObservation];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -52,7 +58,7 @@
     }
 }
 #pragma mark - handler DataModel changed
-- (void)handleDataModelChange:(NSNotification *)note {
+- (void)coredateChanged:(NSNotification *)info {
     // reload data source
     [self reloadDataSource];
     // update map information
@@ -189,6 +195,9 @@
 - (void)updateMapInfo {
     // fit Markers location
     CLLocation* myLocation = self.mapView.myLocation;
+    if (myLocation == nil) {
+        return;
+    }
     CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
     GMSMarker *marker = [self addMarketAt:myLocation2d snippet:@"You are here!" mapMoved:NO];
     marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];

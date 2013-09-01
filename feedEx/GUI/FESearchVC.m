@@ -44,6 +44,14 @@
 @end
 
 @implementation FESearchVC
+- (void)awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
+                                                 name:CORE_DATA_UPDATED object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -83,7 +91,7 @@
     }
 }
 #pragma mark - handler DataModel changed
-- (void)handleDataModelChange:(NSNotification *)note {
+- (void)coredateChanged:(NSNotification *)info {
     [self refetchData];
 }
 - (void)refetchData {

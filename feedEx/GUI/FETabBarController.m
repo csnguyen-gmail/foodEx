@@ -12,11 +12,14 @@
 #import "Place.h"
 #import "FEDataSerialize.h"
 #import "UIAlertView+Extension.h"
+#import "Common.h"
 
-@interface FETabBarController ()<UIAlertViewDelegate>
+@interface FETabBarController ()<UIAlertViewDelegate, CLLocationManagerDelegate>
 @property (nonatomic, strong) NSURL *url;
 @property (weak, nonatomic) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 @property (weak, nonatomic) FECoreDataController *coreData;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) BOOL updatingLocation;
 @end
 #define COMFIRM_DLG 0
 #define LOADING_DLG 1
@@ -30,9 +33,10 @@
     self.persistentStoreCoordinator = self.coreData.persistentStoreCoordinator;
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleDataModelChange:)
+                                             selector:@selector(handleDataModelChanged:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
+    self.updatingLocation = NO;
 
 }
 - (void)dealloc {
@@ -41,24 +45,6 @@
                                                   object:nil];
 
 }
-- (void)handleDataModelChange:(NSNotification *)note {
-    NSManagedObjectContext *context = (NSManagedObjectContext *)note.object;
-    // distingush to another context updating
-    if(context.persistentStoreCoordinator == self.persistentStoreCoordinator) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            for (UIViewController* vc in self.viewControllers) {
-                UIViewController *topVC = vc;
-                if ([vc isKindOfClass:[UINavigationController class]]) {
-                    topVC = [(UINavigationController*)vc topViewController];
-                }
-                if ([topVC respondsToSelector:@selector(handleDataModelChange:)]) {
-                    [topVC performSelector:@selector(handleDataModelChange:) withObject:note];
-                }
-            }
-        }];
-    }
-}
-
 #pragma mark - getter setter
 - (FECoreDataController *)coreData {
     if (!_coreData) {
@@ -66,7 +52,50 @@
     }
     return _coreData;
 }
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    return _locationManager;
+}
+// location update handler
+- (void)updateLocation {
+    if (self.updatingLocation) {
+        return;
+    }
+    self.updatingLocation = YES;
+    [self.locationManager startUpdatingLocation];
+}
+#define ALLOW_PERIOD_FROM_LAST_UPDATE 15.0 // second
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    // If it's a relatively recent event, turn off updates to save power
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < ALLOW_PERIOD_FROM_LAST_UPDATE) {
+        [self.locationManager stopUpdatingLocation];
+        self.currentLocation = location;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_UPDATED
+                                                                object:nil userInfo:@{@"location":location}];
+        }];
+    }
+}
+// core data update handler
+- (void)handleDataModelChanged:(NSNotification *)note {
+    NSManagedObjectContext *context = (NSManagedObjectContext *)note.object;
+    // distingush to another context updating
+    if(context.persistentStoreCoordinator == self.persistentStoreCoordinator) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:CORE_DATA_UPDATED
+                                                                object:nil userInfo:@{@"note":note}];
+        }];
+    }
+}
 
+// receive new mail from other User handler
 - (void)showReceiveMailComfirmWithUrl:(NSURL *)url{
     self.url = url;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
@@ -76,7 +105,6 @@
     alertView.tag = COMFIRM_DLG;
     [alertView show];
 }
-#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == COMFIRM_DLG) {
         // YES button

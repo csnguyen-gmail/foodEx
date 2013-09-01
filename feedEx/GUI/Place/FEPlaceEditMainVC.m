@@ -16,6 +16,7 @@
 #import "GMDraggableMarkerManager.h"
 #import "FEFoodEditVC.h"
 #import "Common.h"
+#import "FEAppDelegate.h"
 
 @interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate,GMDraggableMarkerManagerDelegate>{
     float _minResizableHeight;
@@ -32,6 +33,14 @@
 @end
 
 @implementation FEPlaceEditMainVC
+- (void)awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
+                                                 name:LOCATION_UPDATED object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,7 +54,6 @@
     self.verticalResizeView.delegate = self;
     _minResizableHeight = [self.editPlaceInfoTVC.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].size.height - 1;
     _maxResizableHeight = self.editPlaceInfoView.frame.size.height;
-
     // load place
     [self loadPlace];
 }
@@ -107,7 +115,8 @@
                                                           longitude:HCM_LONGTITUDE
                                                                zoom:GMAP_DEFAULT_ZOOM];
         // get location
-        [self addLocationObervation];
+        FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        [delegate updateLocation];
     }
     else {
         Place *placeInfo = self.placeInfo;
@@ -277,35 +286,18 @@
 
 }
 #pragma mark - Map
-- (void)addLocationObervation {
-    if (!self.mapView.myLocationEnabled) {
-        self.mapView.myLocationEnabled = YES;
-        [self.mapView addObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY options:NSKeyValueObservingOptionNew context: nil];
-    }
-}
-- (void)removeLocationObservation {
-    if (self.mapView.myLocationEnabled) {
-        self.mapView.myLocationEnabled = NO;
-        [self.mapView removeObserver:self forKeyPath:GMAP_LOCATION_OBSERVE_KEY];
-    }
-}
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [self removeLocationObservation];
-    if ([keyPath isEqualToString:GMAP_LOCATION_OBSERVE_KEY] && [object isKindOfClass:[GMSMapView class]])
-    {
-        CLLocation* location = self.mapView.myLocation;
-        CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
-        GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
-        [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
-            if (resp.firstResult != nil) {
-                marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
-                if (self.editPlaceInfoTVC.addressTextField.text.length == 0) {
-                    self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
-                }
+- (void)locationChanged:(NSNotification *)info {
+    CLLocation* location = [info userInfo][@"location"];
+    CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
+    GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
+        if (resp.firstResult != nil) {
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            if (self.editPlaceInfoTVC.addressTextField.text.length == 0) {
+                self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
             }
-        }];
-    }
+        }
+    }];
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {
@@ -320,10 +312,6 @@
     marker.map = self.mapView;
     [self.draggableMarkerManager addDraggableMarker:marker];
     return marker;
-}
-
-- (void)dealloc {
-    [self removeLocationObservation];
 }
 
 #pragma mark - GMDraggableMarkerManagerDelegate
