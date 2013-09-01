@@ -44,6 +44,7 @@
 + (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
                   queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *distances))handle {
     if (destPoints.count == 0) {
+        handle(nil);
         return;
     }
     NSString *fromStr = [NSString stringWithFormat:@"%f,%f",from.latitude, from.longitude];

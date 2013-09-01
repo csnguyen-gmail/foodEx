@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FEPlaceDetailMainVC.h"
 #import "FEMapUtility.h"
+#import "FEAppDelegate.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -65,19 +66,22 @@
         [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
     }
     [FEMapUtility getDistanceFrom:location2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
-        for (int i = 0; i < distances.count; i++) {
-            NSDictionary *distanceInfo = distances[i];
-            NSString *distanceStr = distanceInfo[@"distance"];
-            NSString *durationStr = distanceInfo[@"duration"];
-            Place *place = self.placeDataSource.places[i];
-            place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
+        if (distances != nil) {
+            for (int i = 0; i < distances.count; i++) {
+                NSDictionary *distanceInfo = distances[i];
+                NSString *distanceStr = distanceInfo[@"distance"];
+                NSString *durationStr = distanceInfo[@"duration"];
+                Place *place = self.placeDataSource.places[i];
+                place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
+            }
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 - (void) refreshGUITriggered {
-    // TODO
-    [self.refreshControl endRefreshing];
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
 }
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
