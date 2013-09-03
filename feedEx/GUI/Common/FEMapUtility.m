@@ -21,6 +21,11 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (data == nil) {
+                                   NSLog(@"get Direction failed: %@", error);
+                                   handle(nil);
+                                   return;
+                               }
                                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
                                                                                       error:nil];
@@ -62,6 +67,11 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (data == nil) {
+                                   NSLog(@"get Distanse failed: %@", error);
+                                   handle(nil);
+                                   return;
+                               }
                                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
                                                                                       error:nil];
