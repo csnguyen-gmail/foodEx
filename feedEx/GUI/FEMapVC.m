@@ -178,6 +178,7 @@
         [self addMarketAt:location2d snippet:place.name mapMoved:NO];
     }
 }
+#define MARKERS_FIT_PADDING 100.0
 - (void)updateMapInfo {
     // fit Markers location
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -193,7 +194,7 @@
     for (GMSMarker *marker in self.mapView.markers) {
         bounds = [bounds includingCoordinate:marker.position];
     }
-    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
     // refesh distance
     NSMutableArray *destLocations = [NSMutableArray array];
     for (Place *place in self.places) {
