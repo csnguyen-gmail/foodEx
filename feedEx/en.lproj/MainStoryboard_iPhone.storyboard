@@ -442,6 +442,18 @@
                                     <outlet property="delegate" destination="ulv-7l-1CU" id="fXH-Ap-6hT"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGb-6j-XyW">
+                                <rect key="frame" x="258" y="458" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Refresh" backgroundImage="gradientBar.png">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshTapped:" destination="ulv-7l-1CU" eventType="touchUpInside" id="gLa-zz-B3v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -450,6 +462,7 @@
                     <connections>
                         <outlet property="indicationView" destination="Djq-0m-QDB" id="kH5-eA-gzf"/>
                         <outlet property="mapView" destination="qeW-0E-8QB" id="bqZ-0m-3e5"/>
+                        <outlet property="refreshBtn" destination="gGb-6j-XyW" id="Wn4-Dp-hAX"/>
                         <outlet property="seacrhResultView" destination="BgC-6M-Gvy" id="x6K-mB-sB3"/>
                         <outlet property="searchPlaceBar" destination="lQu-jg-GK6" id="E8E-A0-u4u"/>
                     </connections>

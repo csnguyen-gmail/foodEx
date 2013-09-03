@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *seacrhResultView;
 @property (weak, nonatomic) FEPlaceListSearchMapTVC *placeListTVC;
 @property (strong, nonatomic) NSString *searchText;
+@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @end
 
 @implementation FEMapVC
@@ -43,6 +44,8 @@
                                                  name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
+    self.refreshBtn.layer.cornerRadius = 5;
+    self.refreshBtn.layer.masksToBounds = YES;
     // get location
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate updateLocation];
@@ -59,6 +62,17 @@
         self.placeListTVC = [segue destinationViewController];
     }
 }
+// event handle
+- (IBAction)refreshTapped:(UIButton *)sender {
+    // get location
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
+    // clear all old polylines
+    for (GMSPolyline *polyline in self.mapView.polylines) {
+        polyline.map = nil;
+    }
+}
+
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     // reload data source
@@ -188,7 +202,7 @@
     }
     CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
     GMSMarker *marker = [self addMarketAt:myLocation2d snippet:@"You are here!" mapMoved:NO];
-    marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
+    marker.icon = [UIImage imageNamed:@"bullet_blue"];
     
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation2d coordinate:myLocation2d];
     for (GMSMarker *marker in self.mapView.markers) {
