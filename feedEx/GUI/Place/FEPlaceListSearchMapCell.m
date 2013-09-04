@@ -7,6 +7,7 @@
 //
 
 #import "FEPlaceListSearchMapCell.h"
+#import <QuartzCore/QuartzCore.h>
 @interface FEPlaceListSearchMapCell()
 @property (weak, nonatomic) IBOutlet UIButton *routeBtn;
 @end

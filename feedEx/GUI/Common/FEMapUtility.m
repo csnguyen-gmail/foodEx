@@ -30,6 +30,10 @@
                                                                                     options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
                                                                                       error:nil];
                                NSArray *routes = json[@"routes"];
+                               if (routes.count == 0) {
+                                   handle(nil);
+                                   return;
+                               }
                                NSArray *legs = routes[0][@"legs"];
                                NSArray *steps = legs[0][@"steps"];
                                NSMutableArray *locations = [NSMutableArray array];
