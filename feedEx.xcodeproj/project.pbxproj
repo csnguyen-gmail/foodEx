@@ -26,7 +26,6 @@
 		6F30B6FE17BE4FA000A1D389 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F30B6FC17BE4FA000A1D389 /* icon@2x.png */; };
 		6F30B70617BF40D300A1D389 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B70117BF40D300A1D389 /* NSString+Extension.m */; };
 		6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B70317BF40D300A1D389 /* UIImage+Extension.m */; };
-		6F30B70817BF40D300A1D389 /* UISearchBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B70517BF40D300A1D389 /* UISearchBar+Extension.m */; };
 		6F30B72617BF6DB700A1D389 /* AbstractInfo+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B72117BF6DB700A1D389 /* AbstractInfo+Extension.m */; };
 		6F30B72717BF6DB700A1D389 /* Place+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B72317BF6DB700A1D389 /* Place+Extension.m */; };
 		6F30B72817BF6DB700A1D389 /* Tag+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30B72517BF6DB700A1D389 /* Tag+Extension.m */; };
@@ -221,8 +220,6 @@
 		6F30B70117BF40D300A1D389 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		6F30B70217BF40D300A1D389 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		6F30B70317BF40D300A1D389 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
-		6F30B70417BF40D300A1D389 /* UISearchBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+Extension.h"; sourceTree = "<group>"; };
-		6F30B70517BF40D300A1D389 /* UISearchBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+Extension.m"; sourceTree = "<group>"; };
 		6F30B72017BF6DB700A1D389 /* AbstractInfo+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AbstractInfo+Extension.h"; sourceTree = "<group>"; };
 		6F30B72117BF6DB700A1D389 /* AbstractInfo+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AbstractInfo+Extension.m"; sourceTree = "<group>"; };
 		6F30B72217BF6DB700A1D389 /* Place+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Extension.h"; sourceTree = "<group>"; };
@@ -530,8 +527,6 @@
 				6F30B70117BF40D300A1D389 /* NSString+Extension.m */,
 				6F30B70217BF40D300A1D389 /* UIImage+Extension.h */,
 				6F30B70317BF40D300A1D389 /* UIImage+Extension.m */,
-				6F30B70417BF40D300A1D389 /* UISearchBar+Extension.h */,
-				6F30B70517BF40D300A1D389 /* UISearchBar+Extension.m */,
 				6F30B72C17C47BE300A1D389 /* NSManagedObject+Extension.h */,
 				6F30B72D17C47BE300A1D389 /* NSManagedObject+Extension.m */,
 				6F96B5CC17C8728600935AEA /* NSData+Extension.h */,
@@ -1166,7 +1161,6 @@
 				6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */,
 				6F30B70617BF40D300A1D389 /* NSString+Extension.m in Sources */,
 				6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */,
-				6F30B70817BF40D300A1D389 /* UISearchBar+Extension.m in Sources */,
 				6F30B72617BF6DB700A1D389 /* AbstractInfo+Extension.m in Sources */,
 				6F30B72717BF6DB700A1D389 /* Place+Extension.m in Sources */,
 				6F30B72817BF6DB700A1D389 /* Tag+Extension.m in Sources */,

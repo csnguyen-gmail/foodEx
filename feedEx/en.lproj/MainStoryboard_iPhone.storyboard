@@ -299,15 +299,15 @@
                                         <rect key="frame" x="0.0" y="22" width="309" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="309" height="112"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="309" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="1GT-d3-Lpw" customClass="FEDynamicScrollView">
-                                                    <rect key="frame" x="41" y="24" width="226" height="82"/>
+                                                    <rect key="frame" x="41" y="23" width="226" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d7Q-Xc-XrN">
-                                                    <rect key="frame" x="274" y="54" width="29" height="29"/>
+                                                    <rect key="frame" x="274" y="53" width="29" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                                     <state key="normal" backgroundImage="camera.png">
@@ -323,7 +323,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZSl-h2-fpJ">
-                                                    <rect key="frame" x="5" y="53" width="32" height="32"/>
+                                                    <rect key="frame" x="5" y="52" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                                     <state key="normal" backgroundImage="heart_grey.png">
@@ -437,32 +437,35 @@
                                     <segue destination="cwB-aB-vbT" kind="embed" identifier="placeList" id="R1c-87-h8m"/>
                                 </connections>
                             </containerView>
-                            <searchBar contentMode="redraw" barStyle="blackTranslucent" placeholder="Search Place at here" showsCancelButton="YES" id="lQu-jg-GK6">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Fxt-es-Heb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="ulv-7l-1CU" id="fXH-Ap-6hT"/>
-                                </connections>
-                            </searchBar>
-                            <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGb-6j-XyW">
-                                <rect key="frame" x="247" y="449" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="Refresh" backgroundImage="gradientBar.png">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="refreshTapped:" destination="ulv-7l-1CU" eventType="touchUpInside" id="gLa-zz-B3v"/>
-                                </connections>
-                            </button>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="v9c-Gt-yeh">
+                                        <connections>
+                                            <action selector="clearTapped:" destination="ulv-7l-1CU" id="Dz4-qv-rGi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="g7K-c8-VPD"/>
+                                    <barButtonItem style="plain" id="vg6-wB-DDY">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Place at here" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="zqb-Tz-Oay">
+                                            <rect key="frame" x="49" y="7" width="225" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="ulv-7l-1CU" id="TjS-sf-qnY"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Mgd-ie-BQc"/>
+                                    <barButtonItem systemItem="refresh" id="P4K-Qr-mLL">
+                                        <connections>
+                                            <action selector="refreshTapped:" destination="ulv-7l-1CU" id="qEt-GJ-fMc"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -471,9 +474,9 @@
                     <connections>
                         <outlet property="indicationView" destination="Djq-0m-QDB" id="kH5-eA-gzf"/>
                         <outlet property="mapView" destination="qeW-0E-8QB" id="bqZ-0m-3e5"/>
-                        <outlet property="refreshBtn" destination="gGb-6j-XyW" id="Wn4-Dp-hAX"/>
                         <outlet property="seacrhResultView" destination="BgC-6M-Gvy" id="x6K-mB-sB3"/>
-                        <outlet property="searchPlaceBar" destination="lQu-jg-GK6" id="E8E-A0-u4u"/>
+                        <outlet property="searchPlaceBar" destination="Fxt-es-Heb" id="N5l-sd-Khk"/>
+                        <outlet property="searchTextField" destination="zqb-Tz-Oay" id="zgV-R2-iGq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RP-E5-DYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -564,7 +567,7 @@
                                 <rect key="frame" x="0.0" y="22" width="308" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="308" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="308" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="exn-YR-JuH">
@@ -594,7 +597,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7vq-kq-1lu">
-                                            <rect key="frame" x="78" y="64" width="223" height="22"/>
+                                            <rect key="frame" x="78" y="63" width="223" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         </scrollView>
                                         <view contentMode="scaleToFill" id="7Au-zV-0SZ" customClass="FEFlipPhotosView">

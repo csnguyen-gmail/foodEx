@@ -16,19 +16,19 @@
 #import "FEMapUtility.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
-#import "UISearchBar+Extension.h"
 
-@interface FEMapVC()<UISearchBarDelegate, FEPlaceListSearchMapTVCDelegate>
+@interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
 @property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *places;
 @property (nonatomic, strong) FESearchPlaceSettingInfo *searchPlaceSettingInfo;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchPlaceBar;
+@property (weak, nonatomic) IBOutlet UIToolbar *searchPlaceBar;
 @property (weak, nonatomic) IBOutlet UIView *seacrhResultView;
 @property (weak, nonatomic) FEPlaceListSearchMapTVC *placeListTVC;
-@property (strong, nonatomic) NSString *searchText;
-@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
+@property (weak, nonatomic) GMSMarker *locationMarker;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (nonatomic) BOOL shouldFitMarkers;
 @end
 
 @implementation FEMapVC
@@ -38,17 +38,13 @@
     [self reloadDataSource];
     [self fitMarkerInBound];
     [self hideSearchResultWithAnimated:NO];
-    [self.searchPlaceBar setSearchBarReturnKeyType:UIReturnKeyDone];
     self.placeListTVC.searchDelegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
                                                  name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
-    self.refreshBtn.layer.cornerRadius = 5;
-    self.refreshBtn.layer.masksToBounds = YES;
     // get location
-    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate updateLocation];
+    [self updateLocationWithFitMarker:YES];
     [self.indicationView startAnimating];
 }
 - (void)dealloc {
@@ -62,23 +58,29 @@
         self.placeListTVC = [segue destinationViewController];
     }
 }
-// event handle
-- (IBAction)refreshTapped:(UIButton *)sender {
-    // get location
+
+- (void)updateLocationWithFitMarker:(BOOL)fitMarkers {
+    self.shouldFitMarkers = fitMarkers;
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate updateLocation];
-    // clear all old polylines
-    for (GMSPolyline *polyline in self.mapView.polylines) {
-        polyline.map = nil;
-    }
 }
-
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     // reload data source
     [self reloadDataSource];
     // update map information
-    [self updateMapInfo];
+    [self updateMapInfoWithFitMarkets:YES];
+}
+#pragma mark - event handler
+- (IBAction)refreshTapped:(UIBarButtonItem *)sender {
+    // get location
+    [self updateMapInfoWithFitMarkets:NO];
+}
+- (IBAction)clearTapped:(UIBarButtonItem *)sender {
+    // clear all old polylines
+    for (GMSPolyline *polyline in self.mapView.polylines) {
+        polyline.map = nil;
+    }
 }
 
 #pragma mark - getter setter
@@ -87,6 +89,13 @@
         _coreData = [FECoreDataController sharedInstance];
     }
     return _coreData;
+}
+- (GMSMarker *)locationMarker {
+    if (!_locationMarker) {
+        _locationMarker = [self addMarketAt:CLLocationCoordinate2DMake(0.0, 0.0) snippet:@"You are here!" mapMoved:NO];
+        _locationMarker.icon = [UIImage imageNamed:@"bullet_blue"];
+    }
+    return _locationMarker;
 }
 #pragma mark - Search
 - (NSArray*)queryByPlace:(NSString*)placeName {
@@ -121,35 +130,30 @@
                          self.seacrhResultView.frame = newFrame;
                      }];
 }
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    // keep text before edit for resume in case Cancel
-    self.searchText = searchBar.text;
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     // ignore text edit observation in case search bar
     FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate stopObservingFirstResponder];
-    self.placeListTVC.places = [self queryByPlace:searchBar.text];
+    self.placeListTVC.places = [self queryByPlace:textField.text];
     [self showSearchResult];
 }
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    self.placeListTVC.places = [self queryByPlace:searchText];
-    self.searchText = searchBar.text;
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    self.placeListTVC.places = [self queryByPlace:string];
+    return YES;
 }
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     // restore text edit observation
     FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate startObservingFirstResponder];
     [self hideSearchResultWithAnimated:YES];
 }
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    searchBar.text = self.searchText;
-}
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 #pragma mark - FEPlaceListSearchMapTVCDelegate
 - (void)searchMapDidSelectPlace:(Place *)place {
-    [self.searchPlaceBar resignFirstResponder];
+    [self.searchTextField resignFirstResponder];
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     CLLocation* location = [delegate getCurrentLocation];
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
@@ -177,7 +181,7 @@
 #pragma mark - Map
 - (void)locationChanged:(NSNotification*)info {
     [self.indicationView stopAnimating];
-    [self updateMapInfo];
+    [self updateMapInfoWithFitMarkets:self.shouldFitMarkers];
 }
 - (void)reloadDataSource {
     // reload data source
@@ -193,22 +197,22 @@
     }
 }
 #define MARKERS_FIT_PADDING 100.0
-- (void)updateMapInfo {
-    // fit Markers location
+- (void)updateMapInfoWithFitMarkets:(BOOL)fitMarkets {
+    // update myLocation
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     CLLocation* myLocation = [delegate getCurrentLocation];
     if (myLocation == nil) {
         return;
     }
     CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
-    GMSMarker *marker = [self addMarketAt:myLocation2d snippet:@"You are here!" mapMoved:NO];
-    marker.icon = [UIImage imageNamed:@"bullet_blue"];
-    
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation2d coordinate:myLocation2d];
-    for (GMSMarker *marker in self.mapView.markers) {
-        bounds = [bounds includingCoordinate:marker.position];
+    self.locationMarker.position = myLocation2d;
+    // fit Markers location
+    if (fitMarkets) {
+        [self fitMarkerInBound];
     }
-    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
+    else {
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:myLocation2d]];
+    }
     // refesh distance
     NSMutableArray *destLocations = [NSMutableArray array];
     for (Place *place in self.places) {
@@ -230,13 +234,13 @@
     for (GMSMarker *marker in self.mapView.markers) {
         bounds = [bounds includingCoordinate:marker.position];
     }
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.latitude
-                                                                longitude:location.longitude
-                                                                     zoom:GMAP_DEFAULT_ZOOM];
-        self.mapView.camera = camera;
+        self.mapView.camera = [GMSCameraPosition cameraWithLatitude:location.latitude
+                                                          longitude:location.longitude
+                                                               zoom:GMAP_DEFAULT_ZOOM];
     }
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = location;
