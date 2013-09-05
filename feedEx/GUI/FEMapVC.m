@@ -74,7 +74,7 @@
 #pragma mark - event handler
 - (IBAction)refreshTapped:(UIBarButtonItem *)sender {
     // get location
-    [self updateMapInfoWithFitMarkets:NO];
+    [self updateLocationWithFitMarker:NO];
 }
 - (IBAction)clearTapped:(UIBarButtonItem *)sender {
     // clear all old polylines
