@@ -12,13 +12,12 @@
 #import "Common.h"
 #import "Place+Extension.h"
 
-@interface FEPlaceDataSource()<CLLocationManagerDelegate>
+@interface FEPlaceDataSource()
 @property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEPlaceDataSource
 - (void)queryPlaceInfoWithSetting:(FESearchPlaceSettingInfo *)placeSetting{
-    self.placeSetting = placeSetting;
     self.places = [Place placesFromPlaceSettingInfo:self.placeSetting withMOC:self.coreData.managedObjectContext];
 }
 #pragma mark - getter setter

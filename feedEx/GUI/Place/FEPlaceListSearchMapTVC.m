@@ -10,7 +10,6 @@
 #import "FEPlaceListSearchMapCell.h"
 #import "Address.h"
 #import "Tag.h"
-#import <CoreLocation/CoreLocation.h>
 // TODO using batch size
 @interface FEPlaceListSearchMapTVC ()<FEPlaceListSearchMapCellDelegate>
 @end
@@ -48,10 +47,6 @@
     cell.addressLbl.text = place.address.address;
     cell.distanceLbl.text = place.distanceInfo;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 89;
-//}
 #pragma mark - FEPlaceListSearchMapCellDelegate
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListSearchMapCell *)cell {
     NSUInteger row = [[self.tableView indexPathForCell:cell] row];
