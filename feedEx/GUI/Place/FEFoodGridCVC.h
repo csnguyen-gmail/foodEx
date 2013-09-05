@@ -1,5 +1,5 @@
 //
-//  FEPlaceGridCVC.h
+//  FEFoodGridCVC.h
 //  feedEx
 //
 //  Created by csnguyen on 8/4/13.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FEPlaceDataSource.h"
 
-@interface FEPlaceGridCVC : UICollectionViewController
+@interface FEFoodGridCVC : UICollectionViewController
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @end

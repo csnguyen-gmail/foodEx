@@ -1,17 +1,17 @@
 //
-//  FEFlipGridPlaceView.m
+//  FEFlipGridFoodView.m
 //  feedEx
 //
 //  Created by csnguyen on 8/7/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEFlipGridPlaceView.h"
+#import "FEFlipGridFoodView.h"
 #import "Photo.h"
 #import "OriginPhoto.h"
 #import "DYRateView.h"
 
-@implementation FEFlipGridPlaceView
+@implementation FEFlipGridFoodView
 // overwrite super class
 - (void)setCurrentViewIndex:(NSUInteger)currentViewIndex {
     super.currentViewIndex = currentViewIndex;

@@ -8,7 +8,7 @@
 
 #import "FESearchVC.h"
 #import "FEPlaceListTVC.h"
-#import "FEPlaceGridCVC.h"
+#import "FEFoodGridCVC.h"
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
 #import "FEPlaceDataSource.h"
@@ -37,7 +37,7 @@
 @property (nonatomic) NSUInteger placeDispType; // List or Grid
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
-@property (weak, nonatomic) FEPlaceGridCVC *placeGridCVC;
+@property (weak, nonatomic) FEFoodGridCVC *placeGridCVC;
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *placeGridView;
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;

@@ -1,22 +1,22 @@
 //
-//  FEPlaceGridCVC.m
+//  FEFoodGridCVC.m
 //  feedEx
 //
 //  Created by csnguyen on 8/4/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEPlaceGridCVC.h"
-#import "FEPlaceGridCell.h"
+#import "FEFoodGridCVC.h"
+#import "FEFoodGridCell.h"
 #import "Place.h"
 #import "Photo.h"
 #import "FEPlaceDetailMainVC.h"
 #import <QuartzCore/QuartzCore.h>
-@interface FEPlaceGridCVC()<FEFlipGridPlaceViewDelegate>
+@interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
 @end
-@implementation FEPlaceGridCVC
+@implementation FEFoodGridCVC
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.collectionView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
@@ -30,7 +30,7 @@
     }
 }
 
-- (void)updateCell:(FEPlaceGridCell*)cell atIndex:(NSUInteger)index{
+- (void)updateCell:(FEFoodGridCell*)cell atIndex:(NSUInteger)index{
     Place *place = self.placeDataSource.places[index];
     if (place.photos.count != 0) {
         cell.flipPlaceGridView.rating = [place.rating integerValue];
@@ -64,7 +64,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"placeCell";
-    FEPlaceGridCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    FEFoodGridCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     [self updateCell:cell atIndex:indexPath.row];
     return cell;
 }
@@ -72,7 +72,7 @@
 //- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 //    
 //}
-#pragma mark - FEFlipGridPlaceViewDelegate
+#pragma mark - FEFlipGridFoodViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
 }

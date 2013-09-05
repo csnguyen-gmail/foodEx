@@ -76,8 +76,8 @@
 		6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */; };
 		6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */; };
 		6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */; };
-		6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */; };
-		6F89E7EF17AE88D2007BDAFA /* FEPlaceGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */; };
+		6F89E7EC17AE8870007BDAFA /* FEFoodGridCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EB17AE886F007BDAFA /* FEFoodGridCVC.m */; };
+		6F89E7EF17AE88D2007BDAFA /* FEFoodGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7EE17AE88D2007BDAFA /* FEFoodGridCell.m */; };
 		6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */; };
 		6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F96B5CD17C8728600935AEA /* NSData+Extension.m */; };
 		6F96B5D017C872FB00935AEA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */; };
@@ -113,7 +113,7 @@
 		6FB482D817D60339003620A9 /* bullet_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB482D617D60339003620A9 /* bullet_blue.png */; };
 		6FB482D917D60339003620A9 /* bullet_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB482D717D60339003620A9 /* bullet_blue@2x.png */; };
 		6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */; };
-		6FBD839417B2070A0082449F /* FEFlipGridPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */; };
+		6FBD839417B2070A0082449F /* FEFlipGridFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839317B2070A0082449F /* FEFlipGridFoodView.m */; };
 		6FBD839A17B320880082449F /* FEMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839917B320870082449F /* FEMapVC.m */; };
 		6FBD83A617B6A3BD0082449F /* FEMapUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83A517B6A3BC0082449F /* FEMapUtility.m */; };
 		6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */; };
@@ -294,10 +294,10 @@
 		6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodDetailVC.m; sourceTree = "<group>"; };
 		6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipFoodView.h; sourceTree = "<group>"; };
 		6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipFoodView.m; sourceTree = "<group>"; };
-		6F89E7EA17AE886E007BDAFA /* FEPlaceGridCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceGridCVC.h; sourceTree = "<group>"; };
-		6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceGridCVC.m; sourceTree = "<group>"; };
-		6F89E7ED17AE88D1007BDAFA /* FEPlaceGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceGridCell.h; sourceTree = "<group>"; };
-		6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceGridCell.m; sourceTree = "<group>"; };
+		6F89E7EA17AE886E007BDAFA /* FEFoodGridCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodGridCVC.h; sourceTree = "<group>"; };
+		6F89E7EB17AE886F007BDAFA /* FEFoodGridCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodGridCVC.m; sourceTree = "<group>"; };
+		6F89E7ED17AE88D1007BDAFA /* FEFoodGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodGridCell.h; sourceTree = "<group>"; };
+		6F89E7EE17AE88D2007BDAFA /* FEFoodGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodGridCell.m; sourceTree = "<group>"; };
 		6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDataSource.h; sourceTree = "<group>"; };
 		6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDataSource.m; sourceTree = "<group>"; };
 		6F96B5CC17C8728600935AEA /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
@@ -344,8 +344,8 @@
 		6FB482D617D60339003620A9 /* bullet_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_blue.png; sourceTree = "<group>"; };
 		6FB482D717D60339003620A9 /* bullet_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet_blue@2x.png"; sourceTree = "<group>"; };
 		6FBD71CC173F6FFA00AB6EDA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = framework/GoogleMaps.framework/GoogleMaps.bundle; sourceTree = "<group>"; };
-		6FBD839217B2070A0082449F /* FEFlipGridPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipGridPlaceView.h; sourceTree = "<group>"; };
-		6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipGridPlaceView.m; sourceTree = "<group>"; };
+		6FBD839217B2070A0082449F /* FEFlipGridFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipGridFoodView.h; sourceTree = "<group>"; };
+		6FBD839317B2070A0082449F /* FEFlipGridFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipGridFoodView.m; sourceTree = "<group>"; };
 		6FBD839817B320870082449F /* FEMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMapVC.h; sourceTree = "<group>"; };
 		6FBD839917B320870082449F /* FEMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMapVC.m; sourceTree = "<group>"; };
 		6FBD83A417B6A3BA0082449F /* FEMapUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMapUtility.h; sourceTree = "<group>"; };
@@ -801,8 +801,8 @@
 				6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */,
 				6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */,
 				6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */,
-				6FBD839217B2070A0082449F /* FEFlipGridPlaceView.h */,
-				6FBD839317B2070A0082449F /* FEFlipGridPlaceView.m */,
+				6FBD839217B2070A0082449F /* FEFlipGridFoodView.h */,
+				6FBD839317B2070A0082449F /* FEFlipGridFoodView.m */,
 				6FBD83A417B6A3BA0082449F /* FEMapUtility.h */,
 				6FBD83A517B6A3BC0082449F /* FEMapUtility.m */,
 				6F6406CA17CBAB66000A9D1D /* FEDataSerialize.h */,
@@ -820,18 +820,18 @@
 				6FFBBABD178B264A0049E1E9 /* FEPlaceDetailMainVC.m */,
 				6FF9138F17A52BCE00FC38FB /* FEPlaceDetailTVC.h */,
 				6FF9139017A52BCF00FC38FB /* FEPlaceDetailTVC.m */,
-				6FDC9118177ED6AA00E2BF5B /* FEPlaceListCell.h */,
-				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
-				6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */,
-				6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */,
 				6F9E95B61744EED100DCCF24 /* FEPlaceEditTVC.h */,
 				6F9E95B71744EED100DCCF24 /* FEPlaceEditTVC.m */,
 				6F9E95B41744EED100DCCF24 /* FEPlaceEditMainVC.h */,
 				6F9E95B51744EED100DCCF24 /* FEPlaceEditMainVC.m */,
-				6F89E7EA17AE886E007BDAFA /* FEPlaceGridCVC.h */,
-				6F89E7EB17AE886F007BDAFA /* FEPlaceGridCVC.m */,
-				6F89E7ED17AE88D1007BDAFA /* FEPlaceGridCell.h */,
-				6F89E7EE17AE88D2007BDAFA /* FEPlaceGridCell.m */,
+				6F89E7EA17AE886E007BDAFA /* FEFoodGridCVC.h */,
+				6F89E7EB17AE886F007BDAFA /* FEFoodGridCVC.m */,
+				6F89E7ED17AE88D1007BDAFA /* FEFoodGridCell.h */,
+				6F89E7EE17AE88D2007BDAFA /* FEFoodGridCell.m */,
+				6FDC911A177ED6AA00E2BF5B /* FEPlaceListTVC.h */,
+				6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */,
+				6FDC9118177ED6AA00E2BF5B /* FEPlaceListCell.h */,
+				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
 				6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */,
 				6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */,
 				6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */,
@@ -1152,10 +1152,10 @@
 				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
-				6F89E7EC17AE8870007BDAFA /* FEPlaceGridCVC.m in Sources */,
-				6F89E7EF17AE88D2007BDAFA /* FEPlaceGridCell.m in Sources */,
+				6F89E7EC17AE8870007BDAFA /* FEFoodGridCVC.m in Sources */,
+				6F89E7EF17AE88D2007BDAFA /* FEFoodGridCell.m in Sources */,
 				6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */,
-				6FBD839417B2070A0082449F /* FEFlipGridPlaceView.m in Sources */,
+				6FBD839417B2070A0082449F /* FEFlipGridFoodView.m in Sources */,
 				6FBD839A17B320880082449F /* FEMapVC.m in Sources */,
 				6FBD83A617B6A3BD0082449F /* FEMapUtility.m in Sources */,
 				6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */,

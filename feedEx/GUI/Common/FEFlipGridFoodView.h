@@ -1,5 +1,5 @@
 //
-//  FEFlipGridPlaceView.h
+//  FEFlipGridFoodView.h
 //  feedEx
 //
 //  Created by csnguyen on 8/7/13.
@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FEFlipListView.h"
 
-@protocol FEFlipGridPlaceViewDelegate<NSObject>
+@protocol FEFlipGridFoodViewDelegate<NSObject>
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row;
 - (void)didSelectPlaceAtRow:(NSUInteger)row;
 @end
 
-@interface FEFlipGridPlaceView : FEFlipListView
+@interface FEFlipGridFoodView : FEFlipListView
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) NSUInteger rating;
 @property (nonatomic) NSUInteger rowIndex;
-@property (nonatomic, weak) id<FEFlipGridPlaceViewDelegate> delegate;
+@property (nonatomic, weak) id<FEFlipGridFoodViewDelegate> delegate;
 @end

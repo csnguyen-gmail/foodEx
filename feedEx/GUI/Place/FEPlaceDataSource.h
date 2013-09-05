@@ -10,13 +10,10 @@
 #import "FESearchSettingInfo.h"
 #import <CoreLocation/CoreLocation.h>
 
-typedef void (^LocationUpdateCompletionBlock)(CLLocation* location);
-
 @interface FEPlaceDataSource : NSObject
 @property (strong, nonatomic) FESearchPlaceSettingInfo *placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
 @property (strong, nonatomic) CLLocation *currentLocation;
 
 - (void)queryPlaceInfoWithSetting:(FESearchPlaceSettingInfo *)placeSetting;
-- (void)updateLocation:(LocationUpdateCompletionBlock)completion;
 @end
