@@ -8,7 +8,7 @@
 
 #import "FEPlaceListTVC.h"
 #import "FEPlaceListCell.h"
-#import "Place.h"
+#import "Place+Extension.h"
 #import "Address.h"
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
@@ -16,11 +16,13 @@
 #import "FEPlaceDetailMainVC.h"
 #import "FEMapUtility.h"
 #import "FEAppDelegate.h"
+#import "FECoreDataController.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
 @property (nonatomic, strong) UIView *selectedBackgroundView;
+@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEPlaceListTVC
@@ -33,14 +35,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        placeDetailVC.place = self.placeDataSource.places[self.selectedRow];
+        placeDetailVC.place = self.places[self.selectedRow];
     }
 }
 #pragma mark - getter setter
-- (void)setPlaceDataSource:(FEPlaceDataSource *)placeDataSource {
-    _placeDataSource = placeDataSource;
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.placeDataSource.places.count];
-    for (int i = 0; i< self.placeDataSource.places.count; i++) {
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
+}
+- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
+    self.places = [Place placesFromPlaceSettingInfo:placeSetting withMOC:self.coreData.managedObjectContext];
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
+    for (int i = 0; i< self.places.count; i++) {
         [self.imageIndexes addObject:@(0)];
     }
     [self.tableView reloadData];
@@ -61,7 +69,7 @@
     // refesh distance
     CLLocationCoordinate2D location2d = {currentLocation.coordinate.latitude, currentLocation.coordinate.longitude};
     NSMutableArray *destLocations = [NSMutableArray array];
-    for (Place *place in self.placeDataSource.places) {
+    for (Place *place in self.places) {
         CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
         [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
     }
@@ -71,7 +79,7 @@
                 NSDictionary *distanceInfo = distances[i];
                 NSString *distanceStr = distanceInfo[@"distance"];
                 NSString *durationStr = distanceInfo[@"duration"];
-                Place *place = self.placeDataSource.places[i];
+                Place *place = self.places[i];
                 place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
             }
             [self.tableView reloadData];
@@ -89,7 +97,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.placeDataSource.places.count;
+    return self.places.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,7 +112,7 @@
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
     cell.informationBtn.enabled = !self.isEditMode;
-    Place *place = self.placeDataSource.places[index];
+    Place *place = self.places[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;

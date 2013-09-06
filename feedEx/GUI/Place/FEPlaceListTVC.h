@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FEPlaceDataSource.h"
 #import <CoreLocation/CoreLocation.h>
+#import "FESearchSettingInfo.h"
 
 @interface FEPlaceListTVC : UITableViewController
-@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic, strong) CLLocation *currentLocation;
+- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
+@property (strong, nonatomic) NSArray *places; // array of Places
 @end

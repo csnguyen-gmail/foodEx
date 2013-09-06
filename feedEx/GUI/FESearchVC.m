@@ -11,7 +11,6 @@
 #import "FEFoodGridCVC.h"
 #import "FESearchSettingInfo.h"
 #import "FESearchSettingVC.h"
-#import "FEPlaceDataSource.h"
 #import "FEDataSerialize.h"
 #import <MessageUI/MessageUI.h>
 #import "FECoreDataController.h"
@@ -40,7 +39,6 @@
 @property (weak, nonatomic) FEFoodGridCVC *foodGridCVC;
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *foodGridView;
-@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @end
 
@@ -69,7 +67,7 @@
     [self.view addSubview:self.toolBar];
     
     // load data
-    [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
+    [self refetchData];
     [self loadFollowDisplayType];
     // core data changed tracking register
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
@@ -100,9 +98,8 @@
     [self refetchData];
 }
 - (void)refetchData {
-    [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
-    [self updateDataSourceWithType:self.displayType];
-    [self reloadGUI];
+    [self.placeListTVC updatePlacesWithSettingInfo:self.searchSettingInfo.placeSetting];
+    [self.foodGridCVC updatePlacesWithSettingInfo:self.searchSettingInfo.placeSetting];
 }
 #pragma mark - handle location change
 - (void)locationChanged:(NSNotification*)info {
@@ -111,14 +108,6 @@
     self.placeListTVC.currentLocation = location;
 }
 #pragma mark - utility
-- (void)reloadGUI {
-    if (self.displayType == PLACE_TYPE) {
-        [self.placeListTVC.tableView reloadData];
-    }
-    else {
-        [self.foodGridCVC.collectionView reloadData];
-    }
-}
 - (void)loadFollowDisplayType {
     _displayType = [[NSUserDefaults standardUserDefaults] integerForKey:DISPLAY_TYPE];
     [self switchDisplayFollowType:self.displayType withAnimation:NO];
@@ -148,17 +137,6 @@
         hiddenView.hidden = YES;
     }
     self.dispTypeSC.selectedSegmentIndex = type;
-    [self updateDataSourceWithType:type];
-}
-- (void)updateDataSourceWithType:(NSUInteger)type {
-    if (type == 0) {
-        self.placeListTVC.placeDataSource = self.placeDataSource;
-        self.foodGridCVC.placeDataSource = nil;
-    }
-    else {
-        self.placeListTVC.placeDataSource = nil;
-        self.foodGridCVC.placeDataSource = self.placeDataSource;
-    }
 }
 #pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
@@ -242,7 +220,7 @@
     if (self.displayType == PLACE_TYPE) {
         NSArray *selectedRows = [self.placeListTVC.tableView indexPathsForSelectedRows];
         for (NSIndexPath *index in selectedRows) {
-            [selectedPlaces addObject:self.placeDataSource.places[index.row]];
+            [selectedPlaces addObject:self.placeListTVC.places[index.row]];
         }
     }
     else {
@@ -265,12 +243,6 @@
         
     }
     return _searchSettingInfo;
-}
-- (FEPlaceDataSource *)placeDataSource {
-    if (!_placeDataSource) {
-        _placeDataSource = [[FEPlaceDataSource alloc] init];
-    }
-    return _placeDataSource;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeList"]) {

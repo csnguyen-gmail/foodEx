@@ -78,7 +78,6 @@
 		6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E217AE22C2007BDAFA /* FEFlipPlaceView.m */; };
 		6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */; };
 		6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */; };
-		6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */; };
 		6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F96B5CD17C8728600935AEA /* NSData+Extension.m */; };
 		6F96B5D017C872FB00935AEA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */; };
 		6F989DE517C885FF005D6B7C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F989DE417C885FF005D6B7C /* MessageUI.framework */; };
@@ -298,8 +297,6 @@
 		6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodDetailVC.m; sourceTree = "<group>"; };
 		6F89E7E717AE44A1007BDAFA /* FEFlipFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipFoodView.h; sourceTree = "<group>"; };
 		6F89E7E817AE44A2007BDAFA /* FEFlipFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipFoodView.m; sourceTree = "<group>"; };
-		6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceDataSource.h; sourceTree = "<group>"; };
-		6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceDataSource.m; sourceTree = "<group>"; };
 		6F96B5CC17C8728600935AEA /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
 		6F96B5CD17C8728600935AEA /* NSData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Extension.m"; sourceTree = "<group>"; };
 		6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
@@ -832,8 +829,6 @@
 				6FDC911B177ED6AA00E2BF5B /* FEPlaceListTVC.m */,
 				6FDC9118177ED6AA00E2BF5B /* FEPlaceListCell.h */,
 				6FDC9119177ED6AA00E2BF5B /* FEPlaceListCell.m */,
-				6F89E7F017AE8DEE007BDAFA /* FEPlaceDataSource.h */,
-				6F89E7F117AE8DEF007BDAFA /* FEPlaceDataSource.m */,
 				6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */,
 				6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */,
 				6FE6393717D1B8950043339B /* FEPlaceListSearchMapCell.h */,
@@ -1153,7 +1148,6 @@
 				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
-				6F89E7F217AE8DF0007BDAFA /* FEPlaceDataSource.m in Sources */,
 				6FBD839417B2070A0082449F /* FEFlipGridFoodView.m in Sources */,
 				6FBD839A17B320880082449F /* FEMapVC.m in Sources */,
 				6FBD83A617B6A3BD0082449F /* FEMapUtility.m in Sources */,

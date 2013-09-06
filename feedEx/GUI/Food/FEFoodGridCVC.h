@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FEPlaceDataSource.h"
+#import "FESearchSettingInfo.h"
 
 @interface FEFoodGridCVC : UICollectionViewController
-@property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
+- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
 @end
