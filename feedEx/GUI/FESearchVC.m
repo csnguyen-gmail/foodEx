@@ -20,9 +20,9 @@
 #import "UIAlertView+Extension.h"
 #import "FEAppDelegate.h"
 
-#define PLACE_DISP_TYPE @"PlaceDispType"
-#define LIST_TYPE 0
-#define GRID_TYPE 1
+#define DISPLAY_TYPE @"SearchDispType"
+#define PLACE_TYPE 0
+#define FOOD_TYPE 1
 
 #define ALERT_DELETE_CONFIRM 0
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
@@ -34,12 +34,12 @@
 @property (strong, nonatomic) UIBarButtonItem *deleteBtn;
 @property (strong, nonatomic) UIToolbar *toolBar;
 @property (nonatomic) BOOL isEditMode;
-@property (nonatomic) NSUInteger placeDispType; // List or Grid
+@property (nonatomic) NSUInteger displayType; // Place or Food
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
-@property (weak, nonatomic) FEFoodGridCVC *placeGridCVC;
+@property (weak, nonatomic) FEFoodGridCVC *foodGridCVC;
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
-@property (weak, nonatomic) IBOutlet UIView *placeGridView;
+@property (weak, nonatomic) IBOutlet UIView *foodGridView;
 @property (strong, nonatomic) FEPlaceDataSource *placeDataSource;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @end
@@ -70,7 +70,7 @@
     
     // load data
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
-    [self loadPlaceDisplayType];
+    [self loadFollowDisplayType];
     // core data changed tracking register
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
                                                  name:CORE_DATA_UPDATED object:nil];
@@ -101,7 +101,7 @@
 }
 - (void)refetchData {
     [self.placeDataSource queryPlaceInfoWithSetting:self.searchSettingInfo.placeSetting];
-    [self updatePlaceDateSourceWithType:self.placeDispType];
+    [self updateDataSourceWithType:self.displayType];
     [self reloadGUI];
 }
 #pragma mark - handle location change
@@ -112,26 +112,26 @@
 }
 #pragma mark - utility
 - (void)reloadGUI {
-    if (self.placeDispType == LIST_TYPE) {
+    if (self.displayType == PLACE_TYPE) {
         [self.placeListTVC.tableView reloadData];
     }
     else {
-        [self.placeGridCVC.collectionView reloadData];
+        [self.foodGridCVC.collectionView reloadData];
     }
 }
-- (void)loadPlaceDisplayType {
-    _placeDispType = [[NSUserDefaults standardUserDefaults] integerForKey:PLACE_DISP_TYPE];
-    [self switchPlaceDispToType:self.placeDispType withAnimation:NO];
+- (void)loadFollowDisplayType {
+    _displayType = [[NSUserDefaults standardUserDefaults] integerForKey:DISPLAY_TYPE];
+    [self switchDisplayFollowType:self.displayType withAnimation:NO];
 }
-- (void)setPlaceDispType:(NSUInteger)placeDispType {
-    _placeDispType = placeDispType;
+- (void)setDisplayType:(NSUInteger)displayType {
+    _displayType = displayType;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:placeDispType forKey:PLACE_DISP_TYPE];
+    [defaults setInteger:displayType forKey:DISPLAY_TYPE];
     [defaults synchronize];
 }
-- (void)switchPlaceDispToType:(NSUInteger)type withAnimation:(BOOL)animated{
-    UIView *shownView = (type == 0) ? self.placeListView : self.placeGridView;
-    UIView *hiddenView = (type == 0) ? self.placeGridView : self.placeListView;
+- (void)switchDisplayFollowType:(NSUInteger)type withAnimation:(BOOL)animated{
+    UIView *shownView = (type == 0) ? self.placeListView : self.foodGridView;
+    UIView *hiddenView = (type == 0) ? self.foodGridView : self.placeListView;
     if (animated) {
         [UIView transitionWithView:self.mainView
                           duration:0.4
@@ -148,22 +148,22 @@
         hiddenView.hidden = YES;
     }
     self.dispTypeSC.selectedSegmentIndex = type;
-    [self updatePlaceDateSourceWithType:type];
+    [self updateDataSourceWithType:type];
 }
-- (void)updatePlaceDateSourceWithType:(NSUInteger)type {
+- (void)updateDataSourceWithType:(NSUInteger)type {
     if (type == 0) {
         self.placeListTVC.placeDataSource = self.placeDataSource;
-        self.placeGridCVC.placeDataSource = nil;
+        self.foodGridCVC.placeDataSource = nil;
     }
     else {
         self.placeListTVC.placeDataSource = nil;
-        self.placeGridCVC.placeDataSource = self.placeDataSource;
+        self.foodGridCVC.placeDataSource = self.placeDataSource;
     }
 }
 #pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
-    self.placeDispType = sender.selectedSegmentIndex;
-    [self switchPlaceDispToType:sender.selectedSegmentIndex withAnimation:YES];
+    self.displayType = sender.selectedSegmentIndex;
+    [self switchDisplayFollowType:sender.selectedSegmentIndex withAnimation:YES];
 }
 - (void)searchAction:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"searchSettingVC" sender:self];
@@ -219,14 +219,14 @@
                          listRect.size.height += delta;
                          self.placeListTVC.view.frame = listRect;
                          // adjust gridView height
-                         CGRect gridRect = self.placeGridCVC.view.frame;
+                         CGRect gridRect = self.foodGridCVC.view.frame;
                          gridRect.size.height += delta;
-                         self.placeGridCVC.view.frame = gridRect;
+                         self.foodGridCVC.view.frame = gridRect;
                          // adjust toolbar y
                          CGRect toolbarRect = self.toolBar.frame;
                          toolbarRect.origin.y += delta;
                          self.toolBar.frame = toolbarRect;
-                         if (self.placeDispType == LIST_TYPE) {
+                         if (self.displayType == PLACE_TYPE) {
                              self.placeListTVC.isEditMode = isEditMode;
                          }
                          else {
@@ -239,7 +239,7 @@
 }
 - (NSArray*)getSelectedPlaces {
     NSMutableArray *selectedPlaces = [NSMutableArray array];
-    if (self.placeDispType == LIST_TYPE) {
+    if (self.displayType == PLACE_TYPE) {
         NSArray *selectedRows = [self.placeListTVC.tableView indexPathsForSelectedRows];
         for (NSIndexPath *index in selectedRows) {
             [selectedPlaces addObject:self.placeDataSource.places[index.row]];
@@ -277,7 +277,7 @@
         self.placeListTVC = [segue destinationViewController];
     }
     else if ([[segue identifier] isEqualToString:@"placeGrid"]) {
-        self.placeGridCVC = [segue destinationViewController];
+        self.foodGridCVC = [segue destinationViewController];
     }
     else if ([[segue identifier] isEqualToString:@"searchSettingVC"]) {
         FESearchSettingVC *searchSettingVC = [segue destinationViewController];

@@ -1016,9 +1016,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dispTypeSC" destination="CJy-fC-g8z" id="Wg5-rt-K96"/>
+                        <outlet property="foodGridView" destination="sHH-PB-Hn2" id="ZaY-9Y-Xx4"/>
                         <outlet property="indicatorView" destination="tXU-BB-m8E" id="LU7-z5-3nY"/>
                         <outlet property="mainView" destination="SDz-7k-mRy" id="UXV-ZC-jxA"/>
-                        <outlet property="placeGridView" destination="sHH-PB-Hn2" id="fsQ-9u-s5w"/>
                         <outlet property="placeListView" destination="uVL-zx-plR" id="EVi-cK-hxq"/>
                         <segue destination="lfQ-fj-1yo" kind="push" identifier="searchSettingVC" id="jFD-6R-DR3"/>
                     </connections>
