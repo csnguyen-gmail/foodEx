@@ -10,5 +10,5 @@
 #import "FESearchSettingInfo.h"
 
 @interface FEFoodGridCVC : UICollectionViewController
-- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
+- (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting;
 @end

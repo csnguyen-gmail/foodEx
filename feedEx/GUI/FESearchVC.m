@@ -99,7 +99,7 @@
 }
 - (void)refetchData {
     [self.placeListTVC updatePlacesWithSettingInfo:self.searchSettingInfo.placeSetting];
-    [self.foodGridCVC updatePlacesWithSettingInfo:self.searchSettingInfo.placeSetting];
+    [self.foodGridCVC updateFoodsWithSettingInfo:self.searchSettingInfo.foodSetting];
 }
 #pragma mark - handle location change
 - (void)locationChanged:(NSNotification*)info {

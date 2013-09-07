@@ -302,8 +302,9 @@
         [actionSheet showFromBarButtonItem:_barButtonItem animated:YES];
     else if (self.containerView && NO == CGRectIsEmpty(self.presentFromRect))
         [actionSheet showFromRect:_presentFromRect inView:_containerView animated:YES];
-    else
-        [actionSheet showInView:_containerView];
+//    fix warning
+//    else
+//        [actionSheet showInView:_containerView];
 }
 
 - (void)configureAndPresentPopoverForView:(UIView *)aView {

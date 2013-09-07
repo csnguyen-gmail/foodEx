@@ -15,7 +15,7 @@
     </entity>
     <entity name="Food" representedClassName="Food" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="isBest" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isBest" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="foods" inverseEntity="Place" syncable="YES"/>
     </entity>
     <entity name="OriginPhoto" representedClassName="OriginPhoto" syncable="YES">
@@ -53,13 +53,13 @@
     <fetchRequest name="GetTagByType" entity="Tag" predicateString="type == $TYPE"/>
     <fetchRequest name="GetUser" entity="User"/>
     <elements>
-        <element name="AbstractInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Address" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Food" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="OriginPhoto" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Place" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="AbstractInfo" positionX="-263" positionY="-192" width="128" height="120"/>
+        <element name="Address" positionX="-263" positionY="237" width="128" height="105"/>
+        <element name="Food" positionX="-83" positionY="54" width="128" height="88"/>
+        <element name="OriginPhoto" positionX="-45" positionY="-45" width="128" height="75"/>
+        <element name="Photo" positionX="-81" positionY="-180" width="128" height="90"/>
+        <element name="Place" positionX="-261" positionY="16" width="128" height="164"/>
+        <element name="Tag" positionX="-477" positionY="-180" width="128" height="90"/>
+        <element name="User" positionX="-486" positionY="81" width="128" height="89"/>
     </elements>
 </model>

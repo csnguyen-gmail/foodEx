@@ -10,5 +10,5 @@
 #import "FESearchSettingInfo.h"
 
 @interface Food (Extension)
-
++ (NSArray *)foodsFromFoodSettingInfo:(FESearchFoodSettingInfo *)foodSettingInfo withMOC:(NSManagedObjectContext *)moc;
 @end

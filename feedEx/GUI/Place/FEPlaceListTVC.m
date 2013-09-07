@@ -61,8 +61,7 @@
 }
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
-    self.tableView.editing = isEditMode;
-    [self.tableView reloadData];
+    [self.tableView setEditing:isEditMode animated:YES];
 }
 - (void)setCurrentLocation:(CLLocation *)currentLocation {
     _currentLocation = currentLocation;

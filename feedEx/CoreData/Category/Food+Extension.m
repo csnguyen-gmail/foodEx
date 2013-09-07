@@ -32,7 +32,8 @@
     // TODO Cost
     
     if (foodSettingInfo.bestType != 0) { // is not All
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBest == %@",[NSNumber numberWithBool:(foodSettingInfo.bestType == 1)]];
+        NSString *predicateStr = [NSString stringWithFormat:@"isBest %@ 1", (foodSettingInfo.bestType == 1 ? @"==" : @"!=")];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateStr];
         [predicates addObject:predicate];
     }
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];

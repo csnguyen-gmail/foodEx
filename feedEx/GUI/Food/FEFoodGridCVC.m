@@ -8,7 +8,7 @@
 
 #import "FEFoodGridCVC.h"
 #import "FEFoodGridCell.h"
-#import "Place+Extension.h"
+#import "Food+Extension.h"
 #import "Photo.h"
 #import "FEPlaceDetailMainVC.h"
 #import "FECoreDataController.h"
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
 @property (weak, nonatomic) FECoreDataController *coreData;
-@property (strong, nonatomic) NSArray *places; // array of Places
+@property (strong, nonatomic) NSArray *foods; // array of Foods
 
 @end
 @implementation FEFoodGridCVC
@@ -28,18 +28,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        placeDetailVC.place = self.places[self.selectedRow];
+        Food *food = self.foods[self.selectedRow];
+        placeDetailVC.place = food.owner;
     }
 }
 
 - (void)updateCell:(FEFoodGridCell*)cell atIndex:(NSUInteger)index{
-    Place *place = self.places[index];
-    if (place.photos.count != 0) {
-        cell.flipPlaceGridView.rating = [place.rating integerValue];
-        cell.flipPlaceGridView.name = place.name;
+    Food *food = self.foods[index];
+    if (food.photos.count != 0) {
+        cell.flipPlaceGridView.name = food.name;
         cell.flipPlaceGridView.delegate = self;
         cell.flipPlaceGridView.rowIndex = index;
-        [cell.flipPlaceGridView setDatasource:[place.photos array]
+        [cell.flipPlaceGridView setDatasource:[food.photos array]
                             withSelectedIndex:[self.imageIndexes[index] integerValue]];
     }
     else {
@@ -53,10 +53,10 @@
     }
     return _coreData;
 }
-- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
-    self.places = [Place placesFromPlaceSettingInfo:placeSetting withMOC:self.coreData.managedObjectContext];
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
-    for (int i = 0; i< self.places.count; i++) {
+- (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting {
+    self.foods = [Food foodsFromFoodSettingInfo:foodSetting withMOC:self.coreData.managedObjectContext];
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.foods.count];
+    for (int i = 0; i< self.foods.count; i++) {
         [self.imageIndexes addObject:@(0)];
     }
     [self.collectionView reloadData];
@@ -68,18 +68,14 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.places.count;
+    return self.foods.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"placeCell";
+    static NSString *CellIdentifier = @"foodCell";
     FEFoodGridCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     [self updateCell:cell atIndex:indexPath.row];
     return cell;
 }
-//#pragma mark - Collection view delegate
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//}
 #pragma mark - FEFlipGridFoodViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
