@@ -36,10 +36,11 @@
 - (void)updateCell:(FEFoodGridCell*)cell atIndex:(NSUInteger)index{
     Food *food = self.foods[index];
     if (food.photos.count != 0) {
-        cell.flipPlaceGridView.name = food.name;
-        cell.flipPlaceGridView.delegate = self;
-        cell.flipPlaceGridView.rowIndex = index;
-        [cell.flipPlaceGridView setDatasource:[food.photos array]
+        cell.flipFoodGridView.name = food.name;
+        cell.flipFoodGridView.isBest = [food.isBest boolValue];
+        cell.flipFoodGridView.delegate = self;
+        cell.flipFoodGridView.rowIndex = index;
+        [cell.flipFoodGridView setDatasource:[food.photos array]
                             withSelectedIndex:[self.imageIndexes[index] integerValue]];
     }
     else {

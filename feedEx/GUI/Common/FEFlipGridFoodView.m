@@ -9,7 +9,6 @@
 #import "FEFlipGridFoodView.h"
 #import "Photo.h"
 #import "OriginPhoto.h"
-#import "DYRateView.h"
 
 @implementation FEFlipGridFoodView
 // overwrite super class
@@ -33,27 +32,33 @@
     UIView *greyView = [[UIView alloc] initWithFrame:rect];
     greyView.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
     
-    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 2.0, 74.0, 21.0)];
+    UILabel *nameLbl = [[UILabel alloc] init];
     nameLbl.textColor = [UIColor whiteColor];
     nameLbl.backgroundColor = [UIColor clearColor];
     nameLbl.adjustsFontSizeToFitWidth = YES;
     nameLbl.minimumScaleFactor = 0.5;
     nameLbl.text = self.name;
+    nameLbl.frame = CGRectMake(6.0, 2.0, self.isBest ? 100.0 : 125.0, 21.0);
     
-    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(77.0, 7.0, 66.0, 12.0)];
-    ratingView.backgroundColor = [UIColor clearColor];
+    UIImageView *isBestImageView;
+    if (self.isBest) {
+        UIImage *isBestImage = [UIImage imageNamed:(self.isBest ? @"heart_selected" : @"heart_grey")];
+        isBestImageView = [[UIImageView alloc] initWithImage:isBestImage];
+        isBestImageView.frame = CGRectMake(113.0, 0.0, 25.0, 25.0);
+    }
     
     UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    CGRect frame = detailBtn.frame;
-    frame.origin = CGPointMake(118.0, 118.0);
-    detailBtn.frame = frame;
+    rect = detailBtn.frame;
+    rect.origin = CGPointMake(118.0, 118.0);
+    detailBtn.frame = rect;
     [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    ratingView.rate = self.rating;
     [bgView addSubview:imageView];
     [bgView addSubview:greyView];
     [bgView addSubview:nameLbl];
-    [bgView addSubview:ratingView];
+    if (self.isBest) {
+        [bgView addSubview:isBestImageView];
+    }
     [bgView addSubview:detailBtn];
     return bgView;
 }

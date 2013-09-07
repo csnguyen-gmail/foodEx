@@ -16,7 +16,7 @@
 
 @interface FEFlipGridFoodView : FEFlipListView
 @property (strong, nonatomic) NSString *name;
-@property (nonatomic) NSUInteger rating;
+@property (nonatomic) NSUInteger isBest;
 @property (nonatomic) NSUInteger rowIndex;
 @property (nonatomic, weak) id<FEFlipGridFoodViewDelegate> delegate;
 @end

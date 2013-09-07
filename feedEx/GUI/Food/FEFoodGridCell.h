@@ -11,5 +11,5 @@
 #import "Place.h"
 
 @interface FEFoodGridCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet FEFlipGridFoodView *flipPlaceGridView;
+@property (weak, nonatomic) IBOutlet FEFlipGridFoodView *flipFoodGridView;
 @end
