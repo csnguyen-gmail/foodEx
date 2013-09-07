@@ -72,6 +72,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="310" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="QZh-1g-4Bk">
@@ -80,7 +81,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bJD-GS-xOC">
@@ -108,11 +109,11 @@
                                         <rect key="frame" x="0.0" y="38" width="310" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="mOD-rG-KG0" customClass="FEDynamicScrollView">
-                                                    <rect key="frame" x="9" y="-5" width="255" height="82"/>
+                                                    <rect key="frame" x="9" y="-6" width="255" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cFe-KC-K4I">
@@ -140,7 +141,7 @@
                                         <rect key="frame" x="0.0" y="120" width="310" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fa8-OZ-xDM">
@@ -168,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="158" width="310" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rating:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tzz-TG-9EP">
@@ -191,7 +192,7 @@
                                         <rect key="frame" x="0.0" y="196" width="310" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="68"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="67"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tag:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jOA-Us-29C">
@@ -293,6 +294,7 @@
                                 <rect key="frame" x="5" y="5" width="309" height="470"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="FoodListCell" rowHeight="112" id="JHq-8a-Mtm" customClass="FEFoodEditListCell">
@@ -491,6 +493,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceListSearchMapCell" rowHeight="62" id="oA6-Zb-E9v" customClass="FEPlaceListSearchMapCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="62"/>
@@ -561,6 +564,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="308" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceListCell" rowHeight="90" id="bgP-MZ-bzv" customClass="FEPlaceListCell">
@@ -660,21 +664,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="LMg-em-1JH">
-                                <rect key="frame" x="5" y="345" width="310" height="126"/>
+                                <rect key="frame" x="5" y="341" width="310" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="FfL-0I-Fgw" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="126"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view alpha="0.60000000000000009" contentMode="scaleToFill" id="6HR-J3-QNY">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="fCh-aU-Mc1">
-                                        <rect key="frame" x="5" y="0.0" width="300" height="25"/>
+                                        <rect key="frame" x="5" y="-2" width="300" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -684,7 +688,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <containerView contentMode="scaleToFill" id="p8G-bQ-iom">
-                                <rect key="frame" x="5" y="5" width="310" height="325"/>
+                                <rect key="frame" x="5" y="5" width="310" height="321"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -692,7 +696,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" id="0eA-VQ-1oH" customClass="FEVerticalResizeControllView">
-                                <rect key="frame" x="5" y="330" width="310" height="15"/>
+                                <rect key="frame" x="5" y="326" width="310" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
@@ -783,9 +787,10 @@
             <objects>
                 <tableViewController id="Spr-DK-nds" customClass="FEPlaceDetailTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eOk-BK-5II">
-                        <rect key="frame" x="0.0" y="0.0" width="310" height="325"/>
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="321"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="1AR-a2-TgQ">
@@ -806,18 +811,19 @@
                                                     <rect key="frame" x="239" y="7" width="64" height="225"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <inset key="contentInset" minX="0.0" minY="0.0" maxX="-6" maxY="0.0"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6Yx-cY-D5n">
-                                                        <size key="itemSize" width="64" height="64"/>
+                                                        <size key="itemSize" width="70" height="64"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="foodCell" id="tJh-V0-fQn" customClass="FEPlaceDetailFoodCell">
-                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="64"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="64"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" id="oI4-gg-vbc">
@@ -872,15 +878,15 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="66" id="afO-Gj-qFs">
-                                        <rect key="frame" x="0.0" y="261" width="310" height="66"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="61" id="afO-Gj-qFs">
+                                        <rect key="frame" x="0.0" y="261" width="310" height="61"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Note" id="HrX-p1-9Lt">
-                                                    <rect key="frame" x="7" y="4" width="296" height="55"/>
+                                                    <rect key="frame" x="7" y="4" width="296" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1688,8 +1694,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OkE-8Z-2rC"/>
-        <segue reference="VJo-7D-IoS"/>
         <segue reference="LCh-08-MT1"/>
+        <segue reference="eDW-Ly-5HO"/>
+        <segue reference="OkE-8Z-2rC"/>
     </inferredMetricsTieBreakers>
 </document>
