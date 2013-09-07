@@ -27,12 +27,12 @@
     UIView *greyView = [[UIView alloc] initWithFrame:rect];
     greyView.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
     
-    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(11.0, 2.0, 151.0, 21.0)];
+    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(11.0, 2.0, 145.0, 21.0)];
     nameLbl.textColor = [UIColor whiteColor];
     nameLbl.backgroundColor = [UIColor clearColor];
     nameLbl.text = self.name;
     
-    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(169.0, 6.0, 66.0, 12.0)];
+    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(155.0, 6.0, 66.0, 12.0)];
     ratingView.backgroundColor = [UIColor clearColor];
     ratingView.rate = self.rating;
     
