@@ -29,7 +29,7 @@
     
     UILabel *nameLbl = [[UILabel alloc] init];
     nameLbl.textColor = [UIColor whiteColor];
-    nameLbl.backgroundColor = [UIColor blueColor];
+    nameLbl.backgroundColor = [UIColor clearColor];
     nameLbl.text = self.name;
     nameLbl.frame = CGRectMake(13.0, 3.0, self.isBest ? 180 : 210, 21.0);
     
