@@ -22,5 +22,6 @@
 @property (nonatomic) BOOL editMode;
 @property (nonatomic, weak) id<FEDynamicScrollViewDelegate> dynamicScrollViewDelegate;
 
-- (void)addView:(FEWiggleView*)wiggleView atIndex:(int)index;
+- (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index withAnimation:(BOOL)animated;
+- (void)setupWithWiggleArray:(NSArray*)wiggles withAnimation:(BOOL)animated;
 @end

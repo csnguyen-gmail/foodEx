@@ -139,13 +139,28 @@
                      }];
 }
 #pragma mark - handle update
-- (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
+- (void)setupWithWiggleArray:(NSArray*)wiggles withAnimation:(BOOL)animated {
+    // reset view
+    self.editMode = NO;
+    for (FEWiggleView *wiggleView in self.wiggleViews) {
+        [wiggleView removeFromSuperview];
+    }
+    [self.wiggleViews removeAllObjects];
+    // add new wiggles
+    for (FEWiggleView *wiggleView in wiggles) {
+        [self addSubview:wiggleView];
+        [self.wiggleViews addObject:wiggleView];
+    }
+    [self rearrangeAllViewWithAnimation:animated];
+}
+
+- (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index withAnimation:(BOOL)animated{
     wiggleView.frame = CGRectOffset(wiggleView.frame, FIRST_X, DYNAMIC_SCROLLVIEW_HEIGHT_PADDING);
     wiggleView.editMode = self.editMode;
     [self addSubview:wiggleView];
     [self.wiggleViews insertObject:wiggleView atIndex:index];
     [self rearrangeAllViewWithAnimation:YES];
-    [self scrollRectToVisible:wiggleView.frame animated:YES];
+    [self scrollRectToVisible:wiggleView.frame animated:animated];
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
     [self.dynamicScrollViewDelegate removeImageAtIndex:[self.wiggleViews indexOfObject:wiggleImageView]];

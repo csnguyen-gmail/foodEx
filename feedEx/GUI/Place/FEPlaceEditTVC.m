@@ -132,11 +132,13 @@
     }
 }
 - (void)setupPhotoScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
+    NSMutableArray *wiggles = [NSMutableArray array];
     for (UIImage *thumbnailImage in thumbnailImages) {
         FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                                deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-        [self.photoScrollView addView:wiggleView atIndex:self.photoScrollView.wiggleViews.count];
+        [wiggles addObject:wiggleView];
     }
+    [self.photoScrollView setupWithWiggleArray:wiggles withAnimation:NO];
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
     [self.editPlaceTVCDelegate removeImageAtIndex:index];
@@ -160,7 +162,7 @@
                                          scaledToSize:THUMBNAIL_SIZE];
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-    [self.photoScrollView addView:wiggleView atIndex:0];
+    [self.photoScrollView addView:wiggleView atIndex:0 withAnimation:YES];
     [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
 }
 # pragma mark - UITextViewDelegate

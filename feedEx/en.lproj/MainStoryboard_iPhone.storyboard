@@ -297,15 +297,15 @@
                                 <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="FoodListCell" rowHeight="112" id="JHq-8a-Mtm" customClass="FEFoodEditListCell">
-                                        <rect key="frame" x="0.0" y="22" width="309" height="112"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="FoodListCell" rowHeight="110" id="JHq-8a-Mtm" customClass="FEFoodEditListCell">
+                                        <rect key="frame" x="0.0" y="22" width="309" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="309" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="309" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="1GT-d3-Lpw" customClass="FEDynamicScrollView">
-                                                    <rect key="frame" x="41" y="23" width="226" height="82"/>
+                                                    <rect key="frame" x="41" y="27" width="226" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d7Q-Xc-XrN">

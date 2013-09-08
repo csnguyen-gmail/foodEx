@@ -80,11 +80,13 @@
     }
 }
 - (void)setupFoodsScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
+    NSMutableArray *wiggles = [NSMutableArray array];
     for (UIImage *thumbnailImage in thumbnailImages) {
         FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                                deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-        [self.foodsScrollView addView:wiggleView atIndex:self.foodsScrollView.wiggleViews.count];
+        [wiggles addObject:wiggleView];
     }
+    [self.foodsScrollView setupWithWiggleArray:wiggles withAnimation:NO];
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
     [self.food removePhotoAtIndex:index];
@@ -95,7 +97,7 @@
 - (void)addNewThumbnailImage:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-    [self.foodsScrollView addView:wiggleView atIndex:0];
+    [self.foodsScrollView addView:wiggleView atIndex:0 withAnimation:YES];
     [self.food insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];
 }
 
