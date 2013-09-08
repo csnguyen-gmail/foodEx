@@ -42,7 +42,7 @@
     
     UIImageView *isBestImageView;
     if (self.isBest) {
-        UIImage *isBestImage = [UIImage imageNamed:(self.isBest ? @"heart_selected" : @"heart_grey")];
+        UIImage *isBestImage = [UIImage imageNamed:@"heart_selected"];
         isBestImageView = [[UIImageView alloc] initWithImage:isBestImage];
         isBestImageView.frame = CGRectMake(113.0, 0.0, 25.0, 25.0);
     }

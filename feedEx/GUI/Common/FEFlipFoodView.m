@@ -27,20 +27,25 @@
     UIView *greyView = [[UIView alloc] initWithFrame:rect];
     greyView.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
     
-    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(13.0, 3.0, 200.0, 21.0)];
+    UILabel *nameLbl = [[UILabel alloc] init];
     nameLbl.textColor = [UIColor whiteColor];
-    nameLbl.backgroundColor = [UIColor clearColor];
+    nameLbl.backgroundColor = [UIColor blueColor];
     nameLbl.text = self.name;
+    nameLbl.frame = CGRectMake(13.0, 3.0, self.isBest ? 180 : 210, 21.0);
     
-    UIImageView *isBestView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart_selected"]];
-    CGRect heartRect = isBestView.frame;
-    heartRect.origin.x = rect.size.width - heartRect.size.width - 3;
-    isBestView.frame = heartRect;
-    
+    UIImageView *isBestView;
+    if (self.isBest) {
+        isBestView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart_selected"]];
+        CGRect heartRect = isBestView.frame;
+        heartRect.origin.x = rect.size.width - heartRect.size.width - 3;
+        isBestView.frame = heartRect;
+    }
     [bgView addSubview:imageView];
     [bgView addSubview:greyView];
     [bgView addSubview:nameLbl];
-    [bgView addSubview:isBestView];
+    if (self.isBest) {
+        [bgView addSubview:isBestView];
+    }
     return bgView;
 }
 

@@ -20,7 +20,7 @@
 }
 - (void)setFood:(Food *)food {
     _food = food;
-    self.isBestImageView.hidden = !food.isBest;
+    self.isBestImageView.hidden = ([food.isBest integerValue] != 1);
     if (self.food.photos.count != 0) {
         Photo *photo = self.food.photos[0];
         self.foodImageView.image = photo.thumbnailPhoto;
