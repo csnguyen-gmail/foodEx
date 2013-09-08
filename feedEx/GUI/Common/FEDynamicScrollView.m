@@ -8,7 +8,8 @@
 
 #import "FEDynamicScrollView.h"
 #define DYNAMIC_SCROLLVIEW_WIDTH_PADDING 5
-#define DYNAMIC_SCROLLVIEW_HEIGHT_PADDING 5
+#define DYNAMIC_SCROLLVIEW_HEIGHT_PADDING  2
+#define FIRST_X 1
 
 @interface FEDynamicScrollView() {
     NSUInteger _indexViewBeforeDraging;
@@ -124,7 +125,7 @@
     // effect
     [UIView animateWithDuration:animated ? 0.2f :0.0f
                      animations:^{
-                         NSUInteger widthOfContentView = 0;
+                         NSUInteger widthOfContentView = FIRST_X;
                          for (FEWiggleView *view in self.wiggleViews) {
                              float viewWidth = view.frame.size.width;
                              float viewHeight = view.frame.size.height;
@@ -139,6 +140,7 @@
 }
 #pragma mark - handle update
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index {
+    wiggleView.frame = CGRectOffset(wiggleView.frame, FIRST_X, DYNAMIC_SCROLLVIEW_HEIGHT_PADDING);
     wiggleView.editMode = self.editMode;
     [self addSubview:wiggleView];
     [self.wiggleViews insertObject:wiggleView atIndex:index];

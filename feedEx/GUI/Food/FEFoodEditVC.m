@@ -55,7 +55,7 @@
     if (tableHeight > self.maxTableHeight) {
         tableHeight = self.maxTableHeight;
     }
-    else if (tableHeight == -1) {
+    else if (tableHeight < 0) {
         tableHeight = 0;
     }
     CGRect frame = self.tableView.frame;
