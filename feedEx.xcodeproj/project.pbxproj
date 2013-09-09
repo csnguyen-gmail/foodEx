@@ -11,6 +11,10 @@
 		6F06583D17D8C5070070AB29 /* FEFoodGridCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */; };
 		6F06584317DA2B0F0070AB29 /* Food+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584217DA2B0F0070AB29 /* Food+Extension.m */; };
 		6F06584417DA2B0F0070AB29 /* Food+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584217DA2B0F0070AB29 /* Food+Extension.m */; };
+		6F06584717DDE6040070AB29 /* FECheckinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584617DDE6040070AB29 /* FECheckinVC.m */; };
+		6F06584817DDE6040070AB29 /* FECheckinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584617DDE6040070AB29 /* FECheckinVC.m */; };
+		6F06584B17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */; };
+		6F06584C17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */; };
@@ -197,6 +201,10 @@
 		6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodGridCVC.m; sourceTree = "<group>"; };
 		6F06584117DA2B0F0070AB29 /* Food+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Food+Extension.h"; sourceTree = "<group>"; };
 		6F06584217DA2B0F0070AB29 /* Food+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Food+Extension.m"; sourceTree = "<group>"; };
+		6F06584517DDE6040070AB29 /* FECheckinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECheckinVC.h; sourceTree = "<group>"; };
+		6F06584617DDE6040070AB29 /* FECheckinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECheckinVC.m; sourceTree = "<group>"; };
+		6F06584917DDE71B0070AB29 /* FEPlaceListCheckinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListCheckinCell.h; sourceTree = "<group>"; };
+		6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListCheckinCell.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
 		6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECustomInputAccessoryView.h; sourceTree = "<group>"; };
@@ -775,6 +783,8 @@
 				6FD91FF617743BB50066A5E5 /* FESearchVC.m */,
 				6FBD839817B320870082449F /* FEMapVC.h */,
 				6FBD839917B320870082449F /* FEMapVC.m */,
+				6F06584517DDE6040070AB29 /* FECheckinVC.h */,
+				6F06584617DDE6040070AB29 /* FECheckinVC.m */,
 				6F22457817CDBB7900E3C1A0 /* FETabBarController.h */,
 				6F22457917CDBB7900E3C1A0 /* FETabBarController.m */,
 			);
@@ -839,6 +849,8 @@
 				6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */,
 				6FE6393717D1B8950043339B /* FEPlaceListSearchMapCell.h */,
 				6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */,
+				6F06584917DDE71B0070AB29 /* FEPlaceListCheckinCell.h */,
+				6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -1096,6 +1108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5E91F5172385780059055F /* main.m in Sources */,
+				6F06584717DDE6040070AB29 /* FECheckinVC.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
@@ -1143,6 +1156,7 @@
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
+				6F06584B17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */,
 				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailMainVC.m in Sources */,
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
@@ -1176,8 +1190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FE6392A17D085400043339B /* Food.m in Sources */,
+				6F06584817DDE6040070AB29 /* FECheckinVC.m in Sources */,
 				6FE6392617D085400043339B /* User.m in Sources */,
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
+				6F06584C17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */,
 				6FE6391E17D085400043339B /* AbstractInfo.m in Sources */,
 				6FE6392E17D085400043339B /* Tag.m in Sources */,
 				6FE6393617D1A0640043339B /* Place.m in Sources */,
