@@ -62,7 +62,7 @@
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
-    cell.chekinInfoLbl.text = [NSString stringWithFormat:@"Latest checkin time %@ (%@ times)", place.lastTimeCheckin, place.timesCheckin];
+//    cell.chekinInfoLbl.text = [NSString stringWithFormat:@"Latest checkin time %@ (%@ times)", place.lastTimeCheckin, place.timesCheckin];
     cell.flipPhotosView.rowIndex = indexPath.row;
     cell.flipPhotosView.delegate = self;
     cell.flipPhotosView.usingThumbnail = YES;

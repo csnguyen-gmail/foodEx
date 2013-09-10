@@ -95,8 +95,12 @@
     request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
     
     // sorting
-    NSArray *sorts = @[[[NSSortDescriptor alloc] initWithKey:@"lastTimeCheckin" ascending:NO],
-                       [[NSSortDescriptor alloc] initWithKey:@"timesCheckin" ascending:NO]];
+    NSArray *sorts = @[
+//                       [[NSSortDescriptor alloc] initWithKey:@"lastTimeCheckin" ascending:NO],
+                       [[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:NO],
+                       [[NSSortDescriptor alloc] initWithKey:@"timesCheckin" ascending:NO]
+                       ];
+    
     request.sortDescriptors = sorts;
     // batching size
     request.fetchBatchSize = numberOfPlace;
