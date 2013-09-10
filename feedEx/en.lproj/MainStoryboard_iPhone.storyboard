@@ -989,11 +989,21 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="informationBtnTapped:" destination="zcG-pu-yuq" eventType="touchUpInside" id="fLJ-7m-WBB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="addressLbl" destination="Gcz-k7-xbu" id="hjI-F6-uI5"/>
+                                            <outlet property="chekinInfoLbl" destination="UKI-di-iqw" id="7Pu-hN-yQH"/>
+                                            <outlet property="flipPhotosView" destination="sxx-iR-fVO" id="UxN-bc-TCQ"/>
+                                            <outlet property="informationBtn" destination="62s-1Y-e24" id="blu-4d-WHF"/>
+                                            <outlet property="nameLbl" destination="VjE-HG-dj0" id="ZSg-gO-he0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

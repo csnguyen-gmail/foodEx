@@ -110,7 +110,7 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
-    cell.informationBtn.enabled = !self.isEditMode;
+    cell.informationBtn.enabled = !self.isEditMode; // TODO fix bug
     Place *place = self.places[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
@@ -151,7 +151,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 89;
+    return 89; // TODO do we need it
 }
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {

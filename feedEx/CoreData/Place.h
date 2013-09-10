@@ -2,7 +2,7 @@
 //  Place.h
 //  feedEx
 //
-//  Created by csnguyen on 8/31/13.
+//  Created by csnguyen on 9/9/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * distanceInfo;
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) NSNumber * timesCheckin;
+@property (nonatomic, retain) NSDate * lastTimeCheckin;
 @property (nonatomic, retain) Address *address;
 @property (nonatomic, retain) NSOrderedSet *foods;
 @property (nonatomic, retain) User *owner;

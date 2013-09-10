@@ -9,5 +9,8 @@
 #import "FEPlaceListCheckinCell.h"
 
 @implementation FEPlaceListCheckinCell
-// TODO
+- (IBAction)informationBtnTapped:(UIButton *)sender {
+    [self.delegate didSelectPlaceDetailAtCell:self];
+}
+
 @end

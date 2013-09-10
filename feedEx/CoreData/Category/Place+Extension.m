@@ -70,15 +70,13 @@
     if (placeSettingInfo.firstSort.length > 0) {
         NSArray *sortsString = [placeSettingInfo.firstSort componentsSeparatedByString:SEPARATED_SORT_STR];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:PLACE_SORT_TYPE_STRING_DICT[sortsString[0]]
-                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
-                                                              selector:nil];
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]];
         [sorts addObject:sort];
     }
     if (placeSettingInfo.secondSort.length > 0) {
         NSArray *sortsString = [placeSettingInfo.secondSort componentsSeparatedByString:SEPARATED_SORT_STR];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:PLACE_SORT_TYPE_STRING_DICT[sortsString[0]]
-                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
-                                                              selector:nil];
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]];
         [sorts addObject:sort];
     }
     request.sortDescriptors = sorts;
@@ -91,5 +89,25 @@
         return nil;
     }
     return results;
+}
++ (NSArray*)latestCheckinPlace:(NSUInteger)numberOfPlace withMOC:(NSManagedObjectContext *)moc {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    
+    // sorting
+    NSArray *sorts = @[[[NSSortDescriptor alloc] initWithKey:@"lastTimeCheckin" ascending:NO],
+                       [[NSSortDescriptor alloc] initWithKey:@"timesCheckin" ascending:NO]];
+    request.sortDescriptors = sorts;
+    // batching size
+    request.fetchBatchSize = numberOfPlace;
+    
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return results;
+
 }
 @end

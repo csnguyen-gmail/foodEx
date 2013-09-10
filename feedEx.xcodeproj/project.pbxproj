@@ -15,6 +15,8 @@
 		6F06584817DDE6040070AB29 /* FECheckinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584617DDE6040070AB29 /* FECheckinVC.m */; };
 		6F06584B17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */; };
 		6F06584C17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */; };
+		6F06584F17DE20170070AB29 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584E17DE20170070AB29 /* Place.m */; };
+		6F06585017DE20170070AB29 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584E17DE20170070AB29 /* Place.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */; };
@@ -164,8 +166,6 @@
 		6FE6392E17D085400043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392C17D085400043339B /* Tag.m */; };
 		6FE6393117D085400043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393017D085400043339B /* OriginPhoto.m */; };
 		6FE6393217D085400043339B /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393017D085400043339B /* OriginPhoto.m */; };
-		6FE6393517D1A0640043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393417D1A0640043339B /* Place.m */; };
-		6FE6393617D1A0640043339B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393417D1A0640043339B /* Place.m */; };
 		6FE6393917D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */; };
 		6FE6393A17D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */; };
 		6FED8F96175A5A7F00216AC6 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FED8F90175A5A7E00216AC6 /* pause@2x.png */; };
@@ -205,6 +205,8 @@
 		6F06584617DDE6040070AB29 /* FECheckinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECheckinVC.m; sourceTree = "<group>"; };
 		6F06584917DDE71B0070AB29 /* FEPlaceListCheckinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListCheckinCell.h; sourceTree = "<group>"; };
 		6F06584A17DDE71B0070AB29 /* FEPlaceListCheckinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListCheckinCell.m; sourceTree = "<group>"; };
+		6F06584D17DE20170070AB29 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		6F06584E17DE20170070AB29 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
 		6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECustomInputAccessoryView.h; sourceTree = "<group>"; };
@@ -406,8 +408,6 @@
 		6FE6392C17D085400043339B /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		6FE6392F17D085400043339B /* OriginPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginPhoto.h; sourceTree = "<group>"; };
 		6FE6393017D085400043339B /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
-		6FE6393317D1A0640043339B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6FE6393417D1A0640043339B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6FE6393717D1B8950043339B /* FEPlaceListSearchMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListSearchMapCell.h; sourceTree = "<group>"; };
 		6FE6393817D1B8950043339B /* FEPlaceListSearchMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListSearchMapCell.m; sourceTree = "<group>"; };
 		6FED8F90175A5A7E00216AC6 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
@@ -638,9 +638,9 @@
 			isa = PBXGroup;
 			children = (
 				6F30B71F17BF6DB600A1D389 /* Category */,
+				6F06584D17DE20170070AB29 /* Place.h */,
+				6F06584E17DE20170070AB29 /* Place.m */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
-				6FE6393317D1A0640043339B /* Place.h */,
-				6FE6393417D1A0640043339B /* Place.m */,
 				6FE6392F17D085400043339B /* OriginPhoto.h */,
 				6FE6393017D085400043339B /* OriginPhoto.m */,
 				6FE6392B17D085400043339B /* Tag.h */,
@@ -1122,7 +1122,6 @@
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 				6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */,
 				6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */,
-				6FE6393517D1A0640043339B /* Place.m in Sources */,
 				6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */,
 				6F5713601761D70F000C69CE /* GKImageCropView.m in Sources */,
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
@@ -1168,6 +1167,7 @@
 				6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */,
 				6F89E7E617AE3E53007BDAFA /* FEFoodDetailVC.m in Sources */,
 				6F89E7E917AE44A2007BDAFA /* FEFlipFoodView.m in Sources */,
+				6F06584F17DE20170070AB29 /* Place.m in Sources */,
 				6FBD839417B2070A0082449F /* FEFlipGridFoodView.m in Sources */,
 				6FBD839A17B320880082449F /* FEMapVC.m in Sources */,
 				6FBD83A617B6A3BD0082449F /* FEMapUtility.m in Sources */,
@@ -1189,6 +1189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F06585017DE20170070AB29 /* Place.m in Sources */,
 				6FE6392A17D085400043339B /* Food.m in Sources */,
 				6F06584817DDE6040070AB29 /* FECheckinVC.m in Sources */,
 				6FE6392617D085400043339B /* User.m in Sources */,
@@ -1196,7 +1197,6 @@
 				6F06584C17DDE71B0070AB29 /* FEPlaceListCheckinCell.m in Sources */,
 				6FE6391E17D085400043339B /* AbstractInfo.m in Sources */,
 				6FE6392E17D085400043339B /* Tag.m in Sources */,
-				6FE6393617D1A0640043339B /* Place.m in Sources */,
 				6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6FE6391617D0853F0043339B /* Address.m in Sources */,
 				6F06584417DA2B0F0070AB29 /* Food+Extension.m in Sources */,

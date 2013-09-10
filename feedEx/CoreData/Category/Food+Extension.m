@@ -45,15 +45,13 @@
     if (foodSettingInfo.firstSort.length > 0) {
         NSArray *sortsString = [foodSettingInfo.firstSort componentsSeparatedByString:SEPARATED_SORT_STR];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:FOOD_SORT_TYPE_STRING_DICT[sortsString[0]]
-                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
-                                                              selector:nil];
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]];
         [sorts addObject:sort];
     }
     if (foodSettingInfo.secondSort.length > 0) {
         NSArray *sortsString = [foodSettingInfo.secondSort componentsSeparatedByString:SEPARATED_SORT_STR];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:FOOD_SORT_TYPE_STRING_DICT[sortsString[0]]
-                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]
-                                                              selector:nil];
+                                                             ascending:[DIRECTION_STRING_LIST[0] isEqual:sortsString[1]]];
         [sorts addObject:sort];
     }
     request.sortDescriptors = sorts;
