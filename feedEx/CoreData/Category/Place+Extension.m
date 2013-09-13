@@ -10,6 +10,11 @@
 #import "Common.h"
 
 @implementation Place (Extension)
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    self.lastTimeCheckin = self.createdDate;
+}
+
 - (void)insertFoodsAtIndex:(NSUInteger)index {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {

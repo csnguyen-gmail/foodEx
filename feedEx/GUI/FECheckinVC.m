@@ -62,12 +62,13 @@
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
-//    cell.chekinInfoLbl.text = [NSString stringWithFormat:@"Latest checkin time %@ (%@ times)", place.lastTimeCheckin, place.timesCheckin];
+    cell.chekinInfoLbl.text = [NSString stringWithFormat:@"Latest checkin time %@ (%@ times)", @"TODO", place.timesCheckin];
     cell.flipPhotosView.rowIndex = indexPath.row;
     cell.flipPhotosView.delegate = self;
     cell.flipPhotosView.usingThumbnail = YES;
     [cell.flipPhotosView setDatasource:[place.photos array]
                      withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
+    NSLog(@"Place %d: %@", indexPath.row, place);
 }
 
 #pragma mark - Table data source
