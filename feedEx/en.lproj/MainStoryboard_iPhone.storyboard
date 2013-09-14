@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="Def-J3-3Bg" customClass="FEPlaceEditMainVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjP-k1-UbI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Gb5-Vv-gVp" customClass="GMSMapView">
-                                <rect key="frame" x="5" y="282" width="310" height="172"/>
+                                <rect key="frame" x="5" y="282" width="310" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -25,7 +25,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="jpr-37-GkY">
-                                <rect key="frame" x="141" y="212" width="37" height="37"/>
+                                <rect key="frame" x="141" y="222" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <containerView contentMode="scaleToFill" id="c4M-Tq-89u">
@@ -287,11 +287,11 @@
             <objects>
                 <viewController id="1to-LW-Lm7" customClass="FEFoodEditVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eo3-w2-ndI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vT0-Sb-TAU">
-                                <rect key="frame" x="5" y="5" width="309" height="450"/>
+                                <rect key="frame" x="5" y="5" width="309" height="470"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
@@ -700,14 +700,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
-                            <containerView hidden="YES" contentMode="scaleToFill" id="ko0-em-CZJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="YM5-uh-9jq" kind="embed" identifier="foodDetailVC" id="3dC-BI-meu"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -724,11 +716,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addressLbl" destination="fCh-aU-Mc1" id="qBL-3e-cHv"/>
-                        <outlet property="foodDetailView" destination="ko0-em-CZJ" id="Ux3-KW-M09"/>
                         <outlet property="mapBgView" destination="LMg-em-1JH" id="1Hs-ai-0Hm"/>
                         <outlet property="mapView" destination="FfL-0I-Fgw" id="HCW-hM-Q50"/>
                         <outlet property="placeDetailView" destination="p8G-bQ-iom" id="o35-pt-7Sl"/>
                         <outlet property="verticalResizeView" destination="0eA-VQ-1oH" id="neu-tw-hpf"/>
+                        <segue destination="YM5-uh-9jq" kind="custom" identifier="foodDetailVC" customClass="FETransparentCustomSegue" id="CdQ-1R-HMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -740,7 +732,7 @@
             <objects>
                 <viewController id="YM5-uh-9jq" customClass="FEFoodDetailVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8KX-dx-lq4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="6De-R0-IY9">
@@ -771,11 +763,11 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="bgView" destination="6De-R0-IY9" id="6Qc-tA-7VF"/>
-                        <outlet property="flipFoodView" destination="v7h-RI-4qe" id="w2r-Hq-WJc"/>
+                        <outlet property="flipFoodView" destination="v7h-RI-4qe" id="b5m-JO-yUN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfS-pb-fhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1756,8 +1748,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Yrm-EF-MOd"/>
-        <segue reference="LCh-08-MT1"/>
+        <segue reference="OkE-8Z-2rC"/>
         <segue reference="eDW-Ly-5HO"/>
+        <segue reference="LCh-08-MT1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,12 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FEFlipFoodView.h"
-@protocol FEFoodDetailVCDelegate <NSObject>
-- (void)exitFoodDetailAtIndes:(NSUInteger)index;
-@end
-
+#import "Food.h"
 @interface FEFoodDetailVC : UIViewController
-@property (weak, nonatomic) IBOutlet FEFlipFoodView *flipFoodView;
-@property (nonatomic, weak) id<FEFoodDetailVCDelegate> delegate;
+@property (strong, nonatomic) Food *food;
 @end

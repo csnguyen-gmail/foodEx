@@ -16,7 +16,7 @@
 #import "FEVerticalResizeControllView.h"
 #import "FEFoodDetailVC.h"
 
-@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate, FEFoodDetailVCDelegate>{
+@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate>{
     float _minResizableHeight;
     float _maxResizableHeight;
 }
@@ -26,8 +26,7 @@
 @property (weak, nonatomic) FEPlaceDetailTVC *placeDetailTVC;
 @property (weak, nonatomic) IBOutlet UIView *placeDetailView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
-@property (weak, nonatomic) IBOutlet UIView *foodDetailView;
-@property (weak, nonatomic) FEFoodDetailVC *foodDetailVC;
+@property (nonatomic) NSUInteger selectedIndex;
 @end
 
 @implementation FEPlaceDetailMainVC
@@ -60,9 +59,6 @@
                                                                zoom:GMAP_DEFAULT_ZOOM];
     }
     self.placeDetailTVC.placeDetailTVCDelegate = self;
-    self.foodDetailVC.delegate = self;
-    self.foodDetailVC.view.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    self.foodDetailView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -75,7 +71,8 @@
         self.placeDetailTVC = [segue destinationViewController];
     }
     else if ([[segue identifier] isEqualToString:@"foodDetailVC"]) {
-        self.foodDetailVC = [segue destinationViewController];
+        FEFoodDetailVC *foodDetailVC = [segue destinationViewController];
+        foodDetailVC.food = self.place.foods[self.selectedIndex];
     }
 }
 #pragma mark - FEVerticalResizeControlDelegate
@@ -127,31 +124,7 @@
 }
 #pragma mark - FEPlaceDetailTVCDelegate
 - (void)didSelectItemAtIndexPath:(NSUInteger)index {
-    // TODO
-    FEFlipFoodView *flipFoodView = self.foodDetailVC.flipFoodView;
-    Food *food = self.place.foods[index];
-    flipFoodView.name = food.name;
-    flipFoodView.isBest = [food.isBest boolValue];
-    [flipFoodView setDatasource:[food.photos array] withSelectedIndex:0];
-    [UIView transitionWithView:self.foodDetailView
-                      duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations: ^{
-                        self.foodDetailView.hidden = NO;
-                    }
-                    completion:^(BOOL finished) {
-                    }];
-}
-#pragma mark - FEFoodDetailVCDelegate
-- (void)exitFoodDetailAtIndes:(NSUInteger)index {
-    [UIView transitionWithView:self.foodDetailView
-                      duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations: ^{
-                        self.foodDetailView.hidden = YES;
-                    }
-                    completion:^(BOOL finished) {
-                    }];
-
+    self.selectedIndex = index;
+    [self performSegueWithIdentifier:@"foodDetailVC" sender:self];
 }
 @end
