@@ -42,7 +42,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    self.maxTableHeight = self.tableView.frame.size.height;
+    if (self.maxTableHeight == 0) {
+        self.maxTableHeight = self.tableView.frame.size.height;
+    }
     [self adjustTableHeight];
 }
 - (void)viewWillDisappear:(BOOL)animated {
