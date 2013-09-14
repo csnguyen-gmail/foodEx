@@ -46,6 +46,7 @@
 }
 #define NO_PLACE_TAG 1
 #define TIME_INVALID_TAG 2
+#define FINISH_CHECKIN_TAG 3
 #define ACCEPTABLE_CHECKIN_PERIOD 60*15 // 15 minutes
 - (void)locationChanged:(NSNotification *)info {
     CLLocation* location = [info userInfo][@"location"];
@@ -59,7 +60,8 @@
         NSTimeInterval timeDistance = [now timeIntervalSinceDate:place.lastTimeCheckin];
         if (timeDistance < ACCEPTABLE_CHECKIN_PERIOD) {
             NSString *message = [NSString stringWithFormat:@"You've just checked in %d minutes early.", (int)(timeDistance / 60)];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed"
+                                                                message:message
                                                                delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             alertView.tag = TIME_INVALID_TAG;
             [alertView show];
@@ -71,7 +73,8 @@
     }
     // there is no Place arround here
     else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"There is no Place around here."
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed"
+                                                            message:@"There is no Place around here."
                                                            delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         alertView.tag = NO_PLACE_TAG;
         [alertView show];
@@ -104,11 +107,28 @@
     self.place.lastTimeCheckin = [NSDate date];
     self.place.timesCheckin = @([self.place.timesCheckin integerValue] + 1);
     [self.coreData saveToPersistenceStoreAndWait];
+    self.checkinBtn.enabled = NO;
+    [self.indicatorView startAnimating];
+    [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        [self.indicatorView stopAnimating];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"MM/dd hh:mm";
+        NSString *lastCheckinStr = [formatter stringFromDate:self.place.lastTimeCheckin];
+        NSString *message = [NSString stringWithFormat:@"Checked in at %@ (%d)", lastCheckinStr, [self.place.timesCheckin integerValue]];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Finish"
+                                                            message: message
+                                                           delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        alertView.tag = NO_PLACE_TAG;
+        [alertView show];
+    }];
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == NO_PLACE_TAG) {
+        [self close];
+    }
+    else if (alertView.tag == FINISH_CHECKIN_TAG) {
         [self close];
     }
 }
