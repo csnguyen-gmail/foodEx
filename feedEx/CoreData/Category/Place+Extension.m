@@ -8,6 +8,7 @@
 
 #import "Place+Extension.h"
 #import "Common.h"
+#import "Address.h"
 
 @implementation Place (Extension)
 - (void)awakeFromInsert {
@@ -38,6 +39,29 @@
     NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
     [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
     self.foods = tempSet;
+}
+#define ACCEPTABLE_CHECKIN_RADIUS 20.0 // meters
+// TODO: should consider a better way to filter Place by distance
++ (NSArray*)placesNearestLocation:(CLLocation*)location withMOC:(NSManagedObjectContext *)moc {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    NSMutableArray *nearestPlaces = [NSMutableArray array];
+    for (Place *place in results) {
+        CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:[place.address.lattittude doubleValue]
+                                                               longitude:[place.address.longtitude doubleValue]];
+        CLLocationDistance distance = [location distanceFromLocation:placeLocation];
+        if (distance <= ACCEPTABLE_CHECKIN_RADIUS) {
+            [nearestPlaces addObject:place];
+        }
+    }
+    
+    return nearestPlaces;
 }
 + (NSArray *)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo *)placeSettingInfo withMOC:(NSManagedObjectContext *)moc {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -94,29 +118,5 @@
         return nil;
     }
     return results;
-}
-+ (NSArray*)latestCheckinPlace:(NSUInteger)numberOfPlace withMOC:(NSManagedObjectContext *)moc {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
-    
-    // sorting
-    NSArray *sorts = @[
-//                       [[NSSortDescriptor alloc] initWithKey:@"lastTimeCheckin" ascending:NO],
-                       [[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:NO],
-                       [[NSSortDescriptor alloc] initWithKey:@"timesCheckin" ascending:NO]
-                       ];
-    
-    request.sortDescriptors = sorts;
-    // batching size
-    request.fetchBatchSize = numberOfPlace;
-    
-    NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        return nil;
-    }
-    return results;
-
 }
 @end
