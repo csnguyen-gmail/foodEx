@@ -101,11 +101,9 @@
 //        }
 //    }
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                   configuration:nil
-                                                             URL:self.storeURL
-                                                         options:@{NSMigratePersistentStoresAutomaticallyOption:@YES} error:&error]) {
-        /*
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL
+                                                         options:@{NSMigratePersistentStoresAutomaticallyOption:@YES}
+                                                           error:&error]) {        /*
          Replace this implementation with code to handle the error appropriately.
          
          abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -146,7 +144,9 @@
             [writerContext performBlock:^{
                 // push modification to disk (Private thread)
                 NSError *writerError;
-                [writerContext save:&writerError];
+                if ([writerContext hasChanges]) {
+                    [writerContext save:&writerError];
+                }
                 [queue addOperationWithBlock:^{
                     block(writerError);
                 }];
@@ -167,8 +167,10 @@
         // push modification to writer context (Main thread)
         if ([mainContext save:&error]) {
             [writerContext performBlockAndWait:^{
-                // push modification to disk (Private thread)
-                [writerContext save:&error];
+                if ([writerContext hasChanges]) {
+                    // push modification to disk (Private thread)
+                    [writerContext save:&error];
+                }
             }];
         }
     }];
