@@ -55,6 +55,7 @@
         Place* place = nearestPlaces[0];
         self.flipPlaceView.name = place.name;
         self.flipPlaceView.rating = [place.rating integerValue];
+        self.flipPlaceView.timesCheckin = [place.timesCheckin integerValue];
         [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
         NSDate *now = [NSDate date];
         NSTimeInterval timeDistance = [now timeIntervalSinceDate:place.lastTimeCheckin];

@@ -575,21 +575,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="exn-YR-JuH">
-                                            <rect key="frame" x="78" y="4" width="203" height="21"/>
+                                            <rect key="frame" x="106" y="4" width="175" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="wFb-Xj-Xlp">
-                                            <rect key="frame" x="78" y="24" width="223" height="21"/>
+                                            <rect key="frame" x="78" y="27" width="223" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="8kC-8H-aBW">
-                                            <rect key="frame" x="78" y="41" width="223" height="21"/>
+                                            <rect key="frame" x="78" y="43" width="223" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -601,7 +601,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7vq-kq-1lu">
-                                            <rect key="frame" x="78" y="63" width="223" height="22"/>
+                                            <rect key="frame" x="78" y="65" width="223" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         </scrollView>
                                         <view contentMode="scaleToFill" id="7Au-zV-0SZ" customClass="FEFlipPhotosView">
@@ -624,12 +624,23 @@
                                                 <action selector="informationBtnTapped:" destination="bgP-MZ-bzv" eventType="touchUpInside" id="eWP-Tg-Ddu"/>
                                             </connections>
                                         </button>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="star_empty.png" id="M8f-C3-Exi">
+                                            <rect key="frame" x="75" y="0.0" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000000000007" id="6f8-KD-zge">
+                                            <rect key="frame" x="86" y="13" width="10" height="9"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="addressLbl" destination="wFb-Xj-Xlp" id="n08-wH-sX2"/>
+                                    <outlet property="chekinTimesLbl" destination="6f8-KD-zge" id="mfp-GH-mqu"/>
                                     <outlet property="distanceLbl" destination="8kC-8H-aBW" id="KYW-Q2-KYf"/>
                                     <outlet property="flipPhotosView" destination="7Au-zV-0SZ" id="CNb-dc-LcF"/>
                                     <outlet property="informationBtn" destination="qcv-zJ-6Ub" id="jS0-af-db0"/>
@@ -1740,6 +1751,7 @@
         <image name="map.png" width="26" height="21"/>
         <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
+        <image name="star_empty.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

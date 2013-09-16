@@ -12,4 +12,5 @@
 @interface FEFlipPlaceView : FEFlipListView
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) NSUInteger rating;
+@property (nonatomic) NSUInteger timesCheckin;
 @end

@@ -116,6 +116,7 @@
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
     cell.ratingView.rate = [place.rating integerValue];
+    cell.chekinTimesLbl.text = [place.timesCheckin description];;
     cell.flipPhotosView.rowIndex = index;
     cell.flipPhotosView.delegate = self;
     cell.flipPhotosView.usingThumbnail = YES;

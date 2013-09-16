@@ -38,6 +38,7 @@
     _place = place;
     self.flipPlaceView.name = place.name;
     self.flipPlaceView.rating = [place.rating integerValue];
+    self.flipPlaceView.timesCheckin = [place.timesCheckin integerValue];
     [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
     self.noteTextView.text = self.place.note;
     if (self.place.tags.count > 0) {

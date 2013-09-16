@@ -23,21 +23,37 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.frame = bgView.frame;
     
-    rect.size.height = 24;
+    rect.size.height = 27;
     UIView *greyView = [[UIView alloc] initWithFrame:rect];
     greyView.backgroundColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+    // checked time
+    UIImageView *emptyStarView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star_empty"]];
+    emptyStarView.frame =  CGRectOffset(emptyStarView.frame, 5.0, -2.0);
+    UILabel *timesCheckLbl = [[UILabel alloc] initWithFrame:CGRectMake(16.0, 11.0, 10.0, 9.0)];
+    timesCheckLbl.textColor = [UIColor blackColor];
+    timesCheckLbl.backgroundColor = [UIColor clearColor];
+    timesCheckLbl.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    timesCheckLbl.textAlignment = NSTextAlignmentCenter;
+    timesCheckLbl.font = [UIFont systemFontOfSize:12.0];
+    timesCheckLbl.adjustsFontSizeToFitWidth = YES;
+    timesCheckLbl.minimumScaleFactor = 0.2;
+    timesCheckLbl.text = [NSString stringWithFormat:@"%d", 9];
+
+    // rate
+    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(self.frame.size.width - 68, 10.0, 66.0, 12.0)];
+    ratingView.backgroundColor = [UIColor clearColor];
+    ratingView.rate = self.rating;
     
-    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(11.0, 2.0, 145.0, 21.0)];
+    // name
+    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(36.0, 4.0, ratingView.frame.origin.x - 36, 21.0)];
     nameLbl.textColor = [UIColor whiteColor];
     nameLbl.backgroundColor = [UIColor clearColor];
     nameLbl.text = self.name;
     
-    DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(155.0, 6.0, 66.0, 12.0)];
-    ratingView.backgroundColor = [UIColor clearColor];
-    ratingView.rate = self.rating;
-    
     [bgView addSubview:imageView];
     [bgView addSubview:greyView];
+    [bgView addSubview:emptyStarView];
+    [bgView addSubview:timesCheckLbl];
     [bgView addSubview:nameLbl];
     [bgView addSubview:ratingView];
     return bgView;
