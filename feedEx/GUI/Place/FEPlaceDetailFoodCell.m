@@ -9,6 +9,7 @@
 #import "FEPlaceDetailFoodCell.h"
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ThumbnailPhoto.h"
 
 @implementation FEPlaceDetailFoodCell
 - (void)awakeFromNib {
@@ -23,7 +24,7 @@
     self.isBestImageView.hidden = ([food.isBest integerValue] != 1);
     if (self.food.photos.count != 0) {
         Photo *photo = self.food.photos[0];
-        self.foodImageView.image = photo.thumbnailPhoto;
+        self.foodImageView.image = photo.thumbnailPhoto.image;
         self.foodNameTF.text = food.name;
     }
 }

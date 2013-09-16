@@ -1,21 +1,18 @@
 //
-//  Photo.m
+//  ThumbnailPhoto.m
 //  feedEx
 //
 //  Created by csnguyen on 9/16/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "Photo.h"
-#import "AbstractInfo.h"
-#import "OriginPhoto.h"
 #import "ThumbnailPhoto.h"
+#import "Photo.h"
 
 
-@implementation Photo
+@implementation ThumbnailPhoto
 
-@dynamic originPhoto;
+@dynamic image;
 @dynamic owner;
-@dynamic thumbnailPhoto;
 
 @end

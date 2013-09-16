@@ -20,6 +20,7 @@
 #import "Tag+Extension.h"
 #import "NSData+Extension.h"
 #import "OriginPhoto.h"
+#import "ThumbnailPhoto.h"
 
 #define TEST_IMAGE @"heart_selected"
 
@@ -164,7 +165,7 @@
     }
     // check Thumbnail Photo
     NSData *originThumbnailData = UIImagePNGRepresentation([UIImage imageWithImage:loadedImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)]);
-    NSData *storeThumbnailData = UIImagePNGRepresentation(firstPhotoOfUser.thumbnailPhoto);
+    NSData *storeThumbnailData = UIImagePNGRepresentation(firstPhotoOfUser.thumbnailPhoto.image);
     if (![originThumbnailData isEqualToData:storeThumbnailData]){
         STFail(@"Not match original thumbnail image");
     }
@@ -258,8 +259,8 @@
             if (![decodePhoto.originPhoto.imageData isEqualToData:photo.originPhoto.imageData]) {
                 STFail(@"Blob data assignment is wrong");
             }
-            NSData *decodeImage = UIImagePNGRepresentation(decodePhoto.thumbnailPhoto);
-            NSData *image = UIImagePNGRepresentation(photo.thumbnailPhoto);
+            NSData *decodeImage = UIImagePNGRepresentation(decodePhoto.thumbnailPhoto.image);
+            NSData *image = UIImagePNGRepresentation(photo.thumbnailPhoto.image);
             if (![decodeImage isEqualToData:image]) {
                 STFail(@"Image assignment is wrong");
             }

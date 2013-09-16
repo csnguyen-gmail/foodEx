@@ -17,6 +17,7 @@
 #import "FEFoodEditVC.h"
 #import "Common.h"
 #import "FEAppDelegate.h"
+#import "ThumbnailPhoto.h"
 
 @interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate,GMDraggableMarkerManagerDelegate>{
     float _minResizableHeight;
@@ -144,7 +145,7 @@
         // photos
         NSMutableArray *photos = [[NSMutableArray alloc] init];
         for (Photo *photo in placeInfo.photos) {
-            [photos addObject:photo.thumbnailPhoto];
+            [photos addObject:photo.thumbnailPhoto.image];
         }
         [self.editPlaceInfoTVC setupPhotoScrollViewWithArrayOfThumbnailImages:photos];
     }

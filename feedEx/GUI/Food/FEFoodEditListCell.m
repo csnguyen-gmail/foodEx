@@ -9,6 +9,7 @@
 #import "FEFoodEditListCell.h"
 #import "AbstractInfo+Extension.h"
 #import "FECoreDataController.h"
+#import "ThumbnailPhoto.h"
 @interface FEFoodEditListCell()<UITextFieldDelegate, FEDynamicScrollViewDelegate>
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
@@ -34,7 +35,7 @@
     self.nameTF.text = food.name;
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     for (Photo *photo in self.food.photos) {
-        [photos addObject:photo.thumbnailPhoto];
+        [photos addObject:photo.thumbnailPhoto.image];
     }
     [self setupFoodsScrollViewWithArrayOfThumbnailImages:photos];
 }

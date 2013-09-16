@@ -7,7 +7,7 @@
 //
 
 #import "FECoreDataController.h"
-#ifdef TEST
+#ifdef UNIT_TEST
 #define DATA_BASE_NAME @"feedex_test.sqlite"
 #else
 #define DATA_BASE_NAME @"feedex.sqlite"
