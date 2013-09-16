@@ -40,7 +40,7 @@
     [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
     self.foods = tempSet;
 }
-#define ACCEPTABLE_CHECKIN_RADIUS 20.0 // meters
+#define ACCEPTABLE_CHECKIN_RADIUS 30.0 // meters
 // TODO: should consider a better way to filter Place by distance
 + (NSArray*)placesNearestLocation:(CLLocation*)location withMOC:(NSManagedObjectContext *)moc {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

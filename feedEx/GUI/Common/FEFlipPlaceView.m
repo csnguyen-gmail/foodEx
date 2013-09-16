@@ -37,7 +37,7 @@
     timesCheckLbl.font = [UIFont systemFontOfSize:12.0];
     timesCheckLbl.adjustsFontSizeToFitWidth = YES;
     timesCheckLbl.minimumScaleFactor = 0.2;
-    timesCheckLbl.text = [NSString stringWithFormat:@"%d", 9];
+    timesCheckLbl.text = [NSString stringWithFormat:@"%d", self.timesCheckin];
 
     // rate
     DYRateView *ratingView = [[DYRateView alloc] initWithFrame:CGRectMake(self.frame.size.width - 68, 10.0, 66.0, 12.0)];
