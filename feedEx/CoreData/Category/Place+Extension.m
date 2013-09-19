@@ -119,4 +119,22 @@
     }
     return results;
 }
++ (NSArray *)placesWithEmptyAddress:(NSManagedObjectContext *)moc {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    [predicates addObject:[NSPredicate predicateWithFormat:@"address.address == nil OR address.address == ''"]];
+    [predicates addObject:[NSPredicate predicateWithFormat:@"address.longtitude != 0 AND address.lattittude != 0"]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+    
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return results;
+}
+
 @end

@@ -17,4 +17,5 @@
 - (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 + (NSArray*)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo*)placeSettingInfo withMOC:(NSManagedObjectContext*)moc;
 + (NSArray*)placesNearestLocation:(CLLocation*)location withMOC:(NSManagedObjectContext *)moc;
++ (NSArray *)placesWithEmptyAddress:(NSManagedObjectContext *)moc;
 @end
