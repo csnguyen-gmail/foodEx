@@ -57,6 +57,7 @@
             spinner.center = CGPointMake(139.5, 75.5); // .5 so it doesn't blur
             [spinner startAnimating];
             [updatingAlertView addSubview:spinner];
+            [updatingAlertView show];
             
             __block int count = 0;
             for (Place *place in places) {
@@ -66,7 +67,7 @@
                         place.address.address = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
                     }
                     // finish getting address
-                    if (count == places.count) {
+                    if (++count == places.count) {
                         [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
                             [updatingAlertView dismissWithClickedButtonIndex:0 animated:YES];
                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Finish!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
