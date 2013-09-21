@@ -91,5 +91,24 @@
     [encoder encodeObject:self.placeSetting forKey:PLACE_SETTING_KEY];
     [encoder encodeObject:self.foodSetting forKey:FOOD_SETTING_KEY];
 }
+@end
+@implementation FEMapSearchPlaceSettingInfo
+#define MAP_PLACE_SETTING_RATE @"MapPlaceSettingRate"
+#define MAP_PLACE_SETTING_TAGS @"MapPlaceSettingTags"
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if(self) {
+        self.rating = [decoder decodeIntegerForKey:PLACE_SETTING_RATE];
+        self.tags = [decoder decodeObjectForKey:PLACE_SETTING_TAGS];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeInteger:self.rating forKey:PLACE_SETTING_RATE];
+    [encoder encodeObject:self.tags forKey:PLACE_SETTING_TAGS];
+}
 
 @end
+

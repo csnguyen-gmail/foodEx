@@ -83,12 +83,8 @@
     }
     if (placeSettingInfo.tags.length > 0) {
         NSArray *tagsString = [placeSettingInfo.tags componentsSeparatedByString:SEPARATED_TAG_STR];
-        NSMutableArray *tagPredicates = [[NSMutableArray alloc] init];
-        for (NSString *tag in tagsString) {
-            NSPredicate *tagPredicate = [NSPredicate predicateWithFormat:@"tags.label CONTAINS[cd] %@", tag];
-            [tagPredicates addObject:tagPredicate];
-        }
-        [predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:tagPredicates]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags.label in %@", tagsString];
+        [predicates addObject:predicate];
     }
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
     // TODO: speed up by query by Tag

@@ -34,3 +34,9 @@
 @property (nonatomic, strong) FESearchPlaceSettingInfo *placeSetting;
 @property (nonatomic, strong) FESearchFoodSettingInfo *foodSetting;
 @end
+
+#define MAP_SEARCH_SETTING_KEY @"MapSearchSettingKey"
+@interface FEMapSearchPlaceSettingInfo : NSObject<NSCoding>
+@property (nonatomic) NSUInteger rating;
+@property (nonatomic, strong) NSString *tags;
+@end
