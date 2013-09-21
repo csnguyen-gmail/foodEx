@@ -12,6 +12,7 @@
 #import "Place+Extension.h"
 #import "Address.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "UIAlertView+Extension.h"
 @interface FEHomeVC ()<UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *homeButtons;
 @property (weak, nonatomic) FECoreDataController *coreData;
@@ -52,11 +53,7 @@
                 return;
             }
             
-            UIAlertView *updatingAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"Updating..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            spinner.center = CGPointMake(139.5, 75.5); // .5 so it doesn't blur
-            [spinner startAnimating];
-            [updatingAlertView addSubview:spinner];
+            UIAlertView *updatingAlertView = [UIAlertView indicatorAlertWithTitle:nil message:@"Updating..."];
             [updatingAlertView show];
             
             __block int count = 0;

@@ -22,8 +22,7 @@
 @property (nonatomic) BOOL updatingLocation;
 @end
 #define COMFIRM_DLG 0
-#define LOADING_DLG 1
-#define FINISH_DLG 2
+#define FINISH_DLG 1
 @implementation FETabBarController
 
 
@@ -111,10 +110,7 @@
         // YES button
         if (buttonIndex == 1) {
             // show loading alert
-            UIAlertView *loadingAlertView = [UIAlertView indicatorAlertWithTitle:nil
-                                                                         message:@"Importing data to database..."
-                                                                        delegate:nil];
-            loadingAlertView.tag = LOADING_DLG;
+            UIAlertView *loadingAlertView = [UIAlertView indicatorAlertWithTitle:nil message:@"Importing data to database..."];
             [loadingAlertView show];
             // start thread
             NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];

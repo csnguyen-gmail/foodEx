@@ -9,9 +9,17 @@
 #import "FEUserEditVC.h"
 #import "FEUserInfoTVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import "User+Extension.h"
+#import "FECoreDataController.h"
+#import "AbstractInfo+Extension.h"
+#import "Photo.h"
+#import "OriginPhoto.h"
+#import "UIAlertView+Extension.h"
 
-@interface FEUserEditVC ()
+@interface FEUserEditVC ()<UIAlertViewDelegate>
 @property (nonatomic, weak) FEUserInfoTVC* userInfoTVC;
+@property (nonatomic, strong) User *user;
+@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEUserEditVC
@@ -24,8 +32,25 @@
     self.userInfoTVC.view.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     self.userInfoTVC.imageBtn.layer.cornerRadius = 10.0;
+    self.userInfoTVC.imageBtn.layer.masksToBounds = YES;
     self.userInfoTVC.imageBtn.layer.borderWidth = 1.0;
     self.userInfoTVC.imageBtn.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
+    self.user = [User getUser:self.coreData.managedObjectContext];
+    self.userInfoTVC.nameTF.text = self.user.name;
+    self.userInfoTVC.emailTF.text = self.user.email;
+    if (self.user.photos.count > 0) {
+        OriginPhoto *photo = [self.user.photos[0] originPhoto];
+        UIImage *image = [UIImage imageWithData:photo.imageData scale:[[UIScreen mainScreen] scale]];
+        [self.userInfoTVC.imageBtn setImage:image forState:UIControlStateNormal];
+    }
+}
+#pragma mark - getter setter
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -33,7 +58,22 @@
         self.userInfoTVC = [segue destinationViewController];
     }
 }
+#define CONFIRM_ALERT 1000
+#define FINISH_ALERT 1001
 - (IBAction)closeButtonTapped:(UIButton *)sender {
+    // some thing change
+    if (self.userInfoTVC.textChanged || self.userInfoTVC.imageChanged) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Do you want to save?" delegate:self
+                                                  cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        alertView.tag = CONFIRM_ALERT;
+        [alertView show];
+    }
+    else {
+        [self close];
+    }
+}
+- (void)close {
     [UIView transitionWithView:self.parentViewController.view
                       duration:0.3
                        options:UIViewAnimationOptionTransitionCrossDissolve
@@ -42,6 +82,38 @@
                     } completion:^(BOOL finished) {
                         [self removeFromParentViewController];
                     }];
-
+}- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == CONFIRM_ALERT) {
+        // YES button
+        if (buttonIndex == 1) {
+            UIAlertView *savingAlertView = [UIAlertView indicatorAlertWithTitle:nil message:@"Saving..."];
+            [savingAlertView show];
+            // update User
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            [queue addOperationWithBlock:^{
+                if (self.user == nil) {
+                    self.user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.coreData.managedObjectContext];
+                }
+                self.user.name = self.userInfoTVC.nameTF.text;
+                self.user.email = self.userInfoTVC.emailTF.text;
+                if (self.userInfoTVC.imageChanged) {
+                    if (self.user.photos.count != 0) {
+                        [self.user removePhotoAtIndex:0];
+                    }
+                    [self.user insertPhotoWithThumbnail:self.userInfoTVC.thumbnailImage andOriginImage:self.userInfoTVC.originImage atIndex:0];
+                }
+                [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+                    [savingAlertView dismissWithClickedButtonIndex:0 animated:YES];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Finish!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    alertView.delegate = self;
+                    alertView.tag = FINISH_ALERT;
+                    [alertView show];
+                }];
+            }];
+        }
+    }
+    else if (alertView.tag == FINISH_ALERT) {
+        [self close];
+    }
 }
 @end

@@ -9,10 +9,11 @@
 #import "UIAlertView+Extension.h"
 
 @implementation UIAlertView (Extension)
-+ (UIAlertView *)indicatorAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate{
++ (UIAlertView *)indicatorAlertWithTitle:(NSString *)title message:(NSString *)message{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
-                                                       delegate:delegate cancelButtonTitle:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
                                               otherButtonTitles:nil];
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.center = CGPointMake(139.5, 75.5); // .5 so it doesn't blur

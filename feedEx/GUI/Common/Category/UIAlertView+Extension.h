@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIAlertView (Extension)
-+ (UIAlertView *)indicatorAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate;
++ (UIAlertView *)indicatorAlertWithTitle:(NSString *)title message:(NSString *)message;
 @end

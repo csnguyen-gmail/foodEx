@@ -45,6 +45,9 @@
 		6F49FD9D17EB3C7300281E58 /* add_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F49FD9B17EB3C7300281E58 /* add_user@2x.png */; };
 		6F49FDA117EB622B00281E58 /* FEUserEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDA017EB622B00281E58 /* FEUserEditVC.m */; };
 		6F49FDA417EB636500281E58 /* FEUserInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDA317EB636500281E58 /* FEUserInfoTVC.m */; };
+		6F49FDA717ECA63200281E58 /* User+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDA617ECA63200281E58 /* User+Extension.m */; };
+		6F49FDAB17ECAA6A00281E58 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDAA17ECAA6A00281E58 /* User.m */; };
+		6F49FDAD17ECB03900281E58 /* Model 3 to 4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -92,7 +95,7 @@
 		6F8BF50017E6E0E4001B9709 /* star_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8BF4FE17E6E0E4001B9709 /* star_empty@2x.png */; };
 		6F8BF50A17E716BA001B9709 /* ThumbnailPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BF50917E716BA001B9709 /* ThumbnailPhoto.m */; };
 		6F8BF50D17E71929001B9709 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BF50C17E71929001B9709 /* Photo.m */; };
-		6F8BF51317E72813001B9709 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BF51217E72813001B9709 /* Model.xcmappingmodel */; };
+		6F8BF51317E72813001B9709 /* Model 2 to 3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */; };
 		6F8BF51617E72863001B9709 /* FEPhotoMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy.m */; };
 		6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F96B5CD17C8728600935AEA /* NSData+Extension.m */; };
 		6F96B5D017C872FB00935AEA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F96B5CF17C872FB00935AEA /* libz.1.2.5.dylib */; };
@@ -164,8 +167,6 @@
 		6FE6391617D0853F0043339B /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391417D0853F0043339B /* Address.m */; };
 		6FE6391D17D085400043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391C17D085400043339B /* AbstractInfo.m */; };
 		6FE6391E17D085400043339B /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6391C17D085400043339B /* AbstractInfo.m */; };
-		6FE6392517D085400043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392417D085400043339B /* User.m */; };
-		6FE6392617D085400043339B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392417D085400043339B /* User.m */; };
 		6FE6392917D085400043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392817D085400043339B /* Food.m */; };
 		6FE6392A17D085400043339B /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392817D085400043339B /* Food.m */; };
 		6FE6392D17D085400043339B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6392C17D085400043339B /* Tag.m */; };
@@ -259,6 +260,12 @@
 		6F49FDA017EB622B00281E58 /* FEUserEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEUserEditVC.m; sourceTree = "<group>"; };
 		6F49FDA217EB636500281E58 /* FEUserInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEUserInfoTVC.h; sourceTree = "<group>"; };
 		6F49FDA317EB636500281E58 /* FEUserInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEUserInfoTVC.m; sourceTree = "<group>"; };
+		6F49FDA517ECA63200281E58 /* User+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Extension.h"; sourceTree = "<group>"; };
+		6F49FDA617ECA63200281E58 /* User+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Extension.m"; sourceTree = "<group>"; };
+		6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "feedex 4.xcdatamodel"; sourceTree = "<group>"; };
+		6F49FDA917ECAA6A00281E58 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		6F49FDAA17ECAA6A00281E58 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 3 to 4.xcmappingmodel"; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -331,7 +338,7 @@
 		6F8BF50917E716BA001B9709 /* ThumbnailPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailPhoto.m; sourceTree = "<group>"; };
 		6F8BF50B17E71929001B9709 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		6F8BF50C17E71929001B9709 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6F8BF51217E72813001B9709 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
+		6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 2 to 3.xcmappingmodel"; sourceTree = "<group>"; };
 		6F8BF51417E72863001B9709 /* FEPhotoMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPhotoMigrationPolicy.h; sourceTree = "<group>"; };
 		6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPhotoMigrationPolicy.m; sourceTree = "<group>"; };
 		6F96B5CC17C8728600935AEA /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
@@ -421,8 +428,6 @@
 		6FE6391417D0853F0043339B /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		6FE6391B17D085400043339B /* AbstractInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInfo.h; sourceTree = "<group>"; };
 		6FE6391C17D085400043339B /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
-		6FE6392317D085400043339B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6FE6392417D085400043339B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6FE6392717D085400043339B /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		6FE6392817D085400043339B /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
 		6FE6392B17D085400043339B /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
@@ -582,6 +587,8 @@
 				6F30B72517BF6DB700A1D389 /* Tag+Extension.m */,
 				6F06584117DA2B0F0070AB29 /* Food+Extension.h */,
 				6F06584217DA2B0F0070AB29 /* Food+Extension.m */,
+				6F49FDA517ECA63200281E58 /* User+Extension.h */,
+				6F49FDA617ECA63200281E58 /* User+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -676,6 +683,8 @@
 				6F8BF51117E727F6001B9709 /* VersionControl */,
 				6F30B71F17BF6DB600A1D389 /* Category */,
 				6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */,
+				6F49FDA917ECAA6A00281E58 /* User.h */,
+				6F49FDAA17ECAA6A00281E58 /* User.m */,
 				6F8BF50B17E71929001B9709 /* Photo.h */,
 				6F8BF50C17E71929001B9709 /* Photo.m */,
 				6F8BF50817E716BA001B9709 /* ThumbnailPhoto.h */,
@@ -688,8 +697,6 @@
 				6FE6392C17D085400043339B /* Tag.m */,
 				6FE6392717D085400043339B /* Food.h */,
 				6FE6392817D085400043339B /* Food.m */,
-				6FE6392317D085400043339B /* User.h */,
-				6FE6392417D085400043339B /* User.m */,
 				6FE6391B17D085400043339B /* AbstractInfo.h */,
 				6FE6391C17D085400043339B /* AbstractInfo.m */,
 				6FE6391317D0853F0043339B /* Address.h */,
@@ -812,9 +819,10 @@
 		6F8BF51117E727F6001B9709 /* VersionControl */ = {
 			isa = PBXGroup;
 			children = (
-				6F8BF51217E72813001B9709 /* Model.xcmappingmodel */,
 				6F8BF51417E72863001B9709 /* FEPhotoMigrationPolicy.h */,
 				6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy.m */,
+				6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */,
+				6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */,
 			);
 			path = VersionControl;
 			sourceTree = "<group>";
@@ -1163,6 +1171,7 @@
 			files = (
 				6F5E91F5172385780059055F /* main.m in Sources */,
 				6F5E91F9172385780059055F /* FEAppDelegate.m in Sources */,
+				6F49FDAB17ECAA6A00281E58 /* User.m in Sources */,
 				6F5C32CE172B82EF00BCF8F7 /* feedex.xcdatamodeld in Sources */,
 				6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */,
 				6FE6393117D085400043339B /* OriginPhoto.m in Sources */,
@@ -1182,13 +1191,13 @@
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
 				6F5713621761D70F000C69CE /* GKImagePicker.m in Sources */,
 				6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */,
+				6F49FDAD17ECB03900281E58 /* Model 3 to 4.xcmappingmodel in Sources */,
 				6F5713631761D70F000C69CE /* GKResizeableCropOverlayView.m in Sources */,
 				6FB1F99217CE5B2A005078B3 /* UIAlertView+Extension.m in Sources */,
 				6F8BF51617E72863001B9709 /* FEPhotoMigrationPolicy.m in Sources */,
 				6FAD9DB817635A1200DB606C /* DYRateView.m in Sources */,
 				6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */,
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
-				6FE6392517D085400043339B /* User.m in Sources */,
 				6F06583D17D8C5070070AB29 /* FEFoodGridCVC.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
 				6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */,
@@ -1204,13 +1213,14 @@
 				6FCE0DC917789B9B006559C9 /* FESearchTagVC.m in Sources */,
 				6FCE0E05177C9A01006559C9 /* FESearchTagCell.m in Sources */,
 				6FE6392D17D085400043339B /* Tag.m in Sources */,
-				6F8BF51317E72813001B9709 /* Model.xcmappingmodel in Sources */,
+				6F8BF51317E72813001B9709 /* Model 2 to 3.xcmappingmodel in Sources */,
 				6FE6392917D085400043339B /* Food.m in Sources */,
 				6F49FDA417EB636500281E58 /* FEUserInfoTVC.m in Sources */,
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
+				6F49FDA717ECA63200281E58 /* User+Extension.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
 				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailMainVC.m in Sources */,
@@ -1250,7 +1260,6 @@
 			files = (
 				6F06585017DE20170070AB29 /* Place.m in Sources */,
 				6FE6392A17D085400043339B /* Food.m in Sources */,
-				6FE6392617D085400043339B /* User.m in Sources */,
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
 				6FE6391E17D085400043339B /* AbstractInfo.m in Sources */,
 				6FE6392E17D085400043339B /* Tag.m in Sources */,
@@ -1497,9 +1506,10 @@
 			children = (
 				6F8BF4EF17E420C9001B9709 /* feedex 2.xcdatamodel */,
 				6F8BF50117E714A0001B9709 /* feedex 3.xcdatamodel */,
+				6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */,
 				6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */,
 			);
-			currentVersion = 6F8BF50117E714A0001B9709 /* feedex 3.xcdatamodel */;
+			currentVersion = 6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */;
 			path = feedex.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

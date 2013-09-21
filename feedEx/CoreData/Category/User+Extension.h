@@ -1,5 +1,5 @@
 //
-//  User.m
+//  User+Extension.h
 //  feedEx
 //
 //  Created by csnguyen on 9/20/13.
@@ -7,12 +7,7 @@
 //
 
 #import "User.h"
-#import "Place.h"
 
-
-@implementation User
-
-@dynamic email;
-@dynamic places;
-
+@interface User (Extension)
++ (User*)getUser:(NSManagedObjectContext *)moc;
 @end
