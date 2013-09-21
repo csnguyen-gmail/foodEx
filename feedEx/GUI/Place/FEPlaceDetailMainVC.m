@@ -59,6 +59,14 @@
                                                                zoom:GMAP_DEFAULT_ZOOM];
     }
     self.placeDetailTVC.placeDetailTVCDelegate = self;
+    // core data changed tracking register
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
+                                                 name:CORE_DATA_UPDATED object:nil];
+
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -75,6 +83,11 @@
         foodDetailVC.food = self.place.foods[self.selectedIndex];
     }
 }
+#pragma mark - handler DataModel changed
+- (void)coredateChanged:(NSNotification *)info {
+    self.placeDetailTVC.place = self.place;
+}
+
 #pragma mark - FEVerticalResizeControlDelegate
 - (void)verticalResizeControllerDidChanged:(float)delta {
     UIView *lowerView = self.mapBgView;

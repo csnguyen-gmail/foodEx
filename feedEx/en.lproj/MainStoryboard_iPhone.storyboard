@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="zfq-Ng-JsW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="zfq-Ng-JsW">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="Def-J3-3Bg" customClass="FEPlaceEditMainVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjP-k1-UbI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Gb5-Vv-gVp" customClass="GMSMapView">
-                                <rect key="frame" x="5" y="282" width="310" height="172"/>
+                                <rect key="frame" x="5" y="282" width="310" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -25,7 +25,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="jpr-37-GkY">
-                                <rect key="frame" x="141" y="212" width="37" height="37"/>
+                                <rect key="frame" x="141" y="222" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <containerView contentMode="scaleToFill" id="c4M-Tq-89u">
@@ -287,11 +287,11 @@
             <objects>
                 <viewController id="1to-LW-Lm7" customClass="FEFoodEditVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eo3-w2-ndI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vT0-Sb-TAU">
-                                <rect key="frame" x="5" y="5" width="309" height="450"/>
+                                <rect key="frame" x="5" y="5" width="309" height="470"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
@@ -1964,27 +1964,16 @@
     <resources>
         <image name="add_user.png" width="128" height="128"/>
         <image name="camera.png" width="32" height="32"/>
-        <image name="camera.png" width="32" height="32"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
         <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="heart_grey.png" width="32" height="32"/>
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
         <image name="home.png" width="30" height="30"/>
-        <image name="home.png" width="30" height="30"/>
         <image name="map.png" width="26" height="21"/>
-        <image name="remove.png" width="24" height="24"/>
-        <image name="remove.png" width="24" height="24"/>
         <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
         <image name="star_empty.png" width="32" height="32"/>
-        <image name="stop.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1993,8 +1982,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Yrm-EF-MOd"/>
         <segue reference="Mvy-mI-kch"/>
         <segue reference="eDW-Ly-5HO"/>
+        <segue reference="OkE-8Z-2rC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -62,6 +62,7 @@
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
     [self.tableView setEditing:isEditMode animated:YES];
+    [self.tableView reloadData];
 }
 - (void)setCurrentLocation:(CLLocation *)currentLocation {
     _currentLocation = currentLocation;
@@ -110,7 +111,7 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
-    cell.informationBtn.enabled = !self.isEditMode; // TODO fix bug
+    cell.informationBtn.enabled = !self.isEditMode;
     Place *place = self.places[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
