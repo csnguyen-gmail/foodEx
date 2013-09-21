@@ -48,6 +48,7 @@
 		6F49FDA717ECA63200281E58 /* User+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDA617ECA63200281E58 /* User+Extension.m */; };
 		6F49FDAB17ECAA6A00281E58 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDAA17ECAA6A00281E58 /* User.m */; };
 		6F49FDAD17ECB03900281E58 /* Model 3 to 4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */; };
+		6F49FDB017ED810B00281E58 /* FEMapSearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F49FDAF17ED810B00281E58 /* FEMapSearchSettingVC.m */; };
 		6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */; };
 		6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134A1761D70F000C69CE /* GKCropBorderView.m */; };
 		6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F57134C1761D70F000C69CE /* GKImageCropOverlayView.m */; };
@@ -266,6 +267,8 @@
 		6F49FDA917ECAA6A00281E58 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6F49FDAA17ECAA6A00281E58 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 3 to 4.xcmappingmodel"; sourceTree = "<group>"; };
+		6F49FDAE17ED810B00281E58 /* FEMapSearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMapSearchSettingVC.h; sourceTree = "<group>"; };
+		6F49FDAF17ED810B00281E58 /* FEMapSearchSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMapSearchSettingVC.m; sourceTree = "<group>"; };
 		6F51DB91176C3A6A0033EBAF /* FEHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEHomeVC.h; sourceTree = "<group>"; };
 		6F51DB92176C3A6C0033EBAF /* FEHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEHomeVC.m; sourceTree = "<group>"; };
 		6F5713491761D70F000C69CE /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
@@ -546,6 +549,8 @@
 				6FCE0DC817789B9B006559C9 /* FESearchTagVC.m */,
 				6FCE0E03177C9A01006559C9 /* FESearchTagCell.h */,
 				6FCE0E04177C9A01006559C9 /* FESearchTagCell.m */,
+				6F49FDAE17ED810B00281E58 /* FEMapSearchSettingVC.h */,
+				6F49FDAF17ED810B00281E58 /* FEMapSearchSettingVC.m */,
 			);
 			path = SearchSetting;
 			sourceTree = "<group>";
@@ -1189,6 +1194,7 @@
 				6F5713601761D70F000C69CE /* GKImageCropView.m in Sources */,
 				6F49FDA117EB622B00281E58 /* FEUserEditVC.m in Sources */,
 				6F5713611761D70F000C69CE /* GKImageCropViewController.m in Sources */,
+				6F49FDB017ED810B00281E58 /* FEMapSearchSettingVC.m in Sources */,
 				6F5713621761D70F000C69CE /* GKImagePicker.m in Sources */,
 				6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */,
 				6F49FDAD17ECB03900281E58 /* Model 3 to 4.xcmappingmodel in Sources */,
