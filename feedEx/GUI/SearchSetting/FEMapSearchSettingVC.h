@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FESearchSettingInfo.h"
+@protocol FEMapSearchSettingVCDelegate<NSObject>
+- (void)didFinishSetting:(FEMapSearchPlaceSettingInfo*)searchSetting hasModification:(BOOL)hasModification;
+@end
 
 @interface FEMapSearchSettingVC : UIViewController
-
+@property (weak, nonatomic) id<FEMapSearchSettingVCDelegate> delegate;
 @end

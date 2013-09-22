@@ -115,6 +115,38 @@
     }
     return results;
 }
++ (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo withMOC:(NSManagedObjectContext *)moc {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    
+    // filtering
+    if (placeSettingInfo.rating != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rating == %@", @(placeSettingInfo.rating)];
+        [predicates addObject:predicate];
+    }
+    if (placeSettingInfo.tags.length > 0) {
+        NSArray *tagsString = [placeSettingInfo.tags componentsSeparatedByString:SEPARATED_TAG_STR];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags.label in %@", tagsString];
+        [predicates addObject:predicate];
+    }
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+    // TODO: speed up by query by Tag
+    // https://developer.apple.com/library/mac/#documentation/DataManagement/Conceptual/CoreDataSnippets/Articles/fetchExpressions.html
+    
+    // sorting
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    request.sortDescriptors = @[sort];
+    
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return results;
+}
+
 + (NSArray *)placesWithEmptyAddress:(NSManagedObjectContext *)moc {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];

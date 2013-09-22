@@ -93,7 +93,15 @@
 #define MAP_PLACE_SETTING_RATE @"MapPlaceSettingRate"
 #define MAP_PLACE_SETTING_SEARCHBY @"MapPlaceSettingSearchBy"
 #define MAP_PLACE_SETTING_TAGS @"MapPlaceSettingTags"
-
+- (id)init {
+    self = [super init];
+    if(self) {
+        self.rating = 0;
+        self.searchBy = SEARCH_BY_NAME;
+        self.tags = @"";
+    }
+    return self;
+}
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {

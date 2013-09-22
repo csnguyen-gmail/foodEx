@@ -10,7 +10,6 @@
 #import "DYRateView.h"
 #import "FESearchTagVC.h"
 #import "CoredataCommon.h"
-#import "FESearchSettingInfo.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Common.h"
 
@@ -36,6 +35,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self saveSetting];
+    [self.delegate didFinishSetting:self.settingInfo hasModification:YES];// TODO
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -50,9 +50,6 @@
     }
     else {
         self.settingInfo = [[FEMapSearchPlaceSettingInfo alloc] init];
-        self.settingInfo.rating = 0;
-        self.settingInfo.searchBy = SEARCH_BY_NAME;
-        self.settingInfo.tags = @"";
     }
     self.ratingView.rate = self.settingInfo.rating;
     self.searchBySC.selectedSegmentIndex = self.settingInfo.searchBy;

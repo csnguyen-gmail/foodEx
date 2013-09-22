@@ -15,26 +15,26 @@
 #import "FEMapUtility.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
+#import "FEMapSearchSettingVC.h"
 
-@interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate>
+@interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
 @property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *places;
-@property (nonatomic, strong) FESearchPlaceSettingInfo *searchPlaceSettingInfo;
 @property (weak, nonatomic) IBOutlet UIToolbar *searchPlaceBar;
 @property (weak, nonatomic) IBOutlet UIView *seacrhResultView;
 @property (weak, nonatomic) FEPlaceListSearchMapTVC *placeListTVC;
 @property (weak, nonatomic) GMSMarker *locationMarker;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic) BOOL shouldFitMarkers;
+@property (nonatomic, strong) FEMapSearchPlaceSettingInfo *searchSettingInfo;
 @end
 
 @implementation FEMapVC
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.settings.compassButton = YES;
-    [self reloadDataSource];
     [self fitMarkerInBound];
     [self hideSearchResultWithAnimated:NO];
     self.placeListTVC.searchDelegate = self;
@@ -45,6 +45,8 @@
     // get location
     [self updateLocationWithFitMarker:YES];
     [self.indicationView startAnimating];
+
+    [self refetchData];
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
@@ -56,6 +58,10 @@
     if ([[segue identifier] isEqualToString:@"placeList"]) {
         self.placeListTVC = [segue destinationViewController];
     }
+    else if ([[segue identifier] isEqualToString:@"mapSetting"]) {
+        FEMapSearchSettingVC *settingVC = [segue destinationViewController];
+        settingVC.delegate = self;
+    }
 }
 
 - (void)updateLocationWithFitMarker:(BOOL)fitMarkers {
@@ -66,10 +72,23 @@
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     // reload data source
-    [self reloadDataSource];
+    [self refetchData];
     // update map information
     [self updateMapInfoWithFitMarkets:YES];
 }
+- (void)refetchData {
+    // reload data source
+    self.places = [Place placesFromMapPlaceSettingInfo:self.searchSettingInfo withMOC:self.coreData.managedObjectContext];
+    // rebuild marker
+    for (GMSMarker *marker in self.mapView.markers) {
+        marker.map = nil;
+    }
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+    }
+}
+
 #pragma mark - event handler
 - (IBAction)refreshTapped:(UIBarButtonItem *)sender {
     // get location
@@ -96,12 +115,34 @@
     }
     return _locationMarker;
 }
+- (FEMapSearchPlaceSettingInfo *)searchSettingInfo {
+    if (!_searchSettingInfo) {
+        NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:MAP_SEARCH_SETTING_KEY];
+        if (archivedObject) {
+            _searchSettingInfo = (FEMapSearchPlaceSettingInfo*)[NSKeyedUnarchiver unarchiveObjectWithData:archivedObject];
+        }
+        else {
+            _searchSettingInfo = [[FEMapSearchPlaceSettingInfo alloc] init];
+        }
+    }
+    return _searchSettingInfo;
+}
+
 #pragma mark - Search
-- (NSArray*)queryByPlace:(NSString*)placeName {
+- (NSArray*)queryByKeyword:(NSString*)searchKeyword {
     NSArray *filteredPlaces;
     // filtering
-    if (placeName.length > 0) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", placeName];
+    if (searchKeyword.length > 0) {
+        NSPredicate *predicate;
+        if (self.searchSettingInfo.searchBy == SEARCH_BY_NAME) {
+            predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchKeyword];
+        }
+        else if (self.searchSettingInfo.searchBy == SEARCH_BY_ADDRESS) {
+            predicate = [NSPredicate predicateWithFormat:@"address.address CONTAINS[cd] %@", searchKeyword];
+        }
+        else {
+            predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR address.address CONTAINS[cd] %@", searchKeyword, searchKeyword];
+        }
         filteredPlaces = [self.places filteredArrayUsingPredicate:predicate];
     }
     else {
@@ -133,11 +174,11 @@
     // ignore text edit observation in case search bar
     FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate stopObservingFirstResponder];
-    self.placeListTVC.places = [self queryByPlace:textField.text];
+    self.placeListTVC.places = [self queryByKeyword:textField.text];
     [self showSearchResult];
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    self.placeListTVC.places = [self queryByPlace:string];
+    self.placeListTVC.places = [self queryByKeyword:[textField.text stringByReplacingCharactersInRange:range withString:string]];
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -181,19 +222,6 @@
 - (void)locationChanged:(NSNotification*)info {
     [self.indicationView stopAnimating];
     [self updateMapInfoWithFitMarkets:self.shouldFitMarkers];
-}
-- (void)reloadDataSource {
-    // reload data source
-    self.places = [Place placesFromPlaceSettingInfo:self.searchPlaceSettingInfo
-                                            withMOC:self.coreData.managedObjectContext];
-    // rebuild marker
-    for (GMSMarker *marker in self.mapView.markers) {
-        marker.map = nil;
-    }
-    for (Place *place in self.places) {
-        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
-    }
 }
 #define MARKERS_FIT_PADDING 100.0
 - (void)updateMapInfoWithFitMarkets:(BOOL)fitMarkets {
@@ -246,6 +274,13 @@
     marker.snippet = snippet;
     marker.map = self.mapView;
     return marker;
+}
+#pragma mark - FESearchSettingVCDelegate
+- (void)didFinishSetting:(FEMapSearchPlaceSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
+    if (hasModification) {
+        self.searchSettingInfo = searchSetting;
+        [self refetchData];
+    }
 }
 
 @end
