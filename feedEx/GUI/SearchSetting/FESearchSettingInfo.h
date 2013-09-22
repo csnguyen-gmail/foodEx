@@ -30,13 +30,16 @@
 
 #define SEARCH_SETTING_KEY @"SearchSettingKey"
 @interface FESearchSettingInfo : NSObject<NSCoding>
-//@property (nonatomic) NSUInteger displayType;
 @property (nonatomic, strong) FESearchPlaceSettingInfo *placeSetting;
 @property (nonatomic, strong) FESearchFoodSettingInfo *foodSetting;
 @end
 
 #define MAP_SEARCH_SETTING_KEY @"MapSearchSettingKey"
+#define SEARCH_BY_ALL       0
+#define SEARCH_BY_NAME      1
+#define SEARCH_BY_ADDRESS   2
 @interface FEMapSearchPlaceSettingInfo : NSObject<NSCoding>
 @property (nonatomic) NSUInteger rating;
+@property (nonatomic) NSUInteger searchBy;
 @property (nonatomic, strong) NSString *tags;
 @end

@@ -11,6 +11,7 @@
 #import "Tag+Extension.h"
 #import "CoredataCommon.h"
 #import "FESearchTagCell.h"
+#import "Common.h"
 
 @interface FESearchTagVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *firstCharacters; // of first character of Tag
@@ -34,18 +35,21 @@
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController) {
         if ([self.delegate respondsToSelector:@selector(didSelectTags:)]) {
-            NSMutableArray* stringTags = [[NSMutableArray alloc] init];
-            for (int i = 0; i < self.checksOfSections.count; i++) {
-                NSArray *checks = self.checksOfSections[i];
-                for (int j = 0; j < checks.count; j++) {
-                    if ([checks[j] boolValue]) {
-                        [stringTags addObject:[self.valuesOfSections[i][j] label]];
-                    }
-                }
-            }
-            [self.delegate didSelectTags:stringTags];
+            [self.delegate didSelectTags:[self getSelectedTagsString]];
         }
     }
+}
+- (NSString*)getSelectedTagsString {
+    NSMutableString *string = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.checksOfSections.count; i++) {
+        NSArray *checks = self.checksOfSections[i];
+        for (int j = 0; j < checks.count; j++) {
+            if ([checks[j] boolValue]) {
+                [string appendFormat:@"%@%@", [self.valuesOfSections[i][j] label], SEPARATED_TAG_STR];
+            }
+        }
+    }
+    return string;
 }
 - (void)loadTagWithTagType:(NSNumber *)tagType andSelectedTags:(NSArray *)selectTags {
     NSArray *tags = [Tag fetchTagsByType:tagType

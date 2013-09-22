@@ -145,15 +145,7 @@
     
 }
 #pragma mark - FESearchTagVCDelegate
-- (void)didSelectTags:(NSArray *)selectedTags {
-    if (selectedTags.count == 0) {
-        return;
-    }
-    NSMutableString *string = [[NSMutableString alloc] init];
-    for (int i = 0; i < selectedTags.count - 1; i++) {
-        [string appendFormat:@"%@%@", selectedTags[i], SEPARATED_TAG_STR];
-    }
-    [string appendString:[selectedTags lastObject]];
-    self.tagsTF.text = string;
+- (void)didSelectTags:(NSString *)selectedTagsString {
+    self.tagsTF.text = selectedTagsString;
 }
 @end

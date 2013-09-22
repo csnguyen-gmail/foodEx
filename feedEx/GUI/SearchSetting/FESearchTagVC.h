@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @protocol FESearchTagVCDelegate <NSObject>
-- (void)didSelectTags:(NSArray*)selectedStringTags;
+- (void)didSelectTags:(NSString *)selectedTagsString;
 @end
 
 @interface FESearchTagVC : UIViewController
 @property (nonatomic, weak) id<FESearchTagVCDelegate> delegate;
 
 - (void)loadTagWithTagType:(NSNumber*)tagType andSelectedTags:(NSArray*)selectTags;
+- (NSString*)getSelectedTagsString;
 @end

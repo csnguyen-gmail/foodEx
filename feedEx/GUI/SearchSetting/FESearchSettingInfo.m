@@ -73,13 +73,11 @@
 @end
 
 @implementation FESearchSettingInfo
-#define DISP_TYPE_KEY @"DisplayTypeSetting"
 #define PLACE_SETTING_KEY @"PlaceSetting"
 #define FOOD_SETTING_KEY @"FoodSetting"
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {
-//        self.displayType = [decoder decodeIntegerForKey:DISP_TYPE_KEY];
         self.placeSetting = [decoder decodeObjectForKey:PLACE_SETTING_KEY];
         self.foodSetting = [decoder decodeObjectForKey:FOOD_SETTING_KEY];
     }
@@ -87,27 +85,29 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-//    [encoder encodeInteger:self.displayType forKey:DISP_TYPE_KEY];
     [encoder encodeObject:self.placeSetting forKey:PLACE_SETTING_KEY];
     [encoder encodeObject:self.foodSetting forKey:FOOD_SETTING_KEY];
 }
 @end
 @implementation FEMapSearchPlaceSettingInfo
 #define MAP_PLACE_SETTING_RATE @"MapPlaceSettingRate"
+#define MAP_PLACE_SETTING_SEARCHBY @"MapPlaceSettingSearchBy"
 #define MAP_PLACE_SETTING_TAGS @"MapPlaceSettingTags"
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {
-        self.rating = [decoder decodeIntegerForKey:PLACE_SETTING_RATE];
-        self.tags = [decoder decodeObjectForKey:PLACE_SETTING_TAGS];
+        self.rating = [decoder decodeIntegerForKey:MAP_PLACE_SETTING_RATE];
+        self.searchBy = [decoder decodeIntegerForKey:MAP_PLACE_SETTING_SEARCHBY];
+        self.tags = [decoder decodeObjectForKey:MAP_PLACE_SETTING_TAGS];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeInteger:self.rating forKey:PLACE_SETTING_RATE];
-    [encoder encodeObject:self.tags forKey:PLACE_SETTING_TAGS];
+    [encoder encodeInteger:self.rating forKey:MAP_PLACE_SETTING_RATE];
+    [encoder encodeInteger:self.searchBy forKey:MAP_PLACE_SETTING_SEARCHBY];
+    [encoder encodeObject:self.tags forKey:MAP_PLACE_SETTING_TAGS];
 }
 
 @end

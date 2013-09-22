@@ -263,7 +263,7 @@
 		6F49FDA317EB636500281E58 /* FEUserInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEUserInfoTVC.m; sourceTree = "<group>"; };
 		6F49FDA517ECA63200281E58 /* User+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Extension.h"; sourceTree = "<group>"; };
 		6F49FDA617ECA63200281E58 /* User+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Extension.m"; sourceTree = "<group>"; };
-		6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "feedex 4.xcdatamodel"; sourceTree = "<group>"; };
+		6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "feedex 4.xcdatamodel"; sourceTree = "<group>"; };
 		6F49FDA917ECAA6A00281E58 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6F49FDAA17ECAA6A00281E58 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 3 to 4.xcmappingmodel"; sourceTree = "<group>"; };
