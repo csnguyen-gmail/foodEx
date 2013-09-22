@@ -26,7 +26,10 @@
 #define GMAP_DEFAULT_ZOOM 15
 #define HCM_LONGTITUDE  106.698333
 #define HCM_LATITUDE    10.7730556
-
+// Search tab
+#define SEARCH_DISPLAY_TYPE_KEY @"SearchDispType"
+#define SEARCH_DISPLAY_PLACE_TYPE 0
+#define SEARCH_DISPLAY_FOOD_TYPE 1
 // Mail
 #define ATTACHED_FILENAME_FORMAT @"places_%@.fex"
 #define ATTACHED_FILENAME_DATE_FORMAT @"yyyyMMddHHmmss"

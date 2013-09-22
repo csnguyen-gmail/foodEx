@@ -19,10 +19,6 @@
 #import "UIAlertView+Extension.h"
 #import "FEAppDelegate.h"
 
-#define DISPLAY_TYPE @"SearchDispType"
-#define PLACE_TYPE 0
-#define FOOD_TYPE 1
-
 #define ALERT_DELETE_CONFIRM 0
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
@@ -109,13 +105,13 @@
 }
 #pragma mark - utility
 - (void)loadFollowDisplayType {
-    _displayType = [[NSUserDefaults standardUserDefaults] integerForKey:DISPLAY_TYPE];
+    _displayType = [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_DISPLAY_TYPE_KEY];
     [self switchDisplayFollowType:self.displayType withAnimation:NO];
 }
 - (void)setDisplayType:(NSUInteger)displayType {
     _displayType = displayType;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:displayType forKey:DISPLAY_TYPE];
+    [defaults setInteger:displayType forKey:SEARCH_DISPLAY_TYPE_KEY];
     [defaults synchronize];
 }
 - (void)switchDisplayFollowType:(NSUInteger)type withAnimation:(BOOL)animated{
@@ -204,7 +200,7 @@
                          CGRect toolbarRect = self.toolBar.frame;
                          toolbarRect.origin.y += delta;
                          self.toolBar.frame = toolbarRect;
-                         if (self.displayType == PLACE_TYPE) {
+                         if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
                              self.placeListTVC.isEditMode = isEditMode;
                          }
                          else {
@@ -217,7 +213,7 @@
 }
 - (NSArray*)getSelectedPlaces {
     NSMutableArray *selectedPlaces = [NSMutableArray array];
-    if (self.displayType == PLACE_TYPE) {
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
         NSArray *selectedRows = [self.placeListTVC.tableView indexPathsForSelectedRows];
         for (NSIndexPath *index in selectedRows) {
             [selectedPlaces addObject:self.placeListTVC.places[index.row]];

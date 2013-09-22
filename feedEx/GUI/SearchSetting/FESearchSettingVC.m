@@ -73,8 +73,6 @@
         self.searchSettingInfo.placeSetting = [[FESearchPlaceSettingInfo alloc] init];
         self.searchSettingInfo.foodSetting = [[FESearchFoodSettingInfo alloc] init];
     }
-    self.displayTypeSC.selectedSegmentIndex = self.searchSettingInfo.displayType;
-    [self swicthToView:self.displayTypeSC.selectedSegmentIndex wthAnimated:NO];
     // Place
     self.placeSettingTVC.nameTF.text = self.searchSettingInfo.placeSetting.name;
     self.placeSettingTVC.addressTF.text  = self.searchSettingInfo.placeSetting.address;
@@ -89,10 +87,12 @@
     self.foodSettingTVC.bestSC.selectedSegmentIndex = self.searchSettingInfo.foodSetting.bestType;
     [self.foodSettingTVC setFirstSortText:self.searchSettingInfo.foodSetting.firstSort
                         andSecondSortText:self.searchSettingInfo.foodSetting.secondSort];
+    // Display type
+    self.displayTypeSC.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_DISPLAY_TYPE_KEY];
+    [self swicthToView:self.displayTypeSC.selectedSegmentIndex wthAnimated:NO];
 }
 
 - (void)saveSetting {
-    self.searchSettingInfo.displayType = self.displayTypeSC.selectedSegmentIndex;
     // Place
     self.searchSettingInfo.placeSetting.name = self.placeSettingTVC.nameTF.text;
     self.searchSettingInfo.placeSetting.address = self.placeSettingTVC.addressTF.text;
