@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AbstractInfo" representedClassName="AbstractInfo" isAbstract="YES" syncable="YES">
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -59,14 +59,14 @@
     <fetchRequest name="GetTagByType" entity="Tag" predicateString="type == $TYPE"/>
     <fetchRequest name="GetUser" entity="User"/>
     <elements>
-        <element name="AbstractInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Address" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Food" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="OriginPhoto" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Place" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ThumbnailPhoto" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="AbstractInfo" positionX="160" positionY="-216" width="128" height="120"/>
+        <element name="Address" positionX="198" positionY="261" width="128" height="105"/>
+        <element name="Food" positionX="349" positionY="99" width="128" height="90"/>
+        <element name="OriginPhoto" positionX="484" positionY="-216" width="128" height="75"/>
+        <element name="Photo" positionX="396" positionY="-99" width="128" height="90"/>
+        <element name="Place" positionX="151" positionY="18" width="128" height="179"/>
+        <element name="Tag" positionX="-63" positionY="-216" width="128" height="90"/>
+        <element name="ThumbnailPhoto" positionX="450" positionY="18" width="128" height="75"/>
+        <element name="User" positionX="-45" positionY="67" width="128" height="104"/>
     </elements>
 </model>
