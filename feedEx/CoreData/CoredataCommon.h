@@ -21,6 +21,7 @@
 #define CD_TAG_PLACE    @(1)
 #define CD_TAG_FOOD     @(2)
 
-
+#define USER_OWNER_TAG  @"owner"
+#define USER_FRIEND_TAG @"friend"
 
 #endif

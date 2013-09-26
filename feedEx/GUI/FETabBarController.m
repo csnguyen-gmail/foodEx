@@ -115,7 +115,7 @@
             // start thread
             NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
             [operationQueue addOperationWithBlock:^{
-                NSDictionary *placeInfo = [FEDataSerialize deserializePlaces:[NSData dataWithContentsOfURL:self.url]];
+                NSDictionary *placeInfo = [FEDataSerialize deserializeMailData:[NSData dataWithContentsOfURL:self.url]];
                 NSMutableString *body;
                 NSString *tilte;
                 if (placeInfo) {

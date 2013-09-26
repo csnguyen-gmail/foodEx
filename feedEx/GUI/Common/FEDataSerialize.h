@@ -13,6 +13,6 @@
 #define PLACES_KEY @"places"
 
 @interface FEDataSerialize : NSObject
-+ (NSData*)serializePlaces:(NSDictionary*)placeInfo;
-+ (NSDictionary*)deserializePlaces:(NSData*)data;
++ (NSData*)serializeMailData:(NSDictionary*)placeInfo;
++ (NSDictionary*)deserializeMailData:(NSData*)data;
 @end

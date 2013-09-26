@@ -9,5 +9,5 @@
 #import "User.h"
 
 @interface User (Extension)
-+ (User*)getUser:(NSManagedObjectContext *)moc;
++ (User*)getUser;
 @end

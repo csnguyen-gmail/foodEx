@@ -18,6 +18,7 @@
 #import "Common.h"
 #import "FEAppDelegate.h"
 #import "ThumbnailPhoto.h"
+#import "User+Extension.h"
 
 @interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate,GMDraggableMarkerManagerDelegate>{
     float _minResizableHeight;
@@ -110,6 +111,7 @@
     if (self.placeInfo == nil) {
         self.title = @"Add Place";
         self.placeInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:self.coreData.managedObjectContext];
+        self.placeInfo.owner = [User getUser];
         self.editPlaceInfoTVC.deleteButton.enabled = NO;
         self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
                                                           longitude:HCM_LONGTITUDE

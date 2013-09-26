@@ -15,6 +15,8 @@
 #import "Photo.h"
 #import "OriginPhoto.h"
 #import "UIAlertView+Extension.h"
+#import "Tag.h"
+#import "CoredataCommon.h"
 
 @interface FEUserEditVC ()<UIAlertViewDelegate>
 @property (nonatomic, weak) FEUserInfoTVC* userInfoTVC;
@@ -36,7 +38,7 @@
     self.userInfoTVC.imageBtn.layer.borderWidth = 1.0;
     self.userInfoTVC.imageBtn.layer.borderColor = [[UIColor whiteColor] CGColor];
     
-    self.user = [User getUser:self.coreData.managedObjectContext];
+    self.user = [User getUser];
     self.userInfoTVC.nameTF.text = self.user.name;
     self.userInfoTVC.emailTF.text = self.user.email;
     if (self.user.photos.count > 0) {
@@ -91,9 +93,6 @@
             // update User
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
             [queue addOperationWithBlock:^{
-                if (self.user == nil) {
-                    self.user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.coreData.managedObjectContext];
-                }
                 self.user.name = self.userInfoTVC.nameTF.text;
                 self.user.email = self.userInfoTVC.emailTF.text;
                 if (self.userInfoTVC.imageChanged) {

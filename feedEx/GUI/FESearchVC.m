@@ -18,6 +18,7 @@
 #import "Place.h"
 #import "UIAlertView+Extension.h"
 #import "FEAppDelegate.h"
+#import "User+Extension.h"
 
 #define ALERT_DELETE_CONFIRM 0
 @interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *foodGridView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FESearchVC
@@ -148,8 +150,9 @@
 - (void)shareAction:(UIBarButtonItem *)sender {
     NSArray *selectedPlaces = [self getSelectedPlaces];
     // TODO: User
-    NSDictionary *placeInfo = @{PLACES_KEY:selectedPlaces};
-    NSData *sendingData = [FEDataSerialize serializePlaces:placeInfo];
+    User *user = [User getUser];
+    NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
+    NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
@@ -225,6 +228,13 @@
     return selectedPlaces;
 }
 #pragma mark - getter setter
+- (FECoreDataController *)coreData {
+    if (!_coreData) {
+        _coreData = [FECoreDataController sharedInstance];
+    }
+    return _coreData;
+}
+
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
         NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_SETTING_KEY];

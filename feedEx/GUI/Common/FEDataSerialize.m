@@ -20,7 +20,7 @@
 // +user: USER
 // +places: Array of PLACE
 /////////////////////
-+ (NSData *)serializePlaces:(NSDictionary *)placeInfo {
++ (NSData *)serializeMailData:(NSDictionary *)placeInfo {
     User *user = placeInfo[USER_KEY];
     NSArray *places = placeInfo[PLACES_KEY];
     NSMutableDictionary *rootDict = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -71,7 +71,7 @@
     
     return data;
 }
-+(NSDictionary *)deserializePlaces:(NSData *)data {
++(NSDictionary *)deserializeMailData:(NSData *)data {
     FECoreDataController *coreData = [FECoreDataController sharedInstance];
     BlockingValidation blockValidation = ^NSManagedObject *(NSManagedObject *managedObject)
     {
