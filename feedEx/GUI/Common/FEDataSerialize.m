@@ -45,8 +45,10 @@
     NSArray *places = placeInfo[PLACES_KEY];
     NSMutableDictionary *rootDict = [[NSMutableDictionary alloc] initWithCapacity:2];
     // User
-    NSDictionary *userDict = [user toDictionaryBlockingRelationships:blockRelationship blockingEncode:blockEncode];
+    NSMutableDictionary *userDict = [user toDictionaryBlockingRelationships:blockRelationship blockingEncode:blockEncode];
     if (userDict != nil) {
+        // change to friend
+        userDict[@"tags"][0][@"label"] = USER_FRIEND_TAG;
         rootDict[USER_KEY] = userDict;
     }
     

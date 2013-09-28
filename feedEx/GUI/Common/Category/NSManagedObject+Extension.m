@@ -9,7 +9,7 @@
 #import "NSManagedObject+Extension.h"
 
 @implementation NSManagedObject (Extension)
-- (NSDictionary *)toDictionaryBlockingRelationships:(BlockingRelationship)blockRelationship
+- (NSMutableDictionary *)toDictionaryBlockingRelationships:(BlockingRelationship)blockRelationship
                                     blockingEncode:(BlockingEncode)blockEncode
 {
 	

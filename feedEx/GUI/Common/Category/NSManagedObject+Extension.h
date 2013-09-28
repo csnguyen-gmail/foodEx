@@ -13,7 +13,7 @@ typedef id (^BlockingDecode)(NSString *key, id value);
 typedef NSManagedObject* (^BlockingValidation)(NSManagedObject* managedObject);
 
 @interface NSManagedObject (Extension)
-- (NSDictionary*) toDictionaryBlockingRelationships:(BlockingRelationship)blockRelationship     // use in case need to prevent recursive relationship
+- (NSMutableDictionary*) toDictionaryBlockingRelationships:(BlockingRelationship)blockRelationship     // use in case need to prevent recursive relationship
                                      blockingEncode:(BlockingEncode)blockEncode;                // use for specific encode for some key    
 
 + (NSManagedObject*) createManagedObjectFromDictionary:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
