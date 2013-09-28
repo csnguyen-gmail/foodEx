@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *checkinBtn;
 @property (strong, nonatomic) Place *place;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEPlaceCheckinVC
@@ -50,7 +49,7 @@
 #define ACCEPTABLE_CHECKIN_PERIOD 60*15 // 15 minutes
 - (void)locationChanged:(NSNotification *)info {
     CLLocation* location = [info userInfo][@"location"];
-    NSArray *nearestPlaces = [Place placesNearestLocation:location withMOC:self.coreData.managedObjectContext];
+    NSArray *nearestPlaces = [Place placesNearestLocation:location];
     if (nearestPlaces.count > 0) {
         Place* place = nearestPlaces[0];
         self.flipPlaceView.name = place.name;
@@ -92,14 +91,6 @@
                         [self removeFromParentViewController];
                     }];
 }
-#pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
-
 #pragma mark -handler
 - (IBAction)closeTapped:(UIButton *)sender {
     [self close];
@@ -107,10 +98,9 @@
 - (IBAction)checkinTapped:(id)sender {
     self.place.lastTimeCheckin = [NSDate date];
     self.place.timesCheckin = @([self.place.timesCheckin integerValue] + 1);
-    [self.coreData saveToPersistenceStoreAndWait];
     self.checkinBtn.enabled = NO;
     [self.indicatorView startAnimating];
-    [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+    [[FECoreDataController sharedInstance] saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"MM/dd hh:mm";

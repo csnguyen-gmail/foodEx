@@ -17,7 +17,6 @@
 @interface FETabBarController ()<UIAlertViewDelegate, CLLocationManagerDelegate>
 @property (nonatomic, strong) NSURL *url;
 @property (weak, nonatomic) NSPersistentStoreCoordinator* persistentStoreCoordinator;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) BOOL updatingLocation;
 @end
@@ -29,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // have to get persistentStoreCoordinator on main thread
-    self.persistentStoreCoordinator = self.coreData.persistentStoreCoordinator;
+    self.persistentStoreCoordinator = [[FECoreDataController sharedInstance] persistentStoreCoordinator];
     // tracking Coredata change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleDataModelChanged:)
@@ -45,12 +44,6 @@
 
 }
 #pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
         _locationManager = [[CLLocationManager alloc] init];

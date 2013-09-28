@@ -8,12 +8,14 @@
 
 #import "Food+Extension.h"
 #import "Common.h"
+#import "FECoreDataController.h"
 
 @implementation Food (Extension)
-+ (NSArray *)foodsFromFoodSettingInfo:(FESearchFoodSettingInfo *)foodSettingInfo withMOC:(NSManagedObjectContext *)moc {
++ (NSArray *)foodsFromFoodSettingInfo:(FESearchFoodSettingInfo *)foodSettingInfo {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Food" inManagedObjectContext:moc];
+    request.entity = [NSEntityDescription entityForName:@"Food" inManagedObjectContext:coredata.managedObjectContext];
     
     // filtering
     if (foodSettingInfo.name.length > 0) {
@@ -58,7 +60,7 @@
     
     
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;

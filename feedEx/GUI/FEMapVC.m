@@ -9,7 +9,6 @@
 #import "FEMapVC.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Common.h"
-#import "FECoreDataController.h"
 #import "Place+Extension.h"
 #import "Address.h"
 #import "FEMapUtility.h"
@@ -20,7 +19,6 @@
 @interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *places;
 @property (weak, nonatomic) IBOutlet UIToolbar *searchPlaceBar;
 @property (weak, nonatomic) IBOutlet UIView *seacrhResultView;
@@ -78,7 +76,7 @@
 }
 - (void)refetchData {
     // reload data source
-    self.places = [Place placesFromMapPlaceSettingInfo:self.searchSettingInfo withMOC:self.coreData.managedObjectContext];
+    self.places = [Place placesFromMapPlaceSettingInfo:self.searchSettingInfo];
     // rebuild marker
     for (GMSMarker *marker in self.mapView.markers) {
         marker.map = nil;
@@ -102,12 +100,6 @@
 }
 
 #pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
 - (GMSMarker *)locationMarker {
     if (!_locationMarker) {
         _locationMarker = [self addMarketAt:CLLocationCoordinate2DMake(0.0, 0.0) snippet:@"You are here!" mapMoved:NO];

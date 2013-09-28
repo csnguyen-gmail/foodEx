@@ -37,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *foodGridView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FESearchVC
@@ -226,13 +225,6 @@
         // TODO
     }
     return selectedPlaces;
-}
-#pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
 }
 
 - (FESearchSettingInfo *)searchSettingInfo {

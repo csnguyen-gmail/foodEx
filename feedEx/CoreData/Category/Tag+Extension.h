@@ -9,5 +9,5 @@
 #import "Tag.h"
 
 @interface Tag (Extension)
-+ (NSArray*)fetchTagsByType:(NSNumber*)type withMOM:(NSManagedObjectModel*)mom andMOC:(NSManagedObjectContext*)moc;
++ (NSArray*)fetchTagsByType:(NSNumber*)type;
 @end

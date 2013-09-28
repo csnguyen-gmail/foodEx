@@ -8,10 +8,8 @@
 #import "Photo.h"
 #import "FEFoodEditListCell.h"
 #import "AbstractInfo+Extension.h"
-#import "FECoreDataController.h"
 #import "ThumbnailPhoto.h"
 @interface FEFoodEditListCell()<UITextFieldDelegate, FEDynamicScrollViewDelegate>
-@property (weak, nonatomic) FECoreDataController * coreData;
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
 @end
 
@@ -22,13 +20,6 @@
     self.highlightView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
 }
 #pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
-
 - (void)setFood:(Food *)food {
     _food = food;
     self.isBestButton.selected = [food.isBest boolValue];

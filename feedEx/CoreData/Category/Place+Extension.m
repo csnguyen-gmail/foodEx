@@ -9,6 +9,7 @@
 #import "Place+Extension.h"
 #import "Common.h"
 #import "Address.h"
+#import "FECoreDataController.h"
 
 @implementation Place (Extension)
 - (void)awakeFromInsert {
@@ -42,11 +43,12 @@
 }
 #define ACCEPTABLE_CHECKIN_RADIUS 30.0 // meters
 // TODO: should consider a better way to filter Place by distance
-+ (NSArray*)placesNearestLocation:(CLLocation*)location withMOC:(NSManagedObjectContext *)moc {
++ (NSArray*)placesNearestLocation:(CLLocation*)location {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coredata.managedObjectContext];
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
@@ -63,10 +65,11 @@
     
     return nearestPlaces;
 }
-+ (NSArray *)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo *)placeSettingInfo withMOC:(NSManagedObjectContext *)moc {
++ (NSArray *)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo *)placeSettingInfo {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coredata.managedObjectContext];
     
     // filtering
     if (placeSettingInfo.name.length > 0) {
@@ -108,17 +111,18 @@
     
     
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
     return results;
 }
-+ (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo withMOC:(NSManagedObjectContext *)moc {
++ (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coredata.managedObjectContext];
     
     // filtering
     if (placeSettingInfo.rating != 0) {
@@ -139,7 +143,7 @@
     request.sortDescriptors = @[sort];
     
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
@@ -147,9 +151,10 @@
     return results;
 }
 
-+ (NSArray *)placesWithEmptyAddress:(NSManagedObjectContext *)moc {
++ (NSArray *)placesWithEmptyAddress {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:moc];
+    request.entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:coredata.managedObjectContext];
     
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
     [predicates addObject:[NSPredicate predicateWithFormat:@"address.address == nil OR address.address == ''"]];
@@ -157,7 +162,7 @@
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
     
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;

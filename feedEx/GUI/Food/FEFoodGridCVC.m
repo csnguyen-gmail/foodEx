@@ -11,12 +11,10 @@
 #import "Food+Extension.h"
 #import "Photo.h"
 #import "FEPlaceDetailMainVC.h"
-#import "FECoreDataController.h"
 
 @interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @property (strong, nonatomic) NSArray *foods; // array of Foods
 
 @end
@@ -47,15 +45,8 @@
         // TODO
     }
 }
-#pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting {
-    self.foods = [Food foodsFromFoodSettingInfo:foodSetting withMOC:self.coreData.managedObjectContext];
+    self.foods = [Food foodsFromFoodSettingInfo:foodSetting];
     self.imageIndexes = [NSMutableArray arrayWithCapacity:self.foods.count];
     for (int i = 0; i< self.foods.count; i++) {
         [self.imageIndexes addObject:@(0)];

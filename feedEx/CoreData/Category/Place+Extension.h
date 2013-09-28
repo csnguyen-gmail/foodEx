@@ -16,8 +16,8 @@
 - (void)insertFoodsAtIndex:(NSUInteger)index;
 - (void)removeFoodAtIndex:(NSUInteger)index;
 - (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-+ (NSArray*)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo*)placeSettingInfo withMOC:(NSManagedObjectContext*)moc;
-+ (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo withMOC:(NSManagedObjectContext *)moc;
-+ (NSArray*)placesNearestLocation:(CLLocation*)location withMOC:(NSManagedObjectContext *)moc;
-+ (NSArray *)placesWithEmptyAddress:(NSManagedObjectContext *)moc;
++ (NSArray*)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo*)placeSettingInfo;
++ (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo;
++ (NSArray*)placesNearestLocation:(CLLocation*)location;
++ (NSArray *)placesWithEmptyAddress;
 @end

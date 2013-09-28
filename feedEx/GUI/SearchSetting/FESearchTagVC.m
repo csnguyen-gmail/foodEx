@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSMutableArray *firstCharacters; // of first character of Tag
 @property (nonatomic, strong) NSMutableArray *valuesOfSections; // of array value of section
 @property (nonatomic, strong) NSMutableArray *checksOfSections; // of array check of section
-@property (weak, nonatomic) FECoreDataController * coreData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @end
@@ -52,9 +51,7 @@
     return string;
 }
 - (void)loadTagWithTagType:(NSNumber *)tagType andSelectedTags:(NSArray *)selectTags {
-    NSArray *tags = [Tag fetchTagsByType:tagType
-                                 withMOM:self.coreData.managedObjectModel
-                                  andMOC:self.coreData.managedObjectContext];
+    NSArray *tags = [Tag fetchTagsByType:tagType];
     self.firstCharacters = [[NSMutableArray alloc] init];
     for (Tag *tag in tags) {
         NSString *firstChar = [tag.label substringToIndex:1];
@@ -82,12 +79,6 @@
         }
         [self.checksOfSections addObject:checks];
     }
-}
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
 }
 
 #pragma mark - Table view data source
@@ -161,8 +152,9 @@
         }
         // delete out of database
         [self.indicatorView startAnimating];
-        [self.coreData.managedObjectContext deleteObject:tag];
-        [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+        FECoreDataController *coredata = [FECoreDataController sharedInstance];
+        [coredata.managedObjectContext deleteObject:tag];
+        [coredata saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
             [self.indicatorView stopAnimating];
             [self dismissViewControllerAnimated:YES completion:nil];
         }];

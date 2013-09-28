@@ -70,9 +70,7 @@
 #pragma mark - getter setter
 - (NSArray *)tags {
     if (!_tags) {
-        _tags = [Tag fetchTagsByType:CD_TAG_PLACE
-                             withMOM:self.coreData.managedObjectModel
-                              andMOC:self.coreData.managedObjectContext];
+        _tags = [Tag fetchTagsByType:CD_TAG_PLACE];
         
     }
     return _tags;

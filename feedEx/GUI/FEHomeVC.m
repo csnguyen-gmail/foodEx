@@ -15,7 +15,6 @@
 #import "UIAlertView+Extension.h"
 @interface FEHomeVC ()<UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *homeButtons;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEHomeVC
@@ -27,14 +26,6 @@
         button.layer.masksToBounds = YES;
     }
 }
-#pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
-
 #pragma mark - event handler
 #define AUTOFILL_CONFIRM_TAG 0
 - (IBAction)autoFillAddress:(UIButton *)sender {
@@ -46,7 +37,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == AUTOFILL_CONFIRM_TAG) {
         if (buttonIndex == 1) {
-            NSArray *places = [Place placesWithEmptyAddress:self.coreData.managedObjectContext];
+            NSArray *places = [Place placesWithEmptyAddress];
             if (places.count == 0) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"There is no Place need update address!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alertView show];
@@ -65,7 +56,7 @@
                     }
                     // finish getting address
                     if (++count == places.count) {
-                        [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+                        [[FECoreDataController sharedInstance] saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
                             [updatingAlertView dismissWithClickedButtonIndex:0 animated:YES];
                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Finish!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                             [alertView show];

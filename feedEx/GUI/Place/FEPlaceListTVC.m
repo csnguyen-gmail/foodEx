@@ -16,13 +16,11 @@
 #import "FEPlaceDetailMainVC.h"
 #import "FEMapUtility.h"
 #import "FEAppDelegate.h"
-#import "FECoreDataController.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedRow;
 @property (nonatomic, strong) UIView *selectedBackgroundView;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEPlaceListTVC
@@ -39,14 +37,8 @@
     }
 }
 #pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
-    self.places = [Place placesFromPlaceSettingInfo:placeSetting withMOC:self.coreData.managedObjectContext];
+    self.places = [Place placesFromPlaceSettingInfo:placeSetting];
     self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
     for (int i = 0; i< self.places.count; i++) {
         [self.imageIndexes addObject:@(0)];

@@ -7,7 +7,6 @@
 //
 
 #import "FEFoodEditVC.h"
-#import "FECoreDataController.h"
 #import "FEFoodEditListCell.h"
 #import "GKImagePicker.h"
 #import "Common.h"
@@ -16,7 +15,6 @@
 
 
 @interface FEFoodEditVC ()<FEFoodEditListCellDelegate, GKImagePickerDelegate, UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) GKImagePicker *imagePicker;
 @property (weak, nonatomic) FEFoodEditListCell *currentCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -117,12 +115,6 @@
     }
 }
 #pragma mark - setter gettr
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
-}
 - (void)setPlace:(Place *)place {
     _place = place;
     [self.tableView reloadData];

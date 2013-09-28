@@ -10,18 +10,17 @@
 #import "FEUserInfoTVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "User+Extension.h"
-#import "FECoreDataController.h"
 #import "AbstractInfo+Extension.h"
 #import "Photo.h"
 #import "OriginPhoto.h"
 #import "UIAlertView+Extension.h"
 #import "Tag.h"
 #import "CoredataCommon.h"
+#import "FECoreDataController.h"
 
 @interface FEUserEditVC ()<UIAlertViewDelegate>
 @property (nonatomic, weak) FEUserInfoTVC* userInfoTVC;
 @property (nonatomic, strong) User *user;
-@property (weak, nonatomic) FECoreDataController *coreData;
 @end
 
 @implementation FEUserEditVC
@@ -46,13 +45,6 @@
         UIImage *image = [UIImage imageWithData:photo.imageData scale:[[UIScreen mainScreen] scale]];
         [self.userInfoTVC.imageBtn setImage:image forState:UIControlStateNormal];
     }
-}
-#pragma mark - getter setter
-- (FECoreDataController *)coreData {
-    if (!_coreData) {
-        _coreData = [FECoreDataController sharedInstance];
-    }
-    return _coreData;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -101,7 +93,7 @@
                     }
                     [self.user insertPhotoWithThumbnail:self.userInfoTVC.thumbnailImage andOriginImage:self.userInfoTVC.originImage atIndex:0];
                 }
-                [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
+                [[FECoreDataController sharedInstance] saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
                     [savingAlertView dismissWithClickedButtonIndex:0 animated:YES];
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Finish!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     alertView.delegate = self;
