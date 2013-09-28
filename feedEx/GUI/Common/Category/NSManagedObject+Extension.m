@@ -16,8 +16,7 @@
     
     NSArray* attributes = [[[self entity] attributesByName] allKeys];
     NSArray* relationships = [[[self entity] relationshipsByName] allKeys];
-    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:
-                                 [attributes count] + [relationships count] + 1];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[attributes count] + [relationships count] + 1];
     
     [dict setObject:[[self class] description] forKey:@"class"];
     
@@ -76,8 +75,7 @@
         return nil;
     }
     NSManagedObject* newObject =
-	(NSManagedObject*)[NSEntityDescription insertNewObjectForEntityForName:class
-                                                    inManagedObjectContext:context];
+	(NSManagedObject*)[NSEntityDescription insertNewObjectForEntityForName:class inManagedObjectContext:context];
 	
     for (NSString* key in [dict allKeys]) {
         if ([key isEqualToString:@"class"]) {
@@ -101,7 +99,7 @@
             // Get a proxy set that represents the relationship, and add related objects to it.
             // (Note: this is provided by Core Data)
             id relatedObjects;
-            // Use try-catch to separate NSSet, NSOrderedSet --> this is BAD
+            // Use try-catch to distigush NSSet, NSOrderedSet --> this is BAD
             @try {
                 relatedObjects = [newObject mutableSetValueForKey:key];
             }

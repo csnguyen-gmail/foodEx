@@ -148,7 +148,6 @@
 }
 - (void)shareAction:(UIBarButtonItem *)sender {
     NSArray *selectedPlaces = [self getSelectedPlaces];
-    // TODO: User
     User *user = [User getUser];
     NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
     NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];

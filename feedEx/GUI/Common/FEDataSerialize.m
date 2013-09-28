@@ -12,7 +12,8 @@
 #import "NSData+Extension.h"
 #import "FECoreDataController.h"
 #import "CoredataCommon.h"
-#import "Tag.h"
+#import "Tag+Extension.h"
+#import "User+Extension.h"
 
 @implementation FEDataSerialize
 /////////////////////
@@ -21,23 +22,30 @@
 // +places: Array of PLACE
 /////////////////////
 + (NSData *)serializeMailData:(NSDictionary *)placeInfo {
-    User *user = placeInfo[USER_KEY];
-    NSArray *places = placeInfo[PLACES_KEY];
-    NSMutableDictionary *rootDict = [[NSMutableDictionary alloc] initWithCapacity:2];
-    // User
-    NSDictionary *userDict = [user toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
-        BOOL preventRelationship=NO;
-        // Manual prevent reverse relationship
-        if([relationship isEqualToString:@"owner"]) {
-            preventRelationship=YES;
-        }
-        return preventRelationship;
-    } blockingEncode:^id(id obj) {
+    // share blocks
+    BlockingEncode blockEncode = ^id(id obj) {
         if ([obj isKindOfClass:[UIImage class]]) {
             return UIImagePNGRepresentation(obj);
         }
         return obj;
-    }];
+    };
+    BlockingRelationship blockRelationship = ^BOOL(id obj,NSString *relationship) {
+        BOOL preventRelationship=NO;
+        // Manual prevent reverse relationship
+        if([relationship isEqualToString:@"places"]) {
+            preventRelationship=YES;
+        }
+        else if([relationship isEqualToString:@"owner"]) {
+            preventRelationship=YES;
+        }
+        return preventRelationship;
+    };
+    
+    User *user = placeInfo[USER_KEY];
+    NSArray *places = placeInfo[PLACES_KEY];
+    NSMutableDictionary *rootDict = [[NSMutableDictionary alloc] initWithCapacity:2];
+    // User
+    NSDictionary *userDict = [user toDictionaryBlockingRelationships:blockRelationship blockingEncode:blockEncode];
     if (userDict != nil) {
         rootDict[USER_KEY] = userDict;
     }
@@ -45,19 +53,7 @@
     // Places
     NSMutableArray *arrayOfPlaceDict = [[NSMutableArray alloc] initWithCapacity:places.count];
     for (Place *place in places) {
-        NSDictionary *placeDict = [place toDictionaryBlockingRelationships:^BOOL(id obj, NSString *relationship) {
-            BOOL preventRelationship=NO;
-            // Manual prevent reverse relationship
-            if([relationship isEqualToString:@"owner"]) {
-                preventRelationship=YES;
-            }
-            return preventRelationship;
-        } blockingEncode:^id(id obj) {
-            if ([obj isKindOfClass:[UIImage class]]) {
-                return UIImagePNGRepresentation(obj);
-            }
-            return obj;
-        }];
+        NSDictionary *placeDict = [place toDictionaryBlockingRelationships:blockRelationship blockingEncode:blockEncode];
         [arrayOfPlaceDict insertObject:placeDict atIndex:0];
     }
     if (arrayOfPlaceDict) {
@@ -72,21 +68,26 @@
     return data;
 }
 +(NSDictionary *)deserializeMailData:(NSData *)data {
-    FECoreDataController *coreData = [FECoreDataController sharedInstance];
+    // share blocks
     BlockingValidation blockValidation = ^NSManagedObject *(NSManagedObject *managedObject)
     {
+        FECoreDataController *coreData = [FECoreDataController sharedInstance];
         if ([managedObject isKindOfClass:NSClassFromString(@"Tag")]) {
-            Tag *tag = (Tag*)managedObject;
-            NSFetchRequest *fetchRequest = [coreData.managedObjectModel fetchRequestFromTemplateWithName:FR_GetTagByType
-                                                                                    substitutionVariables:@{FR_GetTagByType_Type:tag.type}];
-            NSArray *tags = [coreData.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-            for (Tag *tempTag in tags) {
-                if (![tempTag.objectID isEqual:tag.objectID]) {
-                    if ([tempTag.label isEqual:tag.label]) {
-                        [coreData.managedObjectContext deleteObject:tag];
-                        return tempTag;
-                    }
-                }
+            // in case new Tag existed (decide by label) in Application, then ignore new Tag and return existed one
+            Tag *newTag = (Tag*)managedObject;
+            NSArray *results = [Tag fetchTagsByType:newTag.type andLabel:newTag.label];
+            if (results.count > 1) {
+                [coreData.managedObjectContext deleteObject:newTag];
+                managedObject = results[0];
+            }
+        }
+        else if ([managedObject isKindOfClass:NSClassFromString(@"USER")]) {
+            // in case new User existed (decide by email) in Application, then ignore new User and return existed one
+            User *newUser = (User*)managedObject;
+            NSArray *results = [User fetchUsersByEmail:newUser.email];
+            if (results.count > 1) {
+                [coreData.managedObjectContext deleteObject:newUser];
+                managedObject = results[0];
             }
         }
         return managedObject;
@@ -103,6 +104,8 @@
     data = [data gzipInflate];
     // decode to NSDictionary
     NSDictionary *rootDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    FECoreDataController *coreData = [FECoreDataController sharedInstance];
     // User
     NSDictionary *userDict = rootDict[USER_KEY];
     User *user = (User*)[NSManagedObject createManagedObjectFromDictionary:userDict inContext:coreData.managedObjectContext
@@ -115,6 +118,8 @@
         Place *place = (Place*)[NSManagedObject createManagedObjectFromDictionary:placeDict inContext:coreData.managedObjectContext
                                                                blockingValidation:blockValidation
                                                                    blockingDecode:blockDecode];
+        // re-create releation to owner
+        place.owner = user;
         [places addObject:place];
     }
     if (places.count == 0) {

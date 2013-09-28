@@ -10,4 +10,5 @@
 
 @interface User (Extension)
 + (User*)getUser;
++ (NSArray*)fetchUsersByEmail:(NSString*)email;
 @end

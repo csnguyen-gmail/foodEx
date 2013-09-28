@@ -10,4 +10,5 @@
 
 @interface Tag (Extension)
 + (NSArray*)fetchTagsByType:(NSNumber*)type;
++ (NSArray*)fetchTagsByType:(NSNumber*)type andLabel:(NSString*)label;
 @end

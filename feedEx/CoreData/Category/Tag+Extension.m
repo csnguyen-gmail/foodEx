@@ -17,4 +17,18 @@
     [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
     return [coredata.managedObjectContext executeFetchRequest:fetchRequest error:nil];
 }
++ (NSArray*)fetchTagsByType:(NSNumber*)type andLabel:(NSString*)label {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:coredata.managedObjectContext];
+    request.predicate = [NSPredicate predicateWithFormat:@"type == %@ AND label", type, label];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES]];
+    NSError *error = nil;
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return results;
+}
 @end
