@@ -13,6 +13,8 @@
 		6F06584417DA2B0F0070AB29 /* Food+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584217DA2B0F0070AB29 /* Food+Extension.m */; };
 		6F06584F17DE20170070AB29 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584E17DE20170070AB29 /* Place.m */; };
 		6F06585017DE20170070AB29 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584E17DE20170070AB29 /* Place.m */; };
+		6F0AD2B417F73C1300119249 /* FEDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0AD2B317F73C1300119249 /* FEDebug.m */; };
+		6F0AD2B517F73C1300119249 /* FEDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0AD2B317F73C1300119249 /* FEDebug.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */; };
@@ -211,6 +213,8 @@
 		6F06584217DA2B0F0070AB29 /* Food+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Food+Extension.m"; sourceTree = "<group>"; };
 		6F06584D17DE20170070AB29 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		6F06584E17DE20170070AB29 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		6F0AD2B217F73C1300119249 /* FEDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEDebug.h; sourceTree = "<group>"; };
+		6F0AD2B317F73C1300119249 /* FEDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDebug.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
 		6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECustomInputAccessoryView.h; sourceTree = "<group>"; };
@@ -887,6 +891,8 @@
 				6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */,
 				6F8BF4F717E44BA9001B9709 /* FETransparentCustomSegue.h */,
 				6F8BF4F817E44BA9001B9709 /* FETransparentCustomSegue.m */,
+				6F0AD2B217F73C1300119249 /* FEDebug.h */,
+				6F0AD2B317F73C1300119249 /* FEDebug.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1188,6 +1194,7 @@
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
 				6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */,
+				6F0AD2B417F73C1300119249 /* FEDebug.m in Sources */,
 				6F57135E1761D70F000C69CE /* GKCropBorderView.m in Sources */,
 				6F8BF4F917E44BA9001B9709 /* FETransparentCustomSegue.m in Sources */,
 				6F57135F1761D70F000C69CE /* GKImageCropOverlayView.m in Sources */,
@@ -1266,6 +1273,7 @@
 			files = (
 				6F06585017DE20170070AB29 /* Place.m in Sources */,
 				6FE6392A17D085400043339B /* Food.m in Sources */,
+				6F0AD2B517F73C1300119249 /* FEDebug.m in Sources */,
 				6F5E921D172385780059055F /* feedExTests.m in Sources */,
 				6FE6391E17D085400043339B /* AbstractInfo.m in Sources */,
 				6FE6392E17D085400043339B /* Tag.m in Sources */,
