@@ -72,4 +72,18 @@
     }
     return results;
 }
++(NSArray *)fetchUsersByEmail:(NSString *)email andUserType:(NSString *)type {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:coredata.managedObjectContext];
+    request.predicate = [NSPredicate predicateWithFormat:@"email == %@ AND ANY tags.label == %@", email, type];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES]];
+    NSError *error = nil;
+    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return results;
+}
 @end

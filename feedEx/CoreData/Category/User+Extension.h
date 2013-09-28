@@ -11,4 +11,5 @@
 @interface User (Extension)
 + (User*)getUser;
 + (NSArray*)fetchUsersByEmail:(NSString*)email;
++ (NSArray*)fetchUsersByEmail:(NSString*)email andUserType:(NSString*)type;
 @end
