@@ -25,7 +25,7 @@
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <relationship name="originPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OriginPhoto" inverseName="owner" inverseEntity="OriginPhoto" syncable="YES"/>
         <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AbstractInfo" inverseName="photos" inverseEntity="AbstractInfo" syncable="YES"/>
-        <relationship name="thumbnailPhoto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThumbnailPhoto" inverseName="owner" inverseEntity="ThumbnailPhoto" syncable="YES"/>
+        <relationship name="thumbnailPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ThumbnailPhoto" inverseName="owner" inverseEntity="ThumbnailPhoto" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="AbstractInfo" syncable="YES">
         <attribute name="distanceInfo" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
@@ -63,7 +63,7 @@
         <element name="Address" positionX="198" positionY="261" width="128" height="105"/>
         <element name="Food" positionX="349" positionY="99" width="128" height="90"/>
         <element name="OriginPhoto" positionX="484" positionY="-216" width="128" height="75"/>
-        <element name="Photo" positionX="396" positionY="-99" width="128" height="90"/>
+        <element name="Photo" positionX="396" positionY="-99" width="128" height="88"/>
         <element name="Place" positionX="151" positionY="18" width="128" height="179"/>
         <element name="Tag" positionX="-63" positionY="-216" width="128" height="90"/>
         <element name="ThumbnailPhoto" positionX="450" positionY="18" width="128" height="75"/>
