@@ -47,7 +47,6 @@
     // User
     NSMutableDictionary *userDict = [user toDictionaryBlockingRelationships:blockRelationship blockingEncode:blockEncode];
     if (userDict != nil) {
-        // change to friend
         userDict[@"tags"][0][@"label"] = USER_FRIEND_TAG;
         rootDict[USER_KEY] = userDict;
     }
@@ -79,11 +78,11 @@
             Tag *newTag = (Tag*)managedObject;
             NSArray *results = [Tag fetchTagsByType:newTag.type andLabel:newTag.label];
             if (results.count > 1) {
+                managedObject = ([results[0] objectID] == newTag.objectID) ? results[1] : results[0];
                 [coreData.managedObjectContext deleteObject:newTag];
-                managedObject = results[0];
             }
         }
-        else if ([managedObject isKindOfClass:NSClassFromString(@"USER")]) {
+        else if ([managedObject isKindOfClass:NSClassFromString(@"User")]) {
             // in case new User existed (decide by email) in Application, then ignore new User and return existed one
             User *newUser = (User*)managedObject;
             NSArray *results = [User fetchUsersByEmail:newUser.email];
