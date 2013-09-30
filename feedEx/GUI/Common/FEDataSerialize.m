@@ -87,7 +87,7 @@
             User *newUser = (User*)managedObject;
             NSArray *results = [User fetchUsersByEmail:newUser.email andUserType:[newUser.tags[0] label]];
             if (results.count > 1) {
-                User* existedUser = results[0];
+                User* existedUser = ([results[0] objectID] == newUser.objectID) ? results[1] : results[0];
                 for (Place *place in existedUser.places) {
                     place.owner = newUser;
                 }
@@ -99,7 +99,7 @@
     BlockingDecode blockDecode = ^id(NSString *key, id value)
     {
         // convert to UIImage for thumbnail
-        if ([key isEqualToString:@"thumbnailPhoto"]) {
+        if ([key isEqualToString:@"image"]) {
             value = [UIImage imageWithData:value scale:[[UIScreen mainScreen] scale]];
         }
         return value;
@@ -125,9 +125,6 @@
         // re-create releation to owner
         place.owner = user;
         [places addObject:place];
-    }
-    if (places.count == 0) {
-        return  nil;
     }
     // Save to disk
     NSError *error = [coreData saveToPersistenceStoreAndWait];

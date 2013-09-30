@@ -58,25 +58,18 @@
     
     return shared;
 }
-+ (NSArray*)fetchUsersByEmail:(NSString*)email {
-    FECoreDataController *coredata = [FECoreDataController sharedInstance];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:coredata.managedObjectContext];
-    request.predicate = [NSPredicate predicateWithFormat:@"email == %@", email];
-    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES]];
-    NSError *error = nil;
-    NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        return nil;
-    }
-    return results;
-}
 +(NSArray *)fetchUsersByEmail:(NSString *)email andUserType:(NSString *)type {
     FECoreDataController *coredata = [FECoreDataController sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:coredata.managedObjectContext];
-    request.predicate = [NSPredicate predicateWithFormat:@"email == %@ AND ANY tags.label == %@", email, type];
+    NSMutableArray *predicates = [NSMutableArray array];
+    if (email) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"email == %@", email]];
+    }
+    if (type) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"ANY tags.label == %@", type]];
+    }
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES]];
     NSError *error = nil;
     NSArray *results = [coredata.managedObjectContext executeFetchRequest:request error:&error];

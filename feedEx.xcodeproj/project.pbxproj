@@ -22,6 +22,8 @@
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA09172E3032009FDF6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22457917CDBB7900E3C1A0 /* FETabBarController.m */; };
+		6F22E24517F95BC400BFC5B6 /* FEFriendsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E24417F95BC400BFC5B6 /* FEFriendsVC.m */; };
+		6F22E24817F97AA700BFC5B6 /* FEUserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E24717F97AA700BFC5B6 /* FEUserListCell.m */; };
 		6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */; };
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
@@ -223,6 +225,10 @@
 		6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECoreDataController.m; sourceTree = "<group>"; };
 		6F22457817CDBB7900E3C1A0 /* FETabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETabBarController.h; sourceTree = "<group>"; };
 		6F22457917CDBB7900E3C1A0 /* FETabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETabBarController.m; sourceTree = "<group>"; };
+		6F22E24317F95BC400BFC5B6 /* FEFriendsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFriendsVC.h; sourceTree = "<group>"; };
+		6F22E24417F95BC400BFC5B6 /* FEFriendsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFriendsVC.m; sourceTree = "<group>"; };
+		6F22E24617F97AA700BFC5B6 /* FEUserListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEUserListCell.h; sourceTree = "<group>"; };
+		6F22E24717F97AA700BFC5B6 /* FEUserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEUserListCell.m; sourceTree = "<group>"; };
 		6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditVC.h; sourceTree = "<group>"; };
 		6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditVC.m; sourceTree = "<group>"; };
 		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
@@ -626,6 +632,8 @@
 				6F49FDA017EB622B00281E58 /* FEUserEditVC.m */,
 				6F49FDA217EB636500281E58 /* FEUserInfoTVC.h */,
 				6F49FDA317EB636500281E58 /* FEUserInfoTVC.m */,
+				6F22E24617F97AA700BFC5B6 /* FEUserListCell.h */,
+				6F22E24717F97AA700BFC5B6 /* FEUserListCell.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -850,6 +858,8 @@
 				6FD91FF617743BB50066A5E5 /* FESearchVC.m */,
 				6FBD839817B320870082449F /* FEMapVC.h */,
 				6FBD839917B320870082449F /* FEMapVC.m */,
+				6F22E24317F95BC400BFC5B6 /* FEFriendsVC.h */,
+				6F22E24417F95BC400BFC5B6 /* FEFriendsVC.m */,
 				6F22457817CDBB7900E3C1A0 /* FETabBarController.h */,
 				6F22457917CDBB7900E3C1A0 /* FETabBarController.m */,
 			);
@@ -1235,6 +1245,7 @@
 				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 				6F49FDA717ECA63200281E58 /* User+Extension.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
+				6F22E24517F95BC400BFC5B6 /* FEFriendsVC.m in Sources */,
 				6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */,
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailMainVC.m in Sources */,
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
@@ -1254,6 +1265,7 @@
 				6F8BF50D17E71929001B9709 /* Photo.m in Sources */,
 				6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */,
 				6F30B70617BF40D300A1D389 /* NSString+Extension.m in Sources */,
+				6F22E24817F97AA700BFC5B6 /* FEUserListCell.m in Sources */,
 				6F06583C17D8C5070070AB29 /* FEFoodGridCell.m in Sources */,
 				6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */,
 				6F30B72617BF6DB700A1D389 /* AbstractInfo+Extension.m in Sources */,
