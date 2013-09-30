@@ -25,6 +25,7 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.tableView.layer.cornerRadius = 10;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
                                                  name:CORE_DATA_UPDATED object:nil];
     [self refetchData];
@@ -60,7 +61,7 @@
     if (user.photos.count != 0) {
         photo = user.photos[0];
     }
-    cell.imageView.image = photo.thumbnailPhoto.image;
+    cell.userImageView.image = photo.thumbnailPhoto.image;
     cell.userNameLbl.text = user.name;
     cell.userEmailLbl.text = user.email;
 }
