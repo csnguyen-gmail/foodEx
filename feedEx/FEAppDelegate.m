@@ -30,6 +30,7 @@
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
     [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor grayColor]];
     return YES;
 }
 // tracking Text field/view change

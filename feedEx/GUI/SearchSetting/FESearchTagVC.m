@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
     self.title = @"Tags";
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor grayColor]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -107,6 +106,7 @@
     cell.tagDetail.textColor = cell.tagName.textColor;
     BOOL isCheck = [self.checksOfSections[indexPath.section][indexPath.row] boolValue];
     cell.checkMarkView.image = isCheck ? [UIImage imageNamed:@"checkmark"] : nil;
+    // change color of letters of sectionIndexTitlesForTableView -> BAD
     for(UIView *view in [tableView subviews]) {
         if([view respondsToSelector:@selector(setIndexColor:)]) {
             [view performSelector:@selector(setIndexColor:) withObject:[UIColor whiteColor]];
