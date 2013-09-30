@@ -35,7 +35,8 @@
 }
 
 - (void)refetchData {
-    self.friends = [User fetchUsersByEmail:nil andUserType:USER_FRIEND_TAG];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    self.friends = [User fetchUsersByEmail:nil type:USER_FRIEND_TAG sorts:@[sort]];
     [self.tableView reloadData];
 }
 

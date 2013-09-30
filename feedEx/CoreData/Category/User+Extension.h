@@ -11,5 +11,5 @@
 @interface User (Extension)
 + (User*)getUser;
 // argument nil mean no filter
-+ (NSArray*)fetchUsersByEmail:(NSString*)email andUserType:(NSString*)type;
++ (NSArray*)fetchUsersByEmail:(NSString*)email type:(NSString*)type sorts:(NSArray*)sorts;
 @end

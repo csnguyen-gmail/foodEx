@@ -85,7 +85,7 @@
         else if ([managedObject isKindOfClass:NSClassFromString(@"User")]) {
             // in case new User existed (decide by email) in Application, then update by new User and remove existed one
             User *newUser = (User*)managedObject;
-            NSArray *results = [User fetchUsersByEmail:newUser.email andUserType:[newUser.tags[0] label]];
+            NSArray *results = [User fetchUsersByEmail:newUser.email type:[newUser.tags[0] label] sorts:nil];
             if (results.count > 1) {
                 User* existedUser = ([results[0] objectID] == newUser.objectID) ? results[1] : results[0];
                 for (Place *place in existedUser.places) {
