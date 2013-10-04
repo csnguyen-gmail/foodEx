@@ -15,12 +15,12 @@
 #import "CoredataCommon.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FEFriendsVC ()
+@interface FEFriendsVC ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSMutableArray *firstCharacters; // of first character of Tag
 @property (nonatomic, strong) NSMutableArray *valuesOfSections; // of array value of section
-\
+@property (weak, nonatomic) IBOutlet UITextField *searchTF;
 @end
 
 @implementation FEFriendsVC
@@ -42,6 +42,9 @@
     self.friends = [User fetchUsersByEmail:nil type:USER_FRIEND_TAG sorts:@[sort]];
     self.firstCharacters = [[NSMutableArray alloc] init];
     for (User *user in self.friends) {
+        if (user.name.length == 0) {
+            user.name = @"Anonymous";
+        }
         NSString *firstChar = [user.name substringToIndex:1];
         if (![self.firstCharacters containsObject:firstChar]) {
             [self.firstCharacters addObject:firstChar];
@@ -104,6 +107,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 74;
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // TODO
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end
