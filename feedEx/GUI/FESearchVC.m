@@ -150,20 +150,8 @@
     NSArray *selectedPlaces = [self getSelectedPlaces];
     User *user = [User getUser];
     NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
-    
-    
-    
-    
-    
     NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
-    [FEDataSerialize deserializeMailData:sendingData];
-    
-    
-    
-    
-    
-    
-    
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
     NSDate *now = [[NSDate alloc] init];
