@@ -143,9 +143,15 @@
     }
     cell.distanceLbl.text = place.distanceInfo;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 89; // TODO do we need it
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.editing == YES) {
+        [self.placeListDelegate didSelectPlaceRow];
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.editing == YES) {
+        [self.placeListDelegate didSelectPlaceRow];
+    }
 }
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {

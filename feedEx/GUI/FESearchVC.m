@@ -21,7 +21,7 @@
 #import "User+Extension.h"
 
 #define ALERT_DELETE_CONFIRM 0
-@interface FESearchVC()<FESearchSettingVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (strong, nonatomic) UIBarButtonItem *editBtn;
@@ -44,12 +44,13 @@
 {
     [super viewDidLoad];
     // perpare GUI
+    self.placeListTVC.placeListDelegate = self;
     // navigation bar
     self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
                                                    target:self action:@selector(editAction:)];
     self.searchBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
                                                                    target:self action:@selector(searchAction:)];
-    self.navigationItem.rightBarButtonItems = @[self.editBtn, self.searchBtn];
+    self.navigationItem.rightBarButtonItems = @[self.searchBtn, self.editBtn];
     // tool bar
     self.toolBar = [[UIToolbar alloc] init];
     self.shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStyleBordered
@@ -116,6 +117,7 @@
     [defaults synchronize];
 }
 - (void)switchDisplayFollowType:(NSUInteger)type withAnimation:(BOOL)animated{
+    self.editBtn.enabled = (type == 0);
     UIView *shownView = (type == 0) ? self.placeListView : self.foodGridView;
     UIView *hiddenView = (type == 0) ? self.foodGridView : self.placeListView;
     if (animated) {
@@ -145,6 +147,8 @@
 }
 - (void)editAction:(UIBarButtonItem *)sender {
     self.isEditMode = !self.isEditMode;
+    self.shareBtn.enabled = NO;
+    self.deleteBtn.enabled = NO;
 }
 - (void)shareAction:(UIBarButtonItem *)sender {
     NSArray *selectedPlaces = [self getSelectedPlaces];
@@ -260,6 +264,13 @@
         [self refetchData];
     }
 }
+#pragma mark - FEPlaceListTVCDelegate
+- (void)didSelectPlaceRow {
+    BOOL selected = [[self getSelectedPlaces] count] != 0;
+    self.shareBtn.enabled = selected;
+    self.deleteBtn.enabled = selected;
+}
+
 #pragma mark - MFMailComposeViewControllerDelegate
 - (void)mailComposeController:(MFMailComposeViewController *)controller
 		  didFinishWithResult:(MFMailComposeResult)result

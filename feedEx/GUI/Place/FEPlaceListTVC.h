@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "FESearchSettingInfo.h"
+@protocol FEPlaceListTVCDelegate<NSObject>
+-(void)didSelectPlaceRow;
+@end
 
 @interface FEPlaceListTVC : UITableViewController
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic, strong) CLLocation *currentLocation;
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
+@property (weak, nonatomic) id<FEPlaceListTVCDelegate> placeListDelegate;
 @end
