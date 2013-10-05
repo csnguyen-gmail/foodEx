@@ -680,7 +680,7 @@
                                                     <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type address here" minimumFontSize="17" id="oqY-lF-I6A">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type name here" minimumFontSize="17" id="oqY-lF-I6A">
                                                     <rect key="frame" x="73" y="5" width="191" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -714,7 +714,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="6Jf-K9-QIN" id="vyY-uq-f3T"/>
                                                     </connections>
@@ -2067,16 +2067,27 @@
     <resources>
         <image name="add_user.png" width="128" height="128"/>
         <image name="camera.png" width="32" height="32"/>
+        <image name="camera.png" width="32" height="32"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
         <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="heart_grey.png" width="32" height="32"/>
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
         <image name="home.png" width="30" height="30"/>
+        <image name="home.png" width="30" height="30"/>
         <image name="map.png" width="26" height="21"/>
+        <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
         <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
         <image name="star_empty.png" width="32" height="32"/>
+        <image name="stop.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -2085,8 +2096,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDW-Ly-5HO"/>
-        <segue reference="Mvy-mI-kch"/>
+        <segue reference="VJo-7D-IoS"/>
         <segue reference="OkE-8Z-2rC"/>
+        <segue reference="Mvy-mI-kch"/>
     </inferredMetricsTieBreakers>
 </document>
