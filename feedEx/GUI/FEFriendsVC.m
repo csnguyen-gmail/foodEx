@@ -9,6 +9,7 @@
 #import "FEFriendsVC.h"
 #import "User+Extension.h"
 #import "Photo.h"
+#import "Place.h"
 #import "ThumbnailPhoto.h"
 #import "Common.h"
 #import "FEUserListCell.h"
@@ -40,8 +41,21 @@
 - (void)refetchData {
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     self.friends = [User fetchUsersByEmail:nil type:USER_FRIEND_TAG sorts:@[sort]];
+    [self buildTableDataWithKeyword:self.searchTF.text];
+    
+}
+- (void)buildTableDataWithKeyword:(NSString*)keyword {
+    NSArray *displayFriends;
+    if (keyword.length > 0) {
+        NSPredicate *predicate = predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR email CONTAINS[cd] %@", keyword, keyword];
+        displayFriends = [self.friends filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        displayFriends = self.friends;
+    }
+    
     self.firstCharacters = [[NSMutableArray alloc] init];
-    for (User *user in self.friends) {
+    for (User *user in displayFriends) {
         if (user.name.length == 0) {
             user.name = @"Anonymous";
         }
@@ -53,7 +67,7 @@
     self.valuesOfSections = [[NSMutableArray alloc] init];
     for (NSString *firstCharacter in self.firstCharacters) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name beginswith[c] %@", firstCharacter];
-        NSMutableArray *valuesOfSection = [[self.friends filteredArrayUsingPredicate:predicate] mutableCopy];
+        NSMutableArray *valuesOfSection = [[displayFriends filteredArrayUsingPredicate:predicate] mutableCopy];
         [self.valuesOfSections addObject:valuesOfSection];
     }
     [self.tableView reloadData];
@@ -103,6 +117,20 @@
     cell.userImageView.image = photo.thumbnailPhoto.image;
     cell.userNameLbl.text = user.name;
     cell.userEmailLbl.text = user.email;
+    NSMutableString *placesStr = [[NSMutableString alloc] init];
+    for (int i = 0; i < user.places.count; i++) {
+        Place *place = user.places[i];
+        if (i == 0) {
+            [placesStr appendString:place.name];
+        }
+        else {
+            [placesStr appendFormat:@", %@", place.name];
+        }
+    }
+    if (placesStr.length == 0) {
+        placesStr = [NSMutableString stringWithString:@"none"];
+    }
+    cell.userPlaceInfo.text =  [NSString stringWithFormat:@"Shared: %@", placesStr];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,7 +139,7 @@
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    // TODO
+    [self buildTableDataWithKeyword:[textField.text stringByReplacingCharactersInRange:range withString:string]];
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

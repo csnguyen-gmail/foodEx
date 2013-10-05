@@ -459,7 +459,7 @@
                                             <rect key="frame" x="95" y="7" width="177" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="ulv-7l-1CU" id="TjS-sf-qnY"/>
                                             </connections>
@@ -1155,17 +1155,24 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kym-1g-4hS">
-                                                    <rect key="frame" x="77" y="10" width="211" height="21"/>
+                                                    <rect key="frame" x="77" y="6" width="211" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IWC-gb-A9E">
-                                                    <rect key="frame" x="77" y="39" width="211" height="21"/>
+                                                    <rect key="frame" x="77" y="27" width="211" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="Wb2-Mc-gCT">
+                                                    <rect key="frame" x="77" y="49" width="211" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1176,6 +1183,7 @@
                                             <outlet property="userEmailLbl" destination="IWC-gb-A9E" id="TYZ-Cn-lA2"/>
                                             <outlet property="userImageView" destination="YQF-7s-vGj" id="hpI-Z4-Ekm"/>
                                             <outlet property="userNameLbl" destination="kym-1g-4hS" id="LYn-gW-hxg"/>
+                                            <outlet property="userPlaceInfo" destination="Wb2-Mc-gCT" id="P9R-kI-nqW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1193,7 +1201,7 @@
                                             <rect key="frame" x="12" y="7" width="298" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="2bk-8F-b1d" id="S79-s1-K9T"/>
                                             </connections>
@@ -2059,16 +2067,27 @@
     <resources>
         <image name="add_user.png" width="128" height="128"/>
         <image name="camera.png" width="32" height="32"/>
+        <image name="camera.png" width="32" height="32"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
         <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="heart_grey.png" width="32" height="32"/>
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
         <image name="home.png" width="30" height="30"/>
+        <image name="home.png" width="30" height="30"/>
         <image name="map.png" width="26" height="21"/>
+        <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
         <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
         <image name="star_empty.png" width="32" height="32"/>
+        <image name="stop.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
