@@ -72,8 +72,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"editPlace"]) {
         UINavigationController *navigation = [segue destinationViewController];
-        FEPlaceEditMainVC *addPlaceInfoMainVC = navigation.viewControllers[0];
-        addPlaceInfoMainVC.placeInfo = self.place;
+        FEPlaceEditMainVC *editPlaceInfoMainVC = navigation.viewControllers[0];
+        editPlaceInfoMainVC.placeInfo = self.place;
     }
     else if ([[segue identifier] isEqualToString:@"placeDetailTVC"]) {
         self.placeDetailTVC = [segue destinationViewController];

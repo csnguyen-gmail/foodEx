@@ -16,6 +16,7 @@
 #import "FEPlaceDetailMainVC.h"
 #import "FEMapUtility.h"
 #import "FEAppDelegate.h"
+#import "FEPlaceEditMainVC.h"
 // TODO using batch size
 @interface FEPlaceListTVC ()<FEFlipPhotosViewDelegate, FEPlaceListCellDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -34,6 +35,11 @@
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
         placeDetailVC.place = self.places[self.selectedRow];
+    }
+    else if ([[segue identifier] isEqualToString:@"placeDetailEdit"]) {
+        UINavigationController *navigation = [segue destinationViewController];
+        FEPlaceEditMainVC *editPlaceInfoMainVC = navigation.viewControllers[0];
+        editPlaceInfoMainVC.placeInfo = self.places[self.selectedRow];
     }
 }
 #pragma mark - getter setter
@@ -103,7 +109,7 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
-    cell.informationBtn.enabled = !self.isEditMode;
+//    cell.informationBtn.enabled = !self.isEditMode;
     Place *place = self.places[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
@@ -160,7 +166,12 @@
 #pragma mark - FEPlaceListCellDelegate
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListCell *)cell {
     self.selectedRow = [[self.tableView indexPathForCell:cell] row];
-    [self performSegueWithIdentifier:@"placeDetail" sender:self];
+    if (self.isEditMode) {
+        [self performSegueWithIdentifier:@"placeDetailEdit" sender:self];
+    }
+    else {
+        [self performSegueWithIdentifier:@"placeDetail" sender:self];
+    }
 }
 
 @end

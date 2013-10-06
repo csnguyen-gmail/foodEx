@@ -37,12 +37,14 @@
 @property (weak, nonatomic) IBOutlet UIView *placeListView;
 @property (weak, nonatomic) IBOutlet UIView *foodGridView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (nonatomic) BOOL isGUISetup;
 @end
 
 @implementation FESearchVC
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.isGUISetup = NO;
     // perpare GUI
     self.placeListTVC.placeListDelegate = self;
     // navigation bar
@@ -83,14 +85,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.isEditMode) {
-        [self setIsEditMode:NO];
+    if (self.isGUISetup == NO) {
+        self.isGUISetup = YES;
+        self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
     }
 }
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    if (self.isEditMode) {
+//        [self setIsEditMode:NO];
+//    }
+//}
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     [self refetchData];
@@ -117,7 +122,6 @@
     [defaults synchronize];
 }
 - (void)switchDisplayFollowType:(NSUInteger)type withAnimation:(BOOL)animated{
-    self.editBtn.enabled = (type == 0);
     UIView *shownView = (type == 0) ? self.placeListView : self.foodGridView;
     UIView *hiddenView = (type == 0) ? self.foodGridView : self.placeListView;
     if (animated) {
