@@ -38,6 +38,7 @@
         cell.flipFoodGridView.isBest = [food.isBest boolValue];
         cell.flipFoodGridView.delegate = self;
         cell.flipFoodGridView.rowIndex = index;
+        cell.flipFoodGridView.isEditMode = self.isEditMode;
         [cell.flipFoodGridView setDatasource:[food.photos array]
                             withSelectedIndex:[self.imageIndexes[index] integerValue]];
     }
@@ -53,7 +54,11 @@
     }
     [self.collectionView reloadData];
 }
-
+#pragma mark - setter getter
+- (void)setIsEditMode:(BOOL)isEditMode {
+    _isEditMode = isEditMode;
+    [self.collectionView reloadData];
+}
 #pragma mark - Collection view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;

@@ -10,5 +10,6 @@
 #import "FESearchSettingInfo.h"
 
 @interface FEFoodGridCVC : UICollectionViewController
+@property (nonatomic) BOOL isEditMode;
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting;
 @end

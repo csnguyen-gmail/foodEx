@@ -53,11 +53,23 @@
     detailBtn.frame = rect;
     [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageView *selectedImageView;
+    if (self.isEditMode) {
+        UIImage *selectedImage = [UIImage imageNamed:self.isSelected ? @"selected" : @"unselected"];
+        selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+        rect = selectedImageView.frame;
+        rect.origin = CGPointMake(3.0, 115.0);
+        selectedImageView.frame = rect;
+    }
+    
     [bgView addSubview:imageView];
     [bgView addSubview:greyView];
     [bgView addSubview:nameLbl];
     if (self.isBest) {
         [bgView addSubview:isBestImageView];
+    }
+    if (self.isEditMode) {
+        [bgView addSubview:selectedImageView];
     }
     [bgView addSubview:detailBtn];
     return bgView;

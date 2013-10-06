@@ -209,16 +209,15 @@
                          CGRect toolbarRect = self.toolBar.frame;
                          toolbarRect.origin.y += delta;
                          self.toolBar.frame = toolbarRect;
-                         if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
-                             self.placeListTVC.isEditMode = isEditMode;
-                         }
-                         else {
-                             // TODO
-                         }
                      }
                      completion:^(BOOL finished) {
                      }];
-    
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+        self.placeListTVC.isEditMode = isEditMode;
+    }
+    else {
+        self.foodGridCVC.isEditMode = isEditMode;
+    }
 }
 - (NSArray*)getSelectedPlaces {
     NSMutableArray *selectedPlaces = [NSMutableArray array];

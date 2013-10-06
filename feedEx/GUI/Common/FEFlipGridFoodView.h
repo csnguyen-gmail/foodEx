@@ -19,4 +19,6 @@
 @property (nonatomic) NSUInteger isBest;
 @property (nonatomic) NSUInteger rowIndex;
 @property (nonatomic, weak) id<FEFlipGridFoodViewDelegate> delegate;
+@property (nonatomic) BOOL isEditMode;
+@property (nonatomic) BOOL isSelected;
 @end
