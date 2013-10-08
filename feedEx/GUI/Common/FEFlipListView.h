@@ -14,4 +14,5 @@
 
 - (void)setDatasource:(NSArray *)datasource withSelectedIndex:(NSUInteger)index;
 - (UIView*)getViewAtIndex:(NSUInteger)index; // abstract function
+-(void)handleTapFrom:(UITapGestureRecognizer *)recognizer;
 @end

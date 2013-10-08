@@ -14,7 +14,8 @@
 
 @interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
-@property (nonatomic) NSUInteger selectedRow;
+@property (nonatomic) NSUInteger selectedDetailIndex;
+@property (nonatomic, strong) NSMutableArray *selectedIndexList;
 @property (strong, nonatomic) NSArray *foods; // array of Foods
 
 @end
@@ -26,7 +27,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        Food *food = self.foods[self.selectedRow];
+        Food *food = self.foods[self.selectedDetailIndex];
         placeDetailVC.place = food.owner;
     }
 }
@@ -37,8 +38,9 @@
         cell.flipFoodGridView.name = food.name;
         cell.flipFoodGridView.isBest = [food.isBest boolValue];
         cell.flipFoodGridView.delegate = self;
-        cell.flipFoodGridView.rowIndex = index;
+        cell.flipFoodGridView.cellIndex = index;
         cell.flipFoodGridView.isEditMode = self.isEditMode;
+        cell.flipFoodGridView.isSelected = [self.selectedIndexList[index] boolValue];
         [cell.flipFoodGridView setDatasource:[food.photos array]
                             withSelectedIndex:[self.imageIndexes[index] integerValue]];
     }
@@ -49,14 +51,21 @@
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting {
     self.foods = [Food foodsFromFoodSettingInfo:foodSetting];
     self.imageIndexes = [NSMutableArray arrayWithCapacity:self.foods.count];
+    self.selectedIndexList = [NSMutableArray arrayWithCapacity:self.foods.count];
     for (int i = 0; i< self.foods.count; i++) {
         [self.imageIndexes addObject:@(0)];
+        [self.selectedIndexList addObject:@(NO)];
     }
     [self.collectionView reloadData];
 }
 #pragma mark - setter getter
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
+    if (isEditMode) {
+        for (int i = 0; i< self.selectedIndexList.count; i++) {
+            self.selectedIndexList[i] = @(NO);
+        }
+    }
     [self.collectionView reloadData];
 }
 #pragma mark - Collection view data source
@@ -77,8 +86,12 @@
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
 }
-- (void)didSelectPlaceAtRow:(NSUInteger)row {
-    self.selectedRow = row;
+- (void)didSelectDetailPlaceAtIndex:(NSUInteger)index {
+    self.selectedDetailIndex = index;
     [self performSegueWithIdentifier:@"placeDetail" sender:self];
+}
+- (void)didSelectCellAtIndex:(NSUInteger)index {
+    self.selectedIndexList[index] = @(![self.selectedIndexList[index] boolValue]);
+    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
 }
 @end

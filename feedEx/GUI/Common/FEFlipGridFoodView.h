@@ -11,13 +11,14 @@
 
 @protocol FEFlipGridFoodViewDelegate<NSObject>
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row;
-- (void)didSelectPlaceAtRow:(NSUInteger)row;
+- (void)didSelectDetailPlaceAtIndex:(NSUInteger)index;
+- (void)didSelectCellAtIndex:(NSUInteger)index;
 @end
 
 @interface FEFlipGridFoodView : FEFlipListView
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) NSUInteger isBest;
-@property (nonatomic) NSUInteger rowIndex;
+@property (nonatomic) NSUInteger cellIndex;
 @property (nonatomic, weak) id<FEFlipGridFoodViewDelegate> delegate;
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic) BOOL isSelected;

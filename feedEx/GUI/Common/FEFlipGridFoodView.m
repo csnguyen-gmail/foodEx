@@ -14,7 +14,16 @@
 // overwrite super class
 - (void)setCurrentViewIndex:(NSUInteger)currentViewIndex {
     super.currentViewIndex = currentViewIndex;
-    [self.delegate didChangeCurrentIndex:currentViewIndex atRow:self.rowIndex];
+    [self.delegate didChangeCurrentIndex:currentViewIndex atRow:self.cellIndex];
+}
+- (void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
+    // in case edit mode, transfer select event to parent
+    if (self.isEditMode) {
+        [self.delegate didSelectCellAtIndex:self.cellIndex];
+    }
+    else {
+        [super handleTapFrom:recognizer];
+    }
 }
 
 - (UIView *)getViewAtIndex:(NSUInteger)index {
@@ -75,6 +84,6 @@
     return bgView;
 }
 - (void)detailBtnTapped {
-    [self.delegate didSelectPlaceAtRow:self.rowIndex];
+    [self.delegate didSelectDetailPlaceAtIndex:self.cellIndex];
 }
 @end
