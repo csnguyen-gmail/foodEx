@@ -42,6 +42,14 @@
         editPlaceInfoMainVC.placeInfo = self.places[self.selectedRow];
     }
 }
+- (NSArray *)getSelectedPlaces {
+    NSMutableArray *selectedPlaces = [NSMutableArray array];
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    for (NSIndexPath *index in selectedRows) {
+        [selectedPlaces addObject:self.places[index.row]];
+    }    return selectedPlaces;
+
+}
 #pragma mark - getter setter
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
     self.places = [Place placesFromPlaceSettingInfo:placeSetting];

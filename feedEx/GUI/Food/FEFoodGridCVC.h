@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "FESearchSettingInfo.h"
 
+@protocol FEFoodGridTVCDelegate <NSObject>
+- (void)didSelectFoodItem;
+@end
+
 @interface FEFoodGridCVC : UICollectionViewController
 @property (nonatomic) BOOL isEditMode;
+@property (nonatomic, weak) id<FEFoodGridTVCDelegate> foodGridDelegate;
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting;
+- (NSArray*)getSelectedFoods;
 @end

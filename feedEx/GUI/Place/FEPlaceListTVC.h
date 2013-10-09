@@ -16,7 +16,9 @@
 @interface FEPlaceListTVC : UITableViewController
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic, strong) CLLocation *currentLocation;
-- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
 @property (strong, nonatomic) NSArray *places; // array of Places
 @property (weak, nonatomic) id<FEPlaceListTVCDelegate> placeListDelegate;
+
+- (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
+- (NSArray*)getSelectedPlaces;
 @end

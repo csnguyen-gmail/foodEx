@@ -16,12 +16,13 @@
 #import "FECoreDataController.h"
 #import "Common.h"
 #import "Place.h"
+#import "Food.h"
 #import "UIAlertView+Extension.h"
 #import "FEAppDelegate.h"
 #import "User+Extension.h"
 
 #define ALERT_DELETE_CONFIRM 0
-@interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, FEFoodGridTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (strong, nonatomic) UIBarButtonItem *editBtn;
@@ -47,6 +48,7 @@
     self.isGUISetup = NO;
     // perpare GUI
     self.placeListTVC.placeListDelegate = self;
+    self.foodGridCVC.foodGridDelegate = self;
     // navigation bar
     self.editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
                                                    target:self action:@selector(editAction:)];
@@ -155,7 +157,7 @@
     self.deleteBtn.enabled = NO;
 }
 - (void)shareAction:(UIBarButtonItem *)sender {
-    NSArray *selectedPlaces = [self getSelectedPlaces];
+    NSArray *selectedPlaces = [self.placeListTVC getSelectedPlaces];
     User *user = [User getUser];
     NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
     NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
@@ -219,19 +221,6 @@
         self.foodGridCVC.isEditMode = isEditMode;
     }
 }
-- (NSArray*)getSelectedPlaces {
-    NSMutableArray *selectedPlaces = [NSMutableArray array];
-    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
-        NSArray *selectedRows = [self.placeListTVC.tableView indexPathsForSelectedRows];
-        for (NSIndexPath *index in selectedRows) {
-            [selectedPlaces addObject:self.placeListTVC.places[index.row]];
-        }
-    }
-    else {
-        // TODO
-    }
-    return selectedPlaces;
-}
 
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
@@ -269,8 +258,14 @@
 }
 #pragma mark - FEPlaceListTVCDelegate
 - (void)didSelectPlaceRow {
-    BOOL selected = [[self getSelectedPlaces] count] != 0;
+    BOOL selected = [[self.placeListTVC.tableView indexPathsForSelectedRows] count] != 0;
     self.shareBtn.enabled = selected;
+    self.deleteBtn.enabled = selected;
+}
+
+#pragma mark - FEFoodGridTVCDelegate
+-(void)didSelectFoodItem {
+    BOOL selected = [[self.foodGridCVC getSelectedFoods] count] != 0;
     self.deleteBtn.enabled = selected;
 }
 
@@ -290,9 +285,17 @@
             NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
             [operationQueue addOperationWithBlock:^{
                 FECoreDataController *coreData = [FECoreDataController sharedInstance];
-                NSArray *selectedPlaces = [self getSelectedPlaces];
-                for (Place *place in selectedPlaces) {
-                    [coreData.managedObjectContext deleteObject:place];
+                if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+                    NSArray *selectedPlaces = [self.placeListTVC getSelectedPlaces];
+                    for (Place *place in selectedPlaces) {
+                        [coreData.managedObjectContext deleteObject:place];
+                    }
+                }
+                else {
+                    NSArray *selectedFoods = [self.foodGridCVC getSelectedFoods];
+                    for (Food *food in selectedFoods) {
+                        [coreData.managedObjectContext deleteObject:food];
+                    }
                 }
                 [coreData saveToPersistenceStoreAndWait];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
