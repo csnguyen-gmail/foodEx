@@ -92,6 +92,13 @@
 }
 - (void)didSelectCellAtIndex:(NSUInteger)index {
     self.selectedIndexList[index] = @(![self.selectedIndexList[index] boolValue]);
-    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
+    
+    // prevent reloadItemsAtIndexPaths animation. Is it Apple bug?
+    [UIView setAnimationsEnabled:NO];
+    [self.collectionView performBatchUpdates:^{
+        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
+    } completion:^(BOOL finished) {
+        [UIView setAnimationsEnabled:YES];
+    }];
 }
 @end
