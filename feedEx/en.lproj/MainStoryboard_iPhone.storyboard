@@ -927,13 +927,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail place" id="UVG-jd-9vW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="dkb-rk-LKn">
-                            <connections>
-                                <segue destination="fwP-jD-tNt" kind="modal" identifier="editPlace" modalTransitionStyle="flipHorizontal" id="OkE-8Z-2rC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detail place" id="UVG-jd-9vW"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -944,11 +938,12 @@
                         <outlet property="placeDetailView" destination="p8G-bQ-iom" id="o35-pt-7Sl"/>
                         <outlet property="verticalResizeView" destination="0eA-VQ-1oH" id="neu-tw-hpf"/>
                         <segue destination="YM5-uh-9jq" kind="custom" identifier="foodDetailVC" customClass="FETransparentCustomSegue" id="CdQ-1R-HMb"/>
+                        <segue destination="fwP-jD-tNt" kind="modal" identifier="editPlace" modalTransitionStyle="flipHorizontal" id="A4z-UY-EhP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-ut-YGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10414" y="-300"/>
+            <point key="canvasLocation" x="-10406" y="-372"/>
         </scene>
         <!--Food DetailVC-->
         <scene sceneID="ZLz-x8-vhn">
@@ -2087,8 +2082,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Go2-Hn-xK6"/>
-        <segue reference="Mvy-mI-kch"/>
         <segue reference="VJo-7D-IoS"/>
+        <segue reference="A4z-UY-EhP"/>
+        <segue reference="Mvy-mI-kch"/>
     </inferredMetricsTieBreakers>
 </document>

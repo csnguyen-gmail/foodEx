@@ -13,10 +13,13 @@
 #import "FEPlaceDetailTVC.h"
 #import "Address.h"
 #import "Common.h"
+#import "User+Extension.h"
 #import "FEVerticalResizeControllView.h"
 #import "FEFoodDetailVC.h"
+#import "FEDataSerialize.h"
+#import <MessageUI/MessageUI.h>
 
-@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate>{
+@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate,MFMailComposeViewControllerDelegate>{
     float _minResizableHeight;
     float _maxResizableHeight;
 }
@@ -40,6 +43,13 @@
     self.addressLbl.text = self.place.address.address;
     _minResizableHeight = 30;
     _maxResizableHeight = self.placeDetailView.frame.size.height;
+    // build bar buttons
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain
+                                                               target:self action:@selector(shareAction:)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                            target:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItems = @[editBtn, shareBtn];
+
     // map
     self.mapBgView.layer.cornerRadius = 10.0;
     self.mapBgView.layer.masksToBounds = YES;
@@ -86,6 +96,29 @@
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     self.placeDetailTVC.place = self.place;
+}
+#pragma mar - handler action
+- (void)editAction:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"editPlace" sender:self];
+}
+- (void)shareAction:(UIBarButtonItem *)sender {
+    User *user = [User getUser];
+    NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:@[self.place]};
+    NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
+    NSDate *now = [[NSDate alloc] init];
+    NSString *filename = [NSString stringWithFormat:ATTACHED_FILENAME_FORMAT, [dateFormatter stringFromDate:now]];
+    NSMutableString *body = [[NSMutableString alloc] initWithString:MAIL_BODY];
+    [body appendString:[NSString stringWithFormat:@"+%@\n", self.place.name]];
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    [picker setSubject:MAIL_SUBJECT];
+    [picker addAttachmentData:sendingData mimeType:ATTACHED_FILETYPE fileName:filename];
+    [picker setToRecipients:[NSArray array]];
+    [picker setMessageBody:body isHTML:NO];
+    [picker setMailComposeDelegate:self];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark - FEVerticalResizeControlDelegate
@@ -134,6 +167,12 @@
     [UIView animateWithDuration:.3f animations:^{
         [self verticalResizeControllerDidChanged:-delta];
     }];
+}
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark - FEPlaceDetailTVCDelegate
 - (void)didSelectItemAtIndexPath:(NSUInteger)index {
