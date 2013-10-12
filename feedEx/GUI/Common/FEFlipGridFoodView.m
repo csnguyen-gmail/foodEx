@@ -30,7 +30,7 @@
     bgView.layer.cornerRadius = 10;
     bgView.layer.masksToBounds = YES;
     
-    if (self.datasource != nil) {
+    if (self.datasource.count != 0) {
         UIImage *image = self.datasource[index];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = bgView.frame;
