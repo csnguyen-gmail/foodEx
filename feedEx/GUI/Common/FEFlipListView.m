@@ -47,12 +47,9 @@
 - (void)setDatasource:(NSArray *)datasource withSelectedIndex:(NSUInteger)index{
     _datasource = datasource;
     [self.frontView removeFromSuperview];
-    self.frontView = nil;
-    if (self.datasource.count > 0 && index < self.datasource.count) {
-        self.currentViewIndex = index;
-        self.frontView = [self getViewAtIndex:index];
-        [self addSubview:self.frontView];
-    }
+    self.currentViewIndex = index;
+    self.frontView = [self getViewAtIndex:index];
+    [self addSubview:self.frontView];
 }
 #pragma mark - event handler
 -(void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
