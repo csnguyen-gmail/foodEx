@@ -10,10 +10,12 @@
 
 @implementation FETransparentCustomSegue
 - (void)perform {
-    UIViewController *sourceVC = self.sourceViewController;
+    UIViewController *sourceVC = self.sourceVC == nil ? self.sourceViewController : self.sourceVC;
     UIViewController *destVC = self.destinationViewController;
     destVC.view.frame = sourceVC.view.frame;
-    destVC.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+    CGFloat r, g, b, a;
+    [destVC.view.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
+    destVC.view.backgroundColor = [UIColor colorWithRed:r green:g blue:b alpha:0.4];
     [sourceVC addChildViewController:destVC];
     [UIView transitionWithView:sourceVC.view
                       duration:0.3

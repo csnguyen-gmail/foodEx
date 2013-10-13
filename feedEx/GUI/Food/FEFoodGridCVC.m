@@ -11,7 +11,9 @@
 #import "Food+Extension.h"
 #import "Photo.h"
 #import "FEPlaceDetailMainVC.h"
+#import "FEFoodSingleEditVC.h"
 #import "OriginPhoto.h"
+#import "FETransparentCustomSegue.h"
 
 @interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -31,6 +33,15 @@
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
         Food *food = self.foods[self.selectedDetailIndex];
         placeDetailVC.place = food.owner;
+    }
+    else if ([[segue identifier] isEqualToString:@"foodSingleEdit"]) {
+        // we need TransparentCustomSegue cover all screen, not only in FoodGridCVC
+        FETransparentCustomSegue *customSegue = (FETransparentCustomSegue*)segue;
+
+        customSegue.sourceVC = self.parentViewController;
+        FEFoodSingleEditVC *foodSingleEditlVC = [segue destinationViewController];
+        Food *food = self.foods[self.selectedDetailIndex];
+        foodSingleEditlVC.food = food;
     }
 }
 
@@ -98,7 +109,7 @@
     // Loading Cell
     NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
     if (compressedPhotos.count == 0) {
-        [self startCompressPhotos:compressedPhotos forIndexPath:indexPath];
+        [self startCompressPhotos:compressedPhotos withSize:cell.flipFoodGridView.frame.size forIndexPath:indexPath];
         [cell.flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
     }
@@ -107,7 +118,7 @@
                        withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
     return cell;
 }
-- (void)startCompressPhotos:(NSMutableArray*)compressedPhotos forIndexPath:(NSIndexPath*)indexPath {
+- (void)startCompressPhotos:(NSMutableArray*)compressedPhotos withSize:(CGSize)size forIndexPath:(NSIndexPath*)indexPath {
     // check Photo is not being compressed, then compress
     if (self.beingCompressedPhotosList[indexPath] == nil) {
         // mark as being compress at index
@@ -118,7 +129,7 @@
             // compress image
             for (Photo *photo in food.photos) {
                 UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData scale:[[UIScreen mainScreen] scale]];
-                UIImage *resizeImage = [UIImage imageWithImage:originalImage scaledToSize:CGSizeMake(140.0, 140.0)];
+                UIImage *resizeImage = [UIImage imageWithImage:originalImage scaledToSize:size];
                 [compressedPhotos addObject:resizeImage];
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -138,7 +149,12 @@
 }
 - (void)didSelectDetailPlaceAtIndex:(NSUInteger)index {
     self.selectedDetailIndex = index;
-    [self performSegueWithIdentifier:@"placeDetail" sender:self];
+    if (self.isEditMode) {
+        [self performSegueWithIdentifier:@"foodSingleEdit" sender:self];
+    }
+    else {
+        [self performSegueWithIdentifier:@"placeDetail" sender:self];
+    }
 }
 - (void)didSelectCellAtIndex:(NSUInteger)index {
     self.selectedStatusList[index] = @(![self.selectedStatusList[index] boolValue]);

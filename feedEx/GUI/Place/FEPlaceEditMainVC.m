@@ -162,8 +162,15 @@
     }];
 }
 - (void)rollback {
-    [self.coreData.managedObjectContext rollback];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.indicatorView startAnimating];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        [self.coreData.managedObjectContext rollback];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.indicatorView stopAnimating];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }];
 }
 
 - (NSArray *)buildListStringTags {
@@ -205,7 +212,7 @@
 }
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Exit Place Confirmation"
+                                                        message:@"Edit Place Confirmation"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Save & Exit", @"Exit", nil];

@@ -17,6 +17,7 @@
 		6F0AD2B517F73C1300119249 /* FEDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0AD2B317F73C1300119249 /* FEDebug.m */; };
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
+		6F192785180A4B4A005C9DC4 /* FEFoodSingleEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F192784180A4B4A005C9DC4 /* FEFoodSingleEditVC.m */; };
 		6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */; };
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
@@ -223,6 +224,8 @@
 		6F0AD2B317F73C1300119249 /* FEDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDebug.m; sourceTree = "<group>"; };
 		6F12E62D173513B8007A38DA /* PngImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PngImageTransformer.h; sourceTree = "<group>"; };
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
+		6F192783180A4B4A005C9DC4 /* FEFoodSingleEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodSingleEditVC.h; sourceTree = "<group>"; };
+		6F192784180A4B4A005C9DC4 /* FEFoodSingleEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodSingleEditVC.m; sourceTree = "<group>"; };
 		6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECustomInputAccessoryView.h; sourceTree = "<group>"; };
 		6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECustomInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
@@ -633,6 +636,8 @@
 				6F06583917D8C5070070AB29 /* FEFoodGridCell.m */,
 				6F06583A17D8C5070070AB29 /* FEFoodGridCVC.h */,
 				6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */,
+				6F192783180A4B4A005C9DC4 /* FEFoodSingleEditVC.h */,
+				6F192784180A4B4A005C9DC4 /* FEFoodSingleEditVC.m */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -1286,6 +1291,7 @@
 				6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */,
 				6F30B72617BF6DB700A1D389 /* AbstractInfo+Extension.m in Sources */,
 				6F30B72717BF6DB700A1D389 /* Place+Extension.m in Sources */,
+				6F192785180A4B4A005C9DC4 /* FEFoodSingleEditVC.m in Sources */,
 				6F30B72817BF6DB700A1D389 /* Tag+Extension.m in Sources */,
 				6F06584317DA2B0F0070AB29 /* Food+Extension.m in Sources */,
 				6F30B72E17C47BE300A1D389 /* NSManagedObject+Extension.m in Sources */,

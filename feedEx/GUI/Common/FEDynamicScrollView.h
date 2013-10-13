@@ -10,9 +10,11 @@
 #import "FEWiggleView.h"
 
 @protocol FEDynamicScrollViewDelegate <NSObject>
+@optional
 - (void)enterDraggingMode;
 - (void)exitDraggingMode;
 - (void)enterEditMode;
+@required
 - (void)removeImageAtIndex:(NSUInteger)index;
 - (void)viewMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end

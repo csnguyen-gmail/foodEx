@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FETransparentCustomSegue : UIStoryboardSegue
-
+@property (nonatomic, weak) UIViewController *sourceVC;
 @end

@@ -17,7 +17,16 @@
 - (void)awakeFromNib {
     self.nameTF.delegate = self;
     self.foodsScrollView.dynamicScrollViewDelegate = self;
-    self.highlightView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+    self.highlightView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6];
+}
+- (void)setupFoodsScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
+    NSMutableArray *wiggles = [NSMutableArray array];
+    for (UIImage *thumbnailImage in thumbnailImages) {
+        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
+                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
+        [wiggles addObject:wiggleView];
+    }
+    [self.foodsScrollView setupWithWiggleArray:wiggles withAnimation:NO];
 }
 #pragma mark - getter setter
 - (void)setFood:(Food *)food {
@@ -35,6 +44,14 @@
     self.isBestButton.selected = !self.isBestButton.selected;
     self.food.isBest = @(self.isBestButton.selected);
 }
+- (IBAction)photoButtonTapped:(UIButton *)sender {
+    if (self.photoButton.selected) {
+        [self exitEditMode];
+    }
+    else {
+        [self.delegate selectImageAtCell:self];
+    }
+}
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self.delegate cellDidBeginEditing:self];
@@ -48,8 +65,12 @@
     return YES;
 }
 
-
 #pragma mark - Photos
+- (void)exitEditMode {
+    self.photoButton.selected = NO;
+    self.foodsScrollView.editMode = NO;
+}
+#pragma mark - FEDynamicScrollViewDelegate
 - (void)enterDraggingMode {
     [self.delegate enterDraggingMode];
 }
@@ -58,27 +79,6 @@
 }
 - (void)enterEditMode {
     self.photoButton.selected = YES;
-}
-- (void)exitEditMode {
-    self.photoButton.selected = NO;
-    self.foodsScrollView.editMode = NO;
-}
-- (IBAction)photoButtonTapped:(UIButton *)sender {
-    if (self.photoButton.selected) {
-        [self exitEditMode];
-    }
-    else {
-        [self.delegate selectImageAtCell:self];
-    }
-}
-- (void)setupFoodsScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
-    NSMutableArray *wiggles = [NSMutableArray array];
-    for (UIImage *thumbnailImage in thumbnailImages) {
-        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
-                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-        [wiggles addObject:wiggleView];
-    }
-    [self.foodsScrollView setupWithWiggleArray:wiggles withAnimation:NO];
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
     [self.food removePhotoAtIndex:index];
