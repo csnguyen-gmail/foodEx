@@ -92,7 +92,6 @@
 		6F5E9212172385780059055F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5E91EA172385780059055F /* Foundation.framework */; };
 		6F5E921A172385780059055F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F5E9218172385780059055F /* InfoPlist.strings */; };
 		6F5E921D172385780059055F /* feedExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E921C172385780059055F /* feedExTests.m */; };
-		6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F63265217730C1B00B5F3FC /* GMDraggableMarkerManager.m */; };
 		6F6406CC17CBAB66000A9D1D /* FEDataSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */; };
 		6F85EA22179BE078000D21E9 /* heart_selected_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA20179BE078000D21E9 /* heart_selected_min.png */; };
 		6F85EA23179BE078000D21E9 /* heart_selected_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F85EA21179BE078000D21E9 /* heart_selected_min@2x.png */; };
@@ -337,9 +336,6 @@
 		6F5E9219172385780059055F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F5E921B172385780059055F /* feedExTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = feedExTests.h; sourceTree = "<group>"; };
 		6F5E921C172385780059055F /* feedExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = feedExTests.m; sourceTree = "<group>"; };
-		6F63265117730C1B00B5F3FC /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
-		6F63265217730C1B00B5F3FC /* GMDraggableMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDraggableMarkerManager.m; sourceTree = "<group>"; };
-		6F63265317730C1B00B5F3FC /* GMDraggableMarkerManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManagerDelegate.h; sourceTree = "<group>"; };
 		6F6406CA17CBAB66000A9D1D /* FEDataSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEDataSerialize.h; sourceTree = "<group>"; };
 		6F6406CB17CBAB66000A9D1D /* FEDataSerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEDataSerialize.m; sourceTree = "<group>"; };
 		6F85EA20179BE078000D21E9 /* heart_selected_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected_min.png; sourceTree = "<group>"; };
@@ -659,7 +655,6 @@
 			isa = PBXGroup;
 			children = (
 				6F2ADD4A1775FEBC00522406 /* ActionSheetPicker */,
-				6F63265017730C1B00B5F3FC /* GMDraggableMarkerManager */,
 				6FAD9DEE1763E67900DB606C /* CPTextViewPlaceholder */,
 				6FAD9DAB17635A1200DB606C /* DYRateView */,
 				6F5713471761D70F000C69CE /* GKImagePicker */,
@@ -837,16 +832,6 @@
 				6F5E9218172385780059055F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6F63265017730C1B00B5F3FC /* GMDraggableMarkerManager */ = {
-			isa = PBXGroup;
-			children = (
-				6F63265117730C1B00B5F3FC /* GMDraggableMarkerManager.h */,
-				6F63265217730C1B00B5F3FC /* GMDraggableMarkerManager.m */,
-				6F63265317730C1B00B5F3FC /* GMDraggableMarkerManagerDelegate.h */,
-			);
-			path = GMDraggableMarkerManager;
 			sourceTree = "<group>";
 		};
 		6F8BF51117E727F6001B9709 /* VersionControl */ = {
@@ -1236,7 +1221,6 @@
 				6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */,
 				6F06583D17D8C5070070AB29 /* FEFoodGridCVC.m in Sources */,
 				6F51DB93176C3A6D0033EBAF /* FEHomeVC.m in Sources */,
-				6F63265417730C1B00B5F3FC /* GMDraggableMarkerManager.m in Sources */,
 				6FD91FF717743BB50066A5E5 /* FESearchVC.m in Sources */,
 				6FE6391D17D085400043339B /* AbstractInfo.m in Sources */,
 				6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */,

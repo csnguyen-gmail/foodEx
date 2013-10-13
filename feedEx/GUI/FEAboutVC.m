@@ -29,13 +29,13 @@
     [about appendFormat:@"Author: %@\n", @"Chu Si Nguyen"];
     [about appendFormat:@"Email: %@\n", @"chusinguyen108@gmail.com"];
     [about appendFormat:@"Version: %@\n", @"1.0"];
-    [about appendFormat:@"Open source information: %@\n", @"1.0"];
-    [about appendFormat:@"・GKImagePicker: %@\n", @"https://github.com/gekitz/GKImagePicker/blob/master/license"];
-    [about appendFormat:@"・DYRateView: %@\n", @"https://github.com/dyang/DYRateView/blob/master/LICENSE"];
-    [about appendFormat:@"・CPTextViewPlaceholder: %@\n", @"https://github.com/abc4715760/TelecomProperty-1-2/blob/master/TelecomProperty/CPTextViewPlaceholder.m"];
-    [about appendFormat:@"・GMDraggableMarkerManager: %@\n", @"https://github.com/rweindl/google-maps-sdk-ios-drag-drop"];
-    [about appendFormat:@"・ActionSheetPicker: %@\n", @"https://github.com/TimCinel/ActionSheetPicker/blob/master/LICENSE"];
-    [about appendFormat:@"・Google Maps SDK for iOS: %@\n", [GMSServices openSourceLicenseInfo]];
+    [about appendString:@"-------------------------------------------\n"];
+    [about appendString:@"Open source information\n"];
+    [about appendFormat:@"・GKImagePicker\n%@\n", @"https://github.com/gekitz/GKImagePicker/blob/master/license"];
+    [about appendFormat:@"・DYRateView\n%@\n", @"https://github.com/dyang/DYRateView/blob/master/LICENSE"];
+    [about appendFormat:@"・CPTextViewPlaceholder\n%@\n", @"https://github.com/abc4715760/TelecomProperty-1-2/blob/master/TelecomProperty/CPTextViewPlaceholder.m"];
+    [about appendFormat:@"・ActionSheetPicker\n%@\n", @"https://github.com/TimCinel/ActionSheetPicker/blob/master/LICENSE"];
+    [about appendFormat:@"・Google Maps SDK for iOS\n%@\n", [GMSServices openSourceLicenseInfo]];
     self.textView.text = about;
     
 }

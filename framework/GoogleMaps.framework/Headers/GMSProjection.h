@@ -27,6 +27,9 @@ typedef struct {
  * immutable, in that the mapping it embodies never changes. The mapping is not
  * necessarily linear.
  *
+ * Passing invalid Earth coordinates (i.e., per CLLocationCoordinate2DIsValid)
+ * to this object may result in undefined behavior.
+ *
  * This class should not be instantiated directly, instead, obtained via
  * projection on GMSMapView.
  */
@@ -49,11 +52,12 @@ typedef struct {
  * Returns whether a given coordinate (lat/lng) is contained within the
  * projection.
  */
-- (bool)containsCoordinate:(CLLocationCoordinate2D)coordinate;
+- (BOOL)containsCoordinate:(CLLocationCoordinate2D)coordinate;
 
 /**
  * Returns the region (four location coordinates) that is visible according to
- * the projection.
+ * the projection.  If padding was set on GMSMapView, this region takes the
+ * padding into account.
  *
  * The visible region can be non-rectangular. The result is undefined if the
  * projection includes points that do not map to anywhere on the map (e.g.,

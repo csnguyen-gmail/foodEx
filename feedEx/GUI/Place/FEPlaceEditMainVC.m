@@ -13,14 +13,13 @@
 #import "AbstractInfo+Extension.h"
 #import "Tag+Extension.h"
 #import "CoredataCommon.h"
-#import "GMDraggableMarkerManager.h"
 #import "FEFoodEditVC.h"
 #import "Common.h"
 #import "FEAppDelegate.h"
 #import "ThumbnailPhoto.h"
 #import "User+Extension.h"
 
-@interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate,GMDraggableMarkerManagerDelegate>{
+@interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate, GMSMapViewDelegate>{
     float _minResizableHeight;
     float _maxResizableHeight;
 }
@@ -31,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (strong, nonatomic) NSArray *tags; // of Tag
-@property (nonatomic, strong) GMDraggableMarkerManager *draggableMarkerManager;
 @end
 
 @implementation FEPlaceEditMainVC
@@ -40,7 +38,7 @@
     [super viewDidLoad];
     // map view
     self.mapView.layer.cornerRadius = 10;
-    self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.mapView delegate:self];
+    self.mapView.delegate = self;
     
     // edit place info view
     self.editPlaceInfoTVC.editPlaceTVCDelegate = self;
@@ -317,12 +315,12 @@
     marker.position = location;
     marker.snippet = snippet;
     marker.map = self.mapView;
-    [self.draggableMarkerManager addDraggableMarker:marker];
+    marker.draggable = YES;
     return marker;
 }
 
-#pragma mark - GMDraggableMarkerManagerDelegate
-- (void)onMarkerDragEnd:(GMSMarker *)marker {
+#pragma mark - GMSMapViewDelegate
+- (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker {
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:marker.position completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
         if (resp.firstResult != nil) {
             NSString *snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
@@ -330,9 +328,13 @@
         }
     }];
 }
-- (void)onMarkerEmptyDragStartAt:(CLLocationCoordinate2D)location {
-    GMSMarker *marker = [self addMarketAt:location snippet:@"" mapMoved:NO];
-    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
+- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    // just add Marker in case there is no one added beforehand
+    if (self.mapView.markers.count != 0) {
+        return;
+    }
+    GMSMarker *marker = [self addMarketAt:coordinate snippet:@"" mapMoved:NO];
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
         if (resp.firstResult != nil) {
             marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
             self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
