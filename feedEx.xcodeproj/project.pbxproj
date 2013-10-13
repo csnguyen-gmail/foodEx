@@ -18,6 +18,7 @@
 		6F12E62F173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F12E630173513B8007A38DA /* PngImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E62E173513B8007A38DA /* PngImageTransformer.m */; };
 		6F192785180A4B4A005C9DC4 /* FEFoodSingleEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F192784180A4B4A005C9DC4 /* FEFoodSingleEditVC.m */; };
+		6F192788180A8B43005C9DC4 /* FEAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F192787180A8B43005C9DC4 /* FEAboutVC.m */; };
 		6F1962181756F64D0086C3F4 /* FECustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */; };
 		6F1BCA03172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
 		6F1BCA04172E1CCE009FDF6E /* FECoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BCA02172E1CCE009FDF6E /* FECoreDataController.m */; };
@@ -195,7 +196,6 @@
 		6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA61781EB8A0049E1E9 /* StarFullTiny.png */; };
 		6FFBBAAB1781EB8B0049E1E9 /* StarFullTiny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */; };
 		6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */; };
-		6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB11787D2440049E1E9 /* ReflectionView.m */; };
 		6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */; };
 		6FFBBABB17893A790049E1E9 /* FEFlipPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBABA17893A770049E1E9 /* FEFlipPhotosView.m */; };
 		6FFBBABE178B264D0049E1E9 /* FEPlaceDetailMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBBABD178B264A0049E1E9 /* FEPlaceDetailMainVC.m */; };
@@ -226,6 +226,8 @@
 		6F12E62E173513B8007A38DA /* PngImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PngImageTransformer.m; sourceTree = "<group>"; };
 		6F192783180A4B4A005C9DC4 /* FEFoodSingleEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodSingleEditVC.h; sourceTree = "<group>"; };
 		6F192784180A4B4A005C9DC4 /* FEFoodSingleEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodSingleEditVC.m; sourceTree = "<group>"; };
+		6F192786180A8B43005C9DC4 /* FEAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEAboutVC.h; sourceTree = "<group>"; };
+		6F192787180A8B43005C9DC4 /* FEAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEAboutVC.m; sourceTree = "<group>"; };
 		6F1962161756F64C0086C3F4 /* FECustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECustomInputAccessoryView.h; sourceTree = "<group>"; };
 		6F1962171756F64D0086C3F4 /* FECustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FECustomInputAccessoryView.m; sourceTree = "<group>"; };
 		6F1BCA01172E1CCE009FDF6E /* FECoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FECoreDataController.h; sourceTree = "<group>"; };
@@ -473,8 +475,6 @@
 		6FFBBAA71781EB8B0049E1E9 /* StarFullTiny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarFullTiny@2x.png"; sourceTree = "<group>"; };
 		6FFBBAAC1787CB580049E1E9 /* FERoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FERoundImageView.h; sourceTree = "<group>"; };
 		6FFBBAAD1787CB580049E1E9 /* FERoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FERoundImageView.m; sourceTree = "<group>"; };
-		6FFBBAB01787D2440049E1E9 /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
-		6FFBBAB11787D2440049E1E9 /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 		6FFBBAB617892EEC0049E1E9 /* FEFlipListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipListView.h; sourceTree = "<group>"; };
 		6FFBBAB717892EED0049E1E9 /* FEFlipListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFlipListView.m; sourceTree = "<group>"; };
 		6FFBBAB917893A760049E1E9 /* FEFlipPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFlipPhotosView.h; sourceTree = "<group>"; };
@@ -658,7 +658,6 @@
 		6F5713461761D70F000C69CE /* OSS */ = {
 			isa = PBXGroup;
 			children = (
-				6FFBBAAF1787D2440049E1E9 /* ReflectionView */,
 				6F2ADD4A1775FEBC00522406 /* ActionSheetPicker */,
 				6F63265017730C1B00B5F3FC /* GMDraggableMarkerManager */,
 				6FAD9DEE1763E67900DB606C /* CPTextViewPlaceholder */,
@@ -879,6 +878,8 @@
 				6F22E24417F95BC400BFC5B6 /* FEFriendsVC.m */,
 				6F22457817CDBB7900E3C1A0 /* FETabBarController.h */,
 				6F22457917CDBB7900E3C1A0 /* FETabBarController.m */,
+				6F192786180A8B43005C9DC4 /* FEAboutVC.h */,
+				6F192787180A8B43005C9DC4 /* FEAboutVC.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -1016,15 +1017,6 @@
 				6FAD9DE31763C1E700DB606C /* spin@2x.png */,
 			);
 			path = Icons;
-			sourceTree = "<group>";
-		};
-		6FFBBAAF1787D2440049E1E9 /* ReflectionView */ = {
-			isa = PBXGroup;
-			children = (
-				6FFBBAB01787D2440049E1E9 /* ReflectionView.h */,
-				6FFBBAB11787D2440049E1E9 /* ReflectionView.m */,
-			);
-			path = ReflectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1263,7 +1255,6 @@
 				6FDC911C177ED6AA00E2BF5B /* FEPlaceListCell.m in Sources */,
 				6FDC911D177ED6AA00E2BF5B /* FEPlaceListTVC.m in Sources */,
 				6FFBBAAE1787CB580049E1E9 /* FERoundImageView.m in Sources */,
-				6FFBBAB21787D2440049E1E9 /* ReflectionView.m in Sources */,
 				6F49FDA717ECA63200281E58 /* User+Extension.m in Sources */,
 				6FFBBAB817892EEE0049E1E9 /* FEFlipListView.m in Sources */,
 				6F22E24517F95BC400BFC5B6 /* FEFriendsVC.m in Sources */,
@@ -1272,6 +1263,7 @@
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
 				6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */,
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
+				6F192788180A8B43005C9DC4 /* FEAboutVC.m in Sources */,
 				6FF9139117A52BCF00FC38FB /* FEPlaceDetailTVC.m in Sources */,
 				6FE6391517D0853F0043339B /* Address.m in Sources */,
 				6F89E7E317AE22C2007BDAFA /* FEFlipPlaceView.m in Sources */,
