@@ -93,7 +93,9 @@
     self.draggingWiggleView.dragMode = YES;
     [self.wiggleViews removeObject:self.draggingWiggleView];
     [self bringSubviewToFront:self.draggingWiggleView];
-    [self.dynamicScrollViewDelegate enterDraggingMode];
+    if ([self.dynamicScrollViewDelegate respondsToSelector:@selector(enterDraggingMode)]) {
+        [self.dynamicScrollViewDelegate enterDraggingMode];
+    }
 }
 - (void)exitDraggingMode {
     if (!self.draggingWiggleView) {
@@ -113,7 +115,9 @@
                      }
                      completion:^(BOOL finished) {
                      }];
-    [self.dynamicScrollViewDelegate exitDraggingMode];
+    if ([self.dynamicScrollViewDelegate respondsToSelector:@selector(exitDraggingMode)]) {
+        [self.dynamicScrollViewDelegate exitDraggingMode];
+    }
     [self.dynamicScrollViewDelegate viewMovedFromIndex:_indexViewBeforeDraging toIndex:index];
 }
 
@@ -282,7 +286,9 @@
 }
 - (void)handleLongGesture:(UILongPressGestureRecognizer *)recognizer {
     self.editMode = YES;
-    [self.dynamicScrollViewDelegate enterEditMode];
+    if ([self.dynamicScrollViewDelegate respondsToSelector:@selector(enterEditMode)]) {
+        [self.dynamicScrollViewDelegate enterEditMode];
+    }
 }
 
 @end
