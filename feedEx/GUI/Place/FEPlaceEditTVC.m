@@ -14,7 +14,7 @@
 
 @interface FEPlaceEditTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
-@property (strong, nonatomic) GKImagePicker *imagePicker;
+@property (strong, nonatomic) FEImagePicker *imagePicker;
 @end
 
 @implementation FEPlaceEditTVC
@@ -128,7 +128,7 @@
         [self exitEditMode];
     }
     else {
-        [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
+        [self.imagePicker startPickerFrom:self];
     }
 }
 - (void)setupPhotoScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
@@ -146,15 +146,15 @@
 - (void)viewMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     [self.editPlaceTVCDelegate imageMovedFromIndex:fromIndex toIndex:toIndex];
 }
-# pragma mark - GKImagePicker Delegate Methods
-- (GKImagePicker *)imagePicker {
+# pragma mark - FEImagePickerDelegate
+- (FEImagePicker *)imagePicker {
     if (!_imagePicker) {
-        _imagePicker = [[GKImagePicker alloc] init];
+        _imagePicker = [[FEImagePicker alloc] init];
         _imagePicker.delegate = self;
     }
     return _imagePicker;
 }
-- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
+- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
     [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     UIImage *originImage = [UIImage imageWithImage:image
                                       scaledToSize:NORMAL_SIZE];
@@ -164,6 +164,13 @@
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.photoScrollView addView:wiggleView atIndex:0 withAnimation:YES];
     [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
+    // release image picker
+    self.imagePicker = nil;
+}
+- (void)imagePickerCancel {
+    // release image picker
+    self.imagePicker = nil;
+    
 }
 # pragma mark - UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView{

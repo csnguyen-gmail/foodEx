@@ -38,6 +38,7 @@
 
 
 - (void)_actionCancel{
+    [self.delegate imageCropControllerDidCancelCropped];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

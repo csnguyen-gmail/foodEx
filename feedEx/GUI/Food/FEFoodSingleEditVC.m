@@ -11,18 +11,18 @@
 #import "AbstractInfo+Extension.h"
 #import "ThumbnailPhoto.h"
 #import <QuartzCore/QuartzCore.h>
-#import "GKImagePicker.h"
+#import "FEImagePicker.h"
 #import "Common.h"
 #import "FECoreDataController.h"
 
-@interface FEFoodSingleEditVC ()<FEDynamicScrollViewDelegate, GKImagePickerDelegate>
+@interface FEFoodSingleEditVC ()<FEDynamicScrollViewDelegate, FEImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *foodsScrollView;
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (weak, nonatomic) IBOutlet UIButton *isBestButton;
-@property (strong, nonatomic) GKImagePicker *imagePicker;
+@property (strong, nonatomic) FEImagePicker *imagePicker;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @end
@@ -90,7 +90,7 @@
     if (self.photoButton.selected) {
         [self exitEditMode];
     } else {
-        [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
+        [self.imagePicker startPickerFrom:self];
     }
 }
 - (IBAction)isBestButtonTapped:(UIButton *)sender {
@@ -102,21 +102,28 @@
     self.photoButton.selected = NO;
     self.foodsScrollView.editMode = NO;
 }
-# pragma mark - GKImagePicker Delegate Methods
-- (GKImagePicker *)imagePicker {
+# pragma mark - FEImagePickerDelegate
+- (FEImagePicker *)imagePicker {
     if (!_imagePicker) {
-        _imagePicker = [[GKImagePicker alloc] init];
+        _imagePicker = [[FEImagePicker alloc] init];
         _imagePicker.delegate = self;
     }
     return _imagePicker;
 }
-- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
+- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
     [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     UIImage *originImage = [UIImage imageWithImage:image
                                       scaledToSize:NORMAL_SIZE];
     UIImage *thumbnailImage = [UIImage imageWithImage:image
                                          scaledToSize:THUMBNAIL_SIZE];
     [self addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
+    // release image picker
+    self.imagePicker = nil;
+}
+- (void)imagePickerCancel {
+    // release image picker
+    self.imagePicker = nil;
+    
 }
 
 #pragma mark - FEDynamicScrollViewDelegate

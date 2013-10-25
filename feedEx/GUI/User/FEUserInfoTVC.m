@@ -7,11 +7,11 @@
 //
 
 #import "FEUserInfoTVC.h"
-#import "GKImagePicker.h"
+#import "FEImagePicker.h"
 #import "Common.h"
 
-@interface FEUserInfoTVC ()<GKImagePickerDelegate, UITextFieldDelegate>
-@property (strong, nonatomic) GKImagePicker *imagePicker;
+@interface FEUserInfoTVC ()<FEImagePickerDelegate, UITextFieldDelegate>
+@property (strong, nonatomic) FEImagePicker *imagePicker;
 @end
 
 @implementation FEUserInfoTVC
@@ -20,18 +20,18 @@
     self.textChanged = NO;
     self.imageChanged = NO;
 }
-- (GKImagePicker *)imagePicker {
+- (FEImagePicker *)imagePicker {
     if (!_imagePicker) {
-        _imagePicker = [[GKImagePicker alloc] init];
+        _imagePicker = [[FEImagePicker alloc] init];
         _imagePicker.delegate = self;
     }
     return _imagePicker;
 }
 
 - (IBAction)imageTapped:(id)sender {
-    [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
+    [self.imagePicker startPickerFrom:self];
 }
-#pragma mark - UITextFieldDelegate Delegate Methods
+#pragma mark - FEImagePickerDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -40,13 +40,19 @@
     self.textChanged = YES;
     return YES;
 }
-#pragma mark - GKImagePicker Delegate Methods
-- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
+#pragma mark - FEImagePickerDelegate
+- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
     self.imageChanged = YES;
     [imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     self.originImage = [UIImage imageWithImage:image scaledToSize:NORMAL_SIZE];
     self.thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
     [self.imageBtn setImage:self.originImage forState:UIControlStateNormal];
+    // release image picker
+    self.imagePicker = nil;
 }
-
+- (void)imagePickerCancel {
+    // release image picker
+    self.imagePicker = nil;
+    
+}
 @end

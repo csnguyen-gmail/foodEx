@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FEDynamicScrollView.h"
-#import "GKImagePicker.h"
+#import "FEImagePicker.h"
 #import "FETagTextView.h"
 #import "CPTextViewPlaceholder.h"
 #import "DYRateView.h"
@@ -19,7 +19,7 @@
 - (void)removeImageAtIndex:(NSUInteger)index;
 - (void)imageMovedFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end
-@interface FEPlaceEditTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, GKImagePickerDelegate, UITextViewDelegate>
+@interface FEPlaceEditTVC : UITableViewController<FEDynamicScrollViewDelegate, UITextFieldDelegate, FEImagePickerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) id<FEPlaceEditTVCDelegate> editPlaceTVCDelegate;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet FEDynamicScrollView *photoScrollView;
