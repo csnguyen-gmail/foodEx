@@ -43,7 +43,6 @@
 #pragma mark - FEImagePickerDelegate
 - (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
     self.imageChanged = YES;
-    [imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     self.originImage = [UIImage imageWithImage:image scaledToSize:NORMAL_SIZE];
     self.thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
     [self.imageBtn setImage:self.originImage forState:UIControlStateNormal];

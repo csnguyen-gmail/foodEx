@@ -7,8 +7,8 @@
 //
 
 #import "FEImagePicker.h"
-#import "GKImageCropViewController.h"
-@interface FEImagePicker()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, FEImagePickerVCDelegate, GKImageCropControllerDelegate>
+#import "FEImageEditorVC.h"
+@interface FEImagePicker()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, FEImagePickerVCDelegate>
 @property (nonatomic) NSInteger sourceType;
 @property (nonatomic, weak) UIViewController* parentVC;
 @end
@@ -81,29 +81,31 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     self.imagePickerController.needModify = NO;
-    GKImageCropViewController *cropController = [[GKImageCropViewController alloc] init];
-    cropController.contentSizeForViewInPopover = picker.contentSizeForViewInPopover;
-    cropController.sourceImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    cropController.resizeableCropArea = self.resizeableCropArea;
-    cropController.cropSize = self.cropSize;
-    cropController.delegate = self;
-    [picker pushViewController:cropController animated:YES];
+    FEImageEditorVC *imageEditorVC = [[FEImageEditorVC alloc] initWithNibName:@"FEImageEditorVC" bundle:nil];
+    imageEditorVC.checkBounds = YES;
+    imageEditorVC.sourceImage = info[UIImagePickerControllerOriginalImage];
+    [imageEditorVC reset:NO];
+    imageEditorVC.doneCallback = ^(UIImage *editedImage, BOOL canceled){
+        [picker popViewControllerAnimated:YES];
+        [picker setNavigationBarHidden:NO animated:YES];
+        if(!canceled) {
+            if ([self.delegate respondsToSelector:@selector(imagePicker:pickedImage:)]) {
+                [self.delegate imagePicker:self pickedImage:editedImage];
+            }
+            [picker dismissViewControllerAnimated:NO completion:nil];
+        }
+        else {
+            self.imagePickerController.needModify = YES;
+        }
+    };
+    [picker pushViewController:imageEditorVC animated:YES];
+    [picker setNavigationBarHidden:YES animated:NO];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     // don't know why have to call dismiss whenrealize this function.
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.delegate imagePickerCancel];
     }];
-}
-
-#pragma mark - GKImageCropControllerDelegate
-- (void)imageCropController:(GKImageCropViewController *)imageCropController didFinishWithCroppedImage:(UIImage *)croppedImage{
-    if ([self.delegate respondsToSelector:@selector(imagePicker:pickedImage:)]) {
-        [self.delegate imagePicker:self pickedImage:croppedImage];
-    }
-}
-- (void)imageCropControllerDidCancelCropped {
-    self.imagePickerController.needModify = YES;
 }
 
 @end

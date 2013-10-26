@@ -155,7 +155,6 @@
     return _imagePicker;
 }
 - (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
-    [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     UIImage *originImage = [UIImage imageWithImage:image
                                       scaledToSize:NORMAL_SIZE];
     UIImage *thumbnailImage = [UIImage imageWithImage:image
