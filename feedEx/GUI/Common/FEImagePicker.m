@@ -26,22 +26,18 @@
 
 }
 - (void)startPickerFrom:(UIViewController *)parentVC {
-    [parentVC presentViewController:self.imagePickerController animated:YES completion:nil];
     self.parentVC = parentVC;
+    [self showImagePicker];
 }
 #pragma mark - setter getter
-- (UIImagePickerController *)imagePickerController {
-    if (_imagePickerController == nil) {
-        _imagePickerController = [[FEImagePickerController alloc] init];
-        _imagePickerController.sourceType = self.sourceType;
-        _imagePickerController.delegate = self;
-        _imagePickerController.wantsFullScreenLayout = NO;
-        _imagePickerController.imagePickerDelegate = self;
-        _imagePickerController.needModify = YES;
-    }
-    return _imagePickerController;
+- (FEImagePickerController*)createImagePicker {
+    FEImagePickerController *imagePicker = [[FEImagePickerController alloc] init];
+    imagePicker.sourceType = self.sourceType;
+    imagePicker.delegate = self;
+    imagePicker.wantsFullScreenLayout = YES;
+    imagePicker.imagePickerDelegate = self;
+    return imagePicker;
 }
-
 - (int)sourceType {
     if (_sourceType == -1) {
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -56,21 +52,30 @@
     [prefs setInteger:sourceType forKey:IMAGE_PICKER_SOURCE_TYPE];
     [prefs synchronize];
 }
+- (void)showImagePicker {
+    if (self.imagePickerController != nil) {
+        [self.imagePickerController dismissViewControllerAnimated:NO completion:^{
+            self.imagePickerController = [self createImagePicker];
+            [self.parentVC presentViewController:self.imagePickerController animated:YES completion:nil];
+        }];
+    }
+    else {
+        self.imagePickerController = [self createImagePicker];
+        [self.parentVC presentViewController:self.imagePickerController animated:YES completion:nil];
+    }
+}
+- (void)closeImagePicker {
+    [self.imagePickerController dismissViewControllerAnimated:NO completion:nil];
+    self.imagePickerController= nil;
+}
 #pragma mark - FEImagePickerVCDelegate
 - (void)switchToCamera {
     self.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self switchSource];
+    [self showImagePicker];
 }
 - (void)switchToPhoto {
     self.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self switchSource];
-}
-- (void)switchSource {
-    // prevent layou broken in case just switch sourceType
-    [self.imagePickerController dismissViewControllerAnimated:NO completion:^{
-        self.imagePickerController = nil;
-        [self.parentVC presentViewController:self.imagePickerController animated:YES completion:nil];
-    }];
+    [self showImagePicker];
 }
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -80,26 +85,24 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    self.imagePickerController.needModify = NO;
+    [self closeImagePicker];
     FEImageEditorVC *imageEditorVC = [[FEImageEditorVC alloc] initWithNibName:@"FEImageEditorVC" bundle:nil];
     imageEditorVC.checkBounds = YES;
     imageEditorVC.sourceImage = info[UIImagePickerControllerOriginalImage];
     [imageEditorVC reset:NO];
+    __weak FEImageEditorVC *weakImageEditorVC = imageEditorVC;
     imageEditorVC.doneCallback = ^(UIImage *editedImage, BOOL canceled){
-        [picker popViewControllerAnimated:YES];
-        [picker setNavigationBarHidden:NO animated:YES];
-        if(!canceled) {
-            if ([self.delegate respondsToSelector:@selector(imagePicker:pickedImage:)]) {
+        [weakImageEditorVC dismissViewControllerAnimated:NO completion:^{
+            if(!canceled) {
                 [self.delegate imagePicker:self pickedImage:editedImage];
+                [self closeImagePicker];
             }
-            [picker dismissViewControllerAnimated:NO completion:nil];
-        }
-        else {
-            self.imagePickerController.needModify = YES;
-        }
+            else {
+                [self showImagePicker];
+            }
+        }];
     };
-    [picker pushViewController:imageEditorVC animated:YES];
-    [picker setNavigationBarHidden:YES animated:NO];
+    [self.parentVC presentViewController:imageEditorVC animated:YES completion:nil];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     // don't know why have to call dismiss whenrealize this function.

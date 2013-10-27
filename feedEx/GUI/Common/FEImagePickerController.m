@@ -14,10 +14,8 @@
 @implementation FEImagePickerController
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if (self.needModify) {
-        if (self.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            [self addPhotoButton];
-        }
+    if (self.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [self addPhotoButton];
     }
 }
 - (void)switchToPhoto {

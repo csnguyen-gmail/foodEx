@@ -15,5 +15,4 @@
 
 @interface FEImagePickerController : UIImagePickerController
 @property (nonatomic, weak) id<FEImagePickerVCDelegate> imagePickerDelegate;
-@property (nonatomic) BOOL needModify;
 @end

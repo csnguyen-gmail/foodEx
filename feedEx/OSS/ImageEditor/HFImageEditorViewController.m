@@ -210,6 +210,8 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
     [self.frameView addGestureRecognizer:self.pinchRecognizer];
     self.tapRecognizer.numberOfTapsRequired = 2;
     [self.frameView addGestureRecognizer:self.tapRecognizer];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 
