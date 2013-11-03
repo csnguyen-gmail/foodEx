@@ -14,6 +14,7 @@
 @implementation FEImagePickerController
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
+    // TODO: this may call multi time incorrectly
     if (self.sourceType == UIImagePickerControllerSourceTypeCamera) {
         [self addPhotoButton];
     }

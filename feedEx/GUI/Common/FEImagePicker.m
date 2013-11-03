@@ -41,7 +41,13 @@
 - (int)sourceType {
     if (_sourceType == -1) {
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        _sourceType = [prefs integerForKey:IMAGE_PICKER_SOURCE_TYPE];
+        id object = [prefs objectForKey:IMAGE_PICKER_SOURCE_TYPE];
+        if (object == nil) {
+            _sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        else {
+            _sourceType = [object intValue];
+        }
     }
     return _sourceType;
 }
@@ -80,13 +86,15 @@
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(switchToCamera)];
+    cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     viewController.navigationItem.leftBarButtonItems = @[cameraButton];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self closeImagePicker];
-    FEImageEditorVC *imageEditorVC = [[FEImageEditorVC alloc] initWithNibName:@"FEImageEditorVC" bundle:nil];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+    FEImageEditorVC *imageEditorVC = [storyBoard instantiateViewControllerWithIdentifier:@"ImageEditorVC"];
     imageEditorVC.checkBounds = YES;
     imageEditorVC.sourceImage = info[UIImagePickerControllerOriginalImage];
     [imageEditorVC reset:NO];
