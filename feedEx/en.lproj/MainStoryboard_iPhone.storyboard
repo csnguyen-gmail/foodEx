@@ -1232,6 +1232,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vpY-ho-MfL">
+                                <rect key="frame" x="120" y="234" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="NVm-q8-7CE">
+                                <rect key="frame" x="142" y="176" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" id="xOv-VM-b89">
                                 <rect key="frame" x="0.0" y="389" width="320" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1312,7 +1321,10 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="filterSelectionView" destination="gPN-6b-5ST" id="0dY-uS-YIa"/>
                         <outlet property="frameView" destination="hSN-KP-eBh" id="DqR-mv-4cW"/>
+                        <outlet property="indicationView" destination="NVm-q8-7CE" id="6jV-Gh-6EG"/>
+                        <outlet property="testImage" destination="vpY-ho-MfL" id="NQe-af-z9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsM-fg-kv5" userLabel="First Responder" sceneMemberID="firstResponder"/>

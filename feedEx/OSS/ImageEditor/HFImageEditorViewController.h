@@ -25,6 +25,7 @@ typedef void(^HFImageEditorDoneCallback)(UIImage *image, BOOL canceled);
 @property(nonatomic,assign) BOOL scaleEnabled;
 @property(nonatomic,assign) BOOL tapToResetEnabled;
 @property(nonatomic,assign) BOOL checkBounds;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @property(nonatomic,readonly) CGRect cropBoundsInSourceImage;
 

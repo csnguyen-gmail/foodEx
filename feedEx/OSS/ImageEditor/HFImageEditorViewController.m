@@ -10,7 +10,6 @@ static const NSTimeInterval kAnimationIntervalReset = 0.25;
 static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
 @interface HFImageEditorViewController ()
-@property (nonatomic, strong) UIImageView *imageView;
 @property (strong, nonatomic) UIPanGestureRecognizer *panRecognizer;
 @property (strong, nonatomic) UIRotationGestureRecognizer *rotationRecognizer;
 @property (strong, nonatomic) UIPinchGestureRecognizer *pinchRecognizer;
@@ -245,7 +244,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
             hiresCGImage = [self newScaledImage:self.sourceImage.CGImage withOrientation:self.sourceImage.imageOrientation toSize:size withQuality:kCGInterpolationDefault];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.imageView.image = [UIImage imageWithCGImage:hiresCGImage scale:1.0 orientation:UIImageOrientationUp];
+                self.imageView.image = [UIImage imageWithCGImage:hiresCGImage scale:[[UIScreen mainScreen] scale] orientation:UIImageOrientationUp];
                 CGImageRelease(hiresCGImage);
             });
         });
@@ -267,7 +266,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
                                                 cropRect:self.cropRect
                                            imageViewSize:self.imageView.bounds.size];
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIImage *transform =  [UIImage imageWithCGImage:resultRef scale:1.0 orientation:UIImageOrientationUp];
+            UIImage *transform =  [UIImage imageWithCGImage:resultRef scale:[[UIScreen mainScreen] scale] orientation:UIImageOrientationUp];
             CGImageRelease(resultRef);
             self.view.userInteractionEnabled = YES;
             if(self.doneCallback) {
@@ -515,7 +514,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 - (UIImage *)scaledImage:(UIImage *)source toSize:(CGSize)size withQuality:(CGInterpolationQuality)quality
 {
     CGImageRef cgImage  = [self newScaledImage:source.CGImage withOrientation:source.imageOrientation toSize:size withQuality:quality];
-    UIImage * result = [UIImage imageWithCGImage:cgImage scale:1.0 orientation:UIImageOrientationUp];
+    UIImage * result = [UIImage imageWithCGImage:cgImage scale:[[UIScreen mainScreen] scale] orientation:UIImageOrientationUp];
     CGImageRelease(cgImage);
     return result;
 }

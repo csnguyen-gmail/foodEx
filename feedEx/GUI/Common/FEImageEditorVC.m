@@ -21,6 +21,9 @@
 @interface FEImageEditorVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) NSMutableArray *filters; // array of FEFilterData
 @property (strong, nonatomic) CIContext *context;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
+@property (weak, nonatomic) IBOutlet UIImageView *testImage;
+@property (weak, nonatomic) IBOutlet UICollectionView *filterSelectionView;
 @end
 
 @implementation FEImageEditorVC
@@ -112,7 +115,7 @@
     [self.filters addObject:filterData];
     
     filter = [CIFilter filterWithName:@"CIHighlightShadowAdjust"];
-    [filter setValue:@(8.0) forKey:@"inputShadowAmount"];
+    [filter setValue:@(0.5) forKey:@"inputShadowAmount"];
     [filter setValue:@(1.0) forKey:@"inputHighlightAmount"];
     filterData = [[FEFilterData alloc] init];
     filterData.image = [UIImage imageNamed:@"CIHighlightShadowAdjustUp"];
@@ -121,8 +124,53 @@
     filterData.name = @"Hi-Sha Inc";
     [self.filters addObject:filterData];
 }
+- (void)selectEffectAtIndex:(NSUInteger)index {
+    FEFilterData *filterData = self.filters[index];
+    // already selected then pass
+    if (filterData.selected) {
+        return;
+    }
+    // reset others selected items
+    for (FEFilterData *filterData in self.filters) {
+        if (filterData.selected) {
+            filterData.selected = NO;
+        }
+    }
+    // selected
+    filterData.selected = YES;
+    [self.filterSelectionView reloadData];
+    // apply effect
+    if (filterData.filter == nil) {
+        self.imageView.image = self.sourceImage;
+    }
+    else {
+        [self renderWithEffect:filterData.filter];
+    }
+}
+- (void)renderWithEffect:(CIFilter*)filter {
+    // TODO: Memory leak here
+    [self.indicationView startAnimating];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        // apply effect
+        CIImage *resultImage = [CIImage imageWithCGImage:[self.sourceImage CGImage]];
+        [filter setValue:resultImage forKey:kCIInputImageKey];
+        resultImage = filter.outputImage;
+        //        CGImageRef cgimg = [self.context createCGImage:resultImage fromRect:[resultImage extent]];
+        //        UIImage *outImage = [UIImage imageWithCGImage:cgimg scale:self.sourceImage.scale orientation:self.sourceImage.imageOrientation];
+        UIImage *outImage = [UIImage imageWithCIImage:resultImage scale:[[UIScreen mainScreen] scale] orientation:self.sourceImage.imageOrientation];
+        //        CGImageRelease(cgimg);
+        // update GUI
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.imageView.image = outImage;
+            [self.indicationView stopAnimating];
+        }];
+    }];
+}
 
+#pragma mark - action hendler
 - (IBAction)resetTapped:(id)sender {
+    [self selectEffectAtIndex:0];
     self.cropRect = CGRectMake((self.frameView.frame.size.width-320)/2.0f, (self.frameView.frame.size.height-320)/2.0f, 320, 320);
     [self reset:YES];
 }
@@ -148,15 +196,6 @@
 }
 #pragma mark - Collection view delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    FEFilterData *filterData;
-    for (filterData in self.filters) {
-        if (filterData.selected) {
-            filterData.selected = NO;
-        }
-    }
-    filterData = self.filters[indexPath.row];
-    filterData.selected = YES;
-    [collectionView reloadData];
+    [self selectEffectAtIndex:indexPath.row];
 }
-
 @end
