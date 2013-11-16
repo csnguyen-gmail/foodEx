@@ -53,9 +53,9 @@
     UIImage *newImage = nil;
     
     CGRect thumbnailRect = CGRectZero;
-    thumbnailRect.origin = CGPointMake(-self.contentOffset.x*2, -self.contentOffset.y*2);
-    thumbnailRect.size.width  = sourceImage.size.width * self.zoomScale*2;
-    thumbnailRect.size.height = sourceImage.size.height * self.zoomScale*2;
+    thumbnailRect.origin = CGPointMake(-self.contentOffset.x, -self.contentOffset.y);
+    thumbnailRect.size.width  = sourceImage.size.width * self.zoomScale;
+    thumbnailRect.size.height = sourceImage.size.height * self.zoomScale;
     
     [UIImage beginImageContextWithSize:NORMAL_SIZE opaque:YES];
     [sourceImage drawInRect:thumbnailRect];
