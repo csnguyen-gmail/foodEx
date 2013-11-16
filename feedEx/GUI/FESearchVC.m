@@ -22,7 +22,7 @@
 #import "User+Extension.h"
 
 #define ALERT_DELETE_CONFIRM 0
-@interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, FEFoodGridTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, FEFoodGridTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) FESearchSettingInfo *searchSettingInfo;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dispTypeSC;
 @property (strong, nonatomic) UIBarButtonItem *editBtn;
@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIView *foodGridView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (nonatomic) BOOL isGUISetup;
+@property (weak, nonatomic) IBOutlet UIToolbar *quickSearchBar;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @end
 
 @implementation FESearchVC
@@ -92,12 +94,10 @@
         self.toolBar.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
     }
 }
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    if (self.isEditMode) {
-//        [self setIsEditMode:NO];
-//    }
-//}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.searchTextField resignFirstResponder];
+}
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     [self refetchData];
@@ -143,12 +143,45 @@
     }
     self.dispTypeSC.selectedSegmentIndex = type;
 }
+- (void)showQuickSearchBar {
+    if (self.quickSearchBar.frame.origin.y == 0) {
+        return;
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        // pull search bar down
+        CGRect rect = self.quickSearchBar.frame;
+        rect.origin.y = 0;
+        self.quickSearchBar.frame = rect;
+        // reduce content view;
+        rect = self.mainView.frame;
+        rect.origin.y += 44;
+        self.mainView.frame = rect;
+        // set focus
+        [self.searchTextField becomeFirstResponder];
+    }];
+}
+- (void)hideQuickSearchBar {
+    [UIView animateWithDuration:0.2 animations:^{
+        // pull search bar down
+        CGRect rect = self.quickSearchBar.frame;
+        rect.origin.y = -44;
+        self.quickSearchBar.frame = rect;
+        // reduce content view;
+        rect = self.mainView.frame;
+        rect.origin.y -= 44;
+        self.mainView.frame = rect;
+    }];
+}
 #pragma mark - action handler
 - (IBAction)showTypeChange:(UISegmentedControl *)sender {
     self.displayType = sender.selectedSegmentIndex;
     [self switchDisplayFollowType:sender.selectedSegmentIndex withAnimation:YES];
+    [self.searchTextField resignFirstResponder];
 }
 - (void)searchAction:(UIBarButtonItem *)sender {
+    [self showQuickSearchBar];
+}
+- (IBAction)advanceSearchAction:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"searchSettingVC" sender:self];
 }
 - (void)editAction:(UIBarButtonItem *)sender {
@@ -190,6 +223,21 @@
     alertView.tag = ALERT_DELETE_CONFIRM;
     [alertView show];
 }
+#pragma mark - text field delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate stopObservingFirstResponder];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate startObservingFirstResponder];
+    [self hideQuickSearchBar];
+}
+#pragma mark - setter getter
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
     [UIView animateWithDuration:YES ? 0.2f :0.0f
