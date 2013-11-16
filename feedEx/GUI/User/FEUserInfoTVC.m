@@ -29,7 +29,7 @@
 }
 
 - (IBAction)imageTapped:(id)sender {
-    [self.imagePicker startPickerFrom:self];
+    [self.imagePicker startPickupWithParentViewController:self];
 }
 #pragma mark - FEImagePickerDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -41,17 +41,13 @@
     return YES;
 }
 #pragma mark - FEImagePickerDelegate
-- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
-    self.imageChanged = YES;
-    self.originImage = [UIImage imageWithImage:image scaledToSize:NORMAL_SIZE];
-    self.thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
-    [self.imageBtn setImage:self.originImage forState:UIControlStateNormal];
-    // release image picker
-    self.imagePicker = nil;
-}
-- (void)imagePickerCancel {
-    // release image picker
-    self.imagePicker = nil;
+- (void)imagePickerDidFinishWithImage:(UIImage *)image {
+    if (image) {
+        self.imageChanged = YES;
+        self.originImage = image;
+        self.thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
+        [self.imageBtn setImage:self.originImage forState:UIControlStateNormal];
+    }
     
 }
 @end

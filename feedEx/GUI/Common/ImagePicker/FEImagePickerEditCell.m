@@ -1,15 +1,15 @@
 //
-//  FEImageEditorCell.m
-//  feedEx
+//  FEImagePickerEditCell.m
+//  NewImagePicker
 //
-//  Created by csnguyen on 11/3/13.
+//  Created by csnguyen on 11/14/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEImageEditorCell.h"
+#import "FEImagePickerEditCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation FEImageEditorCell
+@implementation FEImagePickerEditCell
 - (void)awakeFromNib {
     self.effectImageView.layer.cornerRadius = 10.0;
     self.effectImageView.layer.masksToBounds = YES;
@@ -17,6 +17,5 @@
 }
 - (void)setSelectedStyle:(BOOL)selected {
     self.effectImageView.layer.borderWidth = selected ? 2.0 : 0.0;
-    self.selectedImageView.hidden = !selected;
 }
 @end

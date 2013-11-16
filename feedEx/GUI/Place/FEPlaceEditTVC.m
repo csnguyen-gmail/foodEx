@@ -128,7 +128,7 @@
         [self exitEditMode];
     }
     else {
-        [self.imagePicker startPickerFrom:self];
+        [self.imagePicker startPickupWithParentViewController:self];
     }
 }
 - (void)setupPhotoScrollViewWithArrayOfThumbnailImages:(NSArray *)thumbnailImages {
@@ -154,22 +154,15 @@
     }
     return _imagePicker;
 }
-- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
-    UIImage *originImage = [UIImage imageWithImage:image
-                                      scaledToSize:NORMAL_SIZE];
-    UIImage *thumbnailImage = [UIImage imageWithImage:image
-                                         scaledToSize:THUMBNAIL_SIZE];
-    FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
-                                                           deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
-    [self.photoScrollView addView:wiggleView atIndex:0 withAnimation:YES];
-    [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
-    // release image picker
-    self.imagePicker = nil;
-}
-- (void)imagePickerCancel {
-    // release image picker
-    self.imagePicker = nil;
-    
+- (void)imagePickerDidFinishWithImage:(UIImage *)image {
+    if (image) {
+        UIImage *thumbnailImage = [UIImage imageWithImage:image
+                                             scaledToSize:THUMBNAIL_SIZE];
+        FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
+                                                               deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
+        [self.photoScrollView addView:wiggleView atIndex:0 withAnimation:YES];
+        [self.editPlaceTVCDelegate addNewThumbnailImage:thumbnailImage andOriginImage:image];
+    }
 }
 # pragma mark - UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView{

@@ -90,7 +90,7 @@
     if (self.photoButton.selected) {
         [self exitEditMode];
     } else {
-        [self.imagePicker startPickerFrom:self];
+        [self.imagePicker startPickupWithParentViewController:self];
     }
 }
 - (IBAction)isBestButtonTapped:(UIButton *)sender {
@@ -110,19 +110,12 @@
     }
     return _imagePicker;
 }
-- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
-    UIImage *originImage = [UIImage imageWithImage:image
-                                      scaledToSize:NORMAL_SIZE];
-    UIImage *thumbnailImage = [UIImage imageWithImage:image
-                                         scaledToSize:THUMBNAIL_SIZE];
-    [self addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
-    // release image picker
-    self.imagePicker = nil;
-}
-- (void)imagePickerCancel {
-    // release image picker
-    self.imagePicker = nil;
-    
+- (void)imagePickerDidFinishWithImage:(UIImage *)image {
+    if (image) {
+        UIImage *thumbnailImage = [UIImage imageWithImage:image
+                                             scaledToSize:THUMBNAIL_SIZE];
+        [self addNewThumbnailImage:thumbnailImage andOriginImage:image];
+    }
 }
 
 #pragma mark - FEDynamicScrollViewDelegate

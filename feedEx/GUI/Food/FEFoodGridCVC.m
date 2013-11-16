@@ -128,7 +128,7 @@
             Food *food = self.foods[indexPath.row];
             // compress image
             for (Photo *photo in food.photos) {
-                UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData scale:[[UIScreen mainScreen] scale]];
+                UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData];
                 UIImage *resizeImage = [UIImage imageWithImage:originalImage scaledToSize:size];
                 [compressedPhotos addObject:resizeImage];
             }

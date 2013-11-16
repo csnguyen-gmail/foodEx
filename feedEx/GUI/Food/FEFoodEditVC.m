@@ -133,7 +133,7 @@
 }
 - (void)selectImageAtCell:(FEFoodEditListCell *)cell {
     self.currentCell = cell;
-    [self.imagePicker startPickerFrom:self];
+    [self.imagePicker startPickupWithParentViewController:self];
 }
 - (void)cellDidBeginEditing:(UITableViewCell *)cell {
     self.activeCellView = cell;
@@ -149,19 +149,12 @@
     }
     return _imagePicker;
 }
-- (void)imagePicker:(FEImagePicker *)imagePicker pickedImage:(UIImage *)image{
-    UIImage *originImage = [UIImage imageWithImage:image
-                                      scaledToSize:NORMAL_SIZE];
-    UIImage *thumbnailImage = [UIImage imageWithImage:image
-                                         scaledToSize:THUMBNAIL_SIZE];
-    [self.currentCell addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
-    // release image picker
-    self.imagePicker = nil;
-}
-- (void)imagePickerCancel {
-    // release image picker
-    self.imagePicker = nil;
-
+- (void)imagePickerDidFinishWithImage:(UIImage *)image {
+    if (image) {
+        UIImage *thumbnailImage = [UIImage imageWithImage:image
+                                             scaledToSize:THUMBNAIL_SIZE];
+        [self.currentCell addNewThumbnailImage:thumbnailImage andOriginImage:image];
+    }
 }
 
 #pragma mark - Table view data source

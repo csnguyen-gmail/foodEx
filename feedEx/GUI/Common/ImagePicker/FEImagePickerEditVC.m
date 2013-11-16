@@ -1,14 +1,14 @@
 //
-//  FEImageEditorVC.m
-//  feedEx
+//  FEImagePickerEditVC.m
+//  NewImagePicker
 //
-//  Created by csnguyen on 10/26/13.
+//  Created by csnguyen on 11/13/13.
 //  Copyright (c) 2013 csnguyen. All rights reserved.
 //
 
-#import "FEImageEditorVC.h"
-#import "HFImageEditorViewController+Private.h"
-#import "FEImageEditorCell.h"
+#import "FEImagePickerEditVC.h"
+#import "FEImagePickerEditCell.h"
+
 @interface FEFilterData : NSObject
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) CIFilter *filter;
@@ -18,19 +18,25 @@
 @implementation FEFilterData
 @end
 
-@interface FEImageEditorVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
+
+@interface FEImagePickerEditVC ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
+@property (weak, nonatomic) IBOutlet UICollectionView *filterSelectionView;
 @property (strong, nonatomic) NSMutableArray *filters; // array of FEFilterData
 @property (strong, nonatomic) CIContext *context;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
-@property (weak, nonatomic) IBOutlet UIImageView *testImage;
-@property (weak, nonatomic) IBOutlet UICollectionView *filterSelectionView;
 @end
 
-@implementation FEImageEditorVC
+@implementation FEImagePickerEditVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.imageView.image = self.image;
+    [self loadFilter];
+}
+
+- (void)loadFilter {
     self.context = [CIContext contextWithOptions:nil];
     self.filters = [NSMutableArray array];
     
@@ -82,7 +88,7 @@
     filterData.filter = filter;
     filterData.name = @"Vignette";
     [self.filters addObject:filterData];
-
+    
     filter = [CIFilter filterWithName:@"CITemperatureAndTint"];
     [filter setValue:[CIVector vectorWithX:15000 Y:0] forKey:@"inputNeutral"];
     [filter setValue:[CIVector vectorWithX:6500 Y:0] forKey:@"inputTargetNeutral"];
@@ -141,40 +147,46 @@
     [self.filterSelectionView reloadData];
     // apply effect
     if (filterData.filter == nil) {
-        self.imageView.image = self.sourceImage;
+        self.imageView.image = self.image;
     }
     else {
         [self renderWithEffect:filterData.filter];
     }
 }
 - (void)renderWithEffect:(CIFilter*)filter {
-    // TODO: Memory leak here
     [self.indicationView startAnimating];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
         // apply effect
-        CIImage *resultImage = [CIImage imageWithCGImage:[self.sourceImage CGImage]];
+        CIImage *resultImage = [CIImage imageWithCGImage:[self.image CGImage]];
         [filter setValue:resultImage forKey:kCIInputImageKey];
         resultImage = filter.outputImage;
-        //        CGImageRef cgimg = [self.context createCGImage:resultImage fromRect:[resultImage extent]];
-        //        UIImage *outImage = [UIImage imageWithCGImage:cgimg scale:self.sourceImage.scale orientation:self.sourceImage.imageOrientation];
-        UIImage *outImage = [UIImage imageWithCIImage:resultImage scale:[[UIScreen mainScreen] scale] orientation:self.sourceImage.imageOrientation];
-        //        CGImageRelease(cgimg);
-        // update GUI
+        UIImage *outImage = [UIImage imageWithCIImage:resultImage];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             self.imageView.image = outImage;
             [self.indicationView stopAnimating];
         }];
     }];
 }
-
-#pragma mark - action hendler
-- (IBAction)resetTapped:(id)sender {
-    [self selectEffectAtIndex:0];
-    self.cropRect = CGRectMake((self.frameView.frame.size.width-320)/2.0f, (self.frameView.frame.size.height-320)/2.0f, 320, 320);
-    [self reset:YES];
+#pragma mark - Rotation controller
+-(BOOL)shouldAutorotate {
+    return NO;
 }
 
+- (NSUInteger)supportedInterfaceOrientation{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Event handler
+- (IBAction)deleteTapped:(UIBarButtonItem *)sender {
+    [self.delegate imagePickerEdit:self didFinishWithImage:nil];
+}
+- (IBAction)selectTapped:(UIBarButtonItem *)sender {
+    [self.delegate imagePickerEdit:self didFinishWithImage:self.imageView.image];
+}
+- (IBAction)retakeTapped:(UIBarButtonItem *)sender {
+    [self.delegate imagePickerEditRetake:self];
+}
 #pragma mark - Collection view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -185,7 +197,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"effectCell";
-    FEImageEditorCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    FEImagePickerEditCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     FEFilterData *filterData = self.filters[indexPath.row];
     cell.effectImageView.image = filterData.image;
@@ -198,4 +210,5 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self selectEffectAtIndex:indexPath.row];
 }
+
 @end
