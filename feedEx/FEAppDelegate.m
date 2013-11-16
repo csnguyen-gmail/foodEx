@@ -10,6 +10,7 @@
 #import "FETrackingKeyboardWindow.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "FETabBarController.h"
+//#import "FEDebug.h"Ç
 @interface FEAppDelegate()
 @end
 
@@ -31,6 +32,8 @@
     [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
+    
+//    [FEDebug printOutImageSize];
     return YES;
 }
 // tracking Text field/view change

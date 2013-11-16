@@ -11,6 +11,9 @@
 #import "Place.h"
 #import "User.h"
 #import "Tag.h"
+#import "Photo.h"
+#import "ThumbnailPhoto.h"
+#import "OriginPhoto.h"
 
 @implementation FEDebug
 + (void)printOutDbContent {
@@ -37,6 +40,28 @@
     for (Place *place in _places) {
         NSLog(@"  %@ - email:%@ name:%@  - %@", place.name, place.owner.email, place.owner.name, [place.owner.tags[0] label]);
     }
+}
++ (void)printOutImageSize {
+    FECoreDataController *coredata = [FECoreDataController sharedInstance];
+    NSError *error = nil;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:coredata.managedObjectContext];
+    NSArray *photos = [coredata.managedObjectContext executeFetchRequest:request error:&error];
+    NSUInteger total = 0;
+    NSUInteger count = 0;
+    for (Photo *photo in photos) {
+        ThumbnailPhoto *thumb = photo.thumbnailPhoto;
+        OriginPhoto *origin = photo.originPhoto;
+        UIImage *thumbImage = (UIImage*)thumb.image;
+        UIImage *originImage = [UIImage imageWithData:origin.imageData scale:[[UIScreen mainScreen] scale]];
+        NSUInteger thumbSize = [UIImagePNGRepresentation(thumbImage) length];
+        NSUInteger originSize = [origin.imageData length];
+        NSLog(@"thumb: %@ %f %i, origin: %@, %f %i", NSStringFromCGSize(thumbImage.size), thumbImage.scale, thumbSize, NSStringFromCGSize(originImage.size), originImage.scale, originSize);
+        total += thumbSize;
+        total += originSize;
+        count += 2;
+    }
+    NSLog(@"Count: %d Total: %.2f", count, (float)total/1024.0f/1024.0f);
 }
 
 @end

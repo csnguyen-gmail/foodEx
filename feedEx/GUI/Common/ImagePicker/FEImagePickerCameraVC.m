@@ -13,7 +13,6 @@
 #import "FEImagePickerGridView.h"
 #import "FEImagePickerFocusView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "Common.h"
 
 @interface FEImagePickerCameraVC ()<FEImagePickerGridViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *previewView;
@@ -122,7 +121,7 @@
         [self.session stopRunning];
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
-        image = [UIImage imageWithImage:image resizeAndCropAutoFitCenterForSize:NORMAL_SIZE];
+        image = [UIImage imageWithImage:image resizeAndCropAutoFitCenterForSize:CGSizeMake(320.0, 320.0)];
         [self.delegate imagePickerCamera:self didFinishWithImage:image];
      }];
 

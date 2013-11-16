@@ -44,7 +44,7 @@
 - (void)imagePickerDidFinishWithImage:(UIImage *)image {
     if (image) {
         self.imageChanged = YES;
-        self.originImage = image;
+        self.originImage = [UIImage imageWithImage:image scaledToSize:NORMAL_SIZE];
         self.thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
         [self.imageBtn setImage:self.originImage forState:UIControlStateNormal];
     }

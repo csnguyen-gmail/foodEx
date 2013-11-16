@@ -10,4 +10,5 @@
 
 @interface FEDebug : NSObject
 + (void)printOutDbContent;
++ (void)printOutImageSize;
 @end

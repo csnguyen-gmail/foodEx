@@ -7,7 +7,6 @@
 //
 
 #import "FEImagePickerScrollView.h"
-#import "Common.h"
 @interface FEImagePickerScrollView()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIImageView *zoomExView;  // contains the full image
 @property CGSize imageSize;
@@ -57,7 +56,7 @@
     thumbnailRect.size.width  = sourceImage.size.width * self.zoomScale;
     thumbnailRect.size.height = sourceImage.size.height * self.zoomScale;
     
-    [UIImage beginImageContextWithSize:NORMAL_SIZE opaque:YES];
+    [UIImage beginImageContextWithSize:CGSizeMake(320.0, 320.0) opaque:YES];
     [sourceImage drawInRect:thumbnailRect];
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     if(newImage == nil) {

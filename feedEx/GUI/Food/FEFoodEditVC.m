@@ -151,9 +151,9 @@
 }
 - (void)imagePickerDidFinishWithImage:(UIImage *)image {
     if (image) {
-        UIImage *thumbnailImage = [UIImage imageWithImage:image
-                                             scaledToSize:THUMBNAIL_SIZE];
-        [self.currentCell addNewThumbnailImage:thumbnailImage andOriginImage:image];
+        UIImage *originImage = [UIImage imageWithImage:image scaledToSize:NORMAL_SIZE];
+        UIImage *thumbnailImage = [UIImage imageWithImage:image scaledToSize:THUMBNAIL_SIZE];
+        [self.currentCell addNewThumbnailImage:thumbnailImage andOriginImage:originImage];
     }
 }
 
