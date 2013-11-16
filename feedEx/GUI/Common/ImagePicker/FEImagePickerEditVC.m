@@ -161,7 +161,9 @@
         CIImage *resultImage = [CIImage imageWithCGImage:[self.image CGImage]];
         [filter setValue:resultImage forKey:kCIInputImageKey];
         resultImage = filter.outputImage;
-        UIImage *outImage = [UIImage imageWithCIImage:resultImage];
+        UIImage *outImage = [UIImage imageWithCIImage:resultImage
+                                                scale:[[UIScreen mainScreen] scale]
+                                          orientation:self.image.imageOrientation];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             self.imageView.image = outImage;
             [self.indicationView stopAnimating];
