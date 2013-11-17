@@ -13,10 +13,11 @@
 #import "FEPlaceDetailFoodCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FEFlipPlaceView.h"
+#import "FEPlaceDetailMainFoodCV.h"
 
-@interface FEPlaceDetailTVC()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface FEPlaceDetailTVC()<UICollectionViewDataSource, UICollectionViewDelegate, FEPlaceDetailMainFoodCVDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
-@property (weak, nonatomic) IBOutlet UICollectionView *foodCollectionView;
+@property (weak, nonatomic) IBOutlet FEPlaceDetailMainFoodCV *foodCollectionView;
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet FEFlipPlaceView *flipPlaceView;
 @end
@@ -33,6 +34,8 @@
     self.noteTextView.layer.cornerRadius = 10;
     self.noteTextView.layer.borderWidth = 1;
     self.noteTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+    self.foodCollectionView.touchDelegate = self;
 }
 - (void)setPlace:(Place *)place {
     _place = place;
@@ -72,7 +75,13 @@
 - (void)updateCell:(FEPlaceDetailFoodCell*)cell withFood:(Food*)food atIndexPath:(NSIndexPath*)indexPath {
     cell.food = food;
 }
-
+#pragma mark - FEPlaceDetailMainFoodCVDelegate
+- (void)touchBegin {
+    self.tableView.scrollEnabled = NO;
+}
+- (void)touchEnd {
+    self.tableView.scrollEnabled = YES;
+}
 #pragma mark - Collection view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
