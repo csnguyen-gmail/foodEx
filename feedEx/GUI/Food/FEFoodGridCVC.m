@@ -20,6 +20,7 @@
 @property (nonatomic) NSUInteger selectedDetailIndex;
 @property (nonatomic, strong) NSMutableArray *selectedStatusList;
 @property (strong, nonatomic) NSArray *foods; // array of Foods
+@property (strong, nonatomic) NSArray *foodsForDisplay; // array of displayed Foods
 @property (strong, nonatomic) NSMutableArray *readyToPhotosList; // array of array of Photo
 @property (strong, nonatomic) NSMutableDictionary *beingCompressedPhotosList; // dictionary of array of Photo
 @end
@@ -31,7 +32,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        Food *food = self.foods[self.selectedDetailIndex];
+        Food *food = self.foodsForDisplay[self.selectedDetailIndex];
         placeDetailVC.place = food.owner;
     }
     else if ([[segue identifier] isEqualToString:@"foodSingleEdit"]) {
@@ -40,7 +41,7 @@
 
         customSegue.sourceVC = self.parentViewController;
         FEFoodSingleEditVC *foodSingleEditlVC = [segue destinationViewController];
-        Food *food = self.foods[self.selectedDetailIndex];
+        Food *food = self.foodsForDisplay[self.selectedDetailIndex];
         foodSingleEditlVC.food = food;
     }
 }
@@ -48,31 +49,45 @@
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting {
     // get data
     self.foods = [Food foodsFromFoodSettingInfo:foodSetting];
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.foods.count];
-    self.selectedStatusList = [NSMutableArray arrayWithCapacity:self.foods.count];
-    for (int i = 0; i< self.foods.count; i++) {
-        [self.imageIndexes addObject:@(0)];
-        [self.selectedStatusList addObject:@(NO)];
-    }
-    // reset readyPhotosList & beingCompressedPhotosList
-    self.readyToPhotosList = [NSMutableArray arrayWithCapacity:self.foods.count];
-    for (int i = 0; i < self.foods.count; i++) {
-        self.readyToPhotosList[i] = [NSMutableArray array];
-    }
-    self.beingCompressedPhotosList = [NSMutableDictionary dictionaryWithCapacity:self.foods.count];
-    // update GUI
-    [self.collectionView reloadData];
+    self.quickSearchString = nil;
 }
 - (NSArray *)getSelectedFoods {
     NSMutableArray *foods = [NSMutableArray array];
     for (int i = 0; i < self.selectedStatusList.count; i++) {
         if ([self.selectedStatusList[i] boolValue]) {
-            [foods addObject:self.foods[i]];
+            [foods addObject:self.foodsForDisplay[i]];
         }
     }
     return foods;
 }
 #pragma mark - setter getter
+- (void)setQuickSearchString:(NSString *)quickSearchString {
+    _quickSearchString = quickSearchString;
+    // filtering
+    if (quickSearchString.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", quickSearchString];
+        self.foodsForDisplay = [self.foods filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        self.foodsForDisplay = self.foods;
+    }
+    // reset
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.foodsForDisplay.count];
+    self.selectedStatusList = [NSMutableArray arrayWithCapacity:self.foodsForDisplay.count];
+    for (int i = 0; i< self.foodsForDisplay.count; i++) {
+        [self.imageIndexes addObject:@(0)];
+        [self.selectedStatusList addObject:@(NO)];
+    }
+    // reset readyPhotosList & beingCompressedPhotosList
+    self.readyToPhotosList = [NSMutableArray arrayWithCapacity:self.foodsForDisplay.count];
+    for (int i = 0; i < self.foodsForDisplay.count; i++) {
+        self.readyToPhotosList[i] = [NSMutableArray array];
+    }
+    self.beingCompressedPhotosList = [NSMutableDictionary dictionaryWithCapacity:self.foodsForDisplay.count];
+    // update GUI
+    // TODO: animation
+    [self.collectionView reloadData];
+}
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
     if (isEditMode) {
@@ -88,12 +103,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.foods.count;
+    return self.foodsForDisplay.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"foodCell";
     
-    Food *food = self.foods[indexPath.row];
+    Food *food = self.foodsForDisplay[indexPath.row];
     FEFoodGridCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.flipFoodGridView.delegate = self;
     cell.flipFoodGridView.cellIndex = indexPath.row;
@@ -125,7 +140,8 @@
         self.beingCompressedPhotosList[indexPath] = @(YES);
         NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
         [operationQueue addOperationWithBlock:^{
-            Food *food = self.foods[indexPath.row];
+            // TODO: CRASH
+            Food *food = self.foodsForDisplay[indexPath.row];
             // compress image
             for (Photo *photo in food.photos) {
                 UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData];

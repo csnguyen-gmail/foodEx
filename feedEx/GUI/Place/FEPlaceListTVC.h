@@ -17,7 +17,9 @@
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (strong, nonatomic) NSArray *places; // array of Places
+@property (strong, nonatomic) NSArray *placesForDisplay; // array of displayed Places
 @property (weak, nonatomic) id<FEPlaceListTVCDelegate> placeListDelegate;
+@property (strong, nonatomic) NSString *quickSearchString;
 
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
 - (NSArray*)getSelectedPlaces;

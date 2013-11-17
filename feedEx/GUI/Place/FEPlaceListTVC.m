@@ -34,31 +34,45 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
-        placeDetailVC.place = self.places[self.selectedRow];
+        placeDetailVC.place = self.placesForDisplay[self.selectedRow];
     }
     else if ([[segue identifier] isEqualToString:@"placeDetailEdit"]) {
         UINavigationController *navigation = [segue destinationViewController];
         FEPlaceEditMainVC *editPlaceInfoMainVC = navigation.viewControllers[0];
-        editPlaceInfoMainVC.placeInfo = self.places[self.selectedRow];
+        editPlaceInfoMainVC.placeInfo = self.placesForDisplay[self.selectedRow];
     }
 }
 - (NSArray *)getSelectedPlaces {
     NSMutableArray *selectedPlaces = [NSMutableArray array];
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     for (NSIndexPath *index in selectedRows) {
-        [selectedPlaces addObject:self.places[index.row]];
+        [selectedPlaces addObject:self.placesForDisplay[index.row]];
     }    return selectedPlaces;
 
 }
-#pragma mark - getter setter
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
     self.places = [Place placesFromPlaceSettingInfo:placeSetting];
-    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.places.count];
-    for (int i = 0; i< self.places.count; i++) {
+    self.quickSearchString = nil;
+}
+#pragma mark - getter setter
+- (void)setQuickSearchString:(NSString *)quickSearchString {
+    _quickSearchString = quickSearchString;
+    // filtering
+    if (quickSearchString.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", quickSearchString];
+        self.placesForDisplay = [self.places filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        self.placesForDisplay = self.places;
+    }
+    // reset image indexes
+    self.imageIndexes = [NSMutableArray arrayWithCapacity:self.placesForDisplay.count];
+    for (int i = 0; i< self.placesForDisplay.count; i++) {
         [self.imageIndexes addObject:@(0)];
     }
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
 - (UIView *)selectedBackgroundView {
     if (_selectedBackgroundView == nil) {
         _selectedBackgroundView = [[UIView alloc] init];
@@ -75,7 +89,7 @@
     // refesh distance
     CLLocationCoordinate2D location2d = {currentLocation.coordinate.latitude, currentLocation.coordinate.longitude};
     NSMutableArray *destLocations = [NSMutableArray array];
-    for (Place *place in self.places) {
+    for (Place *place in self.placesForDisplay) {
         CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
         [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
     }
@@ -85,7 +99,7 @@
                 NSDictionary *distanceInfo = distances[i];
                 NSString *distanceStr = distanceInfo[@"distance"];
                 NSString *durationStr = distanceInfo[@"duration"];
-                Place *place = self.places[i];
+                Place *place = self.placesForDisplay[i];
                 place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
             }
             [self.tableView reloadData];
@@ -103,7 +117,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.places.count;
+    return self.placesForDisplay.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,7 +132,7 @@
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
 //    cell.informationBtn.enabled = !self.isEditMode;
-    Place *place = self.places[index];
+    Place *place = self.placesForDisplay[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;

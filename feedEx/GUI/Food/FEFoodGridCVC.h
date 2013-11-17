@@ -17,5 +17,6 @@
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic, weak) id<FEFoodGridTVCDelegate> foodGridDelegate;
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting;
+@property (strong, nonatomic) NSString *quickSearchString;
 - (NSArray*)getSelectedFoods;
 @end

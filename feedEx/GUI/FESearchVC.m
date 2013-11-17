@@ -147,6 +147,13 @@
     if (self.quickSearchBar.frame.origin.y == 0) {
         return;
     }
+    // set current searching text
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+        self.searchTextField.text = self.placeListTVC.quickSearchString;
+    }
+    else {
+        self.searchTextField.text = self.foodGridCVC.quickSearchString;
+    }
     [UIView animateWithDuration:0.2 animations:^{
         // pull search bar down
         CGRect rect = self.quickSearchBar.frame;
@@ -230,6 +237,17 @@
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    return YES;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *searchString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+        self.placeListTVC.quickSearchString = searchString;
+    }
+    else {
+        self.foodGridCVC.quickSearchString = searchString;
+    }
+    // TODO: process for clear all event
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
