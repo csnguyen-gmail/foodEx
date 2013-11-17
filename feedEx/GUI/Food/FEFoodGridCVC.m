@@ -159,6 +159,7 @@
                 [compressedPhotos addObject:resizeImage];
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                // TODO: this is not good, should wait Main queue finish
                 if (indexPath.row >= weakSelf.imageIndexes.count) {
                     return;
                 }
