@@ -1145,6 +1145,33 @@
             </objects>
             <point key="canvasLocation" x="-9810" y="-475"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="b3b-ws-6zh">
+            <objects>
+                <viewController id="mDN-y3-evD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1vN-H2-rV8">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon.png" id="TxD-fA-zxh">
+                                <rect key="frame" x="132" y="219" width="57" height="57"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="foodEx - Food Experience!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vdh-cS-Cbb">
+                                <rect key="frame" x="18" y="284" width="285" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejf-sR-nzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13112" y="1801"/>
+        </scene>
         <!--FriendsVC - Friends-->
         <scene sceneID="BHQ-rT-NaT">
             <objects>
@@ -2281,6 +2308,7 @@
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
         <image name="home.png" width="30" height="30"/>
+        <image name="icon.png" width="57" height="57"/>
         <image name="map.png" width="26" height="21"/>
         <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
