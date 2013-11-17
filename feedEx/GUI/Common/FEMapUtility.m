@@ -26,26 +26,33 @@
                                    handle(nil);
                                    return;
                                }
-                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
-                                                                                      error:nil];
-                               NSArray *routes = json[@"routes"];
-                               if (routes.count == 0) {
-                                   handle(nil);
-                                   return;
-                               }
-                               NSArray *legs = routes[0][@"legs"];
-                               NSArray *steps = legs[0][@"steps"];
                                NSMutableArray *locations = [NSMutableArray array];
-                               for (NSDictionary *step in steps) {
-                                   NSDictionary *startLocation = step[@"start_location"];
-                                   double lat = [startLocation[@"lat"] doubleValue];
-                                   double lng = [startLocation[@"lng"] doubleValue];
-                                   CLLocationCoordinate2D location = {lat, lng};
-                                   [locations addObject:[NSValue valueWithBytes:&location objCType:@encode(CLLocationCoordinate2D)]];
+                               @try {
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
+                                                                                          error:nil];
+                                   NSArray *routes = json[@"routes"];
+                                   if (routes.count == 0) {
+                                       handle(nil);
+                                       return;
+                                   }
+                                   NSArray *legs = routes[0][@"legs"];
+                                   NSArray *steps = legs[0][@"steps"];
+                                   for (NSDictionary *step in steps) {
+                                       NSDictionary *startLocation = step[@"start_location"];
+                                       double lat = [startLocation[@"lat"] doubleValue];
+                                       double lng = [startLocation[@"lng"] doubleValue];
+                                       CLLocationCoordinate2D location = {lat, lng};
+                                       [locations addObject:[NSValue valueWithBytes:&location objCType:@encode(CLLocationCoordinate2D)]];
+                                   }
+                                   [locations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
                                }
-                               [locations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
-                               handle(locations);
+                               @catch (NSException *exception) {
+                                   NSLog(@"Get Direction failed.");
+                               }
+                               @finally {
+                                   handle(locations);
+                               }
                            }];
 }
 
@@ -76,22 +83,29 @@
                                    handle(nil);
                                    return;
                                }
-                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
-                                                                                      error:nil];
-                               NSArray *rows = json[@"rows"];
-                               NSArray *elements = rows[0][@"elements"];
                                NSMutableArray *distances = [NSMutableArray array];
-                               for (NSDictionary *element in elements) {
-                                   NSDictionary *distance = element[@"distance"];
-                                   NSDictionary *duration = element[@"duration"];
-                                   if (distance == nil || duration == nil) {
-                                       continue;
+                               @try {
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves
+                                                                                          error:nil];
+                                   NSArray *rows = json[@"rows"];
+                                   NSArray *elements = rows[0][@"elements"];
+                                   for (NSDictionary *element in elements) {
+                                       NSDictionary *distance = element[@"distance"];
+                                       NSDictionary *duration = element[@"duration"];
+                                       if (distance == nil || duration == nil) {
+                                           continue;
+                                       }
+                                       NSDictionary *info = @{@"distance":distance[@"text"], @"duration":duration[@"text"]};
+                                       [distances addObject:info];
                                    }
-                                   NSDictionary *info = @{@"distance":distance[@"text"], @"duration":duration[@"text"]};
-                                   [distances addObject:info];
                                }
-                               handle(distances);
+                               @catch (NSException *exception) {
+                                   NSLog(@"Get Distance failed.");
+                               }
+                               @finally {
+                                   handle(distances);
+                               }
                            }];
 }
 

@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *foodsForDisplay; // array of displayed Foods
 @property (strong, nonatomic) NSMutableArray *readyToPhotosList; // array of array of Photo
 @property (strong, nonatomic) NSMutableDictionary *beingCompressedPhotosList; // dictionary of array of Photo
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
 @end
 @implementation FEFoodGridCVC
 - (void)viewDidLoad {
@@ -63,6 +64,9 @@
 #pragma mark - setter getter
 - (void)setQuickSearchString:(NSString *)quickSearchString {
     _quickSearchString = quickSearchString;
+    // cancel all remain task
+    [self.operationQueue cancelAllOperations];
+    [self.operationQueue waitUntilAllOperationsAreFinished];
     // filtering
     if (quickSearchString.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", quickSearchString];
@@ -97,6 +101,12 @@
         }
     }
     [self.collectionView reloadData];
+}
+- (NSOperationQueue *)operationQueue {
+    if (_operationQueue == nil) {
+        _operationQueue = [[NSOperationQueue alloc] init];
+    }
+    return _operationQueue;
 }
 #pragma mark - Collection view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -139,10 +149,9 @@
     if (self.beingCompressedPhotosList[indexPath] == nil) {
         // mark as being compress at index
         self.beingCompressedPhotosList[indexPath] = @(YES);
-        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
-        [operationQueue addOperationWithBlock:^{
-            // TODO: CRASH
-            Food *food = self.foodsForDisplay[indexPath.row];
+        __weak FEFoodGridCVC* weakSelf = self;
+        [self.operationQueue addOperationWithBlock:^{
+            Food *food = weakSelf.foodsForDisplay[indexPath.row];
             // compress image
             for (Photo *photo in food.photos) {
                 UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData];
@@ -150,11 +159,13 @@
                 [compressedPhotos addObject:resizeImage];
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                // TODO: CRASH
+                if (indexPath.row >= weakSelf.imageIndexes.count) {
+                    return;
+                }
                 // reload cell with Photos compressed
-                FEFoodGridCell* cell = (FEFoodGridCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+                FEFoodGridCell* cell = (FEFoodGridCell*)[weakSelf.collectionView cellForItemAtIndexPath:indexPath];
                 [cell.flipFoodGridView setDatasource:compressedPhotos
-                                   withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
+                                   withSelectedIndex:[weakSelf.imageIndexes[indexPath.row] integerValue]];
                 // remove mark (just for improvement)
                 [self.beingCompressedPhotosList removeObjectForKey:indexPath];
             }];
