@@ -17,9 +17,11 @@
 #import "FEVerticalResizeControllView.h"
 #import "FEFoodDetailVC.h"
 #import "FEDataSerialize.h"
+#import "FEAppDelegate.h"
+#import "FEMapUtility.h"
 #import <MessageUI/MessageUI.h>
 
-@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate,MFMailComposeViewControllerDelegate>{
+@interface FEPlaceDetailMainVC ()<FEVerticalResizeControlDelegate, FEPlaceDetailTVCDelegate,MFMailComposeViewControllerDelegate, UIActionSheetDelegate>{
     float _minResizableHeight;
     float _maxResizableHeight;
 }
@@ -30,6 +32,9 @@
 @property (weak, nonatomic) IBOutlet UIView *placeDetailView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
 @property (nonatomic) NSUInteger selectedIndex;
+@property (weak, nonatomic) GMSMarker *placeMarker;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInfo;
+@property (weak, nonatomic) IBOutlet UIView *distanceInfoBgView;
 @end
 
 @implementation FEPlaceDetailMainVC
@@ -41,15 +46,8 @@
     self.verticalResizeView.delegate = self;
     self.placeDetailTVC.place = self.place;
     self.addressLbl.text = self.place.address.address;
-    _minResizableHeight = 30;
+    _minResizableHeight = 34;
     _maxResizableHeight = self.placeDetailView.frame.size.height;
-    // build bar buttons
-    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain
-                                                               target:self action:@selector(shareAction:)];
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                                            target:self action:@selector(editAction:)];
-    self.navigationItem.rightBarButtonItems = @[editBtn, shareBtn];
-
     // map
     self.mapBgView.layer.cornerRadius = 10.0;
     self.mapBgView.layer.masksToBounds = YES;
@@ -62,6 +60,7 @@
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake(lattittude, longtitude);
         marker.map = self.mapView;
+        self.placeMarker = marker;
     }
     else {
         self.mapView.camera = [GMSCameraPosition cameraWithLatitude:HCM_LATITUDE
@@ -72,6 +71,9 @@
     // core data changed tracking register
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
                                                  name:CORE_DATA_UPDATED object:nil];
+    // location change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
+                                                 name:LOCATION_UPDATED object:nil];
 
 }
 
@@ -93,15 +95,7 @@
         foodDetailVC.food = self.place.foods[self.selectedIndex];
     }
 }
-#pragma mark - handler DataModel changed
-- (void)coredateChanged:(NSNotification *)info {
-    self.placeDetailTVC.place = self.place;
-}
-#pragma mar - handler action
-- (void)editAction:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:@"editPlace" sender:self];
-}
-- (void)shareAction:(UIBarButtonItem *)sender {
+- (void)sharePlace {
     User *user = [User getUser];
     NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:@[self.place]};
     NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
@@ -119,6 +113,78 @@
     [picker setMessageBody:body isHTML:NO];
     [picker setMailComposeDelegate:self];
     [self presentViewController:picker animated:YES completion:nil];
+}
+- (void)gotoPlace {
+    // update location
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
+}
+#pragma mark - Map
+#define MARKERS_FIT_PADDING 70.0
+- (void)locationChanged:(NSNotification *)info {
+    // create current location marker
+    CLLocation* location = [info userInfo][@"location"];
+    CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
+    
+    // create current location
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = location2d;
+    marker.map = self.mapView;
+    marker.icon = [UIImage imageNamed:@"bullet_blue"];
+    // find route
+    CLLocationCoordinate2D locPlace1 = location2d;
+    CLLocationCoordinate2D locPlace2 = self.placeMarker.position;
+    [FEMapUtility getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+        // expand map view
+        CGFloat delta = self.placeDetailView.frame.size.height - _minResizableHeight;
+        [UIView animateWithDuration:.3f animations:^{
+            [self verticalResizeControllerDidChanged:-delta];
+        }];
+        // clear all old polylines
+        for (GMSPolyline *polyline in self.mapView.polylines) {
+            polyline.map = nil;
+        }
+        // add new polylines
+        GMSMutablePath *path = [GMSMutablePath path];
+        for (NSValue *value in locations) {
+            CLLocationCoordinate2D location;
+            [value getValue:&location];
+            [path addCoordinate:location];
+        }
+        GMSPolyline *route = [GMSPolyline polylineWithPath:path];
+        route.strokeWidth = 3;
+        route.map = self.mapView;
+        // fit camera
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
+    }];
+    // find distance
+    NSValue *locPlace2Value = [NSValue valueWithBytes:&locPlace2 objCType:@encode(CLLocationCoordinate2D)];
+    [FEMapUtility getDistanceFrom:locPlace1 to:@[locPlace2Value]
+                            queue:[NSOperationQueue mainQueue]
+                completionHandler:^(NSArray *distances) {
+                    if (distances.count > 0) {
+                        NSDictionary *distanceInfo = distances[0];
+                        NSString *distanceStr = distanceInfo[@"distance"];
+                        NSString *durationStr = distanceInfo[@"duration"];
+                        NSString *infoStr = [NSString stringWithFormat:@"(about %@ from here, estimate %@ driving)", distanceStr, durationStr];
+                        [UIView animateWithDuration:0.3 animations:^{
+                            self.distanceInfo.text = infoStr;
+                            self.distanceInfo.hidden = NO;
+                            self.distanceInfoBgView.hidden = NO;
+                        }];
+                    }
+    }];
+}
+#pragma mark - handler DataModel changed
+- (void)coredateChanged:(NSNotification *)info {
+    self.placeDetailTVC.place = self.place;
+}
+#pragma mar - handler action
+- (IBAction)actionTapped:(UIBarButtonItem *)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Edit", @"Share", @"Go to", nil];
+//    [actionSheet showInView:self.view];
+    [actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 #pragma mark - FEVerticalResizeControlDelegate
@@ -156,7 +222,7 @@
 }
 
 - (void)verticalResizeControllerDidTapped {
-    float delta;
+    CGFloat delta;
     if (self.verticalResizeView.frame.origin.y < self.view.frame.size.height / 2) {
         delta = self.placeDetailView.frame.size.height - _maxResizableHeight;
     }
@@ -178,5 +244,21 @@
 - (void)didSelectItemAtIndexPath:(NSUInteger)index {
     self.selectedIndex = index;
     [self performSegueWithIdentifier:@"foodDetailVC" sender:self];
+}
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0: // Edit
+            [self performSegueWithIdentifier:@"editPlace" sender:self];
+            break;
+        case 1: // Share
+            [self sharePlace];
+            break;
+        case 2: // Goto
+            [self gotoPlace];
+            break;
+        default:
+            break;
+    }
 }
 @end

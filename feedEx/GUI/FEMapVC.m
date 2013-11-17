@@ -219,7 +219,7 @@
     [self.indicationView stopAnimating];
     [self updateMapInfoWithFitMarkets:self.shouldFitMarkers];
 }
-#define MARKERS_FIT_PADDING 100.0
+#define MARKERS_FIT_PADDING 40.0
 - (void)updateMapInfoWithFitMarkets:(BOOL)fitMarkets {
     // update myLocation
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];

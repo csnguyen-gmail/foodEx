@@ -15,7 +15,7 @@
 #import "Common.h"
 #import "FECoreDataController.h"
 
-@interface FEFoodSingleEditVC ()<FEDynamicScrollViewDelegate, FEImagePickerDelegate>
+@interface FEFoodSingleEditVC ()<FEDynamicScrollViewDelegate, FEImagePickerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
@@ -37,6 +37,7 @@
     self.bgView.layer.masksToBounds = YES;
     self.bgView.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.bgView.layer.borderWidth = 1.5;
+    self.nameTF.delegate = self;
     // build GUI
     self.isBestButton.selected = [self.food.isBest boolValue];
     self.nameTF.text = self.food.name;
@@ -97,6 +98,15 @@
     self.isBestButton.selected = !self.isBestButton.selected;
     self.food.isBest = @(self.isBestButton.selected);
 }
+#pragma mark - text field delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.food.name = textField.text;
+}
+
 #pragma mark - Photos
 - (void)exitEditMode {
     self.photoButton.selected = NO;

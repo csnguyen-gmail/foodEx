@@ -887,11 +887,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="LMg-em-1JH">
-                                <rect key="frame" x="5" y="341" width="310" height="130"/>
+                                <rect key="frame" x="5" y="278" width="310" height="191"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="FfL-0I-Fgw" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -900,8 +900,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="fCh-aU-Mc1">
+                                    <view hidden="YES" alpha="0.60000002384185791" contentMode="scaleToFill" id="SUS-hH-wve">
+                                        <rect key="frame" x="0.0" y="23" width="310" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="fCh-aU-Mc1">
                                         <rect key="frame" x="5" y="-2" width="300" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="lDf-mz-W0q">
+                                        <rect key="frame" x="5" y="17" width="300" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -911,7 +923,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <containerView contentMode="scaleToFill" id="p8G-bQ-iom">
-                                <rect key="frame" x="5" y="5" width="310" height="321"/>
+                                <rect key="frame" x="5" y="5" width="310" height="259"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -919,7 +931,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" id="0eA-VQ-1oH" customClass="FEVerticalResizeControllView">
-                                <rect key="frame" x="5" y="326" width="310" height="15"/>
+                                <rect key="frame" x="5" y="264" width="310" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
@@ -927,12 +939,20 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail place" id="UVG-jd-9vW"/>
+                    <navigationItem key="navigationItem" title="Detail place" id="UVG-jd-9vW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ypI-Qs-vP0">
+                            <connections>
+                                <action selector="actionTapped:" destination="nN5-fG-BRM" id="bYZ-Yq-Mpb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addressLbl" destination="fCh-aU-Mc1" id="qBL-3e-cHv"/>
+                        <outlet property="distanceInfo" destination="lDf-mz-W0q" id="SKl-LH-gxJ"/>
+                        <outlet property="distanceInfoBgView" destination="SUS-hH-wve" id="LCQ-ba-7MB"/>
                         <outlet property="mapBgView" destination="LMg-em-1JH" id="1Hs-ai-0Hm"/>
                         <outlet property="mapView" destination="FfL-0I-Fgw" id="HCW-hM-Q50"/>
                         <outlet property="placeDetailView" destination="p8G-bQ-iom" id="o35-pt-7Sl"/>
@@ -997,7 +1017,7 @@
             <objects>
                 <tableViewController id="Spr-DK-nds" customClass="FEPlaceDetailTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eOk-BK-5II">
-                        <rect key="frame" x="0.0" y="0.0" width="310" height="321"/>
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="259"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
@@ -1018,7 +1038,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
                                                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="tUJ-DY-BmM">
-                                                    <rect key="frame" x="239" y="5" width="64" height="225"/>
+                                                    <rect key="frame" x="239" y="7" width="64" height="225"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <inset key="contentInset" minX="0.0" minY="0.0" maxX="-6" maxY="0.0"/>
@@ -1080,7 +1100,7 @@
                                                     </connections>
                                                 </collectionView>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wBV-RG-NUi">
-                                                    <rect key="frame" x="7" y="235" width="296" height="18"/>
+                                                    <rect key="frame" x="7" y="237" width="296" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </scrollView>
@@ -2274,8 +2294,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Go2-Hn-xK6"/>
-        <segue reference="LCh-08-MT1"/>
         <segue reference="eDW-Ly-5HO"/>
+        <segue reference="LCh-08-MT1"/>
+        <segue reference="A4z-UY-EhP"/>
     </inferredMetricsTieBreakers>
 </document>

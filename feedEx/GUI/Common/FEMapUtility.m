@@ -49,6 +49,9 @@
                                }
                                @catch (NSException *exception) {
                                    NSLog(@"Get Direction failed.");
+                                   [locations addObject:[NSValue valueWithBytes:&from objCType:@encode(CLLocationCoordinate2D)]];
+                                   [locations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
+                                   
                                }
                                @finally {
                                    handle(locations);
