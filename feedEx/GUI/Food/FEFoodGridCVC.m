@@ -85,8 +85,9 @@
     }
     self.beingCompressedPhotosList = [NSMutableDictionary dictionaryWithCapacity:self.foodsForDisplay.count];
     // update GUI
-    // TODO: animation
-    [self.collectionView reloadData];
+    [self.collectionView performBatchUpdates:^{
+        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    } completion:nil];
 }
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
@@ -149,6 +150,7 @@
                 [compressedPhotos addObject:resizeImage];
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                // TODO: CRASH
                 // reload cell with Photos compressed
                 FEFoodGridCell* cell = (FEFoodGridCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
                 [cell.flipFoodGridView setDatasource:compressedPhotos

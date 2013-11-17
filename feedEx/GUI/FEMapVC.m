@@ -183,6 +183,10 @@
     [textField resignFirstResponder];
     return YES;
 }
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    self.placeListTVC.places = [self queryByKeyword:nil];
+    return YES;
+}
 #pragma mark - FEPlaceListSearchMapTVCDelegate
 - (void)searchMapDidSelectPlace:(Place *)place {
     [self.searchTextField resignFirstResponder];

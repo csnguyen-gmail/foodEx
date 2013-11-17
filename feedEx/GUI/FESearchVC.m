@@ -230,6 +230,14 @@
     alertView.tag = ALERT_DELETE_CONFIRM;
     [alertView show];
 }
+- (void)queryWithQuickSearchString:(NSString*)searchString {
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+        self.placeListTVC.quickSearchString = searchString;
+    }
+    else {
+        self.foodGridCVC.quickSearchString = searchString;
+    }
+}
 #pragma mark - text field delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     FEAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -239,15 +247,13 @@
     [textField resignFirstResponder];
     return YES;
 }
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    [self queryWithQuickSearchString:nil];
+    return YES;
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *searchString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
-        self.placeListTVC.quickSearchString = searchString;
-    }
-    else {
-        self.foodGridCVC.quickSearchString = searchString;
-    }
-    // TODO: process for clear all event
+    [self queryWithQuickSearchString:searchString];
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
