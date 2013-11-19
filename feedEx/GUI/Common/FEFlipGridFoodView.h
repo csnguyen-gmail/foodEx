@@ -22,4 +22,5 @@
 @property (nonatomic, weak) id<FEFlipGridFoodViewDelegate> delegate;
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL isLoading;
 @end

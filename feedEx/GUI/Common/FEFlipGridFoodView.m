@@ -30,7 +30,15 @@
     bgView.layer.cornerRadius = 10;
     bgView.layer.masksToBounds = YES;
     
-    if (self.datasource.count != 0) {
+    if (self.isLoading) {
+        UILabel *label = [[UILabel alloc] initWithFrame:bgView.frame];
+        label.textColor = [UIColor whiteColor];
+        label.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+        label.text = @"Loading...";
+        label.textAlignment = NSTextAlignmentCenter;
+        [bgView addSubview:label];
+    }
+    else if (self.datasource.count != 0) {
         UIImage *image = self.datasource[index];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = bgView.frame;

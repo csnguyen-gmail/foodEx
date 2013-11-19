@@ -1388,9 +1388,6 @@
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <size key="customSize" width="140" height="140"/>
-                                <connections>
-                                    <outlet property="flipFoodGridView" destination="zGO-1a-8kx" id="gBA-rA-NF6"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

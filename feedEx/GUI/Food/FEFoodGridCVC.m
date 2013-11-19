@@ -129,6 +129,7 @@
     flipFoodGridView.isSelected = [self.selectedStatusList[indexPath.row] boolValue];
     flipFoodGridView.name = food.name;
     flipFoodGridView.isBest = [food.isBest boolValue];
+    flipFoodGridView.isLoading = NO;
     // No Photo Cell
     if (food.photos.count == 0) {
         [flipFoodGridView setDatasource:nil withSelectedIndex:0];
@@ -138,6 +139,7 @@
     NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
     if (compressedPhotos.count == 0) {
         [self startCompressPhotos:compressedPhotos withSize:flipFoodGridView.frame.size forIndexPath:indexPath];
+        flipFoodGridView.isLoading = YES;
         [flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
     }
@@ -168,6 +170,7 @@
                 // reload cell with Photos compressed
                 UICollectionViewCell* cell = (UICollectionViewCell*)[weakSelf.collectionView cellForItemAtIndexPath:indexPath];
                 FEFlipGridFoodView *flipFoodGridView = (FEFlipGridFoodView *)[cell viewWithTag:kFlipFoodGridView];
+                flipFoodGridView.isLoading = NO;
                 [flipFoodGridView setDatasource:compressedPhotos
                               withSelectedIndex:[weakSelf.imageIndexes[indexPath.row] integerValue]];
                 // remove mark (just for improvement)
