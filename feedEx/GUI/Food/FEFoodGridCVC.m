@@ -7,7 +7,7 @@
 //
 
 #import "FEFoodGridCVC.h"
-#import "FEFoodGridCell.h"
+#import "FEFlipGridFoodView.h"
 #import "Food+Extension.h"
 #import "Photo.h"
 #import "FEPlaceDetailMainVC.h"
@@ -116,31 +116,33 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.foodsForDisplay.count;
 }
+#define kFlipFoodGridView   100
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"foodCell";
     
     Food *food = self.foodsForDisplay[indexPath.row];
-    FEFoodGridCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.flipFoodGridView.delegate = self;
-    cell.flipFoodGridView.cellIndex = indexPath.row;
-    cell.flipFoodGridView.isEditMode = self.isEditMode;
-    cell.flipFoodGridView.isSelected = [self.selectedStatusList[indexPath.row] boolValue];
-    cell.flipFoodGridView.name = food.name;
-    cell.flipFoodGridView.isBest = [food.isBest boolValue];
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    FEFlipGridFoodView *flipFoodGridView = (FEFlipGridFoodView *)[cell viewWithTag:kFlipFoodGridView];
+    flipFoodGridView.delegate = self;
+    flipFoodGridView.cellIndex = indexPath.row;
+    flipFoodGridView.isEditMode = self.isEditMode;
+    flipFoodGridView.isSelected = [self.selectedStatusList[indexPath.row] boolValue];
+    flipFoodGridView.name = food.name;
+    flipFoodGridView.isBest = [food.isBest boolValue];
     // No Photo Cell
     if (food.photos.count == 0) {
-        [cell.flipFoodGridView setDatasource:nil withSelectedIndex:0];
+        [flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
     }
     // Loading Cell
     NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
     if (compressedPhotos.count == 0) {
-        [self startCompressPhotos:compressedPhotos withSize:cell.flipFoodGridView.frame.size forIndexPath:indexPath];
-        [cell.flipFoodGridView setDatasource:nil withSelectedIndex:0];
+        [self startCompressPhotos:compressedPhotos withSize:flipFoodGridView.frame.size forIndexPath:indexPath];
+        [flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
     }
     // Normal Cell
-    [cell.flipFoodGridView setDatasource:compressedPhotos
+    [flipFoodGridView setDatasource:compressedPhotos
                        withSelectedIndex:[self.imageIndexes[indexPath.row] integerValue]];
     return cell;
 }
@@ -164,9 +166,10 @@
                     return;
                 }
                 // reload cell with Photos compressed
-                FEFoodGridCell* cell = (FEFoodGridCell*)[weakSelf.collectionView cellForItemAtIndexPath:indexPath];
-                [cell.flipFoodGridView setDatasource:compressedPhotos
-                                   withSelectedIndex:[weakSelf.imageIndexes[indexPath.row] integerValue]];
+                UICollectionViewCell* cell = (UICollectionViewCell*)[weakSelf.collectionView cellForItemAtIndexPath:indexPath];
+                FEFlipGridFoodView *flipFoodGridView = (FEFlipGridFoodView *)[cell viewWithTag:kFlipFoodGridView];
+                [flipFoodGridView setDatasource:compressedPhotos
+                              withSelectedIndex:[weakSelf.imageIndexes[indexPath.row] integerValue]];
                 // remove mark (just for improvement)
                 [self.beingCompressedPhotosList removeObjectForKey:indexPath];
             }];

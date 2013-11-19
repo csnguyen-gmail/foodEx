@@ -53,7 +53,6 @@
 		6F00E192183727040025E74F /* CIVignette.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F00E165183727040025E74F /* CIVignette.png */; };
 		6F00E193183727040025E74F /* CIVignette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F00E166183727040025E74F /* CIVignette@2x.png */; };
 		6F00E19518372F640025E74F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F00E19418372F640025E74F /* AssetsLibrary.framework */; };
-		6F06583C17D8C5070070AB29 /* FEFoodGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06583917D8C5070070AB29 /* FEFoodGridCell.m */; };
 		6F06583D17D8C5070070AB29 /* FEFoodGridCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */; };
 		6F06584317DA2B0F0070AB29 /* Food+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584217DA2B0F0070AB29 /* Food+Extension.m */; };
 		6F06584417DA2B0F0070AB29 /* Food+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F06584217DA2B0F0070AB29 /* Food+Extension.m */; };
@@ -299,8 +298,6 @@
 		6F00E165183727040025E74F /* CIVignette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CIVignette.png; sourceTree = "<group>"; };
 		6F00E166183727040025E74F /* CIVignette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CIVignette@2x.png"; sourceTree = "<group>"; };
 		6F00E19418372F640025E74F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		6F06583817D8C5070070AB29 /* FEFoodGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodGridCell.h; sourceTree = "<group>"; };
-		6F06583917D8C5070070AB29 /* FEFoodGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodGridCell.m; sourceTree = "<group>"; };
 		6F06583A17D8C5070070AB29 /* FEFoodGridCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodGridCVC.h; sourceTree = "<group>"; };
 		6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodGridCVC.m; sourceTree = "<group>"; };
 		6F06584117DA2B0F0070AB29 /* Food+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Food+Extension.h"; sourceTree = "<group>"; };
@@ -769,8 +766,6 @@
 				6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */,
 				6F89E7E417AE3E53007BDAFA /* FEFoodDetailVC.h */,
 				6F89E7E517AE3E53007BDAFA /* FEFoodDetailVC.m */,
-				6F06583817D8C5070070AB29 /* FEFoodGridCell.h */,
-				6F06583917D8C5070070AB29 /* FEFoodGridCell.m */,
 				6F06583A17D8C5070070AB29 /* FEFoodGridCVC.h */,
 				6F06583B17D8C5070070AB29 /* FEFoodGridCVC.m */,
 				6F192783180A4B4A005C9DC4 /* FEFoodSingleEditVC.h */,
@@ -1395,7 +1390,6 @@
 				6F30B70617BF40D300A1D389 /* NSString+Extension.m in Sources */,
 				6F22E24817F97AA700BFC5B6 /* FEUserListCell.m in Sources */,
 				6F00E16A183727040025E74F /* FEImagePickerEditCell.m in Sources */,
-				6F06583C17D8C5070070AB29 /* FEFoodGridCell.m in Sources */,
 				6F30B70717BF40D300A1D389 /* UIImage+Extension.m in Sources */,
 				6F30B72617BF6DB700A1D389 /* AbstractInfo+Extension.m in Sources */,
 				6F30B72717BF6DB700A1D389 /* Place+Extension.m in Sources */,
