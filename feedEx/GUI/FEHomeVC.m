@@ -26,6 +26,14 @@
         button.layer.masksToBounds = YES;
     }
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if ([self isViewLoaded] && [self.view window] == nil) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        self.view = nil;
+    }
+}
+
 #pragma mark - event handler
 #define AUTOFILL_CONFIRM_TAG 0
 - (IBAction)autoFillAddress:(UIButton *)sender {

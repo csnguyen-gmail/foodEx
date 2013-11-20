@@ -27,9 +27,9 @@
     // provide key to use Google Map API
     [GMSServices provideAPIKey:@"AIzaSyAFoi1LNE9wzQbTjwX1LuPKEbvIP9WVfKA"];
     // appearance
-    [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
+//    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
     

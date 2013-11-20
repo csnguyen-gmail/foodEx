@@ -34,8 +34,19 @@
                                                  name:CORE_DATA_UPDATED object:nil];
     [self refetchData];
 }
-- (void)dealloc {
+- (void)removeObserver {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
+}
+- (void)dealloc {
+    [self removeObserver];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if ([self isViewLoaded] && [self.view window] == nil) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        [self removeObserver];
+        self.view = nil;
+    }
 }
 
 - (void)refetchData {

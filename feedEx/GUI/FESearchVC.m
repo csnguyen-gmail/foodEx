@@ -48,6 +48,7 @@
 {
     [super viewDidLoad];
     self.isGUISetup = NO;
+    self.isEditMode = NO;
     // perpare GUI
     self.placeListTVC.placeListDelegate = self;
     self.foodGridCVC.foodGridDelegate = self;
@@ -59,6 +60,8 @@
     self.navigationItem.rightBarButtonItems = @[self.searchBtn, self.editBtn];
     // tool bar
     self.toolBar = [[UIToolbar alloc] init];
+    self.toolBar.translucent = YES;
+    self.toolBar.barStyle = UIBarStyleBlack;
     self.shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStyleBordered
                                                     target:self action:@selector(shareAction:)];
     self.deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered
@@ -82,9 +85,20 @@
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate updateLocation];
 }
-- (void)dealloc {
+- (void)removeObserver {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+}
+- (void)dealloc {
+    [self removeObserver];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if ([self isViewLoaded] && [self.view window] == nil) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        [self removeObserver];
+        self.view = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

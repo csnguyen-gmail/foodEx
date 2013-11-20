@@ -41,8 +41,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSManagedObjectContextDidSaveNotification
                                                   object:nil];
-
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if ([self isViewLoaded] && [self.view window] == nil) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+    }
+}
+
 #pragma mark - getter setter
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
