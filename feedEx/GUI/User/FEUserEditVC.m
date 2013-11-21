@@ -102,6 +102,10 @@
                 }];
             }];
         }
+        // NO button
+        else {
+            [self close];
+        }
     }
     else if (alertView.tag == FINISH_ALERT) {
         [self close];
