@@ -81,7 +81,7 @@
         [editBtn setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
         [editBtn setTitle:@"Edit" forState:UIControlStateNormal];
         [editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        editBtn.titleLabel.font = [UIFont systemFontOfSize:11.0];
+        editBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
         editBtn.layer.cornerRadius = 5.0;
         editBtn.layer.masksToBounds = YES;
         editBtn.alpha = 0.9;
