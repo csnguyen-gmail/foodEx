@@ -15,6 +15,7 @@
 @end
 
 @interface FEPlaceListCell : UITableViewCell
+@property (nonatomic) BOOL isEditMode;
 @property (weak, nonatomic) IBOutlet FEFlipPhotosView *flipPhotosView;
 @property (weak, nonatomic) IBOutlet DYRateView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
@@ -24,4 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *informationBtn;
 @property (weak, nonatomic) IBOutlet UILabel *chekinTimesLbl;
 @property (weak, nonatomic) id<FEPlaceListCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
+- (void)toggleDetailButton;
 @end

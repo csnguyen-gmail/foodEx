@@ -7,6 +7,7 @@
 //
 
 #import "FEFlipGridFoodView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation FEFlipGridFoodView
 // overwrite super class
@@ -74,18 +75,33 @@
         [bgView addSubview:isBestImageView];
     }
     
-    UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    rect = detailBtn.frame;
-    rect.origin = CGPointMake(118.0, 118.0);
-    detailBtn.frame = rect;
-    [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:detailBtn];
+    if (self.isEditMode) {
+        UIButton *editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        editBtn.frame = CGRectMake(102.0, 112.0, 30, 20);
+        [editBtn setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
+        [editBtn setTitle:@"Edit" forState:UIControlStateNormal];
+        [editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        editBtn.titleLabel.font = [UIFont systemFontOfSize:11.0];
+        editBtn.layer.cornerRadius = 5.0;
+        editBtn.layer.masksToBounds = YES;
+        editBtn.alpha = 0.9;
+        [editBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:editBtn];
+    }
+    else {
+        UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        rect = detailBtn.frame;
+        rect.origin = CGPointMake(115.0, 115.0);
+        detailBtn.frame = rect;
+        [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:detailBtn];
+    }
     
     if (self.isEditMode) {
         UIImage *selectedImage = [UIImage imageNamed:self.isSelected ? @"selected" : @"unselected"];
         UIImageView *selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
         rect = selectedImageView.frame;
-        rect.origin = CGPointMake(3.0, 115.0);
+        rect.origin = CGPointMake(5.0, 110.0);
         selectedImageView.frame = rect;
         [bgView addSubview:selectedImageView];
     }

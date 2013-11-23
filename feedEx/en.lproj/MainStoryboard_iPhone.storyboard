@@ -845,6 +845,18 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5uu-3F-Zwo">
+                                            <rect key="frame" x="271" y="8" width="30" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                            <state key="normal" title="Edit" backgroundImage="gradientBar.png">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="editBtnTapped:" destination="bgP-MZ-bzv" eventType="touchUpInside" id="aLq-MV-PCy"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -853,6 +865,7 @@
                                     <outlet property="addressLbl" destination="wFb-Xj-Xlp" id="n08-wH-sX2"/>
                                     <outlet property="chekinTimesLbl" destination="6f8-KD-zge" id="mfp-GH-mqu"/>
                                     <outlet property="distanceLbl" destination="8kC-8H-aBW" id="KYW-Q2-KYf"/>
+                                    <outlet property="editButton" destination="5uu-3F-Zwo" id="n7G-O6-tKT"/>
                                     <outlet property="flipPhotosView" destination="7Au-zV-0SZ" id="CNb-dc-LcF"/>
                                     <outlet property="informationBtn" destination="qcv-zJ-6Ub" id="jS0-af-db0"/>
                                     <outlet property="nameLbl" destination="exn-YR-JuH" id="fWA-O4-VGH"/>
@@ -2318,8 +2331,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VJo-7D-IoS"/>
-        <segue reference="A4z-UY-EhP"/>
+        <segue reference="eDW-Ly-5HO"/>
+        <segue reference="Go2-Hn-xK6"/>
         <segue reference="LCh-08-MT1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -131,7 +131,7 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
-//    cell.informationBtn.enabled = !self.isEditMode;
+    cell.isEditMode = self.isEditMode;
     Place *place = self.placesForDisplay[index];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
