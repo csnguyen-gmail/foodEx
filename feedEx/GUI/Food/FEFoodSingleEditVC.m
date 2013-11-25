@@ -79,13 +79,18 @@
 #pragma mark -handler
 #define ALERT_TAG_DONE      1002
 - (IBAction)closeTapped:(UIButton *)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Edit Food Confirmation"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save & Exit", @"Exit", nil];
-    alertView.tag = ALERT_TAG_DONE;
-    [alertView show];
+    if (self.food.hasChanges) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Edit Food Confirmation"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Save & Exit", @"Exit", nil];
+        alertView.tag = ALERT_TAG_DONE;
+        [alertView show];
+    }
+    else {
+        [self close];
+    }
 }
 - (IBAction)photoButtonTapped:(UIButton *)sender {
     if (self.photoButton.selected) {
