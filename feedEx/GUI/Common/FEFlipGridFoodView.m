@@ -77,7 +77,7 @@
     
     if (self.isEditMode) {
         UIButton *editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        editBtn.frame = CGRectMake(102.0, 112.0, 30, 20);
+        editBtn.frame = CGRectMake(92.0, 102.0, 40, 30);
         [editBtn setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
         [editBtn setTitle:@"Edit" forState:UIControlStateNormal];
         [editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
