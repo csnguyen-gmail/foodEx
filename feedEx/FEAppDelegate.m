@@ -10,7 +10,8 @@
 #import "FETrackingKeyboardWindow.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "FETabBarController.h"
-//#import "FEDebug.h"Ç
+#import "User+Extension.h"
+//#import "FEDebug.h"
 @interface FEAppDelegate()
 @end
 
@@ -32,7 +33,8 @@
 //    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
-    
+    // create User firstly
+    [User getUser];
 //    [FEDebug printOutImageSize];
     return YES;
 }
