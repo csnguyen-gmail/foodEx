@@ -207,6 +207,7 @@
 }
 - (void)editAction:(UIBarButtonItem *)sender {
     self.isEditMode = !self.isEditMode;
+    [self animateToolBar];
     self.shareBtn.enabled = NO;
     self.deleteBtn.enabled = NO;
 }
@@ -234,6 +235,7 @@
     [self presentViewController:picker animated:YES completion:nil];
     
     self.isEditMode = !self.isEditMode;
+    [self animateToolBar];
 }
 - (void)deleteAction:(UIBarButtonItem *)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
@@ -275,16 +277,14 @@
     [appDelegate startObservingFirstResponder];
     [self hideQuickSearchBar];
 }
-#pragma mark - setter getter
-- (void)setIsEditMode:(BOOL)isEditMode {
-    _isEditMode = isEditMode;
+- (void)animateToolBar {
     [UIView animateWithDuration:YES ? 0.2f :0.0f
                      animations:^{
-                         self.searchBtn.enabled = !isEditMode;
-                         self.dispTypeSC.enabled = !isEditMode;
-                         self.dispTypeSC.userInteractionEnabled = !isEditMode;
-                         self.editBtn.title = isEditMode ? @"Done" : @"Edit";
-                         CGFloat delta = (isEditMode ? -1 : 1) * self.toolBar.frame.size.height;
+                         self.searchBtn.enabled = !self.isEditMode;
+                         self.dispTypeSC.enabled = !self.isEditMode;
+                         self.dispTypeSC.userInteractionEnabled = !self.isEditMode;
+                         self.editBtn.title = self.isEditMode ? @"Done" : @"Edit";
+                         CGFloat delta = (self.isEditMode ? -1 : 1) * self.toolBar.frame.size.height;
                          // adjust listView height
                          CGRect listRect = self.placeListTVC.view.frame;
                          listRect.size.height += delta;
@@ -300,6 +300,10 @@
                      }
                      completion:^(BOOL finished) {
                      }];
+}
+#pragma mark - setter getter
+- (void)setIsEditMode:(BOOL)isEditMode {
+    _isEditMode = isEditMode;
     if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
         self.placeListTVC.isEditMode = isEditMode;
     }
