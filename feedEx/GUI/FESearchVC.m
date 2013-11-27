@@ -47,6 +47,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // fix IOS7 bug, Navigation bar transparent as default
+    self.navigationController.navigationBar.translucent = NO;
+    
     self.isGUISetup = NO;
     self.isEditMode = NO;
     // perpare GUI

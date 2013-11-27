@@ -97,7 +97,14 @@
 }
 - (void)displayImageAtSectionAtCurrentIndex {
     // load the asset for this cell
-    ALAsset *asset = self.groups[self.currentIndex.section][self.currentIndex.row];
+    if (self.groups.count == 0) {
+        return;
+    }
+    NSArray *assets = self.groups[self.currentIndex.section];
+    if (assets.count == 0) {
+        return;
+    }
+    ALAsset *asset = assets[self.currentIndex.row];
     ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
     UIImage *fullScreenImage = [UIImage imageWithCGImage:[assetRepresentation fullScreenImage]
                                                    scale:[assetRepresentation scale]

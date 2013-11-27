@@ -30,8 +30,9 @@
     // appearance
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
-//    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor darkGrayColor]];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
     // create User firstly
     [User getUser];

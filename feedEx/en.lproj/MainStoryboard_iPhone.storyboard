@@ -2312,36 +2312,17 @@
     <resources>
         <image name="add_user.png" width="128" height="128"/>
         <image name="camera.png" width="32" height="32"/>
-        <image name="camera.png" width="32" height="32"/>
-        <image name="camera.png" width="32" height="32"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
-        <image name="gradientBar.png" width="2" height="50"/>
         <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="heart_grey.png" width="32" height="32"/>
-        <image name="heart_grey.png" width="32" height="32"/>
-        <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
-        <image name="home.png" width="30" height="30"/>
         <image name="home.png" width="30" height="30"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="map.png" width="26" height="21"/>
         <image name="remove.png" width="24" height="24"/>
-        <image name="remove.png" width="24" height="24"/>
-        <image name="remove.png" width="24" height="24"/>
-        <image name="remove.png" width="24" height="24"/>
-        <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
         <image name="star_empty.png" width="32" height="32"/>
-        <image name="stop.png" width="32" height="32"/>
-        <image name="stop.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

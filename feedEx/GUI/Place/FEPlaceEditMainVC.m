@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // fix IOS7 bug, Navigation bar transparent as default
+    self.navigationController.navigationBar.translucent = NO;
     // map view
     self.mapView.layer.cornerRadius = 10;
     self.mapView.delegate = self;
