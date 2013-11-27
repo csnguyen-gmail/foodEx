@@ -15,7 +15,7 @@
 #import "OriginPhoto.h"
 #import "FETransparentCustomSegue.h"
 
-@interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate>
+@interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
 @property (nonatomic) NSUInteger selectedDetailIndex;
 @property (nonatomic, strong) NSMutableArray *selectedStatusList;
@@ -138,7 +138,9 @@
     // Loading Cell
     NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
     if (compressedPhotos.count == 0) {
-        [self startCompressPhotos:compressedPhotos withSize:flipFoodGridView.frame.size forIndexPath:indexPath];
+//        if (collectionView.dragging == NO && collectionView.decelerating == NO) {
+            [self startCompressPhotos:compressedPhotos withSize:flipFoodGridView.frame.size forIndexPath:indexPath];
+//        }
         flipFoodGridView.isLoading = YES;
         [flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
@@ -179,6 +181,30 @@
         }];
     }
 }
+//#define FLIP_VIEW_SIZE CGSizeMake(140, 140)
+//- (void)loadFoodsForOnscreenRows {
+//    if ([self.readyToPhotosList count] > 0) {
+//        NSArray *visibleItems = [self.collectionView indexPathsForVisibleItems];
+//        for (NSIndexPath *indexPath in visibleItems) {
+//            NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
+//            if (compressedPhotos.count == 0) {
+//                [self startCompressPhotos:compressedPhotos withSize:FLIP_VIEW_SIZE forIndexPath:indexPath];
+//            }
+//        }
+//    }
+//}
+//
+//#pragma mark - UIScrollViewDelegate
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    if (!decelerate){
+//        [self loadFoodsForOnscreenRows];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    [self loadFoodsForOnscreenRows];
+//}
+
 #pragma mark - FEFlipGridFoodViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
