@@ -30,6 +30,16 @@
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // reset readyPhotosList & beingCompressedPhotosList to free memory
+    self.readyToPhotosList = [NSMutableArray arrayWithCapacity:self.foodsForDisplay.count];
+    for (int i = 0; i < self.foodsForDisplay.count; i++) {
+        self.readyToPhotosList[i] = [NSMutableArray array];
+    }
+    self.beingCompressedPhotosList = [NSMutableDictionary dictionaryWithCapacity:self.foodsForDisplay.count];
+    [self.collectionView reloadData];
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
         FEPlaceDetailMainVC *placeDetailVC = [segue destinationViewController];
@@ -181,18 +191,18 @@
         }];
     }
 }
-//#define FLIP_VIEW_SIZE CGSizeMake(140, 140)
-//- (void)loadFoodsForOnscreenRows {
-//    if ([self.readyToPhotosList count] > 0) {
-//        NSArray *visibleItems = [self.collectionView indexPathsForVisibleItems];
-//        for (NSIndexPath *indexPath in visibleItems) {
-//            NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
-//            if (compressedPhotos.count == 0) {
-//                [self startCompressPhotos:compressedPhotos withSize:FLIP_VIEW_SIZE forIndexPath:indexPath];
-//            }
-//        }
-//    }
-//}
+#define FLIP_VIEW_SIZE CGSizeMake(140, 140)
+- (void)loadFoodsForOnscreenRows {
+    if ([self.readyToPhotosList count] > 0) {
+        NSArray *visibleItems = [self.collectionView indexPathsForVisibleItems];
+        for (NSIndexPath *indexPath in visibleItems) {
+            NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
+            if (compressedPhotos.count == 0) {
+                [self startCompressPhotos:compressedPhotos withSize:FLIP_VIEW_SIZE forIndexPath:indexPath];
+            }
+        }
+    }
+}
 //
 //#pragma mark - UIScrollViewDelegate
 //- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
