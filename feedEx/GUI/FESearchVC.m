@@ -393,7 +393,6 @@
                 [coreData saveToPersistenceStoreAndWait];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.indicatorView stopAnimating];
-                    self.isEditMode = !self.isEditMode;
                 }];
             }];
         }
