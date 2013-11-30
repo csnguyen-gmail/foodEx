@@ -11,12 +11,15 @@
 #import "Common.h"
 #import "Place+Extension.h"
 #import "Address.h"
+#import "Photo.h"
+#import "OriginPhoto.h"
 #import "FEMapUtility.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
 #import "FEMapSearchSettingVC.h"
+#import "FEMapMarkerView.h"
 
-@interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate>
+@interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate, GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
 @property (strong, nonatomic) NSArray *places;
@@ -32,6 +35,7 @@
 @implementation FEMapVC
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mapView.delegate = self;
     self.mapView.settings.compassButton = YES;
     [self fitMarkerInBound];
     [self hideSearchResultWithAnimated:NO];
@@ -95,7 +99,7 @@
     }
     for (Place *place in self.places) {
         CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [self addMarketAt:location2d snippet:place.name mapMoved:NO];
+        [self addMarketAt:location2d withPlace:place mapMoved:NO];
     }
 }
 
@@ -283,6 +287,19 @@
     marker.map = self.mapView;
     return marker;
 }
+- (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location withPlace:(Place*)place mapMoved:(BOOL)mapMoved{
+    if (mapMoved) {
+        self.mapView.camera = [GMSCameraPosition cameraWithLatitude:location.latitude
+                                                          longitude:location.longitude
+                                                               zoom:GMAP_DEFAULT_ZOOM];
+    }
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = location;
+    marker.userData = place;
+    marker.map = self.mapView;
+    return marker;
+}
+
 #pragma mark - FESearchSettingVCDelegate
 - (void)didFinishSetting:(FEMapSearchPlaceSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
@@ -290,5 +307,43 @@
         [self refetchData];
     }
 }
-
+#pragma mark - GMSMapViewDelegate
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    if (marker.userData == nil) {
+        return nil;
+    }
+    // content view
+    Place *place = marker.userData;
+    FEMapMarkerView *mapMarkerView = [[[NSBundle mainBundle] loadNibNamed:@"FEMapMarkerCallout" owner:self options:nil] objectAtIndex:0];
+    mapMarkerView.layer.cornerRadius = 5;
+    mapMarkerView.layer.masksToBounds = YES;
+    mapMarkerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    mapMarkerView.layer.borderWidth = 2.0;
+    mapMarkerView.nameLbl.text = place.name;
+    Photo *photo = place.photos[0];
+    mapMarkerView.imageView.image = [UIImage imageWithData:photo.originPhoto.imageData];
+    mapMarkerView.rateView.rate = [place.rating floatValue];
+    
+    // anchor
+    CGFloat popupWidth = mapMarkerView.frame.size.width;
+    CGFloat popupHeight = mapMarkerView.frame.size.height + 10;
+    CGFloat anchorSize = 20;
+    UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, popupWidth, popupHeight)];
+    float offSet = anchorSize * M_SQRT2;
+    CGAffineTransform rotateBy45Degrees = CGAffineTransformMakeRotation(M_PI_4); //rotate by 45 degrees
+    UIView *callOut = [[UIView alloc] initWithFrame:CGRectMake((popupWidth - anchorSize)/2.0, popupHeight - offSet, anchorSize, anchorSize)];
+    callOut.transform = rotateBy45Degrees;
+    callOut.backgroundColor = [UIColor darkGrayColor];
+    
+    [outerView addSubview:callOut];
+    [outerView addSubview:mapMarkerView];
+    
+    return outerView;
+}
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    if (marker.userData == nil) {
+        return;
+    }
+    // TODO: detail place
+}
 @end

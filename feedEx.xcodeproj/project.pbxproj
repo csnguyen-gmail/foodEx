@@ -169,6 +169,8 @@
 		6FAD9DF11763E67A00DB606C /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF01763E67900DB606C /* CPTextViewPlaceholder.m */; };
 		6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD9DF517646E0900DB606C /* gradientBar.png */; };
 		6FAD9DFC1764FC6700DB606C /* FETagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD9DFB1764FC6000DB606C /* FETagTextView.m */; };
+		6FB19E8F184A139E00C419DA /* FEMapMarkerCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FB19E8E184A139E00C419DA /* FEMapMarkerCallout.xib */; };
+		6FB19E92184A15C100C419DA /* FEMapMarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB19E91184A15C100C419DA /* FEMapMarkerView.m */; };
 		6FB1F99217CE5B2A005078B3 /* UIAlertView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB1F99117CE5B2A005078B3 /* UIAlertView+Extension.m */; };
 		6FB482D817D60339003620A9 /* bullet_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB482D617D60339003620A9 /* bullet_blue.png */; };
 		6FB482D917D60339003620A9 /* bullet_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB482D717D60339003620A9 /* bullet_blue@2x.png */; };
@@ -468,6 +470,9 @@
 		6FAD9DF517646E0900DB606C /* gradientBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBar.png; sourceTree = "<group>"; };
 		6FAD9DFA1764FC5D00DB606C /* FETagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FETagTextView.h; sourceTree = "<group>"; };
 		6FAD9DFB1764FC6000DB606C /* FETagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FETagTextView.m; sourceTree = "<group>"; };
+		6FB19E8E184A139E00C419DA /* FEMapMarkerCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FEMapMarkerCallout.xib; sourceTree = "<group>"; };
+		6FB19E90184A15C100C419DA /* FEMapMarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMapMarkerView.h; sourceTree = "<group>"; };
+		6FB19E91184A15C100C419DA /* FEMapMarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMapMarkerView.m; sourceTree = "<group>"; };
 		6FB1F99017CE5B2A005078B3 /* UIAlertView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extension.h"; sourceTree = "<group>"; };
 		6FB1F99117CE5B2A005078B3 /* UIAlertView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extension.m"; sourceTree = "<group>"; };
 		6FB482D617D60339003620A9 /* bullet_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_blue.png; sourceTree = "<group>"; };
@@ -1001,6 +1006,9 @@
 				6F8BF4F817E44BA9001B9709 /* FETransparentCustomSegue.m */,
 				6F0AD2B217F73C1300119249 /* FEDebug.h */,
 				6F0AD2B317F73C1300119249 /* FEDebug.m */,
+				6FB19E8E184A139E00C419DA /* FEMapMarkerCallout.xib */,
+				6FB19E90184A15C100C419DA /* FEMapMarkerView.h */,
+				6FB19E91184A15C100C419DA /* FEMapMarkerView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1219,6 +1227,7 @@
 				6FAD9DBC17635A1200DB606C /* StarEmptyLarge@2x.png in Resources */,
 				6FAD9DBD17635A1200DB606C /* StarFull.png in Resources */,
 				6F00E173183727040025E74F /* camera-glyph-cameratoggle@2x.png in Resources */,
+				6FB19E8F184A139E00C419DA /* FEMapMarkerCallout.xib in Resources */,
 				6FAD9DBE17635A1200DB606C /* StarFull@2x.png in Resources */,
 				6FAD9DBF17635A1200DB606C /* StarFullLarge.png in Resources */,
 				6FAD9DC017635A1200DB606C /* StarFullLarge@2x.png in Resources */,
@@ -1334,6 +1343,7 @@
 				6F49FDB017ED810B00281E58 /* FEMapSearchSettingVC.m in Sources */,
 				6F22457A17CDBB7900E3C1A0 /* FETabBarController.m in Sources */,
 				6F49FDAD17ECB03900281E58 /* Model 3 to 4.xcmappingmodel in Sources */,
+				6FB19E92184A15C100C419DA /* FEMapMarkerView.m in Sources */,
 				6FB1F99217CE5B2A005078B3 /* UIAlertView+Extension.m in Sources */,
 				6F8BF51617E72863001B9709 /* FEPhotoMigrationPolicy.m in Sources */,
 				6FAD9DB817635A1200DB606C /* DYRateView.m in Sources */,
