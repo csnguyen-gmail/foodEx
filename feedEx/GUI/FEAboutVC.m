@@ -25,13 +25,11 @@
     self.textView.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.textView.layer.borderWidth = 1.5;
     NSMutableString *about = [NSMutableString string];
-    // TODO
     [about appendFormat:@"Author: %@\n", @"Chu Si Nguyen"];
     [about appendFormat:@"Email: %@\n", @"chusinguyen108@gmail.com"];
     [about appendFormat:@"Version: %@\n", @"1.0"];
     [about appendString:@"-------------------------------------------\n"];
     [about appendString:@"Open source information\n"];
-    [about appendFormat:@"・iOS Image Editor\n%@\n", @"https://github.com/heitorfr/ios-image-editor#license"];
     [about appendFormat:@"・DYRateView\n%@\n", @"https://github.com/dyang/DYRateView/blob/master/LICENSE"];
     [about appendFormat:@"・CPTextViewPlaceholder\n%@\n", @"https://github.com/abc4715760/TelecomProperty-1-2/blob/master/TelecomProperty/CPTextViewPlaceholder.m"];
     [about appendFormat:@"・ActionSheetPicker\n%@\n", @"https://github.com/TimCinel/ActionSheetPicker/blob/master/LICENSE"];
