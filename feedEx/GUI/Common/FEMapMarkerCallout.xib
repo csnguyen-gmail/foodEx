@@ -8,34 +8,37 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1" customClass="FEMapMarkerView">
-            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+            <rect key="frame" x="0.0" y="0.0" width="297" height="98"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="A0G-Nr-QCi">
-                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                    <rect key="frame" x="8" y="8" width="64" height="64"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <view alpha="0.39999999999999963" contentMode="scaleToFill" id="9kc-Hp-K6u">
-                    <rect key="frame" x="0.0" y="0.0" width="140" height="26"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" id="9vc-DD-SZA">
+                    <rect key="frame" x="80" y="8" width="136" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" id="9vc-DD-SZA">
-                    <rect key="frame" x="7" y="3" width="126" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" id="6vc-wH-0QI">
+                    <rect key="frame" x="80" y="29" width="208" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="bCm-Mn-rwG" customClass="DYRateView">
-                    <rect key="frame" x="76" y="121" width="64" height="10"/>
+                    <rect key="frame" x="8" y="80" width="64" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addressLbl" destination="6vc-wH-0QI" id="VDK-FS-vSB"/>
                 <outlet property="imageView" destination="A0G-Nr-QCi" id="LQk-3Z-WhE"/>
                 <outlet property="nameLbl" destination="9vc-DD-SZA" id="02u-cz-8fD"/>
                 <outlet property="rateView" destination="bCm-Mn-rwG" id="XFJ-jl-slL"/>

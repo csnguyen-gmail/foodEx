@@ -12,7 +12,7 @@
 #import "Place+Extension.h"
 #import "Address.h"
 #import "Photo.h"
-#import "OriginPhoto.h"
+#import "ThumbnailPhoto.h"
 #import "FEMapUtility.h"
 #import "FEPlaceListSearchMapTVC.h"
 #import "FEAppDelegate.h"
@@ -320,9 +320,13 @@
     mapMarkerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     mapMarkerView.layer.borderWidth = 2.0;
     mapMarkerView.nameLbl.text = place.name;
-    Photo *photo = place.photos[0];
-    mapMarkerView.imageView.image = [UIImage imageWithData:photo.originPhoto.imageData];
+    
+    if (place.photos.count != 0) {
+        Photo *photo = place.photos[0];
+        mapMarkerView.imageView.image = photo.thumbnailPhoto.image;
+    }
     mapMarkerView.rateView.rate = [place.rating floatValue];
+    mapMarkerView.addressLbl.text = place.address.address;
     
     // anchor
     CGFloat popupWidth = mapMarkerView.frame.size.width;

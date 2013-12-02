@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet DYRateView *rateView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLbl;
 
 @end
