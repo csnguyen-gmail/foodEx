@@ -20,6 +20,23 @@
 #import "FEMapMarkerView.h"
 #import "Tag.h"
 
+@interface FEArrowView : UIView
+@end
+@implementation FEArrowView
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint   (ctx, 0.0, 0.0);
+    CGContextAddLineToPoint(ctx, rect.size.width, 0.0);
+    CGContextAddLineToPoint(ctx, rect.size.width / 2, rect.size.height);
+    CGContextClosePath(ctx);
+    
+    CGContextSetRGBFillColor(ctx, 0, 0, 0, 0.8);
+    CGContextFillPath(ctx);
+}
+@end
+
 @interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate, GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicationView;
@@ -321,8 +338,6 @@
     FEMapMarkerView *mapMarkerView = [[[NSBundle mainBundle] loadNibNamed:@"FEMapMarkerCallout" owner:self options:nil] objectAtIndex:0];
     mapMarkerView.layer.cornerRadius = 5;
     mapMarkerView.layer.masksToBounds = YES;
-    mapMarkerView.layer.borderColor = [UIColor colorWithRed:75.0/255.0 green:137.0/255.0 blue:208.0/255.0 alpha:1.0].CGColor;
-    mapMarkerView.layer.borderWidth = 2.0;
     
     if (place.photos.count != 0) {
         Photo *photo = place.photos[0];
@@ -360,17 +375,15 @@
     }
 
     // anchor
+    CGFloat anchorHeight = 10.0;
     CGFloat popupWidth = mapMarkerView.frame.size.width;
-    CGFloat popupHeight = mapMarkerView.frame.size.height + 10;
-    CGFloat anchorSize = 20;
+    CGFloat popupHeight = mapMarkerView.frame.size.height + anchorHeight;
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, popupWidth, popupHeight)];
-    float offSet = anchorSize * M_SQRT2;
-    CGAffineTransform rotateBy45Degrees = CGAffineTransformMakeRotation(M_PI_4); //rotate by 45 degrees
-    UIView *callOut = [[UIView alloc] initWithFrame:CGRectMake((popupWidth - anchorSize)/2.0, popupHeight - offSet, anchorSize, anchorSize)];
-    callOut.transform = rotateBy45Degrees;
-    callOut.backgroundColor = [UIColor colorWithRed:75.0/255.0 green:137.0/255.0 blue:208.0/255.0 alpha:1.0];
+    CGRect arrowRect = CGRectMake(popupWidth / 2 - anchorHeight, popupHeight- anchorHeight, anchorHeight *2, anchorHeight);
+    FEArrowView *arrowView = [[FEArrowView alloc] initWithFrame:arrowRect];
+    arrowView.backgroundColor = [UIColor clearColor];
     
-    [outerView addSubview:callOut];
+    [outerView addSubview:arrowView];
     [outerView addSubview:mapMarkerView];
     
     return outerView;
