@@ -8,41 +8,73 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1" customClass="FEMapMarkerView">
-            <rect key="frame" x="0.0" y="0.0" width="297" height="98"/>
+            <rect key="frame" x="0.0" y="0.0" width="309" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="A0G-Nr-QCi">
-                    <rect key="frame" x="8" y="8" width="64" height="64"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <view alpha="0.89999999999999991" contentMode="scaleToFill" id="Mzi-da-gmw">
+                    <rect key="frame" x="0.0" y="0.0" width="309" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="L7p-Ze-MYi">
+                    <rect key="frame" x="6" y="6" width="64" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" id="9vc-DD-SZA">
-                    <rect key="frame" x="80" y="8" width="136" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="3tT-2k-gI6">
+                    <rect key="frame" x="107" y="4" width="175" height="21"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" id="6vc-wH-0QI">
-                    <rect key="frame" x="80" y="29" width="208" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="fwu-TN-F03">
+                    <rect key="frame" x="79" y="27" width="223" height="21"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <view contentMode="scaleToFill" id="bCm-Mn-rwG" customClass="DYRateView">
-                    <rect key="frame" x="8" y="80" width="64" height="10"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="zQj-b2-qR3">
+                    <rect key="frame" x="79" y="43" width="223" height="21"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
+                <view contentMode="scaleToFill" id="EYD-La-DfB" customClass="DYRateView">
+                    <rect key="frame" x="7" y="73" width="64" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="geZ-9i-hCD">
+                    <rect key="frame" x="79" y="64" width="223" height="22"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                </scrollView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="star_empty.png" id="xEF-rA-ePQ">
+                    <rect key="frame" x="76" y="0.0" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000298023224" id="8cr-ok-4us">
+                    <rect key="frame" x="87" y="13" width="10" height="9"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="addressLbl" destination="6vc-wH-0QI" id="VDK-FS-vSB"/>
-                <outlet property="imageView" destination="A0G-Nr-QCi" id="LQk-3Z-WhE"/>
-                <outlet property="nameLbl" destination="9vc-DD-SZA" id="02u-cz-8fD"/>
-                <outlet property="rateView" destination="bCm-Mn-rwG" id="XFJ-jl-slL"/>
+                <outlet property="addressLbl" destination="fwu-TN-F03" id="T2h-KB-4Uw"/>
+                <outlet property="checkinLbl" destination="8cr-ok-4us" id="169-kl-ejG"/>
+                <outlet property="distanceLbl" destination="zQj-b2-qR3" id="5JI-NU-URH"/>
+                <outlet property="imageView" destination="L7p-Ze-MYi" id="vbh-2n-TJt"/>
+                <outlet property="nameLbl" destination="3tT-2k-gI6" id="iYd-Lm-Pmf"/>
+                <outlet property="rateView" destination="EYD-La-DfB" id="P58-cr-OLT"/>
+                <outlet property="tagsScrollView" destination="geZ-9i-hCD" id="oAB-lD-fOB"/>
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="star_empty.png" width="32" height="32"/>
+    </resources>
 </document>

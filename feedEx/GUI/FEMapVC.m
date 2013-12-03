@@ -18,6 +18,7 @@
 #import "FEAppDelegate.h"
 #import "FEMapSearchSettingVC.h"
 #import "FEMapMarkerView.h"
+#import "Tag.h"
 
 @interface FEMapVC()<FEPlaceListSearchMapTVCDelegate, UITextFieldDelegate, FEMapSearchSettingVCDelegate, GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -308,6 +309,9 @@
     }
 }
 #pragma mark - GMSMapViewDelegate
+#define TAG_PADDING 5.0
+#define TAG_HORIZON_MARGIN 10.0
+#define TAG_VERTICAL_MARGIN 5.0
 - (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
     if (marker.userData == nil) {
         return nil;
@@ -317,17 +321,44 @@
     FEMapMarkerView *mapMarkerView = [[[NSBundle mainBundle] loadNibNamed:@"FEMapMarkerCallout" owner:self options:nil] objectAtIndex:0];
     mapMarkerView.layer.cornerRadius = 5;
     mapMarkerView.layer.masksToBounds = YES;
-    mapMarkerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    mapMarkerView.layer.borderColor = [UIColor colorWithRed:75.0/255.0 green:137.0/255.0 blue:208.0/255.0 alpha:1.0].CGColor;
     mapMarkerView.layer.borderWidth = 2.0;
-    mapMarkerView.nameLbl.text = place.name;
     
     if (place.photos.count != 0) {
         Photo *photo = place.photos[0];
         mapMarkerView.imageView.image = photo.thumbnailPhoto.image;
     }
+    mapMarkerView.nameLbl.text = place.name;
     mapMarkerView.rateView.rate = [place.rating floatValue];
     mapMarkerView.addressLbl.text = place.address.address;
-    
+    mapMarkerView.checkinLbl.text = [place.timesCheckin description];
+    mapMarkerView.distanceLbl.text = place.distanceInfo;
+    if (place.tags.count > 0) {
+        CGFloat contentWidth = 0.0;
+        for (Tag *tag in place.tags) {
+            UIFont *font = [UIFont systemFontOfSize:10];
+            CGSize tagSize = [tag.label sizeWithFont:font];
+            tagSize.width += TAG_HORIZON_MARGIN;
+            tagSize.height += TAG_VERTICAL_MARGIN;
+            UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];
+            tagLbl.adjustsFontSizeToFitWidth = YES;
+            tagLbl.minimumScaleFactor = 0.1;
+            tagLbl.textAlignment = NSTextAlignmentCenter;
+            tagLbl.text = tag.label;
+            tagLbl.font = font;
+            tagLbl.textColor = [UIColor whiteColor];
+            tagLbl.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.1];
+            tagLbl.layer.cornerRadius = 5;
+            tagLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
+            tagLbl.layer.borderWidth = 0.8;
+            [mapMarkerView.tagsScrollView addSubview:tagLbl];
+            contentWidth += tagSize.width + TAG_PADDING;
+        }
+        CGSize size = mapMarkerView.tagsScrollView.contentSize;
+        size.width = contentWidth;
+        mapMarkerView.tagsScrollView.contentSize = size;
+    }
+
     // anchor
     CGFloat popupWidth = mapMarkerView.frame.size.width;
     CGFloat popupHeight = mapMarkerView.frame.size.height + 10;
@@ -337,7 +368,7 @@
     CGAffineTransform rotateBy45Degrees = CGAffineTransformMakeRotation(M_PI_4); //rotate by 45 degrees
     UIView *callOut = [[UIView alloc] initWithFrame:CGRectMake((popupWidth - anchorSize)/2.0, popupHeight - offSet, anchorSize, anchorSize)];
     callOut.transform = rotateBy45Degrees;
-    callOut.backgroundColor = [UIColor darkGrayColor];
+    callOut.backgroundColor = [UIColor colorWithRed:75.0/255.0 green:137.0/255.0 blue:208.0/255.0 alpha:1.0];
     
     [outerView addSubview:callOut];
     [outerView addSubview:mapMarkerView];

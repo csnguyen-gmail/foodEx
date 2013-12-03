@@ -7,6 +7,11 @@
 //
 
 #import "FEMapMarkerView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation FEMapMarkerView
+- (void)awakeFromNib {
+    self.imageView.layer.cornerRadius = 10.0;
+    self.imageView.layer.masksToBounds = YES;
+}
 @end
