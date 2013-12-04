@@ -24,7 +24,10 @@
     nextButton.tintColor = [UIColor blackColor];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
                                                                   target:self action:@selector(doneInAccessoryTapped:)];
-    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[doneButton, nextButton]
+    UIBarButtonItem *nextTagButton = [[UIBarButtonItem alloc] initWithTitle:@"Next tag" style:UIBarButtonItemStyleDone
+                                                                     target:self action:@selector(nextTagTapped:)];
+    nextTagButton.tintColor = [UIColor lightGrayColor];
+    FECustomInputAccessoryView *customInputAccessoryView = [[FECustomInputAccessoryView alloc] initWithButtons:@[doneButton, nextTagButton, nextButton]
                                                                                              andSuggestionWord:self.tags];
     customInputAccessoryView.delegate = self;
     self.inputAccessoryView = customInputAccessoryView;
@@ -39,6 +42,29 @@
 }
 
 #pragma mark - event processing
+- (void)nextTagTapped:(UIBarButtonItem*)sender {
+    if (self.isUsingPlaceholder) {
+        return;
+    }
+    NSString *newStr = [self.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (newStr.length == 0) {
+        self.text = @"";
+        return;
+    }
+    NSString *lastChar = [newStr substringFromIndex:newStr.length - 1];
+    if ([lastChar isEqualToString:@","]) {
+        newStr = [NSString stringWithFormat:@"%@%@", newStr, @" "];
+    }
+    else {
+        newStr = [NSString stringWithFormat:@"%@%@", newStr, @", "];
+    }
+    self.text = newStr;
+    if ([self.inputAccessoryView isKindOfClass:[FECustomInputAccessoryView class]]) {
+        FECustomInputAccessoryView *customInputView = (FECustomInputAccessoryView*)self.inputAccessoryView;
+        customInputView.suggestionWords = [self rebuildSuggestionWords:self.tags withSelectedWords:[self buildTagArray]];
+        customInputView.filterWord = [self getStringBetweenCommas];
+    }
+}
 - (void)nextInAccessoryTapped:(UIBarButtonItem*)sender {
     [self.nextTextField becomeFirstResponder];
 }
