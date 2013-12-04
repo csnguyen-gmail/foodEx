@@ -19,6 +19,7 @@
 #import "FEMapSearchSettingVC.h"
 #import "FEMapMarkerView.h"
 #import "Tag.h"
+#import "FEPlaceDetailMainVC.h"
 
 @interface FEArrowView : UIView
 @end
@@ -48,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic) BOOL shouldFitMarkers;
 @property (nonatomic, strong) FEMapSearchPlaceSettingInfo *searchSettingInfo;
+@property (nonatomic, strong) Place *selectedPlace;
 @end
 
 @implementation FEMapVC
@@ -93,6 +95,11 @@
     else if ([[segue identifier] isEqualToString:@"mapSetting"]) {
         FEMapSearchSettingVC *settingVC = [segue destinationViewController];
         settingVC.delegate = self;
+    }
+    else if ([[segue identifier] isEqualToString:@"detailPlace"]) {
+        UINavigationController *nav = [segue destinationViewController];
+        FEPlaceDetailMainVC *placeDetailVC = nav.viewControllers[0];
+        placeDetailVC.place = self.selectedPlace;
     }
 }
 
@@ -392,6 +399,7 @@
     if (marker.userData == nil) {
         return;
     }
-    // TODO: detail place
+    self.selectedPlace = marker.userData;
+    [self performSegueWithIdentifier:@"detailPlace" sender:self];
 }
 @end

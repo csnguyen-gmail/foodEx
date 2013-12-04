@@ -43,6 +43,8 @@
 #define TAG_VERTICAL_MARGIN 5.0
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // fix IOS7 bug, Navigation bar transparent as default
+    self.navigationController.navigationBar.translucent = NO;
     self.verticalResizeView.delegate = self;
     self.placeDetailTVC.place = self.place;
     self.addressLbl.text = self.place.address.address;
@@ -186,6 +188,16 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Edit", @"Share", @"Go to", nil];
 //    [actionSheet showInView:self.view];
     [actionSheet showFromToolbar:self.navigationController.toolbar];
+}
+- (IBAction)backTapped:(UIBarButtonItem *)sender {
+    // in case view controller is not root controller, then popo as usual
+    if ( self != [self.navigationController.viewControllers objectAtIndex:0] ) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    // else act as it is modal view controller
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - FEVerticalResizeControlDelegate
