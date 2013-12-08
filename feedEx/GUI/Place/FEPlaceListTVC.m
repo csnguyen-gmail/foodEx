@@ -117,11 +117,24 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.placesForDisplay.count;
+    return self.placesForDisplay.count + 1;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.placesForDisplay.count) {
+        return 22;
+    }
+    return 89;
+}
+#define kSummaryInfoLblTag 100
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlaceListCell";
+    static NSString *LastCellIdentifier = @"PlaceListLastCell";
+    if (indexPath.row == self.placesForDisplay.count) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LastCellIdentifier forIndexPath:indexPath];
+        UILabel *sumInfoLbl = (UILabel*)[cell viewWithTag:kSummaryInfoLblTag];
+        sumInfoLbl.text = [[NSString alloc] initWithFormat:@"Total %d places", self.placesForDisplay.count];
+        return cell;
+    }
     FEPlaceListCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     [self updateCell:cell atIndexPath:indexPath.row];
     return cell;
