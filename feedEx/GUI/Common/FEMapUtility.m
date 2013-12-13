@@ -7,12 +7,33 @@
 //
 
 #import "FEMapUtility.h"
+#import "Common.h"
+@implementation FEDistanseInfo
+@end
 
+#define GOOGLE_DIRECTION_URL @"http://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@&mode=driving&sensor=false"
 @interface FEMapUtility()<NSURLConnectionDelegate>
 @end
-#define GOOGLE_DIRECTION_URL @"http://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@&mode=driving&sensor=false"
 @implementation FEMapUtility
-+ (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
++ (FEMapUtility *)sharedInstance {
+    static dispatch_once_t onceToken;
+    static FEMapUtility *shared = nil;
+    dispatch_once(&onceToken, ^{
+        shared = [[FEMapUtility alloc] init];
+//        [[NSNotificationCenter defaultCenter] addObserver:shared selector:@selector(locationChanged:) name:LOCATION_UPDATED object:nil];
+    });
+    return shared;
+}
+
+- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+}
+
+- (void)locationChanged:(NSNotification *)info {
+//    CLLocation* location = [info userInfo][@"location"];
+}
+
+- (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
                    queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *locations))handle {
     NSString *fromStr = [NSString stringWithFormat:@"%f,%f",from.latitude, from.longitude];
     NSString *toStr = [NSString stringWithFormat:@"%f,%f",to.latitude, to.longitude];
@@ -60,7 +81,7 @@
 }
 
 #define GOOGLE_DISTANCE_URL @"http://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&mode=driving&sensor=false"
-+ (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
+- (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
                   queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *distances))handle {
     if (destPoints.count == 0) {
         handle(nil);

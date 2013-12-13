@@ -137,7 +137,7 @@
     // find route
     CLLocationCoordinate2D locPlace1 = location2d;
     CLLocationCoordinate2D locPlace2 = self.placeMarker.position;
-    [FEMapUtility getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+    [[FEMapUtility sharedInstance] getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
         // expand map view
         CGFloat delta = self.placeDetailView.frame.size.height - _minResizableHeight;
         [UIView animateWithDuration:.3f animations:^{
@@ -163,7 +163,7 @@
     }];
     // find distance
     NSValue *locPlace2Value = [NSValue valueWithBytes:&locPlace2 objCType:@encode(CLLocationCoordinate2D)];
-    [FEMapUtility getDistanceFrom:locPlace1 to:@[locPlace2Value]
+    [[FEMapUtility sharedInstance] getDistanceFrom:locPlace1 to:@[locPlace2Value]
                             queue:[NSOperationQueue mainQueue]
                 completionHandler:^(NSArray *distances) {
                     if (distances.count > 0) {

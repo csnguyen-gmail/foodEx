@@ -8,9 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+
+@interface FEDistanseInfo : NSObject
+@property (nonatomic, strong) NSString *distance;
+@property (nonatomic, strong) NSString *duration;
+@end
+
 @interface FEMapUtility : NSObject
-+ (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+@property (nonatomic, strong) NSDictionary *distanceInfo; // dictionary include ObjectID/FEDistanceInfo
+
++ (FEMapUtility *)sharedInstance;
+- (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
                    queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *locations/* arrray of CLLocationCoordinate2D*/))handle;
-+ (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
+- (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
                   queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *distances)/* dictionary @{@"distance":value, @"duration":value}*/)handle;
+
 @end

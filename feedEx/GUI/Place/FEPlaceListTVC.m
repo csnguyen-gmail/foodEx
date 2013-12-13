@@ -93,7 +93,7 @@
         CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
         [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
     }
-    [FEMapUtility getDistanceFrom:location2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
+    [[FEMapUtility sharedInstance] getDistanceFrom:location2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
         if (distances != nil) {
             for (int i = 0; i < distances.count; i++) {
                 NSDictionary *distanceInfo = distances[i];

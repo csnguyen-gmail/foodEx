@@ -246,7 +246,7 @@
     CLLocation* location = [delegate getCurrentLocation];
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
     CLLocationCoordinate2D locPlace2 = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-    [FEMapUtility getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+    [[FEMapUtility sharedInstance] getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
         // clear all old polylines
         for (GMSPolyline *polyline in self.mapView.polylines) {
             polyline.map = nil;
@@ -294,7 +294,7 @@
         CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
         [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
     }
-    [FEMapUtility getDistanceFrom:myLocation2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
+    [[FEMapUtility sharedInstance] getDistanceFrom:myLocation2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
         for (int i = 0; i < distances.count; i++) {
             NSDictionary *distanceInfo = distances[i];
             NSString *distanceStr = distanceInfo[@"distance"];
