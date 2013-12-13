@@ -231,6 +231,17 @@
 #pragma mark - FEPlaceListSearchMapTVCDelegate
 - (void)searchMapDidSelectPlace:(Place *)place {
     [self.searchTextField resignFirstResponder];
+    for (GMSMarker *marker in self.mapView.markers) {
+        if ((marker.position.longitude == [place.address.longtitude doubleValue]) &&
+            (marker.position.latitude == [place.address.lattittude doubleValue])) {
+            marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        }
+        else {
+            marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+        }
+    }
+    
+    
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     CLLocation* location = [delegate getCurrentLocation];
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
