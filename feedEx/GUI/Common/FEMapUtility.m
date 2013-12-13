@@ -8,31 +8,36 @@
 
 #import "FEMapUtility.h"
 #import "Common.h"
+#import <CoreData/CoreData.h>
 @implementation FEDistanseInfo
 @end
 
-#define GOOGLE_DIRECTION_URL @"http://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@&mode=driving&sensor=false"
 @interface FEMapUtility()<NSURLConnectionDelegate>
+@property (nonatomic, strong) NSMutableDictionary *distanceInfo; // dictionary include ObjectID/FEDistanceInfo
 @end
+
 @implementation FEMapUtility
 + (FEMapUtility *)sharedInstance {
     static dispatch_once_t onceToken;
     static FEMapUtility *shared = nil;
     dispatch_once(&onceToken, ^{
         shared = [[FEMapUtility alloc] init];
-//        [[NSNotificationCenter defaultCenter] addObserver:shared selector:@selector(locationChanged:) name:LOCATION_UPDATED object:nil];
     });
     return shared;
 }
-
-- (void)dealloc {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOCATION_UPDATED object:nil];
+- (NSMutableDictionary *)distanceInfo {
+    if (_distanceInfo == nil) {
+        _distanceInfo = [[NSMutableDictionary alloc] init];
+    }
+    return _distanceInfo;
+}
+#pragma mark - getter setter
+- (void)setLocation:(CLLocation *)location {
+    _location = location;
+    [self.distanceInfo removeAllObjects];
 }
 
-- (void)locationChanged:(NSNotification *)info {
-//    CLLocation* location = [info userInfo][@"location"];
-}
-
+#define GOOGLE_DIRECTION_URL @"http://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@&mode=driving&sensor=false"
 - (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
                    queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *locations))handle {
     NSString *fromStr = [NSString stringWithFormat:@"%f,%f",from.latitude, from.longitude];
@@ -84,7 +89,9 @@
 - (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
                   queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *distances))handle {
     if (destPoints.count == 0) {
-        handle(nil);
+        [queue addOperationWithBlock:^{
+            handle(nil);
+        }];
         return;
     }
     NSString *fromStr = [NSString stringWithFormat:@"%f,%f",from.latitude, from.longitude];
@@ -132,5 +139,39 @@
                                }
                            }];
 }
+
+- (void)getDistanceToDestination:(CLLocationCoordinate2D)destCord queue:(NSOperationQueue *)queue completionHandler:(void (^)(FEDistanseInfo *info))handle {
+    NSString *key = [NSString stringWithFormat:@"%f, %f", destCord.latitude, destCord.longitude];
+    FEDistanseInfo *info = self.distanceInfo[key];
+    if (info == nil) {
+        info = [[FEDistanseInfo alloc] init];
+        self.distanceInfo[key] = info;
+        
+        NSValue *destValue = [NSValue valueWithBytes:&destCord objCType:@encode(CLLocationCoordinate2D)];
+        [self getDistanceFrom:self.location.coordinate to:@[destValue] queue:queue completionHandler:^(NSArray *distances) {
+            if (distances.count > 0) {
+                NSDictionary *distanceInfo = distances[0];
+                info.distance = distanceInfo[@"distance"];
+                info.duration = distanceInfo[@"duration"];
+                [queue addOperationWithBlock:^{
+                    handle(info);
+                }];
+            }
+            // reset in case get distance error
+            else {
+                [self.distanceInfo removeObjectForKey:key];
+            }
+        }];
+        return;
+    }
+    if ((info.distance == nil) || (info.duration == nil)) {
+        [queue addOperationWithBlock:^{
+            [queue addOperationWithBlock:^{
+                handle(info);
+            }];
+        }];
+    }
+}
+
 
 @end

@@ -162,22 +162,17 @@
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
     }];
     // find distance
-    NSValue *locPlace2Value = [NSValue valueWithBytes:&locPlace2 objCType:@encode(CLLocationCoordinate2D)];
-    [[FEMapUtility sharedInstance] getDistanceFrom:locPlace1 to:@[locPlace2Value]
-                            queue:[NSOperationQueue mainQueue]
-                completionHandler:^(NSArray *distances) {
-                    if (distances.count > 0) {
-                        NSDictionary *distanceInfo = distances[0];
-                        NSString *distanceStr = distanceInfo[@"distance"];
-                        NSString *durationStr = distanceInfo[@"duration"];
-                        NSString *infoStr = [NSString stringWithFormat:@"(about %@ from here, estimate %@ driving)", distanceStr, durationStr];
-                        [UIView animateWithDuration:0.3 animations:^{
-                            self.distanceInfo.text = infoStr;
-                            self.distanceInfo.hidden = NO;
-                            self.distanceInfoBgView.hidden = NO;
-                        }];
-                    }
-    }];
+    [[FEMapUtility sharedInstance] getDistanceToDestination:self.placeMarker.position
+                                                      queue:[NSOperationQueue mainQueue]
+                                          completionHandler:^(FEDistanseInfo *info)
+     {
+         NSString *infoStr = [NSString stringWithFormat:@"(about %@ from here, estimate %@ driving)", info.distance, info.duration];
+         [UIView animateWithDuration:0.3 animations:^{
+             self.distanceInfo.text = infoStr;
+             self.distanceInfo.hidden = NO;
+             self.distanceInfoBgView.hidden = NO;
+         }];
+     }];
 }
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {

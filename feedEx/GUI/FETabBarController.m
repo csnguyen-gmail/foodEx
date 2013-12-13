@@ -13,6 +13,7 @@
 #import "FEDataSerialize.h"
 #import "UIAlertView+Extension.h"
 #import "Common.h"
+#import "FEMapUtility.h"
 
 @interface FETabBarController ()<UIAlertViewDelegate, CLLocationManagerDelegate>
 @property (nonatomic, strong) NSURL *url;
@@ -76,6 +77,7 @@
         self.updatingLocation = NO;
         [self.locationManager stopUpdatingLocation];
         self.currentLocation = location;
+        [[FEMapUtility sharedInstance] setLocation:location];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_UPDATED
                                                                 object:nil userInfo:@{@"location":location}];

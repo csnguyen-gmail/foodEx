@@ -15,9 +15,9 @@
 @end
 
 @interface FEMapUtility : NSObject
-@property (nonatomic, strong) NSDictionary *distanceInfo; // dictionary include ObjectID/FEDistanceInfo
-
+@property (nonatomic, strong) CLLocation *location;
 + (FEMapUtility *)sharedInstance;
+- (void)getDistanceToDestination:(CLLocationCoordinate2D)destCord queue:(NSOperationQueue *)queue completionHandler:(void (^)(FEDistanseInfo *info))handle;
 - (void)getDirectionFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
                    queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSArray *locations/* arrray of CLLocationCoordinate2D*/))handle;
 - (void)getDistanceFrom:(CLLocationCoordinate2D)from to:(NSArray*)destPoints // list of CLLocationCoordinate2D
