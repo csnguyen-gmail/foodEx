@@ -141,6 +141,9 @@
 }
 
 - (void)getDistanceToDestination:(CLLocationCoordinate2D)destCord queue:(NSOperationQueue *)queue completionHandler:(void (^)(FEDistanseInfo *info))handle {
+    if (self.location == nil) {
+        return;
+    }
     NSString *key = [NSString stringWithFormat:@"%f, %f", destCord.latitude, destCord.longitude];
     FEDistanseInfo *info = self.distanceInfo[key];
     if (info == nil) {
@@ -156,15 +159,18 @@
                 [queue addOperationWithBlock:^{
                     handle(info);
                 }];
+                NSLog(@"Input");
             }
             // reset in case get distance error
             else {
                 [self.distanceInfo removeObjectForKey:key];
+                NSLog(@"Reset");
             }
         }];
         return;
     }
-    if ((info.distance == nil) || (info.duration == nil)) {
+    if ((info.distance != nil) && (info.duration != nil)) {
+        NSLog(@"Used");
         [queue addOperationWithBlock:^{
             [queue addOperationWithBlock:^{
                 handle(info);

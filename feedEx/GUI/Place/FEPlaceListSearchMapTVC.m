@@ -10,6 +10,8 @@
 #import "FEPlaceListSearchMapCell.h"
 #import "Address.h"
 #import "Tag.h"
+#import <CoreLocation/CoreLocation.h>
+#import "FEMapUtility.h"
 // TODO using batch size
 @interface FEPlaceListSearchMapTVC ()<FEPlaceListSearchMapCellDelegate>
 @end
@@ -37,15 +39,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlaceListSearchMapCell";
     FEPlaceListSearchMapCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [self updateCell:cell atIndexPath:indexPath.row];
+    [self updateCell:cell atIndexPath:indexPath];
     return cell;
 }
-- (void)updateCell:(FEPlaceListSearchMapCell*)cell atIndexPath:(NSUInteger)index{
-    Place *place = self.places[index];
+- (void)updateCell:(FEPlaceListSearchMapCell*)cell atIndexPath:(NSIndexPath*)index{
+    Place *place = self.places[index.row];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
     cell.distanceLbl.text = place.distanceInfo;
+    CLLocationCoordinate2D placeLoc = CLLocationCoordinate2DMake([place.address.lattittude doubleValue], [place.address.longtitude doubleValue]);
+    [[FEMapUtility sharedInstance] getDistanceToDestination:placeLoc queue:[NSOperationQueue mainQueue] completionHandler:^(FEDistanseInfo *info) {
+        FEPlaceListSearchMapCell *cell = (FEPlaceListSearchMapCell*)[self.tableView cellForRowAtIndexPath:index];
+        cell.distanceLbl.text = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", info.distance, info.duration];
+    }];
+
 }
 #pragma mark - FEPlaceListSearchMapCellDelegate
 - (void)didSelectPlaceDetailAtCell:(FEPlaceListSearchMapCell *)cell {

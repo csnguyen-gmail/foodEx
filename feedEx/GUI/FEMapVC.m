@@ -288,21 +288,6 @@
     else {
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:myLocation2d]];
     }
-    // refesh distance
-    NSMutableArray *destLocations = [NSMutableArray array];
-    for (Place *place in self.places) {
-        CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
-    }
-    [[FEMapUtility sharedInstance] getDistanceFrom:myLocation2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
-        for (int i = 0; i < distances.count; i++) {
-            NSDictionary *distanceInfo = distances[i];
-            NSString *distanceStr = distanceInfo[@"distance"];
-            NSString *durationStr = distanceInfo[@"duration"];
-            Place *place = self.places[i];
-            place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
-        }
-    }];
 }
 - (void)fitMarkerInBound {
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
@@ -365,7 +350,21 @@
     mapMarkerView.rateView.rate = [place.rating floatValue];
     mapMarkerView.addressLbl.text = place.address.address;
     mapMarkerView.checkinLbl.text = [place.timesCheckin description];
-    mapMarkerView.distanceLbl.text = place.distanceInfo;
+    // flag to prevent looping in getting distance info
+    if (place.distanceInfo) {
+        mapMarkerView.distanceLbl.text = place.distanceInfo;
+    }
+    else {
+        mapMarkerView.distanceLbl.text = @"";
+        CLLocationCoordinate2D placeLoc = CLLocationCoordinate2DMake([place.address.lattittude doubleValue], [place.address.longtitude doubleValue]);
+        [[FEMapUtility sharedInstance] getDistanceToDestination:placeLoc queue:[NSOperationQueue mainQueue] completionHandler:^(FEDistanseInfo *info) {
+            place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", info.distance, info.duration];
+            // trick to refresh marker info
+            if (mapView.selectedMarker == marker) {
+                mapView.selectedMarker = marker;
+            }
+        }];
+    }
     if (place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
         for (Tag *tag in place.tags) {
@@ -412,5 +411,11 @@
     }
     self.selectedPlace = marker.userData;
     [self performSegueWithIdentifier:@"detailPlace" sender:self];
+}
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    Place *place = marker.userData;
+    place.distanceInfo = nil;
+    // let map do thier job
+    return NO;
 }
 @end

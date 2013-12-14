@@ -30,6 +30,7 @@
     self.tableView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.3f];
     self.tableView.layer.cornerRadius = 10;
     [self.refreshControl addTarget:self action:@selector(refreshGUITriggered) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to update location."];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"placeDetail"]) {
@@ -86,26 +87,8 @@
 }
 - (void)setCurrentLocation:(CLLocation *)currentLocation {
     _currentLocation = currentLocation;
-    // refesh distance
-    CLLocationCoordinate2D location2d = {currentLocation.coordinate.latitude, currentLocation.coordinate.longitude};
-    NSMutableArray *destLocations = [NSMutableArray array];
-    for (Place *place in self.placesForDisplay) {
-        CLLocationCoordinate2D to = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [destLocations addObject:[NSValue valueWithBytes:&to objCType:@encode(CLLocationCoordinate2D)]];
-    }
-    [[FEMapUtility sharedInstance] getDistanceFrom:location2d to:destLocations queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *distances) {
-        if (distances != nil) {
-            for (int i = 0; i < distances.count; i++) {
-                NSDictionary *distanceInfo = distances[i];
-                NSString *distanceStr = distanceInfo[@"distance"];
-                NSString *durationStr = distanceInfo[@"duration"];
-                Place *place = self.placesForDisplay[i];
-                place.distanceInfo = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", distanceStr, durationStr];
-            }
-            [self.tableView reloadData];
-        }
-        [self.refreshControl endRefreshing];
-    }];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 - (void) refreshGUITriggered {
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -136,26 +119,26 @@
         return cell;
     }
     FEPlaceListCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [self updateCell:cell atIndexPath:indexPath.row];
+    [self updateCell:cell atIndexPath:indexPath];
     return cell;
 }
 #define TAG_PADDING 5.0
 #define TAG_HORIZON_MARGIN 10.0
 #define TAG_VERTICAL_MARGIN 5.0
-- (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSUInteger)index{
+- (void)updateCell:(FEPlaceListCell*)cell atIndexPath:(NSIndexPath*)index{
     cell.selectedBackgroundView = self.selectedBackgroundView;
     cell.isEditMode = self.isEditMode;
-    Place *place = self.placesForDisplay[index];
+    Place *place = self.placesForDisplay[index.row];
     cell.delegate = self;
     cell.nameLbl.text = place.name;
     cell.addressLbl.text = place.address.address;
     cell.ratingView.rate = [place.rating integerValue];
     cell.chekinTimesLbl.text = [place.timesCheckin description];;
-    cell.flipPhotosView.rowIndex = index;
+    cell.flipPhotosView.rowIndex = index.row;
     cell.flipPhotosView.delegate = self;
     cell.flipPhotosView.usingThumbnail = YES;
     [cell.flipPhotosView setDatasource:[place.photos array]
-                     withSelectedIndex:[self.imageIndexes[index] integerValue]];
+                     withSelectedIndex:[self.imageIndexes[index.row] integerValue]];
     [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if (place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
@@ -182,7 +165,13 @@
         size.width = contentWidth;
         cell.tagsScrollView.contentSize = size;
     }
-    cell.distanceLbl.text = place.distanceInfo;
+    cell.distanceLbl.text = @"";
+    
+    CLLocationCoordinate2D placeLoc = CLLocationCoordinate2DMake([place.address.lattittude doubleValue], [place.address.longtitude doubleValue]);
+    [[FEMapUtility sharedInstance] getDistanceToDestination:placeLoc queue:[NSOperationQueue mainQueue] completionHandler:^(FEDistanseInfo *info) {
+        FEPlaceListCell *cell = (FEPlaceListCell*)[self.tableView cellForRowAtIndexPath:index];
+        cell.distanceLbl.text = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", info.distance, info.duration];
+    }];
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.editing == YES) {
