@@ -48,6 +48,7 @@
 @property (weak, nonatomic) GMSMarker *locationMarker;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic) BOOL shouldFitMarkers;
+@property (nonatomic) BOOL shouldUpdateCamera;
 @property (nonatomic, strong) FEMapSearchPlaceSettingInfo *searchSettingInfo;
 @property (nonatomic, strong) Place *selectedPlace;
 @end
@@ -64,11 +65,10 @@
                                                  name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
-    // get location
-    [self updateLocationWithFitMarker:YES];
-    [self.indicationView startAnimating];
-
+    // update marker
     [self refetchData];
+    self.shouldFitMarkers = YES;
+    [self updateMapInfo];
 }
 - (void)removeObserver {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
@@ -103,17 +103,13 @@
     }
 }
 
-- (void)updateLocationWithFitMarker:(BOOL)fitMarkers {
-    self.shouldFitMarkers = fitMarkers;
-    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate updateLocation];
-}
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     // reload data source
     [self refetchData];
     // update map information
-    [self updateMapInfoWithFitMarkets:YES];
+    self.shouldFitMarkers = YES;
+    [self updateMapInfo];
 }
 - (void)refetchData {
     // reload data source
@@ -131,7 +127,10 @@
 #pragma mark - event handler
 - (IBAction)refreshTapped:(UIBarButtonItem *)sender {
     // get location
-    [self updateLocationWithFitMarker:NO];
+    self.shouldFitMarkers = NO;
+    self.shouldUpdateCamera = YES;
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateLocation];
 }
 - (IBAction)clearTapped:(UIBarButtonItem *)sender {
     // clear all old polylines
@@ -268,11 +267,10 @@
 }
 #pragma mark - Map
 - (void)locationChanged:(NSNotification*)info {
-    [self.indicationView stopAnimating];
-    [self updateMapInfoWithFitMarkets:self.shouldFitMarkers];
+    [self updateMapInfo];
 }
 #define MARKERS_FIT_PADDING 40.0
-- (void)updateMapInfoWithFitMarkets:(BOOL)fitMarkets {
+- (void)updateMapInfo {
     // update myLocation
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     CLLocation* myLocation = [delegate getCurrentLocation];
@@ -282,11 +280,15 @@
     CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
     self.locationMarker.position = myLocation2d;
     // fit Markers location
-    if (fitMarkets) {
+    if (self.shouldFitMarkers) {
         [self fitMarkerInBound];
+        self.shouldFitMarkers = NO;
     }
     else {
-        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:myLocation2d]];
+        if (self.shouldUpdateCamera) {
+            [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:myLocation2d]];
+            self.shouldUpdateCamera = NO;
+        }
     }
 }
 - (void)fitMarkerInBound {

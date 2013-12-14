@@ -18,8 +18,9 @@
 #import "Place.h"
 #import "Food.h"
 #import "UIAlertView+Extension.h"
-#import "FEAppDelegate.h"
 #import "User+Extension.h"
+#import <CoreLocation/CoreLocation.h>
+#import "FEAppDelegate.h"
 
 #define ALERT_DELETE_CONFIRM 0
 @interface FESearchVC()<FESearchSettingVCDelegate, FEPlaceListTVCDelegate, FEFoodGridTVCDelegate, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate>
@@ -84,9 +85,6 @@
                                                  name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
-    // get location
-    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate updateLocation];
 }
 - (void)removeObserver {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];
@@ -125,8 +123,7 @@
 }
 #pragma mark - handle location change
 - (void)locationChanged:(NSNotification*)info {
-    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    CLLocation* location = [delegate getCurrentLocation];
+    CLLocation* location = [info userInfo][@"location"];
     self.placeListTVC.currentLocation = location;
 }
 #pragma mark - utility
