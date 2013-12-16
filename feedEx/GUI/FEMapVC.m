@@ -51,6 +51,9 @@
 @property (nonatomic) BOOL shouldUpdateCamera;
 @property (nonatomic, strong) FEMapSearchPlaceSettingInfo *searchSettingInfo;
 @property (nonatomic, strong) Place *selectedPlace;
+@property (nonatomic) CLLocationCoordinate2D fromPlacePos;
+@property (nonatomic) CLLocationCoordinate2D toPlacePos;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInfoLbl;
 @end
 
 @implementation FEMapVC
@@ -65,6 +68,8 @@
                                                  name:CORE_DATA_UPDATED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
+    self.fromPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
+    self.toPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
     // update marker
     [self refetchData];
     self.shouldFitMarkers = YES;
@@ -103,6 +108,7 @@
     }
 }
 
+
 #pragma mark - handler DataModel changed
 - (void)coredateChanged:(NSNotification *)info {
     // reload data source
@@ -115,13 +121,7 @@
     // reload data source
     self.places = [Place placesFromMapPlaceSettingInfo:self.searchSettingInfo];
     // rebuild marker
-    for (GMSMarker *marker in self.mapView.markers) {
-        marker.map = nil;
-    }
-    for (Place *place in self.places) {
-        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-        [self addMarketAt:location2d withPlace:place mapMoved:NO];
-    }
+    [self rebuildMarkers];
 }
 
 #pragma mark - event handler
@@ -133,10 +133,9 @@
     [delegate updateLocation];
 }
 - (IBAction)clearTapped:(UIBarButtonItem *)sender {
-    // clear all old polylines
-    for (GMSPolyline *polyline in self.mapView.polylines) {
-        polyline.map = nil;
-    }
+    [self rebuildMarkers];
+    self.fromPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
+    self.toPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
 }
 
 #pragma mark - getter setter
@@ -245,29 +244,42 @@
     CLLocation* location = [delegate getCurrentLocation];
     CLLocationCoordinate2D locPlace1 = {location.coordinate.latitude, location.coordinate.longitude};
     CLLocationCoordinate2D locPlace2 = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
-    [[FEMapUtility sharedInstance] getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
-        // clear all old polylines
-        for (GMSPolyline *polyline in self.mapView.polylines) {
-            polyline.map = nil;
-        }
-        // add new polylines
-        GMSMutablePath *path = [GMSMutablePath path];
-        for (NSValue *value in locations) {
-            CLLocationCoordinate2D location;
-            [value getValue:&location];
-            [path addCoordinate:location];
-        }
-        GMSPolyline *route = [GMSPolyline polylineWithPath:path];
-        route.strokeWidth = 3;
-        route.map = self.mapView;
-        // fit camera
-        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
-        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+    [self createPolylineFrom:locPlace1 to:locPlace2];
+    
+    CLLocationCoordinate2D placeLoc = CLLocationCoordinate2DMake([place.address.lattittude doubleValue], [place.address.longtitude doubleValue]);
+    [[FEMapUtility sharedInstance] getDistanceToDestination:placeLoc queue:[NSOperationQueue mainQueue] completionHandler:^(FEDistanseInfo *info) {
+        self.distanceInfoLbl.text = [NSString stringWithFormat:@"About %@ km, estimate %@ mins driving", info.distance, info.duration];
+        self.distanceInfoLbl.hidden = NO;
     }];
 }
 #pragma mark - Map
 - (void)locationChanged:(NSNotification*)info {
     [self updateMapInfo];
+}
+- (void)rebuildMarkers {
+    // rebuild marker
+    for (GMSMarker *marker in self.mapView.markers) {
+        marker.map = nil;
+    }
+    for (Place *place in self.places) {
+        CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
+        [self addMarketAt:location2d withPlace:place mapMoved:NO];
+    }
+    // update myLocation
+    FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    CLLocation* myLocation = [delegate getCurrentLocation];
+    if (myLocation == nil) {
+        return;
+    }
+    CLLocationCoordinate2D myLocation2d = {myLocation.coordinate.latitude, myLocation.coordinate.longitude};
+    self.locationMarker = nil;
+    self.locationMarker.position = myLocation2d;
+    // clear all old polylines
+    for (GMSPolyline *polyline in self.mapView.polylines) {
+        polyline.map = nil;
+    }
+    // hide distance info
+    self.distanceInfoLbl.hidden = YES;
 }
 #define MARKERS_FIT_PADDING 40.0
 - (void)updateMapInfo {
@@ -322,7 +334,27 @@
     marker.map = self.mapView;
     return marker;
 }
-
+- (void)createPolylineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to {
+    [[FEMapUtility sharedInstance] getDirectionFrom:from to:to queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
+        // clear all old polylines
+        for (GMSPolyline *polyline in self.mapView.polylines) {
+            polyline.map = nil;
+        }
+        // add new polylines
+        GMSMutablePath *path = [GMSMutablePath path];
+        for (NSValue *value in locations) {
+            CLLocationCoordinate2D location;
+            [value getValue:&location];
+            [path addCoordinate:location];
+        }
+        GMSPolyline *route = [GMSPolyline polylineWithPath:path];
+        route.strokeWidth = 3;
+        route.map = self.mapView;
+        // fit camera
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+    }];
+}
 #pragma mark - FESearchSettingVCDelegate
 - (void)didFinishSetting:(FEMapSearchPlaceSettingInfo *)searchSetting hasModification:(BOOL)hasModification {
     if (hasModification) {
@@ -419,5 +451,40 @@
     place.distanceInfo = nil;
     // let map do thier job
     return NO;
+}
+- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    if (self.fromPlacePos.latitude == -1.0 && self.fromPlacePos.longitude == -1.0) {
+        // reset markers
+        [self rebuildMarkers];
+        // add from marker
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = coordinate;
+        marker.map = self.mapView;
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        // update coordinate
+        self.fromPlacePos = coordinate;
+    }
+    else if (self.toPlacePos.latitude == -1.0 && self.toPlacePos.longitude == -1.0) {
+        // add to marker
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = coordinate;
+        marker.map = self.mapView;
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        // update coordinate
+        self.toPlacePos = coordinate;
+        // create polyline
+        [self createPolylineFrom:self.fromPlacePos to:self.toPlacePos];
+        // get distance info
+        CLLocationCoordinate2D toPlace = self.toPlacePos;
+        NSValue *toPlaceVal = [NSValue valueWithBytes:&toPlace objCType:@encode(CLLocationCoordinate2D)];
+        NSOperationQueue *queue = [NSOperationQueue mainQueue];
+        [[FEMapUtility sharedInstance] getDistanceFrom:self.fromPlacePos to:@[toPlaceVal] queue:queue completionHandler:^(NSArray *distances) {
+            if (distances.count > 0) {
+                FEDistanseInfo *distanceInfo = distances[0];
+                self.distanceInfoLbl.text = [NSString stringWithFormat:@"About %@ km, estimate %@ mins driving", distanceInfo.distance, distanceInfo.duration];
+                self.distanceInfoLbl.hidden = NO;
+            }
+        }];
+    }
 }
 @end

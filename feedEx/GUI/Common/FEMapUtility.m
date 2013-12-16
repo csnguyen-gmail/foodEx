@@ -122,12 +122,12 @@
                                    NSArray *rows = json[@"rows"];
                                    NSArray *elements = rows[0][@"elements"];
                                    for (NSDictionary *element in elements) {
-                                       NSDictionary *distance = element[@"distance"];
-                                       NSDictionary *duration = element[@"duration"];
-                                       if (distance == nil || duration == nil) {
+                                       FEDistanseInfo *info = [[FEDistanseInfo alloc] init];
+                                       info.distance = element[@"distance"][@"text"];
+                                       info.duration = element[@"duration"][@"text"];
+                                       if (info.distance == nil || info.duration == nil) {
                                            continue;
                                        }
-                                       NSDictionary *info = @{@"distance":distance[@"text"], @"duration":duration[@"text"]};
                                        [distances addObject:info];
                                    }
                                }
@@ -153,18 +153,16 @@
         NSValue *destValue = [NSValue valueWithBytes:&destCord objCType:@encode(CLLocationCoordinate2D)];
         [self getDistanceFrom:self.location.coordinate to:@[destValue] queue:queue completionHandler:^(NSArray *distances) {
             if (distances.count > 0) {
-                NSDictionary *distanceInfo = distances[0];
-                info.distance = distanceInfo[@"distance"];
-                info.duration = distanceInfo[@"duration"];
+                FEDistanseInfo *distanceInfo = distances[0];
+                info.distance = distanceInfo.distance;
+                info.duration = distanceInfo.duration;
                 [queue addOperationWithBlock:^{
                     handle(info);
                 }];
-                NSLog(@"Input");
             }
             // reset in case get distance error
             else {
                 [self.distanceInfo removeObjectForKey:key];
-                NSLog(@"Reset");
             }
         }];
         return;

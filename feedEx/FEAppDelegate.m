@@ -37,6 +37,7 @@
     // create User firstly
     [User getUser];
 //    [FEDebug printOutImageSize];
+    [self updateLocation];
     return YES;
 }
 // tracking Text field/view change

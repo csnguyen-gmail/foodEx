@@ -100,13 +100,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.tableView.isEditing) {
+        return self.placesForDisplay.count;
+    }
     return self.placesForDisplay.count + 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.placesForDisplay.count) {
-        return 22;
+    if (indexPath.row != self.placesForDisplay.count) {
+        return 89;
     }
-    return 89;
+    return 22;
 }
 #define kSummaryInfoLblTag 100
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
