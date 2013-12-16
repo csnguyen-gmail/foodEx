@@ -191,6 +191,10 @@
         [self.placeListDelegate didSelectPlaceRow];
     }
 }
+// hide empty row
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
 #pragma mark - FEFlipPhotosViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
     self.imageIndexes[row] = @(index);
