@@ -281,7 +281,6 @@
     // hide distance info
     self.distanceInfoLbl.hidden = YES;
 }
-#define MARKERS_FIT_PADDING 40.0
 - (void)updateMapInfo {
     // update myLocation
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -308,7 +307,7 @@
     for (GMSMarker *marker in self.mapView.markers) {
         bounds = [bounds includingCoordinate:marker.position];
     }
-    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0]];
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet mapMoved:(BOOL)mapMoved{
     if (mapMoved) {
@@ -352,7 +351,7 @@
         route.map = self.mapView;
         // fit camera
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
-        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds]];
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:60]];
     }];
 }
 #pragma mark - FESearchSettingVCDelegate
