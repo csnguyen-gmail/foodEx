@@ -79,7 +79,20 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [self updateLocation];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDate *currentDate = [NSDate date];
+    NSDate *previousDate = (NSDate *)[userDefault objectForKey:@"previousDate"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy.MM.dd";
+    NSString *d1 = [dateFormat stringFromDate:currentDate];
+    NSString *d2 = [dateFormat stringFromDate:previousDate];
+    // not same day
+    if ([d1 isEqualToString:d2] != YES) {
+        // update new location automatically
+        [self updateLocation];
+        [userDefault setObject:currentDate forKey:@"previousDate"];
+        [userDefault synchronize];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
