@@ -33,7 +33,13 @@
 {
     [super viewDidLoad];
 	self.imageView.image = self.image;
-    [self loadFilter];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        [self loadFilter];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.filterSelectionView reloadData];
+        }];
+    }];
 }
 
 - (void)loadFilter {

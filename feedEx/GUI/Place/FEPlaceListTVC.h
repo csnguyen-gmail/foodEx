@@ -23,4 +23,5 @@
 
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting;
 - (NSArray*)getSelectedPlaces;
+- (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated;
 @end

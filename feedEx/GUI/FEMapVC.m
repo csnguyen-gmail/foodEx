@@ -61,7 +61,6 @@
     [super viewDidLoad];
     self.mapView.delegate = self;
     self.mapView.settings.compassButton = YES;
-    [self fitMarkerInBound];
     [self hideSearchResultWithAnimated:NO];
     self.placeListTVC.searchDelegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coredateChanged:)
@@ -71,9 +70,12 @@
     self.fromPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
     self.toPlacePos = CLLocationCoordinate2DMake(-1.0, -1.0);
     // update marker
-    [self refetchData];
-    self.shouldFitMarkers = YES;
-    [self updateMapInfo];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        [self refetchData];
+        self.shouldFitMarkers = YES;
+        [self updateMapInfo];
+    }];
 }
 - (void)removeObserver {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:CORE_DATA_UPDATED object:nil];

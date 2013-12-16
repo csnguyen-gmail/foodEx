@@ -19,4 +19,5 @@
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting;
 @property (strong, nonatomic) NSString *quickSearchString;
 - (NSArray*)getSelectedFoods;
+- (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated;
 @end

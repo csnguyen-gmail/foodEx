@@ -53,10 +53,10 @@
 }
 - (void)updatePlacesWithSettingInfo:(FESearchPlaceSettingInfo *)placeSetting {
     self.places = [Place placesFromPlaceSettingInfo:placeSetting];
-    self.quickSearchString = nil;
+    [self setQuickSearchString:nil withAnimated:NO];
 }
 #pragma mark - getter setter
-- (void)setQuickSearchString:(NSString *)quickSearchString {
+- (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated{
     _quickSearchString = quickSearchString;
     // filtering
     if (quickSearchString.length > 0) {
@@ -71,7 +71,12 @@
     for (int i = 0; i< self.placesForDisplay.count; i++) {
         [self.imageIndexes addObject:@(0)];
     }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (animated) {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        [self.tableView reloadData];
+    }
 }
 
 - (UIView *)selectedBackgroundView {

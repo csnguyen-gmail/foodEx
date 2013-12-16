@@ -60,7 +60,7 @@
 - (void)updateFoodsWithSettingInfo:(FESearchFoodSettingInfo *)foodSetting {
     // get data
     self.foods = [Food foodsFromFoodSettingInfo:foodSetting];
-    self.quickSearchString = nil;
+    [self setQuickSearchString:nil withAnimated:NO];
 }
 - (NSArray *)getSelectedFoods {
     NSMutableArray *foods = [NSMutableArray array];
@@ -72,7 +72,7 @@
     return foods;
 }
 #pragma mark - setter getter
-- (void)setQuickSearchString:(NSString *)quickSearchString {
+- (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated{
     _quickSearchString = quickSearchString;
     // cancel all remain task
     [self.operationQueue cancelAllOperations];
@@ -99,9 +99,14 @@
     }
     self.beingCompressedPhotosList = [NSMutableDictionary dictionaryWithCapacity:self.foodsForDisplay.count];
     // update GUI
-    [self.collectionView performBatchUpdates:^{
+    if (animated) {
+        [self.collectionView performBatchUpdates:^{
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        } completion:nil];
+    }
+    else {
         [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    } completion:nil];
+    }
 }
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;

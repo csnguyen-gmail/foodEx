@@ -248,10 +248,10 @@
 }
 - (void)queryWithQuickSearchString:(NSString*)searchString {
     if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
-        self.placeListTVC.quickSearchString = searchString;
+        [self.placeListTVC setQuickSearchString:searchString withAnimated:YES];
     }
     else {
-        self.foodGridCVC.quickSearchString = searchString;
+        [self.foodGridCVC setQuickSearchString:searchString withAnimated:YES];
     }
 }
 #pragma mark - text field delegate
