@@ -1992,25 +1992,55 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="add.png" id="2jC-qC-nbm">
-                                <rect key="frame" x="44" y="44" width="32" height="32"/>
+                                <rect key="frame" x="44" y="39" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="compose.png" id="7yh-tl-Ol6">
-                                <rect key="frame" x="244" y="44" width="32" height="32"/>
+                                <rect key="frame" x="244" y="39" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="speech.png" id="Yhe-HM-dAH">
-                                <rect key="frame" x="244" y="423" width="32" height="32"/>
+                                <rect key="frame" x="244" y="420" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="user-card.png" id="Wpu-GU-E7X">
-                                <rect key="frame" x="44" y="157" width="32" height="32"/>
+                                <rect key="frame" x="44" y="152" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="checkin.png" id="isg-eq-qf1">
-                                <rect key="frame" x="144" y="44" width="32" height="32"/>
+                                <rect key="frame" x="144" y="39" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dRG-dw-78x">
+                                <rect key="frame" x="39" y="77" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="checkin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rPu-rv-f5x">
+                                <rect key="frame" x="120" y="77" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="auto fill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c8e-lU-pNK">
+                                <rect key="frame" x="220" y="77" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lvF-k7-PhB">
+                                <rect key="frame" x="20" y="189" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wYg-KK-u3d">
+                                <rect key="frame" x="220" y="455" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -2381,20 +2411,39 @@
         <image name="add.png" width="32" height="32"/>
         <image name="add_user.png" width="128" height="128"/>
         <image name="camera.png" width="32" height="32"/>
+        <image name="camera.png" width="32" height="32"/>
+        <image name="camera.png" width="32" height="32"/>
         <image name="checkin.png" width="32" height="32"/>
         <image name="compose.png" width="32" height="32"/>
         <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
+        <image name="gradientBar.png" width="2" height="50"/>
         <image name="group.png" width="32" height="21"/>
         <image name="heart_grey.png" width="32" height="32"/>
+        <image name="heart_grey.png" width="32" height="32"/>
+        <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected.png" width="32" height="32"/>
         <image name="heart_selected_min.png" width="16" height="16"/>
+        <image name="home.png" width="30" height="30"/>
         <image name="home.png" width="30" height="30"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="map.png" width="26" height="21"/>
         <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
+        <image name="remove.png" width="24" height="24"/>
         <image name="search.png" width="30" height="30"/>
         <image name="speech.png" width="32" height="32"/>
         <image name="star_empty.png" width="32" height="32"/>
+        <image name="stop.png" width="32" height="32"/>
+        <image name="stop.png" width="32" height="32"/>
         <image name="stop.png" width="32" height="32"/>
         <image name="user-card.png" width="32" height="32"/>
     </resources>
