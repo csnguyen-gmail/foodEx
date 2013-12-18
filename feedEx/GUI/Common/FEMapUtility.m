@@ -168,7 +168,6 @@
         return;
     }
     if ((info.distance != nil) && (info.duration != nil)) {
-        NSLog(@"Used");
         [queue addOperationWithBlock:^{
             [queue addOperationWithBlock:^{
                 handle(info);

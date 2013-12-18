@@ -79,6 +79,16 @@
 		6F2ADD501775FEBC00522406 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD4C1775FEBC00522406 /* AbstractActionSheetPicker.m */; };
 		6F2ADD5A1776897A00522406 /* FEActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD591776897900522406 /* FEActionSheetPicker.m */; };
 		6F2ADD5D1776EE3300522406 /* FESearchSortBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */; };
+		6F2C6D831861A44C0054CEB3 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D7E1861A44C0054CEB3 /* add@2x.png */; };
+		6F2C6D841861A44C0054CEB3 /* compose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D7F1861A44C0054CEB3 /* compose@2x.png */; };
+		6F2C6D861861A44C0054CEB3 /* speech@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D811861A44C0054CEB3 /* speech@2x.png */; };
+		6F2C6D871861A44C0054CEB3 /* user-card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D821861A44C0054CEB3 /* user-card@2x.png */; };
+		6F2C6D891861A7890054CEB3 /* checkin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D881861A7890054CEB3 /* checkin@2x.png */; };
+		6F2C6D8F1861AC140054CEB3 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D8A1861AC140054CEB3 /* add.png */; };
+		6F2C6D901861AC140054CEB3 /* checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D8B1861AC140054CEB3 /* checkin.png */; };
+		6F2C6D911861AC140054CEB3 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D8C1861AC140054CEB3 /* compose.png */; };
+		6F2C6D921861AC140054CEB3 /* speech.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D8D1861AC140054CEB3 /* speech.png */; };
+		6F2C6D931861AC140054CEB3 /* user-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C6D8E1861AC140054CEB3 /* user-card.png */; };
 		6F2D59F318017D7600807E8F /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2D59EF18017D7600807E8F /* selected.png */; };
 		6F2D59F418017D7600807E8F /* selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2D59F018017D7600807E8F /* selected@2x.png */; };
 		6F2D59F518017D7600807E8F /* unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2D59F118017D7600807E8F /* unselected.png */; };
@@ -340,6 +350,16 @@
 		6F2ADD591776897900522406 /* FEActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEActionSheetPicker.m; sourceTree = "<group>"; };
 		6F2ADD5B1776EE3200522406 /* FESearchSortBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSortBaseTVC.h; sourceTree = "<group>"; };
 		6F2ADD5C1776EE3200522406 /* FESearchSortBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSortBaseTVC.m; sourceTree = "<group>"; };
+		6F2C6D7E1861A44C0054CEB3 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		6F2C6D7F1861A44C0054CEB3 /* compose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose@2x.png"; sourceTree = "<group>"; };
+		6F2C6D811861A44C0054CEB3 /* speech@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech@2x.png"; sourceTree = "<group>"; };
+		6F2C6D821861A44C0054CEB3 /* user-card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-card@2x.png"; sourceTree = "<group>"; };
+		6F2C6D881861A7890054CEB3 /* checkin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkin@2x.png"; sourceTree = "<group>"; };
+		6F2C6D8A1861AC140054CEB3 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		6F2C6D8B1861AC140054CEB3 /* checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkin.png; sourceTree = "<group>"; };
+		6F2C6D8C1861AC140054CEB3 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
+		6F2C6D8D1861AC140054CEB3 /* speech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speech.png; sourceTree = "<group>"; };
+		6F2C6D8E1861AC140054CEB3 /* user-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-card.png"; sourceTree = "<group>"; };
 		6F2D59EF18017D7600807E8F /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
 		6F2D59F018017D7600807E8F /* selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected@2x.png"; sourceTree = "<group>"; };
 		6F2D59F118017D7600807E8F /* unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselected.png; sourceTree = "<group>"; };
@@ -665,6 +685,16 @@
 		6F12E66A17354D27007A38DA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6F2C6D8A1861AC140054CEB3 /* add.png */,
+				6F2C6D8B1861AC140054CEB3 /* checkin.png */,
+				6F2C6D8C1861AC140054CEB3 /* compose.png */,
+				6F2C6D8D1861AC140054CEB3 /* speech.png */,
+				6F2C6D8E1861AC140054CEB3 /* user-card.png */,
+				6F2C6D881861A7890054CEB3 /* checkin@2x.png */,
+				6F2C6D7E1861A44C0054CEB3 /* add@2x.png */,
+				6F2C6D7F1861A44C0054CEB3 /* compose@2x.png */,
+				6F2C6D811861A44C0054CEB3 /* speech@2x.png */,
+				6F2C6D821861A44C0054CEB3 /* user-card@2x.png */,
 				6F2D59EF18017D7600807E8F /* selected.png */,
 				6F2D59F018017D7600807E8F /* selected@2x.png */,
 				6F2D59F118017D7600807E8F /* unselected.png */,
@@ -1193,9 +1223,11 @@
 				6F00E17F183727040025E74F /* camera-shooting@2x.png in Resources */,
 				6F5E91F3172385780059055F /* InfoPlist.strings in Resources */,
 				6F00E177183727040025E74F /* camera-glyph-flash-off@2x.png in Resources */,
+				6F2C6D891861A7890054CEB3 /* checkin@2x.png in Resources */,
 				6F00E189183727040025E74F /* CISample@2x.png in Resources */,
 				6F00E172183727040025E74F /* camera-glyph-cameratoggle.png in Resources */,
 				6F5E91FB172385780059055F /* Default.png in Resources */,
+				6F2C6D931861AC140054CEB3 /* user-card.png in Resources */,
 				6F8BF50017E6E0E4001B9709 /* star_empty@2x.png in Resources */,
 				6F5E91FD172385780059055F /* Default@2x.png in Resources */,
 				6F5E91FF172385780059055F /* Default-568h@2x.png in Resources */,
@@ -1203,6 +1235,8 @@
 				6F5E9202172385780059055F /* MainStoryboard_iPhone.storyboard in Resources */,
 				6F00E18E183727040025E74F /* CIUnsharpMask.png in Resources */,
 				6F00E181183727040025E74F /* camera-tray-cover@2x.png in Resources */,
+				6F2C6D861861A44C0054CEB3 /* speech@2x.png in Resources */,
+				6F2C6D871861A44C0054CEB3 /* user-card@2x.png in Resources */,
 				6F5E9205172385780059055F /* MainStoryboard_iPad.storyboard in Resources */,
 				6FBD71CD173F6FFA00AB6EDA /* GoogleMaps.bundle in Resources */,
 				6F00E17D183727040025E74F /* camera-library-overlay@2x.png in Resources */,
@@ -1214,8 +1248,10 @@
 				6FED8F98175A5A7F00216AC6 /* remove@2x.png in Resources */,
 				6F00E171183727040025E74F /* camera-backspace-default-default@2x.png in Resources */,
 				6FED8F99175A5A7F00216AC6 /* remove.png in Resources */,
+				6F2C6D841861A44C0054CEB3 /* compose@2x.png in Resources */,
 				6F00E183183727040025E74F /* CIColorControls@2x.png in Resources */,
 				6F00E168183727040025E74F /* FEImagePicker.storyboard in Resources */,
+				6F2C6D901861AC140054CEB3 /* checkin.png in Resources */,
 				6F00E187183727040025E74F /* CIHighlightShadowAdjustUp@2x.png in Resources */,
 				6F00E185183727040025E74F /* CIHighlightShadowAdjustDown@2x.png in Resources */,
 				6F00E17A183727040025E74F /* camera-glyph-gridtoggle.png in Resources */,
@@ -1253,12 +1289,15 @@
 				6FAD9DEB1763C1E700DB606C /* search@2x.png in Resources */,
 				6FAD9DEC1763C1E700DB606C /* spin.png in Resources */,
 				6FAD9DED1763C1E700DB606C /* spin@2x.png in Resources */,
+				6F2C6D921861AC140054CEB3 /* speech.png in Resources */,
 				6F00E188183727040025E74F /* CISample.png in Resources */,
 				6F00E192183727040025E74F /* CIVignette.png in Resources */,
+				6F2C6D831861A44C0054CEB3 /* add@2x.png in Resources */,
 				6FAD9DF617646E0900DB606C /* gradientBar.png in Resources */,
 				6F49FD9C17EB3C7300281E58 /* add_user.png in Resources */,
 				6FC66FC9176D7BA000C91BC9 /* camera.png in Resources */,
 				6FC66FCB176D7BA000C91BC9 /* camera@2x.png in Resources */,
+				6F2C6D8F1861AC140054CEB3 /* add.png in Resources */,
 				6FC66FCF176D7C3900C91BC9 /* stop.png in Resources */,
 				6FC66FD1176D7C3900C91BC9 /* stop@2x.png in Resources */,
 				6F00E190183727040025E74F /* CIVibrance.png in Resources */,
@@ -1266,6 +1305,7 @@
 				6F8BF4FF17E6E0E4001B9709 /* star_empty.png in Resources */,
 				6FCE0DCD1778B1BE006559C9 /* checkmark@2x.png in Resources */,
 				6FFBBAA81781EB8B0049E1E9 /* StarEmptyTiny.png in Resources */,
+				6F2C6D911861AC140054CEB3 /* compose.png in Resources */,
 				6FFBBAA91781EB8B0049E1E9 /* StarEmptyTiny@2x.png in Resources */,
 				6FFBBAAA1781EB8B0049E1E9 /* StarFullTiny.png in Resources */,
 				6F2D59F418017D7600807E8F /* selected@2x.png in Resources */,
