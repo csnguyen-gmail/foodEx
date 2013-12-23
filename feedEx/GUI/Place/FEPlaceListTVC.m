@@ -178,7 +178,10 @@
     CLLocationCoordinate2D placeLoc = CLLocationCoordinate2DMake([place.address.lattittude doubleValue], [place.address.longtitude doubleValue]);
     [[FEMapUtility sharedInstance] getDistanceToDestination:placeLoc queue:[NSOperationQueue mainQueue] completionHandler:^(FEDistanseInfo *info) {
         FEPlaceListCell *cell = (FEPlaceListCell*)[self.tableView cellForRowAtIndexPath:index];
-        cell.distanceLbl.text = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", info.distance, info.duration];
+        // fix bug cell is not generate correctly in case type quick search quickly
+        if ([cell class] == [FEPlaceListCell class]) {
+            cell.distanceLbl.text = [NSString stringWithFormat:@"About %@ from here, estimate %@ driving.", info.distance, info.duration];
+        }
     }];
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
