@@ -75,27 +75,25 @@
         [bgView addSubview:isBestImageView];
     }
     
+    UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    detailBtn.frame = CGRectMake(103.0, 103.0, 30, 30);
+    [detailBtn setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
+    detailBtn.layer.cornerRadius = 5.0;
+    detailBtn.layer.masksToBounds = YES;
+    detailBtn.alpha = 0.9;
+    [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:detailBtn];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(106.0, 106.0, 24, 24)];
+    imageView.userInteractionEnabled = NO;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     if (self.isEditMode) {
-        UIButton *editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        editBtn.frame = CGRectMake(92.0, 102.0, 40, 30);
-        [editBtn setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
-        [editBtn setTitle:@"Edit" forState:UIControlStateNormal];
-        [editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        editBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
-        editBtn.layer.cornerRadius = 5.0;
-        editBtn.layer.masksToBounds = YES;
-        editBtn.alpha = 0.9;
-        [editBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:editBtn];
+        imageView.image = [UIImage imageNamed:@"compose"];
     }
     else {
-        UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-        rect = detailBtn.frame;
-        rect.origin = CGPointMake(115.0, 115.0);
-        detailBtn.frame = rect;
-        [detailBtn addTarget:self action:@selector(detailBtnTapped) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:detailBtn];
+        imageView.image = [UIImage imageNamed:@"watch"];
     }
+    [bgView addSubview:imageView];
     
     if (self.isEditMode) {
         UIImage *selectedImage = [UIImage imageNamed:self.isSelected ? @"selected" : @"unselected"];

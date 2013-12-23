@@ -22,9 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLbl;
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
-@property (weak, nonatomic) IBOutlet UIButton *informationBtn;
 @property (weak, nonatomic) IBOutlet UILabel *chekinTimesLbl;
 @property (weak, nonatomic) id<FEPlaceListCellDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
+@property (weak, nonatomic) IBOutlet UIButton *detailBtn;
 - (void)toggleDetailButton;
 @end

@@ -11,23 +11,23 @@
 
 @implementation FEPlaceListCell
 - (void)awakeFromNib {
-    self.editButton.layer.cornerRadius = 5.0;
-    self.editButton.layer.masksToBounds = YES;
+    self.detailBtn.layer.cornerRadius = 5.0;
+    self.detailBtn.layer.masksToBounds = YES;
+}
+- (IBAction)detailBtnTapped:(UIButton *)sender {
+    [self.delegate didSelectPlaceDetailAtCell:self];
 }
 
-- (IBAction)informationBtnTapped:(UIButton *)sender {
-    [self.delegate didSelectPlaceDetailAtCell:self];
-}
-- (IBAction)editBtnTapped:(UIButton *)sender {
-    [self.delegate didSelectPlaceDetailAtCell:self];
-}
 - (void)toggleDetailButton {
-    self.informationBtn.hidden = !self.informationBtn.hidden;
-    self.editButton.hidden = !self.editButton.hidden;
+    self.isEditMode = !self.isEditMode;
 }
 - (void)setIsEditMode:(BOOL)isEditMode {
     _isEditMode = isEditMode;
-    self.informationBtn.hidden = _isEditMode;
-    self.editButton.hidden = !_isEditMode;
+    if (isEditMode) {
+        self.detailImageView.image = [UIImage imageNamed:@"compose"];
+    }
+    else {
+        self.detailImageView.image = [UIImage imageNamed:@"watch"];
+    }
 }
 @end
