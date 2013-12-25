@@ -55,6 +55,21 @@
     self.places = [Place placesFromPlaceSettingInfo:placeSetting];
     [self setQuickSearchString:nil withAnimated:NO];
 }
+- (void)setSelectAll:(BOOL)selectAll {
+    for (int i = 0; i < [self.tableView numberOfSections]; i++) {
+        for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++) {
+            NSUInteger ints[2] = {i,j};
+            NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];
+            if (selectAll) {
+                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            }
+            else {
+                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            }
+        }
+    }
+    [self.placeListDelegate didSelectPlaceRow];
+}
 #pragma mark - getter setter
 - (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated{
     _quickSearchString = quickSearchString;

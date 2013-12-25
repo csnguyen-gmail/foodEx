@@ -30,8 +30,10 @@
 @property (strong, nonatomic) UIBarButtonItem *searchBtn;
 @property (strong, nonatomic) UIBarButtonItem *shareBtn;
 @property (strong, nonatomic) UIBarButtonItem *deleteBtn;
+@property (strong, nonatomic) UIBarButtonItem *selectAllBtn;
 @property (strong, nonatomic) UIToolbar *toolBar;
 @property (nonatomic) BOOL isEditMode;
+@property (nonatomic) BOOL isSelectAll;
 @property (nonatomic) NSUInteger displayType; // Place or Food
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) FEPlaceListTVC *placeListTVC;
@@ -68,13 +70,15 @@
     self.toolBar.barStyle = UIBarStyleBlack;
     self.shareBtn = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStyleBordered
                                                     target:self action:@selector(shareAction:)];
+    self.selectAllBtn = [[UIBarButtonItem alloc] initWithTitle:@"Select all" style:UIBarButtonItemStyleBordered
+                                                    target:self action:@selector(selectAllAction:)];
     self.deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered
                                                      target:self action:@selector(deleteAction:)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                            target:nil action:nil];
 
     self.deleteBtn.tintColor = [UIColor redColor];
-    self.toolBar.items = @[self.deleteBtn, space, self.shareBtn];
+    self.toolBar.items = @[self.deleteBtn, space, self.selectAllBtn, space, self.shareBtn];
     [self.view addSubview:self.toolBar];
     
     // load data
@@ -207,35 +211,58 @@
 }
 - (void)editAction:(UIBarButtonItem *)sender {
     self.isEditMode = !self.isEditMode;
+    self.isSelectAll = NO;
     [self animateToolBar];
     self.shareBtn.enabled = NO;
     self.deleteBtn.enabled = NO;
 }
-- (void)shareAction:(UIBarButtonItem *)sender {
-    NSArray *selectedPlaces = [self.placeListTVC getSelectedPlaces];
-    User *user = [User getUser];
-    NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
-    NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
-    NSDate *now = [[NSDate alloc] init];
-    NSString *filename = [NSString stringWithFormat:ATTACHED_FILENAME_FORMAT, [dateFormatter stringFromDate:now]];
-    NSMutableString *body = [[NSMutableString alloc] initWithString:MAIL_BODY];
-    for (Place *place in selectedPlaces) {
-        [body appendString:[NSString stringWithFormat:@"+%@\n", place.name]];
+- (void)selectAllAction:(UIBarButtonItem *)sender {
+    self.isSelectAll = !self.isSelectAll;
+    if (self.displayType == SEARCH_DISPLAY_PLACE_TYPE) {
+        [self.placeListTVC setSelectAll:self.isSelectAll];
     }
+    else {
+        [self.foodGridCVC setSelectAll:self.isSelectAll];
+    }
+}
+- (void)shareAction:(UIBarButtonItem *)sender {
+    [self.indicatorView startAnimating];
     
-    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-    [picker setSubject:MAIL_SUBJECT];
-    [picker addAttachmentData:sendingData mimeType:ATTACHED_FILETYPE fileName:filename];
-    [picker setToRecipients:[NSArray array]];
-    [picker setMessageBody:body isHTML:NO];
-    [picker setMailComposeDelegate:self];
-    [self presentViewController:picker animated:YES completion:nil];
-    
-    self.isEditMode = !self.isEditMode;
-    [self animateToolBar];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        NSArray *selectedPlaces = [self.placeListTVC getSelectedPlaces];
+        User *user = [User getUser];
+        NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:selectedPlaces};
+        NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
+        
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"feedex.dat"];
+//        [sendingData writeToFile:path atomically:YES];
+        
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = ATTACHED_FILENAME_DATE_FORMAT;
+        NSDate *now = [[NSDate alloc] init];
+        NSString *filename = [NSString stringWithFormat:ATTACHED_FILENAME_FORMAT, [dateFormatter stringFromDate:now]];
+        NSMutableString *body = [[NSMutableString alloc] initWithString:MAIL_BODY];
+        for (Place *place in selectedPlaces) {
+            [body appendString:[NSString stringWithFormat:@"+%@\n", place.name]];
+        }
+        
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        [picker setSubject:MAIL_SUBJECT];
+        [picker addAttachmentData:sendingData mimeType:ATTACHED_FILETYPE fileName:filename];
+        [picker setToRecipients:[NSArray array]];
+        [picker setMessageBody:body isHTML:NO];
+        [picker setMailComposeDelegate:self];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.indicatorView stopAnimating];
+            [self presentViewController:picker animated:YES completion:nil];
+            self.isEditMode = !self.isEditMode;
+            [self animateToolBar];
+        }];
+    }];
 }
 - (void)deleteAction:(UIBarButtonItem *)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
@@ -311,7 +338,10 @@
         self.foodGridCVC.isEditMode = isEditMode;
     }
 }
-
+- (void)setIsSelectAll:(BOOL)isSelectAll {
+    _isSelectAll = isSelectAll;
+    self.selectAllBtn.title = isSelectAll ? @"De-select all" : @"Select all";
+}
 - (FESearchSettingInfo *)searchSettingInfo {
     if (!_searchSettingInfo) {
         NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_SETTING_KEY];

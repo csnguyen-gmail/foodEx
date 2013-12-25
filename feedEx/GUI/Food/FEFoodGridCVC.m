@@ -71,6 +71,13 @@
     }
     return foods;
 }
+- (void)setSelectAll:(BOOL)selectAll {
+    for (int i = 0; i< self.selectedStatusList.count; i++) {
+        self.selectedStatusList[i] = @(selectAll);
+    }
+    [self.foodGridDelegate didSelectFoodItem];
+    [self.collectionView reloadData];
+}
 #pragma mark - setter getter
 - (void)setQuickSearchString:(NSString *)quickSearchString withAnimated:(BOOL)animated{
     _quickSearchString = quickSearchString;

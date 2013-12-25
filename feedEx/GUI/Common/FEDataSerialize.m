@@ -63,8 +63,8 @@
     
     // encode to NSData
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rootDict];
-    // zip data
-    data = [data gzipDeflate];
+//    // zip data
+//    data = [data gzipDeflate];
     
     return data;
 }
@@ -104,8 +104,8 @@
         }
         return value;
     };
-    // unzip data
-    data = [data gzipInflate];
+//    // unzip data
+//    data = [data gzipInflate];
     // decode to NSDictionary
     NSDictionary *rootDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
