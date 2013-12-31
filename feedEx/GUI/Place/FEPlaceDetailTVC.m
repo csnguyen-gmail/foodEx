@@ -44,6 +44,11 @@
     self.flipPlaceView.timesCheckin = [place.timesCheckin integerValue];
     [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
     self.noteTextView.text = self.place.note;
+    // remove all old tags
+    for (UIView *childView in self.tagsScrollView.subviews) {
+        [childView removeFromSuperview];
+    }
+    // add new tags
     if (self.place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
         for (Tag *tag in self.place.tags) {
