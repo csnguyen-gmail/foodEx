@@ -99,6 +99,15 @@
     }
 }
 - (void)sharePlace {
+    if (![MFMailComposeViewController canSendMail]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Mail account"
+                                                        message:@"You need setup mail to use this function"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     User *user = [User getUser];
     NSDictionary *placeInfo = @{USER_KEY:user, PLACES_KEY:@[self.place]};
     NSData *sendingData = [FEDataSerialize serializeMailData:placeInfo];
@@ -109,6 +118,7 @@
     NSString *filename = [NSString stringWithFormat:ATTACHED_FILENAME_FORMAT, [dateFormatter stringFromDate:now]];
     NSMutableString *body = [[NSMutableString alloc] initWithString:MAIL_BODY];
     [body appendString:[NSString stringWithFormat:@"+%@\n", self.place.name]];
+    
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     [picker setSubject:MAIL_SUBJECT];
     [picker addAttachmentData:sendingData mimeType:ATTACHED_FILETYPE fileName:filename];
