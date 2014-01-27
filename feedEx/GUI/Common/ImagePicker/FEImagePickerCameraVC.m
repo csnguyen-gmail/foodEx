@@ -48,15 +48,16 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.indicationView startAnimating];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperationWithBlock:^{
+    // Note: can not setup on background thread, it may occur black screen
+//    [self.indicationView startAnimating];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperationWithBlock:^{
         [self setupCameraSession];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.session startRunning];
-            [self.indicationView stopAnimating];
-        }];
-    }];
+//            [self.indicationView stopAnimating];
+//        }];
+//    }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
