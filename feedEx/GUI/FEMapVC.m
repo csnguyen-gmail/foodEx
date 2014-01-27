@@ -74,7 +74,9 @@
     [queue addOperationWithBlock:^{
         [self refetchData];
         self.shouldFitMarkers = YES;
-        [self updateMapInfo];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self updateMapInfo];
+        }];
     }];
 }
 - (void)removeObserver {
