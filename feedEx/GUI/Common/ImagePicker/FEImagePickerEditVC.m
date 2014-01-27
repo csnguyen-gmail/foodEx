@@ -57,85 +57,63 @@
     [self.filters addObject:filterData];
     
     // built-in filters
-    filter = [CIFilter filterWithName:@"CIUnsharpMask"];
-    [filter setValue:@(100.0) forKey:@"inputRadius"];
-    [filter setValue:@(0.5) forKey:@"inputIntensity"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectChrome"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIUnsharpMask"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Sharp";
+    filterData.name = @"Chrome";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CISepiaTone"];
-    [filter setValue:@(1.0) forKey:@"inputIntensity"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectFade"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CISepiaTone"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Sepia";
+    filterData.name = @"Fade";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CIVibrance"];
-    [filter setValue:@(1.0) forKey:@"inputAmount"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIVibrance"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Vibrance";
+    filterData.name = @"Instant";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CIVignette"];
-    [filter setValue:@(2.0) forKey:@"inputRadius"];
-    [filter setValue:@(1.0) forKey:@"inputIntensity"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectNoir"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIVignette"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Vignette";
+    filterData.name = @"Noir";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CITemperatureAndTint"];
-    [filter setValue:[CIVector vectorWithX:15000 Y:0] forKey:@"inputNeutral"];
-    [filter setValue:[CIVector vectorWithX:6500 Y:0] forKey:@"inputTargetNeutral"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectProcess"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CITemperatureAndTint"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"TempTint";
+    filterData.name = @"Process";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CIColorControls"];
-    [filter setValue:@(2.0) forKey:@"inputSaturation"];
-    [filter setValue:@(0.0) forKey:@"inputBrightness"];
-    [filter setValue:@(1.0) forKey:@"inputContrast"];
+    filter = [CIFilter filterWithName:@"CIPhotoEffectTransfer"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIColorControls"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Color";
+    filterData.name = @"Transfer";
     [self.filters addObject:filterData];
     
-    filter = [CIFilter filterWithName:@"CIHighlightShadowAdjust"];
-    [filter setValue:@(-1.0) forKey:@"inputShadowAmount"];
-    [filter setValue:@(0.3) forKey:@"inputHighlightAmount"];
+    filter = [CIFilter filterWithName:@"CILinearToSRGBToneCurve"];
     filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIHighlightShadowAdjustDown"];
+    filterData.image = [UIImage imageNamed:filter.name];
     filterData.selected = NO;
     filterData.filter = filter;
-    filterData.name = @"Hi-Sha Dec";
-    [self.filters addObject:filterData];
-    
-    filter = [CIFilter filterWithName:@"CIHighlightShadowAdjust"];
-    [filter setValue:@(0.5) forKey:@"inputShadowAmount"];
-    [filter setValue:@(1.0) forKey:@"inputHighlightAmount"];
-    filterData = [[FEFilterData alloc] init];
-    filterData.image = [UIImage imageNamed:@"CIHighlightShadowAdjustUp"];
-    filterData.selected = NO;
-    filterData.filter = filter;
-    filterData.name = @"Hi-Sha Inc";
+    filterData.name = @"Tone Curve";
     [self.filters addObject:filterData];
 }
+
 - (void)selectEffectAtIndex:(NSUInteger)index {
     FEFilterData *filterData = self.filters[index];
     // already selected then pass
