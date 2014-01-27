@@ -160,9 +160,10 @@
     // Loading Cell
     NSMutableArray *compressedPhotos = self.readyToPhotosList[indexPath.row];
     if (compressedPhotos.count == 0) {
-//        if (collectionView.dragging == NO && collectionView.decelerating == NO) {
+        // load in case scroll stop only
+        if (collectionView.dragging == NO && collectionView.decelerating == NO) {
             [self startCompressPhotos:compressedPhotos withSize:flipFoodGridView.frame.size forIndexPath:indexPath];
-//        }
+        }
         flipFoodGridView.isLoading = YES;
         [flipFoodGridView setDatasource:nil withSelectedIndex:0];
         return cell;
@@ -215,17 +216,18 @@
         }
     }
 }
-//
-//#pragma mark - UIScrollViewDelegate
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    if (!decelerate){
-//        [self loadFoodsForOnscreenRows];
-//    }
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    [self loadFoodsForOnscreenRows];
-//}
+
+#pragma mark - UIScrollViewDelegate
+// load in case scroll stop
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate){
+        [self loadFoodsForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self loadFoodsForOnscreenRows];
+}
 
 #pragma mark - FEFlipGridFoodViewDelegate
 - (void)didChangeCurrentIndex:(NSUInteger)index atRow:(NSUInteger)row {
