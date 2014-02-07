@@ -13,9 +13,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface Place (Extension)
-- (void)insertFoodsAtIndex:(NSUInteger)index;
-- (void)removeFoodAtIndex:(NSUInteger)index;
-- (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+// Change to None Order Set
+//- (void)insertFoodsAtIndex:(NSUInteger)index;
+//- (void)removeFoodAtIndex:(NSUInteger)index;
+//- (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+- (Food*)insertFood;
+- (void)removeFood:(Food*)food;
 + (NSArray*)placesFromPlaceSettingInfo:(FESearchPlaceSettingInfo*)placeSettingInfo;
 + (NSArray *)placesFromMapPlaceSettingInfo:(FEMapSearchPlaceSettingInfo *)placeSettingInfo;
 + (NSArray*)placesNearestLocation:(CLLocation*)location;

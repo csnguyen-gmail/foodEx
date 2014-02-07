@@ -98,8 +98,7 @@
     placeInfo.note = self.editPlaceInfoTVC.noteTextView.usingPlaceholder? @"": self.editPlaceInfoTVC.noteTextView.text;
     [placeInfo updateTagWithStringTags:[self.editPlaceInfoTVC.tagTextView buildTagArray]
                             andTagType:CD_TAG_PLACE
-                                inTags:self.tags
-                                 byMOC:self.coreData.managedObjectContext];
+                                inTags:self.tags];
     [self.coreData saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
         [self.indicatorView stopAnimating];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -182,7 +181,8 @@
 }
 - (NSString *)buildStringTagsOfPlace {
     NSMutableString *stringTags = [[NSMutableString alloc] init];
-    for (Tag *tag in self.placeInfo.tags) {
+    NSArray *tags = [self.placeInfo.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
+    for (Tag *tag in tags) {
         [stringTags appendFormat:@"%@, ",tag.label];
     }
     return stringTags;

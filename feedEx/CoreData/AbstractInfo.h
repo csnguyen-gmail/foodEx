@@ -2,8 +2,8 @@
 //  AbstractInfo.h
 //  feedEx
 //
-//  Created by csnguyen on 8/30/13.
-//  Copyright (c) 2013 csnguyen. All rights reserved.
+//  Created by csnguyen on 2/7/14.
+//  Copyright (c) 2014 csnguyen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * note;
 @property (nonatomic, retain) NSOrderedSet *photos;
-@property (nonatomic, retain) NSOrderedSet *tags;
+@property (nonatomic, retain) NSSet *tags;
 @end
 
 @interface AbstractInfo (CoreDataGeneratedAccessors)
@@ -32,14 +32,9 @@
 - (void)removePhotosObject:(Photo *)value;
 - (void)addPhotos:(NSOrderedSet *)values;
 - (void)removePhotos:(NSOrderedSet *)values;
-- (void)insertObject:(Tag *)value inTagsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromTagsAtIndex:(NSUInteger)idx;
-- (void)insertTags:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeTagsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInTagsAtIndex:(NSUInteger)idx withObject:(Tag *)value;
-- (void)replaceTagsAtIndexes:(NSIndexSet *)indexes withTags:(NSArray *)values;
 - (void)addTagsObject:(Tag *)value;
 - (void)removeTagsObject:(Tag *)value;
-- (void)addTags:(NSOrderedSet *)values;
-- (void)removeTags:(NSOrderedSet *)values;
+- (void)addTags:(NSSet *)values;
+- (void)removeTags:(NSSet *)values;
+
 @end

@@ -129,8 +129,9 @@
     cell.userNameLbl.text = user.name;
     cell.userEmailLbl.text = user.email;
     NSMutableString *placesStr = [[NSMutableString alloc] init];
-    for (int i = 0; i < user.places.count; i++) {
-        Place *place = user.places[i];
+    NSArray *places = [user.places sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+    for (int i = 0; i < places.count; i++) {
+        Place *place = places[i];
         if (i == 0) {
             [placesStr appendString:place.name];
         }

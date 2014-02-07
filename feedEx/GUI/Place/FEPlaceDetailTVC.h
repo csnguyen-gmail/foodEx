@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Place.h"
 @protocol FEPlaceDetailTVCDelegate<NSObject>
-- (void)didSelectItemAtIndexPath:(NSUInteger)index;
+- (void)didSelectFood:(Food*)food;
 @end
 
 @interface FEPlaceDetailTVC : UITableViewController

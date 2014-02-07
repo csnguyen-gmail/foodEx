@@ -2,8 +2,8 @@
 //  Place.h
 //  feedEx
 //
-//  Created by csnguyen on 9/9/13.
-//  Copyright (c) 2013 csnguyen. All rights reserved.
+//  Created by csnguyen on 2/7/14.
+//  Copyright (c) 2014 csnguyen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,24 +15,19 @@
 @interface Place : AbstractInfo
 
 @property (nonatomic, retain) NSString * distanceInfo;
+@property (nonatomic, retain) NSDate * lastTimeCheckin;
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) NSNumber * timesCheckin;
-@property (nonatomic, retain) NSDate * lastTimeCheckin;
 @property (nonatomic, retain) Address *address;
-@property (nonatomic, retain) NSOrderedSet *foods;
+@property (nonatomic, retain) NSSet *foods;
 @property (nonatomic, retain) User *owner;
 @end
 
 @interface Place (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Food *)value inFoodsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromFoodsAtIndex:(NSUInteger)idx;
-- (void)insertFoods:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeFoodsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInFoodsAtIndex:(NSUInteger)idx withObject:(Food *)value;
-- (void)replaceFoodsAtIndexes:(NSIndexSet *)indexes withFoods:(NSArray *)values;
 - (void)addFoodsObject:(Food *)value;
 - (void)removeFoodsObject:(Food *)value;
-- (void)addFoods:(NSOrderedSet *)values;
-- (void)removeFoods:(NSOrderedSet *)values;
+- (void)addFoods:(NSSet *)values;
+- (void)removeFoods:(NSSet *)values;
+
 @end

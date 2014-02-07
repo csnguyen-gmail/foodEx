@@ -31,10 +31,10 @@
 @property (weak, nonatomic) FEPlaceDetailTVC *placeDetailTVC;
 @property (weak, nonatomic) IBOutlet UIView *placeDetailView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
-@property (nonatomic) NSUInteger selectedIndex;
 @property (weak, nonatomic) GMSMarker *placeMarker;
 @property (weak, nonatomic) IBOutlet UILabel *distanceInfo;
 @property (weak, nonatomic) IBOutlet UIView *distanceInfoBgView;
+@property (strong, nonatomic) Food *selectedFood;
 @end
 
 @implementation FEPlaceDetailMainVC
@@ -95,7 +95,7 @@
     }
     else if ([[segue identifier] isEqualToString:@"foodDetailVC"]) {
         FEFoodDetailVC *foodDetailVC = [segue destinationViewController];
-        foodDetailVC.food = self.place.foods[self.selectedIndex];
+        foodDetailVC.food = self.selectedFood;
     }
 }
 - (void)sharePlace {
@@ -259,8 +259,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark - FEPlaceDetailTVCDelegate
-- (void)didSelectItemAtIndexPath:(NSUInteger)index {
-    self.selectedIndex = index;
+- (void)didSelectFood:(Food *)food {
+    self.selectedFood = food;
     [self performSegueWithIdentifier:@"foodDetailVC" sender:self];
 }
 #pragma mark - UIActionSheetDelegate

@@ -125,7 +125,9 @@
     // reload data source
     self.places = [Place placesFromMapPlaceSettingInfo:self.searchSettingInfo];
     // rebuild marker
-    [self rebuildMarkers];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self rebuildMarkers];
+    }];
 }
 
 #pragma mark - event handler
@@ -404,7 +406,8 @@
     }
     if (place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
-        for (Tag *tag in place.tags) {
+        NSArray *tags = [place.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
+        for (Tag *tag in tags) {
             UIFont *font = [UIFont systemFontOfSize:10];
             CGSize tagSize = [tag.label sizeWithFont:font];
             tagSize.width += TAG_HORIZON_MARGIN;

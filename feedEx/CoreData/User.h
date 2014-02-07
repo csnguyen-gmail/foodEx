@@ -2,8 +2,8 @@
 //  User.h
 //  feedEx
 //
-//  Created by csnguyen on 9/20/13.
-//  Copyright (c) 2013 csnguyen. All rights reserved.
+//  Created by csnguyen on 2/7/14.
+//  Copyright (c) 2014 csnguyen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,19 +15,14 @@
 @interface User : AbstractInfo
 
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSOrderedSet *places;
+@property (nonatomic, retain) NSSet *places;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Place *)value inPlacesAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromPlacesAtIndex:(NSUInteger)idx;
-- (void)insertPlaces:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removePlacesAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInPlacesAtIndex:(NSUInteger)idx withObject:(Place *)value;
-- (void)replacePlacesAtIndexes:(NSIndexSet *)indexes withPlaces:(NSArray *)values;
 - (void)addPlacesObject:(Place *)value;
 - (void)removePlacesObject:(Place *)value;
-- (void)addPlaces:(NSOrderedSet *)values;
-- (void)removePlaces:(NSOrderedSet *)values;
+- (void)addPlaces:(NSSet *)values;
+- (void)removePlaces:(NSSet *)values;
+
 @end

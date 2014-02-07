@@ -16,31 +16,48 @@
     [super awakeFromInsert];
     self.lastTimeCheckin = self.createdDate;
 }
-
-- (void)insertFoodsAtIndex:(NSUInteger)index {
+- (Food*)insertFood {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
         Food *food = [NSEntityDescription insertNewObjectForEntityForName:@"Food" inManagedObjectContext:context];
-        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
-        [tempSet insertObject:food atIndex:index];
-        self.foods = tempSet;
+        food.owner = self;
+        return food;
     }
+    return nil;
 }
-- (void)removeFoodAtIndex:(NSUInteger)index {
+- (void)removeFood:(Food*)food {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
-        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
-        Food *food = [self.foods objectAtIndex:index];
-        [tempSet removeObjectAtIndex:index];
-        self.foods = tempSet;
+        food.owner = nil;
         [context deleteObject:food];
     }
 }
-- (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
-    [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
-    self.foods = tempSet;
-}
+
+// Change to None Order Set
+//- (void)insertFoodsAtIndex:(NSUInteger)index {
+//    NSManagedObjectContext *context = self.managedObjectContext;
+//    if (context) {
+//        Food *food = [NSEntityDescription insertNewObjectForEntityForName:@"Food" inManagedObjectContext:context];
+//        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
+//        [tempSet insertObject:food atIndex:index];
+//        self.foods = tempSet;
+//    }
+//}
+//- (void)removeFoodAtIndex:(NSUInteger)index {
+//    NSManagedObjectContext *context = self.managedObjectContext;
+//    if (context) {
+//        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
+//        Food *food = [self.foods objectAtIndex:index];
+//        [tempSet removeObjectAtIndex:index];
+//        self.foods = tempSet;
+//        [context deleteObject:food];
+//    }
+//}
+//- (void)moveFoodFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+//    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.foods];
+//    [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
+//    self.foods = tempSet;
+//}
 #define ACCEPTABLE_CHECKIN_RADIUS 30.0 // meters
 // TODO: should consider a better way to filter Place by distance
 + (NSArray*)placesNearestLocation:(CLLocation*)location {

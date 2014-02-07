@@ -24,7 +24,7 @@
     NSArray *_users = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     NSLog(@"USER");
     for (User *user in _users) {
-        Tag *tag = user.tags[0];
+        Tag *tag = [user.tags anyObject];
         NSLog(@"  email:%@ name:%@ - %@", user.email, user.name, tag.label);
     }
     request.entity = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:coredata.managedObjectContext];
@@ -38,7 +38,7 @@
     NSArray *_places = [coredata.managedObjectContext executeFetchRequest:request error:&error];
     NSLog(@"PLACE");
     for (Place *place in _places) {
-        NSLog(@"  %@ - email:%@ name:%@  - %@", place.name, place.owner.email, place.owner.name, [place.owner.tags[0] label]);
+        NSLog(@"  %@ - email:%@ name:%@  - %@", place.name, place.owner.email, place.owner.name, [[place.owner.tags anyObject] label]);
     }
 }
 + (void)printOutImageSize {

@@ -265,20 +265,27 @@
                 STFail(@"Image assignment is wrong");
             }
         }
-        for (int i = 0; i < decodeUser.tags.count; i++) {
-            if ([decodeUser.tags[i] objectID] != [user.tags[i] objectID]) {
+        NSArray *decodeUserTags = [decodeUser.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
+        NSArray *userTags = [user.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
+        for (int i = 0; i < decodeUserTags.count; i++) {
+            if ([decodeUserTags[i] objectID] != [userTags[i] objectID]) {
                 STFail(@"Tag assignment is wrong");
             }
         }
+        
+        NSArray *decodeUserPlaces = [decodeUser.places sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+        NSArray *userPlaces = [user.places sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
         for (int i = 0; i < decodeUser.places.count; i++) {
-            Place* decodePlace = decodeUser.places[i];
-            Place* place = user.places[i];
+            Place* decodePlace = decodeUserPlaces[i];
+            Place* place = userPlaces[i];
             if (![decodePlace.name isEqual:place.name]) {
                 STFail(@"Place assignment is wrong");
             }
+            NSArray *decodePlaceFoods = [decodePlace.foods sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+            NSArray *placeFoods = [place.foods sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
             for (int j = 0; j < decodePlace.foods.count; j++) {
-                Food *decodeFood = decodePlace.foods[j];
-                Food *food = place.foods[j];
+                Food *decodeFood = decodePlaceFoods[j];
+                Food *food = placeFoods[j];
                 if (![decodeFood.name isEqual:food.name]) {
                     STFail(@"Food assignment is wrong");
                 }

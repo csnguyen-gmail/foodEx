@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet FEPlaceDetailMainFoodCV *foodCollectionView;
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet FEFlipPlaceView *flipPlaceView;
+@property (strong, nonatomic) NSArray *foods;
 @end
 
 @implementation FEPlaceDetailTVC
@@ -51,7 +52,9 @@
     // add new tags
     if (self.place.tags.count > 0) {
         CGFloat contentWidth = 0.0;
-        for (Tag *tag in self.place.tags) {
+        
+        NSArray *tags = [self.place.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
+        for (Tag *tag in tags) {
             UIFont *font = [UIFont systemFontOfSize:10];
             CGSize tagSize = [tag.label sizeWithFont:font];
             tagSize.height = self.tagsScrollView.frame.size.height;
@@ -74,6 +77,7 @@
         size.width = contentWidth;
         self.tagsScrollView.contentSize = size;
     }
+    self.foods = [_place.foods sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:NO]]];
     [self.foodCollectionView reloadData];
 }
 #pragma mark - common
@@ -98,11 +102,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"foodCell";
     FEPlaceDetailFoodCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    [self updateCell:cell withFood:self.place.foods[indexPath.row] atIndexPath:indexPath];
+    [self updateCell:cell withFood:self.foods[indexPath.row] atIndexPath:indexPath];
     return cell;
 }
 #pragma mark - Collection view delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self.placeDetailTVCDelegate didSelectItemAtIndexPath:indexPath.row];
+    Food *food = self.foods[indexPath.row];
+    [self.placeDetailTVCDelegate didSelectFood:food];
 }
 @end

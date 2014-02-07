@@ -21,6 +21,7 @@
 @property (weak, nonatomic) UITableViewCell *activeCellView;
 @property (nonatomic) CGFloat keyboardDelta;
 @property (nonatomic) CGFloat maxTableHeight;
+@property (strong, nonatomic) NSMutableArray *foods;
 @end
 
 @implementation FEFoodEditVC
@@ -69,7 +70,8 @@
 
 #pragma mark - event handler
 - (void)addFood:(UIBarButtonItem *)sender {
-    [self.place insertFoodsAtIndex:0];
+    Food *food = [self.place insertFood];
+    [self.foods insertObject:food atIndex:0];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
     [self adjustTableHeight];
 }
@@ -117,6 +119,8 @@
 #pragma mark - setter gettr
 - (void)setPlace:(Place *)place {
     _place = place;
+    NSArray *foods = [_place.foods sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:NO]]];
+    self.foods = [NSMutableArray arrayWithArray:foods];
     [self.tableView reloadData];
 }
 #pragma mark - common
@@ -169,7 +173,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"FoodListCell";
     FEFoodEditListCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [self updateCell:cell withFood:self.place.foods[indexPath.row] atIndexPath:indexPath];
+    [self updateCell:cell withFood:self.foods[indexPath.row] atIndexPath:indexPath];
     return cell;
 }
 
@@ -184,20 +188,23 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.place removeFoodAtIndex:indexPath.row];
+        Food *removedFood = self.foods[indexPath.row];
+        [self.place removeFood:removedFood];
+        [self.foods removeObject:removedFood];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self adjustTableHeight];
     }
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    [self.place moveFoodFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
+// Don't support Re-Order
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+//    [self.place moveFoodFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
+//}
+//
+//
+//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
 @end
 

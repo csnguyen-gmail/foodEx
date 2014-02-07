@@ -56,10 +56,10 @@
     [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
     self.photos = tempSet;
 }
-- (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags byMOC:(NSManagedObjectContext*)moc {
-    for (Tag *tag in self.tags) {
-        [tag removeOwnerObject:self];
-    }
+- (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags {
+    [self.tags enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [(Tag*)obj removeOwnerObject:self];
+    }];
     // add new tags
     for (NSString *stringTag in stringTags) {
         // get saving tag
@@ -72,7 +72,7 @@
         }
         // create new one in case there is not existed
         if (!savingTag) {
-            savingTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:moc];
+            savingTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:self.managedObjectContext];
             savingTag.label = stringTag;
             savingTag.type = tagtype;
         }
@@ -80,25 +80,16 @@
         [savingTag addOwnerObject:self];
     }
 }
-- (void)deleteAndUpateTagWithMOC:(NSManagedObjectContext *)moc {
-    NSOrderedSet *tempTags = self.tags;
-    [moc deleteObject:self];
-    for (Tag *tag in tempTags) {
-        if (tag.owner.count == 0) {
-            [moc deleteObject:tag];
-        }
-    }
-}
-- (NSString *)buildTagsString {
-    if (self.tags.count == 0) {
-        return  nil;
-    }
-    NSMutableString *tagsString = [[NSMutableString alloc] init];
-    int i;
-    for (i = 0; i < self.tags.count - 1; i++) {
-        [tagsString appendFormat:@"%@, ", [self.tags[i] label]];
-    }
-    [tagsString appendString:[self.tags[i] label]];
-    return tagsString;
-}
+//- (NSString *)buildTagsString {
+//    if (self.tags.count == 0) {
+//        return  nil;
+//    }
+//    NSMutableString *tagsString = [[NSMutableString alloc] init];
+//    int i;
+//    for (i = 0; i < self.tags.count - 1; i++) {
+//        [tagsString appendFormat:@"%@, ", [self.tags[i] label]];
+//    }
+//    [tagsString appendString:[self.tags[i] label]];
+//    return tagsString;
+//}
 @end

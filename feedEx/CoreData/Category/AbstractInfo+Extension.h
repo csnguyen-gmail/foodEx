@@ -12,7 +12,6 @@
 - (void)insertPhotoWithThumbnail:(UIImage*)thumbnailImage andOriginImage:(UIImage*)originImage atIndex:(NSUInteger)index;
 - (void)removePhotoAtIndex:(NSUInteger)index;
 - (void)movePhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-- (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags byMOC:(NSManagedObjectContext*)moc;
-- (void)deleteAndUpateTagWithMOC:(NSManagedObjectContext*)moc;
-- (NSString*)buildTagsString;
+- (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags;
+//- (NSString*)buildTagsString;
 @end
