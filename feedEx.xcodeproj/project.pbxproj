@@ -68,7 +68,6 @@
 		6F27017C18A4FF9600E0B30F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27017B18A4FF9500E0B30F /* AbstractInfo.m */; };
 		6F27017F18A4FF9600E0B30F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27017E18A4FF9600E0B30F /* Food.m */; };
 		6F27018618A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27018518A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m */; };
-		6F27018818A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */; };
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
 		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
@@ -341,10 +340,9 @@
 		6F27017B18A4FF9500E0B30F /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6F27017D18A4FF9600E0B30F /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		6F27017E18A4FF9600E0B30F /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
-		6F27018318A5CFD900E0B30F /* feedex 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "feedex 6.xcdatamodel"; sourceTree = "<group>"; };
+		6F27018318A5CFD900E0B30F /* feedex 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "feedex 6.xcdatamodel"; sourceTree = "<group>"; };
 		6F27018418A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEAbstractInfoMigrationPolicy_5_6.h; sourceTree = "<group>"; };
 		6F27018518A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEAbstractInfoMigrationPolicy_5_6.m; sourceTree = "<group>"; };
-		6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 5 to 6.xcmappingmodel"; sourceTree = "<group>"; };
 		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
 		6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingVC.m; sourceTree = "<group>"; };
 		6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchPlaceSettingTVC.h; sourceTree = "<group>"; };
@@ -977,7 +975,6 @@
 			children = (
 				6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */,
 				6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */,
-				6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */,
 				6F8BF51417E72863001B9709 /* FEPhotoMigrationPolicy_2_3.h */,
 				6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy_2_3.m */,
 				6F27018418A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.h */,
@@ -1392,7 +1389,6 @@
 				6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */,
 				6F9E95BA1744EED100DCCF24 /* FEPlaceEditTVC.m in Sources */,
 				6F27017C18A4FF9600E0B30F /* AbstractInfo.m in Sources */,
-				6F27018818A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel in Sources */,
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
