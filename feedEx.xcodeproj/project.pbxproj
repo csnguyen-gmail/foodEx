@@ -58,7 +58,6 @@
 		6F22E24517F95BC400BFC5B6 /* FEFriendsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E24417F95BC400BFC5B6 /* FEFriendsVC.m */; };
 		6F22E24817F97AA700BFC5B6 /* FEUserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E24717F97AA700BFC5B6 /* FEUserListCell.m */; };
 		6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */; };
-		6F27016418A4FE4D00E0B30F /* Model 4 to 5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F27016318A4FE4D00E0B30F /* Model 4 to 5.xcmappingmodel */; };
 		6F27016718A4FF9500E0B30F /* OriginPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27016618A4FF9500E0B30F /* OriginPhoto.m */; };
 		6F27016A18A4FF9500E0B30F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27016918A4FF9500E0B30F /* Place.m */; };
 		6F27016D18A4FF9500E0B30F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27016C18A4FF9500E0B30F /* User.m */; };
@@ -68,6 +67,8 @@
 		6F27017918A4FF9500E0B30F /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27017818A4FF9500E0B30F /* Address.m */; };
 		6F27017C18A4FF9600E0B30F /* AbstractInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27017B18A4FF9500E0B30F /* AbstractInfo.m */; };
 		6F27017F18A4FF9600E0B30F /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27017E18A4FF9600E0B30F /* Food.m */; };
+		6F27018618A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F27018518A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m */; };
+		6F27018818A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */; };
 		6F2ADD401774C6BB00522406 /* FESearchSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */; };
 		6F2ADD431774C72700522406 /* FESearchPlaceSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD421774C72700522406 /* FESearchPlaceSettingTVC.m */; };
 		6F2ADD461774C73F00522406 /* FESearchFoodSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2ADD451774C73F00522406 /* FESearchFoodSettingTVC.m */; };
@@ -322,7 +323,6 @@
 		6F22E24717F97AA700BFC5B6 /* FEUserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEUserListCell.m; sourceTree = "<group>"; };
 		6F255F21179A4B02006F1C82 /* FEFoodEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEFoodEditVC.h; sourceTree = "<group>"; };
 		6F255F22179A4B02006F1C82 /* FEFoodEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEFoodEditVC.m; sourceTree = "<group>"; };
-		6F27016318A4FE4D00E0B30F /* Model 4 to 5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 4 to 5.xcmappingmodel"; sourceTree = "<group>"; };
 		6F27016518A4FF9500E0B30F /* OriginPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginPhoto.h; sourceTree = "<group>"; };
 		6F27016618A4FF9500E0B30F /* OriginPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginPhoto.m; sourceTree = "<group>"; };
 		6F27016818A4FF9500E0B30F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
@@ -341,6 +341,10 @@
 		6F27017B18A4FF9500E0B30F /* AbstractInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInfo.m; sourceTree = "<group>"; };
 		6F27017D18A4FF9600E0B30F /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		6F27017E18A4FF9600E0B30F /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		6F27018318A5CFD900E0B30F /* feedex 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "feedex 6.xcdatamodel"; sourceTree = "<group>"; };
+		6F27018418A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEAbstractInfoMigrationPolicy_5_6.h; sourceTree = "<group>"; };
+		6F27018518A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEAbstractInfoMigrationPolicy_5_6.m; sourceTree = "<group>"; };
+		6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 5 to 6.xcmappingmodel"; sourceTree = "<group>"; };
 		6F2ADD3C1774C6BB00522406 /* FESearchSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchSettingVC.h; sourceTree = "<group>"; };
 		6F2ADD3D1774C6BB00522406 /* FESearchSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESearchSettingVC.m; sourceTree = "<group>"; };
 		6F2ADD411774C72700522406 /* FESearchPlaceSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESearchPlaceSettingTVC.h; sourceTree = "<group>"; };
@@ -973,9 +977,11 @@
 			children = (
 				6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */,
 				6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */,
-				6F27016318A4FE4D00E0B30F /* Model 4 to 5.xcmappingmodel */,
+				6F27018718A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel */,
 				6F8BF51417E72863001B9709 /* FEPhotoMigrationPolicy_2_3.h */,
 				6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy_2_3.m */,
+				6F27018418A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.h */,
+				6F27018518A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m */,
 			);
 			path = VersionControl;
 			sourceTree = "<group>";
@@ -1386,6 +1392,7 @@
 				6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */,
 				6F9E95BA1744EED100DCCF24 /* FEPlaceEditTVC.m in Sources */,
 				6F27017C18A4FF9600E0B30F /* AbstractInfo.m in Sources */,
+				6F27018818A5D06C00E0B30F /* Model 5 to 6.xcmappingmodel in Sources */,
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
@@ -1435,7 +1442,6 @@
 				6FFBBABE178B264D0049E1E9 /* FEPlaceDetailMainVC.m in Sources */,
 				6F27017018A4FF9500E0B30F /* Photo.m in Sources */,
 				6F3287EC179273A500648277 /* FEFoodEditListCell.m in Sources */,
-				6F27016418A4FE4D00E0B30F /* Model 4 to 5.xcmappingmodel in Sources */,
 				6F255F23179A4B02006F1C82 /* FEFoodEditVC.m in Sources */,
 				6F85EA26179BE13D000D21E9 /* FEPlaceDetailFoodCell.m in Sources */,
 				6F192788180A8B43005C9DC4 /* FEAboutVC.m in Sources */,
@@ -1467,6 +1473,7 @@
 				6F96B5CE17C8728600935AEA /* NSData+Extension.m in Sources */,
 				6FE6393917D1B8950043339B /* FEPlaceListSearchMapCell.m in Sources */,
 				6F8BF4FC17E46944001B9709 /* FEPlaceCheckinVC.m in Sources */,
+				6F27018618A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1717,13 +1724,14 @@
 		6F5C32CC172B82EF00BCF8F7 /* feedex.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6F27018318A5CFD900E0B30F /* feedex 6.xcdatamodel */,
 				6F08229F18A48A4400E41E4C /* feedex 5.xcdatamodel */,
 				6F8BF4EF17E420C9001B9709 /* feedex 2.xcdatamodel */,
 				6F8BF50117E714A0001B9709 /* feedex 3.xcdatamodel */,
 				6F49FDA817ECAA2400281E58 /* feedex 4.xcdatamodel */,
 				6F5C32CD172B82EF00BCF8F7 /* feedex.xcdatamodel */,
 			);
-			currentVersion = 6F08229F18A48A4400E41E4C /* feedex 5.xcdatamodel */;
+			currentVersion = 6F27018318A5CFD900E0B30F /* feedex 6.xcdatamodel */;
 			path = feedex.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
