@@ -182,6 +182,7 @@
 		6FBD839A17B320880082449F /* FEMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD839917B320870082449F /* FEMapVC.m */; };
 		6FBD83A617B6A3BD0082449F /* FEMapUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83A517B6A3BC0082449F /* FEMapUtility.m */; };
 		6FBD83AC17B78B0F0082449F /* FEPlaceListSearchMapTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */; };
+		6FBE25DC18A640B5005ED14E /* Model 5 to 6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE25DB18A640B5005ED14E /* Model 5 to 6.xcmappingmodel */; };
 		6FBFE64D172578860073A178 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE641172578860073A178 /* AVFoundation.framework */; };
 		6FBFE64E172578860073A178 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE642172578860073A178 /* CoreData.framework */; };
 		6FBFE64F172578860073A178 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFE643172578860073A178 /* CoreLocation.framework */; };
@@ -507,6 +508,7 @@
 		6FBD83A517B6A3BC0082449F /* FEMapUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMapUtility.m; sourceTree = "<group>"; };
 		6FBD83AA17B78B0B0082449F /* FEPlaceListSearchMapTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEPlaceListSearchMapTVC.h; sourceTree = "<group>"; };
 		6FBD83AB17B78B0D0082449F /* FEPlaceListSearchMapTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEPlaceListSearchMapTVC.m; sourceTree = "<group>"; };
+		6FBE25DB18A640B5005ED14E /* Model 5 to 6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Model 5 to 6.xcmappingmodel"; sourceTree = "<group>"; };
 		6FBFE641172578860073A178 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6FBFE642172578860073A178 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FBFE643172578860073A178 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -975,6 +977,7 @@
 			children = (
 				6F8BF51217E72813001B9709 /* Model 2 to 3.xcmappingmodel */,
 				6F49FDAC17ECB03900281E58 /* Model 3 to 4.xcmappingmodel */,
+				6FBE25DB18A640B5005ED14E /* Model 5 to 6.xcmappingmodel */,
 				6F8BF51417E72863001B9709 /* FEPhotoMigrationPolicy_2_3.h */,
 				6F8BF51517E72863001B9709 /* FEPhotoMigrationPolicy_2_3.m */,
 				6F27018418A5D03100E0B30F /* FEAbstractInfoMigrationPolicy_5_6.h */,
@@ -1389,6 +1392,7 @@
 				6F9E95B91744EED100DCCF24 /* FEPlaceEditMainVC.m in Sources */,
 				6F9E95BA1744EED100DCCF24 /* FEPlaceEditTVC.m in Sources */,
 				6F27017C18A4FF9600E0B30F /* AbstractInfo.m in Sources */,
+				6FBE25DC18A640B5005ED14E /* Model 5 to 6.xcmappingmodel in Sources */,
 				6F9E95D117465D9300DCCF24 /* FEDynamicScrollView.m in Sources */,
 				6FD8CB521748DC410039EAE8 /* FEWiggleView.m in Sources */,
 				6F98CBB217535BD8007780E2 /* FETrackingKeyboardWindow.m in Sources */,
