@@ -100,8 +100,6 @@
     if (self.photos.count == 0) {
         return nil;
     }
-    Photo* photo = [self.photos anyObject];
-    photo.order;
     return [self.photos sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES]]];
 }
 @end
