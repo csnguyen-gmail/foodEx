@@ -20,7 +20,7 @@
     
     AbstractInfo *abstractInfo = (AbstractInfo*)dInstance;
     
-    __block int count = 1;
+    __block int count = 0;
     [abstractInfo.photos enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         Photo *photo = obj;
         photo.order = @(count);
