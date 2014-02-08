@@ -20,11 +20,13 @@
 - (void)insertPhotoWithThumbnail:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
-        Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
+        NSMutableArray *photos = [NSMutableArray arrayWithArray:[self arrayPhotos]];
+        
+        Photo *newPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
 
         OriginPhoto *originPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"OriginPhoto" inManagedObjectContext:context];
         originPhoto.imageData = UIImagePNGRepresentation(originImage);
-        photo.originPhoto = originPhoto;
+        newPhoto.originPhoto = originPhoto;
         
         ThumbnailPhoto *thumbnailPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"ThumbnailPhoto" inManagedObjectContext:context];
         if (thumbnailImage) {
@@ -33,9 +35,16 @@
         else {
             thumbnailPhoto.image = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
         }
-        photo.thumbnailPhoto = thumbnailPhoto;
-        photo.order = @(self.photos.count);
-        photo.owner = self;
+        newPhoto.thumbnailPhoto = thumbnailPhoto;
+        newPhoto.owner = self;
+        
+        // insert Photo object
+        [photos insertObject:newPhoto atIndex:0];
+        // update Photo order
+        for (int i = 0; i < photos.count; i++) {
+            Photo *photo = photos[i];
+            photo.order = @(i);
+        }
     }
 }
 

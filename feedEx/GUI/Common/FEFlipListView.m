@@ -70,20 +70,20 @@
     UIViewAnimationOptions animationOpt;
     if (direction == UISwipeGestureRecognizerDirectionRight) {
         animationOpt = UIViewAnimationOptionTransitionFlipFromLeft;
-        if (self.currentViewIndex != 0) {
-            self.currentViewIndex--;
-        }
-        else {
-            self.currentViewIndex = self.datasource.count - 1;
-        }
-    }
-    else {
-        animationOpt = UIViewAnimationOptionTransitionFlipFromRight;
         if (self.currentViewIndex < (self.datasource.count - 1)) {
             self.currentViewIndex++;
         }
         else {
             self.currentViewIndex = 0;
+        }
+    }
+    else {
+        animationOpt = UIViewAnimationOptionTransitionFlipFromRight;
+        if (self.currentViewIndex != 0) {
+            self.currentViewIndex--;
+        }
+        else {
+            self.currentViewIndex = self.datasource.count - 1;
         }
     }
     nextView = [self getViewAtIndex:self.currentViewIndex];

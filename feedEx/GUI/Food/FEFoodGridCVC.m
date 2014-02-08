@@ -14,6 +14,7 @@
 #import "FEFoodSingleEditVC.h"
 #import "OriginPhoto.h"
 #import "FETransparentCustomSegue.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEFoodGridCVC()<FEFlipGridFoodViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *imageIndexes; // of NSUinteger
@@ -182,7 +183,8 @@
         [self.operationQueue addOperationWithBlock:^{
             Food *food = weakSelf.foodsForDisplay[indexPath.row];
             // compress image
-            for (Photo *photo in food.photos) {
+            NSArray *photos = [food arrayPhotos];
+            for (Photo *photo in photos) {
                 UIImage *originalImage = [UIImage imageWithData:photo.originPhoto.imageData];
                 UIImage *resizeImage = [UIImage imageWithImage:originalImage scaledToSize:size];
                 [compressedPhotos addObject:resizeImage];

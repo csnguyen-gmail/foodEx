@@ -41,11 +41,12 @@
     // build GUI
     self.isBestButton.selected = [self.food.isBest boolValue];
     self.nameTF.text = self.food.name;
-    NSMutableArray *photos = [[NSMutableArray alloc] init];
-    for (Photo *photo in self.food.photos) {
-        [photos addObject:photo.thumbnailPhoto.image];
+    NSMutableArray *thumbnailPhotos = [[NSMutableArray alloc] init];
+    NSArray *photos = [self.food arrayPhotos];
+    for (Photo *photo in photos) {
+        [thumbnailPhotos addObject:photo.thumbnailPhoto.image];
     }
-    [self setupFoodsScrollViewWithArrayOfThumbnailImages:photos];
+    [self setupFoodsScrollViewWithArrayOfThumbnailImages:thumbnailPhotos];
 
 }
 - (void)close {

@@ -142,11 +142,12 @@
                                                                    zoom:GMAP_DEFAULT_ZOOM];
         }
         // photos
-        NSMutableArray *photos = [[NSMutableArray alloc] init];
-        for (Photo *photo in placeInfo.photos) {
-            [photos addObject:photo.thumbnailPhoto.image];
+        NSMutableArray *thumbnailPhotos = [[NSMutableArray alloc] init];
+        NSArray *photos = [self.placeInfo arrayPhotos];
+        for (Photo *photo in photos) {
+            [thumbnailPhotos addObject:photo.thumbnailPhoto.image];
         }
-        [self.editPlaceInfoTVC setupPhotoScrollViewWithArrayOfThumbnailImages:photos];
+        [self.editPlaceInfoTVC setupPhotoScrollViewWithArrayOfThumbnailImages:thumbnailPhotos];
     }
     self.editPlaceInfoTVC.tags = [self buildListStringTags];
 }

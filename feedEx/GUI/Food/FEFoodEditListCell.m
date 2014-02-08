@@ -9,6 +9,7 @@
 #import "FEFoodEditListCell.h"
 #import "AbstractInfo+Extension.h"
 #import "ThumbnailPhoto.h"
+#import "AbstractInfo+Extension.h"
 @interface FEFoodEditListCell()<UITextFieldDelegate, FEDynamicScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
 @end
@@ -33,11 +34,12 @@
     _food = food;
     self.isBestButton.selected = [food.isBest boolValue];
     self.nameTF.text = food.name;
-    NSMutableArray *photos = [[NSMutableArray alloc] init];
-    for (Photo *photo in self.food.photos) {
-        [photos addObject:photo.thumbnailPhoto.image];
+    NSMutableArray *thumbnailPhotos = [[NSMutableArray alloc] init];
+    NSArray *photos = [self.food arrayPhotos];
+    for (Photo *photo in photos) {
+        [thumbnailPhotos addObject:photo.thumbnailPhoto.image];
     }
-    [self setupFoodsScrollViewWithArrayOfThumbnailImages:photos];
+    [self setupFoodsScrollViewWithArrayOfThumbnailImages:thumbnailPhotos];
 }
 #pragma mark - event handler
 - (IBAction)isBestButtonTapped:(UIButton *)sender {
