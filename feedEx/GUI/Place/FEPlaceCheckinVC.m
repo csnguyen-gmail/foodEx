@@ -13,6 +13,7 @@
 #import "Common.h"
 #import "Place+Extension.h"
 #import "FECoreDataController.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEPlaceCheckinVC ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -55,7 +56,7 @@
         self.flipPlaceView.name = place.name;
         self.flipPlaceView.rating = [place.rating integerValue];
         self.flipPlaceView.timesCheckin = [place.timesCheckin integerValue];
-        [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
+        [self.flipPlaceView setDatasource:[place arrayPhotos] withSelectedIndex:0];
         NSDate *now = [NSDate date];
         NSTimeInterval timeDistance = [now timeIntervalSinceDate:place.lastTimeCheckin];
         if (timeDistance < ACCEPTABLE_CHECKIN_PERIOD) {

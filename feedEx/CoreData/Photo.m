@@ -14,6 +14,7 @@
 
 @implementation Photo
 
+@dynamic order;
 @dynamic originPhoto;
 @dynamic owner;
 @dynamic thumbnailPhoto;

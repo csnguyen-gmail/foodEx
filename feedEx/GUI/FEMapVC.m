@@ -20,6 +20,7 @@
 #import "FEMapMarkerView.h"
 #import "Tag.h"
 #import "FEPlaceDetailMainVC.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEArrowView : UIView
 @end
@@ -382,7 +383,7 @@
     mapMarkerView.layer.masksToBounds = YES;
     
     if (place.photos.count != 0) {
-        Photo *photo = place.photos[0];
+        Photo *photo = [place firstPhoto];
         mapMarkerView.imageView.image = photo.thumbnailPhoto.image;
     }
     mapMarkerView.nameLbl.text = place.name;

@@ -160,7 +160,7 @@
     cell.flipPhotosView.rowIndex = index.row;
     cell.flipPhotosView.delegate = self;
     cell.flipPhotosView.usingThumbnail = YES;
-    [cell.flipPhotosView setDatasource:[place.photos array]
+    [cell.flipPhotosView setDatasource:[place arrayPhotos]
                      withSelectedIndex:[self.imageIndexes[index.row] integerValue]];
     [cell.tagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if (place.tags.count > 0) {

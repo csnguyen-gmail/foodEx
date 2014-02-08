@@ -14,6 +14,7 @@
 #import "Common.h"
 #import "FEUserListCell.h"
 #import "CoredataCommon.h"
+#import "AbstractInfo+Extension.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FEFriendsVC ()<UITextFieldDelegate>
@@ -121,10 +122,7 @@
 }
 - (void)updateCell:(FEUserListCell*)cell atIndexPath:(NSIndexPath *)indexPath{
     User *user = self.valuesOfSections[indexPath.section][indexPath.row];
-    Photo *photo;
-    if (user.photos.count != 0) {
-        photo = user.photos[0];
-    }
+    Photo *photo = [user firstPhoto];
     cell.userImageView.image = photo.thumbnailPhoto.image;
     cell.userNameLbl.text = user.name;
     cell.userEmailLbl.text = user.email;

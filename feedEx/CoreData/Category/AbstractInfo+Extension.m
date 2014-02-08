@@ -16,7 +16,8 @@
 - (void)awakeFromInsert {
     self.createdDate = [NSDate date];
 }
-- (void)insertPhotoWithThumbnail:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage atIndex:(NSUInteger)index {
+
+- (void)insertPhotoWithThumbnail:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
         Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
@@ -33,29 +34,39 @@
             thumbnailPhoto.image = [UIImage imageWithImage:originImage scaledToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
         }
         photo.thumbnailPhoto = thumbnailPhoto;
-        
-//        [self insertObject:photo inPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
-        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
-        [tempSet insertObject:photo atIndex:index];
-        self.photos = tempSet;
+        photo.order = @(self.photos.count);
+        photo.owner = self;
     }
 }
+
 - (void)removePhotoAtIndex:(NSUInteger)index {
-//    [self removeObjectFromPhotosAtIndex:index]; // --> this function seem not work at the moment, what a shame!
     NSManagedObjectContext *context = self.managedObjectContext;
     if (context) {
-        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
-        Photo *photo = [self.photos objectAtIndex:index];
-        [tempSet removeObjectAtIndex:index];
-        self.photos = tempSet;
-        [context deleteObject:photo];
+        NSMutableArray *photos = [NSMutableArray arrayWithArray:[self arrayPhotos]];
+        // remove Photo
+        Photo *removedPhoto = photos[index];
+        [photos removeObject:removedPhoto];
+        [context deleteObject:removedPhoto];
+        // update Photo order
+        for (int i = 0; i < photos.count; i++) {
+            Photo *photo = photos[i];
+            photo.order = @(i);
+        }
     }
 }
+
 - (void)movePhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.photos];
-    [tempSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndex] toIndex:toIndex];
-    self.photos = tempSet;
+    NSMutableArray *photos = [NSMutableArray arrayWithArray:[self arrayPhotos]];
+    id object = [photos objectAtIndex:fromIndex];
+    [photos removeObjectAtIndex:fromIndex];
+    [photos insertObject:object atIndex:toIndex];
+    // update Photo order
+    for (int i = 0; i < photos.count; i++) {
+        Photo *photo = photos[i];
+        photo.order = @(i);
+    }
 }
+
 - (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags {
     [self.tags enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         [(Tag*)obj removeOwnerObject:self];
@@ -80,16 +91,15 @@
         [savingTag addOwnerObject:self];
     }
 }
-//- (NSString *)buildTagsString {
-//    if (self.tags.count == 0) {
-//        return  nil;
-//    }
-//    NSMutableString *tagsString = [[NSMutableString alloc] init];
-//    int i;
-//    for (i = 0; i < self.tags.count - 1; i++) {
-//        [tagsString appendFormat:@"%@, ", [self.tags[i] label]];
-//    }
-//    [tagsString appendString:[self.tags[i] label]];
-//    return tagsString;
-//}
+
+- (Photo *)firstPhoto {
+    return [self arrayPhotos][0];
+}
+
+- (NSArray*)arrayPhotos {
+    if (self.photos.count == 0) {
+        return nil;
+    }
+    return [self.photos sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES]]];
+}
 @end

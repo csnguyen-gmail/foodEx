@@ -16,22 +16,17 @@
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * note;
-@property (nonatomic, retain) NSOrderedSet *photos;
+@property (nonatomic, retain) NSSet *photos;
 @property (nonatomic, retain) NSSet *tags;
 @end
 
 @interface AbstractInfo (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Photo *)value inPhotosAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromPhotosAtIndex:(NSUInteger)idx;
-- (void)insertPhotos:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removePhotosAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInPhotosAtIndex:(NSUInteger)idx withObject:(Photo *)value;
-- (void)replacePhotosAtIndexes:(NSIndexSet *)indexes withPhotos:(NSArray *)values;
 - (void)addPhotosObject:(Photo *)value;
 - (void)removePhotosObject:(Photo *)value;
-- (void)addPhotos:(NSOrderedSet *)values;
-- (void)removePhotos:(NSOrderedSet *)values;
+- (void)addPhotos:(NSSet *)values;
+- (void)removePhotos:(NSSet *)values;
+
 - (void)addTagsObject:(Tag *)value;
 - (void)removeTagsObject:(Tag *)value;
 - (void)addTags:(NSSet *)values;

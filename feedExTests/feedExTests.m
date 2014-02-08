@@ -36,7 +36,7 @@
     NSManagedObjectContext *context = _coredata.managedObjectContext;
     User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     user.name = @"UserA";
-    [user insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE] atIndex:0];
+    [user insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE]];
     Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
     tag.label = @"UserTag1";
     tag.type = CD_TAG_USER;
@@ -52,7 +52,7 @@
         place.rating = @(i % 6);
         place.timesCheckin = @(i);
         place.note = @"hello";
-        [place insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE] atIndex:0];
+        [place insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE]];
         Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
         tag.label = [NSString stringWithFormat:@"PlaceTag%i", i];
         tag.type = CD_TAG_PLACE;
@@ -62,7 +62,7 @@
             food.name = [NSString stringWithFormat:@"Food%d_%d", i, j];
             food.isBest = @(j%2==0);
             food.owner = place;
-            [food insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE] atIndex:0];
+            [food insertPhotoWithThumbnail:nil andOriginImage:[UIImage imageNamed:TEST_IMAGE]];
             Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
             tag.label = [NSString stringWithFormat:@"FoodTag%i%i", i, j];
             tag.type = CD_TAG_FOOD;
@@ -156,7 +156,7 @@
     NSArray *users = [_coredata.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     User *user = users.lastObject;
     UIImage *loadedImage = [UIImage imageNamed:TEST_IMAGE];
-    Photo *firstPhotoOfUser = [user.photos objectAtIndex:0];
+    Photo *firstPhotoOfUser = [user firstPhoto];
     // check origin Photo
     NSData *originData = UIImagePNGRepresentation(loadedImage);
     NSData *storeData = firstPhotoOfUser.originPhoto.imageData;
@@ -253,9 +253,11 @@
         if (![decodeUser.name isEqual:user.name]) {
             STFail(@"User assignment is wrong");
         }
+        NSArray *decodeUserPhotos = [decodeUser arrayPhotos];
+        NSArray *userPhotos = [user arrayPhotos];
         for (int i = 0; i < decodeUser.photos.count; i++) {
-            Photo *decodePhoto = decodeUser.photos[i];
-            Photo *photo = user.photos[i];
+            Photo *decodePhoto = decodeUserPhotos[i];
+            Photo *photo = userPhotos[i];
             if (![decodePhoto.originPhoto.imageData isEqualToData:photo.originPhoto.imageData]) {
                 STFail(@"Blob data assignment is wrong");
             }

@@ -17,6 +17,7 @@
 #import "Tag.h"
 #import "CoredataCommon.h"
 #import "FECoreDataController.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEUserEditVC ()<UIAlertViewDelegate>
 @property (nonatomic, weak) FEUserInfoTVC* userInfoTVC;
@@ -41,8 +42,8 @@
     self.userInfoTVC.nameTF.text = self.user.name;
     self.userInfoTVC.emailTF.text = self.user.email;
     if (self.user.photos.count > 0) {
-        OriginPhoto *photo = [self.user.photos[0] originPhoto];
-        UIImage *image = [UIImage imageWithData:photo.imageData scale:[[UIScreen mainScreen] scale]];
+        Photo *photo = [self.user firstPhoto];
+        UIImage *image = [UIImage imageWithData:photo.originPhoto.imageData scale:[[UIScreen mainScreen] scale]];
         [self.userInfoTVC.imageBtn setImage:image forState:UIControlStateNormal];
     }
 }
@@ -91,7 +92,7 @@
                     if (self.user.photos.count != 0) {
                         [self.user removePhotoAtIndex:0];
                     }
-                    [self.user insertPhotoWithThumbnail:self.userInfoTVC.thumbnailImage andOriginImage:self.userInfoTVC.originImage atIndex:0];
+                    [self.user insertPhotoWithThumbnail:self.userInfoTVC.thumbnailImage andOriginImage:self.userInfoTVC.originImage];
                 }
                 [[FECoreDataController sharedInstance] saveToPersistenceStoreAndThenRunOnQueue:[NSOperationQueue mainQueue] withFinishBlock:^(NSError *error) {
                     [savingAlertView dismissWithClickedButtonIndex:0 animated:YES];

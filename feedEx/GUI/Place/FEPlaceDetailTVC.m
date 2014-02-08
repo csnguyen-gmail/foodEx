@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FEFlipPlaceView.h"
 #import "FEPlaceDetailMainFoodCV.h"
+#import "AbstractInfo+Extension.h"
 
 @interface FEPlaceDetailTVC()<UICollectionViewDataSource, UICollectionViewDelegate, FEPlaceDetailMainFoodCVDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
@@ -43,7 +44,7 @@
     self.flipPlaceView.name = place.name;
     self.flipPlaceView.rating = [place.rating integerValue];
     self.flipPlaceView.timesCheckin = [place.timesCheckin integerValue];
-    [self.flipPlaceView setDatasource:[place.photos array] withSelectedIndex:0];
+    [self.flipPlaceView setDatasource:[place arrayPhotos] withSelectedIndex:0];
     self.noteTextView.text = self.place.note;
     // remove all old tags
     for (UIView *childView in self.tagsScrollView.subviews) {

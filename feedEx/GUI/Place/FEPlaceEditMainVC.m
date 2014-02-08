@@ -190,7 +190,7 @@
 
 #pragma mark - FEPlaceEditTVCDelegate
 - (void)addNewThumbnailImage:(UIImage *)thumbnailImage andOriginImage:(UIImage *)originImage {
-    [self.placeInfo insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];
+    [self.placeInfo insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage];
 }
 - (void)removeImageAtIndex:(NSUInteger)index {
     [self.placeInfo removePhotoAtIndex:index];

@@ -147,7 +147,7 @@
     FEWiggleView *wiggleView = [[FEWiggleView alloc] initWithMainView:[[UIImageView alloc] initWithImage:thumbnailImage]
                                                            deleteView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"remove"]]];
     [self.foodsScrollView addView:wiggleView atIndex:0 withAnimation:YES];
-    [self.food insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage atIndex:0];
+    [self.food insertPhotoWithThumbnail:thumbnailImage andOriginImage:originImage];
 }
 #pragma mark - Alert view
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

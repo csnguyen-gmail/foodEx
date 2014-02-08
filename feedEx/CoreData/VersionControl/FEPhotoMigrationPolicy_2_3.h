@@ -8,6 +8,6 @@
 
 #import <CoreData/CoreData.h>
 
-@interface FEPhotoMigrationPolicy : NSEntityMigrationPolicy
+@interface FEPhotoMigrationPolicy_2_3 : NSEntityMigrationPolicy
 
 @end

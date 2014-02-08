@@ -9,6 +9,7 @@
 #import "FEFoodDetailVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FEFlipFoodView.h"
+#import "AbstractInfo+Extension.h"
 @interface FEFoodDetailVC()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet FEFlipFoodView *flipFoodView;
@@ -23,7 +24,7 @@
     // set up flip view
     self.flipFoodView.name = self.food.name;
     self.flipFoodView.isBest = [self.food.isBest boolValue];
-    [self.flipFoodView setDatasource:[self.food.photos array] withSelectedIndex:0];
+    [self.flipFoodView setDatasource:[self.food arrayPhotos] withSelectedIndex:0];
 
 }
 - (void)close {

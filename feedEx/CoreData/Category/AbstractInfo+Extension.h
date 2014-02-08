@@ -8,10 +8,12 @@
 
 #import "AbstractInfo.h"
 #import "Tag.h"
+#import "Photo.h"
 @interface AbstractInfo (Extension)
-- (void)insertPhotoWithThumbnail:(UIImage*)thumbnailImage andOriginImage:(UIImage*)originImage atIndex:(NSUInteger)index;
+- (void)insertPhotoWithThumbnail:(UIImage*)thumbnailImage andOriginImage:(UIImage*)originImage;
 - (void)removePhotoAtIndex:(NSUInteger)index;
 - (void)movePhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 - (void)updateTagWithStringTags:(NSArray*)stringTags andTagType:(NSNumber*)tagtype inTags:(NSArray*)tags;
-//- (NSString*)buildTagsString;
+- (Photo*)firstPhoto;
+- (NSArray*)arrayPhotos;
 @end
