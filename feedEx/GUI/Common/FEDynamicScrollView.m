@@ -119,6 +119,7 @@
         [self.dynamicScrollViewDelegate exitDraggingMode];
     }
     [self.dynamicScrollViewDelegate viewMovedFromIndex:_indexViewBeforeDraging toIndex:index];
+    self.hasChanges = YES;
 }
 
 - (void)setWaitForPagingTimer:(NSTimer *)waitForPagingTimer {
@@ -156,6 +157,7 @@
         [self.wiggleViews addObject:wiggleView];
     }
     [self rearrangeAllViewWithAnimation:animated];
+    self.hasChanges = NO;
 }
 
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index withAnimation:(BOOL)animated{
@@ -165,12 +167,14 @@
     [self.wiggleViews insertObject:wiggleView atIndex:index];
     [self rearrangeAllViewWithAnimation:YES];
     [self scrollRectToVisible:wiggleView.frame animated:animated];
+    self.hasChanges = YES;
 }
 - (void)removeView:(FEWiggleView*)wiggleImageView {
     [self.dynamicScrollViewDelegate removeImageAtIndex:[self.wiggleViews indexOfObject:wiggleImageView]];
     [wiggleImageView removeFromSuperview];
     [self.wiggleViews removeObject:wiggleImageView];
     [self rearrangeAllViewWithAnimation:YES];
+    self.hasChanges = YES;
 }
 #pragma mark - handle dragging
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

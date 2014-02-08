@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *wiggleViews; // array of FEWiggleView
 @property (nonatomic) BOOL editMode;
 @property (nonatomic, weak) id<FEDynamicScrollViewDelegate> dynamicScrollViewDelegate;
+@property (nonatomic) BOOL hasChanges;
 
 - (void)addView:(FEWiggleView *)wiggleView atIndex:(int)index withAnimation:(BOOL)animated;
 - (void)setupWithWiggleArray:(NSArray*)wiggles withAnimation:(BOOL)animated;

@@ -80,7 +80,7 @@
 #pragma mark -handler
 #define ALERT_TAG_DONE      1002
 - (IBAction)closeTapped:(UIButton *)sender {
-    if (self.food.hasChanges) {
+    if (self.foodsScrollView.hasChanges) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"Edit Food Confirmation"
                                                            delegate:self
