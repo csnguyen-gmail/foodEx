@@ -4,7 +4,7 @@
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Photo" inverseName="owner" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="owner" inverseEntity="Photo" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="owner" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Address" representedClassName="Address" syncable="YES">
@@ -23,6 +23,7 @@
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="originPhoto" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="originPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OriginPhoto" inverseName="owner" inverseEntity="OriginPhoto" syncable="YES"/>
         <relationship name="owner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AbstractInfo" inverseName="photos" inverseEntity="AbstractInfo" syncable="YES"/>
         <relationship name="thumbnailPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ThumbnailPhoto" inverseName="owner" inverseEntity="ThumbnailPhoto" syncable="YES"/>
