@@ -18,6 +18,7 @@
     super.currentViewIndex = currentViewIndex;
     [self.delegate didChangeCurrentIndex:currentViewIndex atRow:self.rowIndex];
 }
+#define NO_PHOTO_PADDING 4
 - (UIView *)getViewAtIndex:(NSUInteger)index {
     if (self.datasource.count != 0) {
         Photo *photo = self.datasource[index];
@@ -26,15 +27,20 @@
         return imageView;
     }
     else {
-        CGRect rect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
-        UILabel *label = [[UILabel alloc] initWithFrame:rect];
+        UIView *bgView = [[UIView alloc] initWithFrame:
+                          CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.width)];
+        bgView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:
+                          CGRectMake(NO_PHOTO_PADDING, 0.0, self.frame.size.width - NO_PHOTO_PADDING * 2, self.frame.size.height)];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+        label.backgroundColor = [UIColor clearColor];
         label.text = @"No Photo";
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumScaleFactor = 0.2;
         label.textAlignment = NSTextAlignmentCenter;
-        return label;
+        [bgView addSubview:label];
+        return bgView;
     }
 
 }

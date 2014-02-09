@@ -33,7 +33,7 @@
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumScaleFactor = 0.2;
         label.textAlignment = NSTextAlignmentCenter;
-        return label;
+        [bgView addSubview:label];
     }
 
     rect.size.height = 27;

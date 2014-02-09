@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *isBestImageView;
 @property (weak, nonatomic) IBOutlet UILabel *foodNameTF;
 
+@property (weak, nonatomic) IBOutlet UILabel *noPhotoLbl;
 @property (strong, nonatomic) Food *food;
 @end
