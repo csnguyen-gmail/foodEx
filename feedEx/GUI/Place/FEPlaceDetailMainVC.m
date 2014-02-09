@@ -76,7 +76,6 @@
     // location change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
-
 }
 
 - (void)dealloc {
