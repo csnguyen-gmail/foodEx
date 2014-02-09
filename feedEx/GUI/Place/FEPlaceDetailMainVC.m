@@ -32,9 +32,11 @@
 @property (weak, nonatomic) IBOutlet UIView *placeDetailView;
 @property (weak, nonatomic) IBOutlet FEVerticalResizeControllView *verticalResizeView;
 @property (weak, nonatomic) GMSMarker *placeMarker;
+@property (weak, nonatomic) GMSMarker *locationMarker;
 @property (weak, nonatomic) IBOutlet UILabel *distanceInfo;
 @property (weak, nonatomic) IBOutlet UIView *distanceInfoBgView;
 @property (strong, nonatomic) Food *selectedFood;
+@property (nonatomic) BOOL expandMap;
 @end
 
 @implementation FEPlaceDetailMainVC
@@ -76,6 +78,7 @@
     // location change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:)
                                                  name:LOCATION_UPDATED object:nil];
+    self.expandMap = NO;
 }
 
 - (void)dealloc {
@@ -127,9 +130,19 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 - (void)gotoPlace {
+    self.expandMap = YES;
     // update location
     FEAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate updateLocation];
+}
+- (void)drawCurrentMarketWithLocation:(CLLocationCoordinate2D)location {
+    if (self.locationMarker == nil) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.map = self.mapView;
+        marker.icon = [UIImage imageNamed:@"bullet_blue"];
+        self.locationMarker = marker;
+    }
+    self.locationMarker.position = location;
 }
 #pragma mark - Map
 #define MARKERS_FIT_PADDING 70.0
@@ -138,20 +151,20 @@
     CLLocation* location = [info userInfo][@"location"];
     CLLocationCoordinate2D location2d = {location.coordinate.latitude, location.coordinate.longitude};
     
-    // create current location
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = location2d;
-    marker.map = self.mapView;
-    marker.icon = [UIImage imageNamed:@"bullet_blue"];
+    // draw current location
+    [self drawCurrentMarketWithLocation:location2d];
     // find route
     CLLocationCoordinate2D locPlace1 = location2d;
     CLLocationCoordinate2D locPlace2 = self.placeMarker.position;
     [[FEMapUtility sharedInstance] getDirectionFrom:locPlace1 to:locPlace2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
         // expand map view
-        CGFloat delta = self.placeDetailView.frame.size.height - _minResizableHeight;
-        [UIView animateWithDuration:.3f animations:^{
-            [self verticalResizeControllerDidChanged:-delta];
-        }];
+        if (self.expandMap) {
+            CGFloat delta = self.placeDetailView.frame.size.height - _minResizableHeight;
+            [UIView animateWithDuration:.3f animations:^{
+                [self verticalResizeControllerDidChanged:-delta];
+            }];
+            self.expandMap = NO;
+        }
         // clear all old polylines
         for (GMSPolyline *polyline in self.mapView.polylines) {
             polyline.map = nil;
