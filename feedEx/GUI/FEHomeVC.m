@@ -60,7 +60,8 @@
                 CLLocationCoordinate2D location = {[place.address.lattittude doubleValue], [place.address.longtitude doubleValue]};
                 [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
                     if (resp.firstResult != nil) {
-                        place.address.address = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+                        GMSAddress *address = resp.firstResult;
+                        place.address.address = [NSString stringWithFormat:@"%@, %@", address.lines[0], address.lines[1]];
                     }
                     // finish getting address
                     if (++count == places.count) {

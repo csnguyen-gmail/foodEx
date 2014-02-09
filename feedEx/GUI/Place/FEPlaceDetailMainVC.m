@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceInfo;
 @property (weak, nonatomic) IBOutlet UIView *distanceInfoBgView;
 @property (strong, nonatomic) Food *selectedFood;
+@property (strong, nonatomic) GMSPolyline *polyline;
 @property (nonatomic) BOOL expandMap;
 @end
 
@@ -166,9 +167,7 @@
             self.expandMap = NO;
         }
         // clear all old polylines
-        for (GMSPolyline *polyline in self.mapView.polylines) {
-            polyline.map = nil;
-        }
+        self.polyline.map = nil;
         // add new polylines
         GMSMutablePath *path = [GMSMutablePath path];
         for (NSValue *value in locations) {
@@ -179,6 +178,7 @@
         GMSPolyline *route = [GMSPolyline polylineWithPath:path];
         route.strokeWidth = 3;
         route.map = self.mapView;
+        self.polyline = route;
         // fit camera
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:MARKERS_FIT_PADDING]];

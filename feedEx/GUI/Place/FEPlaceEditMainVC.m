@@ -18,6 +18,7 @@
 #import "FEAppDelegate.h"
 #import "ThumbnailPhoto.h"
 #import "User+Extension.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface FEPlaceEditMainVC () <FEVerticalResizeControlDelegate,CLLocationManagerDelegate, UIAlertViewDelegate, FEPlaceEditTVCDelegate, GMSMapViewDelegate>{
     float _minResizableHeight;
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *editPlaceInfoView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) FECoreDataController * coreData;
+@property (strong, nonatomic) GMSMarker *marker;
 @property (strong, nonatomic) NSArray *tags; // of Tag
 @end
 
@@ -91,7 +93,7 @@
         placeInfo.address = [NSEntityDescription insertNewObjectForEntityForName:@"Address" inManagedObjectContext:self.coreData.managedObjectContext];
     }
     placeInfo.address.address = self.editPlaceInfoTVC.addressTextField.text;
-    GMSMarker *marker = [self.mapView.markers lastObject];
+    GMSMarker *marker = self.marker;
     placeInfo.address.longtitude = @(marker.position.longitude);
     placeInfo.address.lattittude = @(marker.position.latitude);
     placeInfo.rating = @(self.editPlaceInfoTVC.ratingView.rate);
@@ -300,7 +302,8 @@
     GMSMarker *marker = [self addMarketAt:location2d snippet:@"" mapMoved:YES];
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:location.coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
         if (resp.firstResult != nil) {
-            marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            GMSAddress *address = resp.firstResult;
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", address.lines[0], address.lines[1]];
             if (self.editPlaceInfoTVC.addressTextField.text.length == 0) {
                 self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
             }
@@ -314,32 +317,38 @@
                                                                      zoom:GMAP_DEFAULT_ZOOM];
         self.mapView.camera = camera;
     }
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = location;
-    marker.snippet = snippet;
-    marker.map = self.mapView;
-    marker.draggable = YES;
-    return marker;
+    if (self.marker == nil) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.snippet = snippet;
+        marker.map = self.mapView;
+        marker.draggable = YES;
+        self.marker = marker;
+    }
+    
+    self.marker.position = location;
+    return self.marker;
 }
 
 #pragma mark - GMSMapViewDelegate
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker {
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:marker.position completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
         if (resp.firstResult != nil) {
-            NSString *snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            GMSAddress *address = resp.firstResult;
+            NSString *snippet = [NSString stringWithFormat:@"%@, %@", address.lines[0], address.lines[1]];
             self.editPlaceInfoTVC.addressTextField.text = snippet;
         }
     }];
 }
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     // just add Marker in case there is no one added beforehand
-    if (self.mapView.markers.count != 0) {
+    if (self.marker != nil) {
         return;
     }
     GMSMarker *marker = [self addMarketAt:coordinate snippet:@"" mapMoved:NO];
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse *resp, NSError *error) {
         if (resp.firstResult != nil) {
-            marker.snippet = [NSString stringWithFormat:@"%@, %@", resp.firstResult.addressLine1, resp.firstResult.addressLine2];
+            GMSAddress *address = resp.firstResult;
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", address.lines[0], address.lines[1]];
             self.editPlaceInfoTVC.addressTextField.text = marker.snippet;
         }
     }];

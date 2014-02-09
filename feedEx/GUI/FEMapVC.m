@@ -55,6 +55,8 @@
 @property (nonatomic) CLLocationCoordinate2D fromPlacePos;
 @property (nonatomic) CLLocationCoordinate2D toPlacePos;
 @property (weak, nonatomic) IBOutlet UILabel *distanceInfoLbl;
+@property (strong, nonatomic) GMSPolyline *polyline;
+@property (strong, nonatomic) NSMutableArray *markers;
 @end
 
 @implementation FEMapVC
@@ -165,7 +167,12 @@
     }
     return _searchSettingInfo;
 }
-
+- (NSMutableArray *)markers {
+    if (!_markers) {
+        _markers = [NSMutableArray array];
+    }
+    return _markers;
+}
 #pragma mark - Search
 - (NSArray*)queryByKeyword:(NSString*)searchKeyword {
     NSArray *filteredPlaces;
@@ -236,7 +243,7 @@
 #pragma mark - FEPlaceListSearchMapTVCDelegate
 - (void)searchMapDidSelectPlace:(Place *)place {
     [self.searchTextField resignFirstResponder];
-    for (GMSMarker *marker in self.mapView.markers) {
+    for (GMSMarker *marker in self.markers) {
         if ((marker.position.longitude == [place.address.longtitude doubleValue]) &&
             (marker.position.latitude == [place.address.lattittude doubleValue])) {
             marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
@@ -265,9 +272,10 @@
 }
 - (void)rebuildMarkers {
     // rebuild marker
-    for (GMSMarker *marker in self.mapView.markers) {
+    for (GMSMarker *marker in self.markers) {
         marker.map = nil;
     }
+    [self.markers removeAllObjects];
     for (Place *place in self.places) {
         CLLocationCoordinate2D location2d = {[place.address.lattittude floatValue], [place.address.longtitude floatValue]};
         [self addMarketAt:location2d withPlace:place mapMoved:NO];
@@ -282,9 +290,7 @@
     self.locationMarker = nil;
     self.locationMarker.position = myLocation2d;
     // clear all old polylines
-    for (GMSPolyline *polyline in self.mapView.polylines) {
-        polyline.map = nil;
-    }
+    self.polyline.map = nil;
     // hide distance info
     self.distanceInfoLbl.hidden = YES;
 }
@@ -311,7 +317,7 @@
 }
 - (void)fitMarkerInBound {
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
-    for (GMSMarker *marker in self.mapView.markers) {
+    for (GMSMarker *marker in self.markers) {
         bounds = [bounds includingCoordinate:marker.position];
     }
     [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0]];
@@ -326,6 +332,7 @@
     marker.position = location;
     marker.snippet = snippet;
     marker.map = self.mapView;
+    [self.markers addObject:marker];
     return marker;
 }
 - (GMSMarker*)addMarketAt:(CLLocationCoordinate2D)location withPlace:(Place*)place mapMoved:(BOOL)mapMoved{
@@ -338,14 +345,13 @@
     marker.position = location;
     marker.userData = place;
     marker.map = self.mapView;
+    [self.markers addObject:marker];
     return marker;
 }
 - (void)createPolylineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to {
     [[FEMapUtility sharedInstance] getDirectionFrom:from to:to queue:[NSOperationQueue mainQueue] completionHandler:^(NSArray *locations) {
         // clear all old polylines
-        for (GMSPolyline *polyline in self.mapView.polylines) {
-            polyline.map = nil;
-        }
+        self.polyline.map = nil;
         // add new polylines
         GMSMutablePath *path = [GMSMutablePath path];
         for (NSValue *value in locations) {
@@ -356,6 +362,7 @@
         GMSPolyline *route = [GMSPolyline polylineWithPath:path];
         route.strokeWidth = 3;
         route.map = self.mapView;
+        self.polyline = route;
         // fit camera
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:60]];
@@ -468,6 +475,7 @@
         marker.position = coordinate;
         marker.map = self.mapView;
         marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        [self.markers addObject:marker];
         // update coordinate
         self.fromPlacePos = coordinate;
     }
@@ -477,6 +485,7 @@
         marker.position = coordinate;
         marker.map = self.mapView;
         marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        [self.markers addObject:marker];
         // update coordinate
         self.toPlacePos = coordinate;
         // create polyline
