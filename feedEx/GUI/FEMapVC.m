@@ -410,7 +410,7 @@
         NSArray *tags = [place.tags sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"label" ascending:YES]]];
         for (Tag *tag in tags) {
             UIFont *font = [UIFont systemFontOfSize:10];
-            CGSize tagSize = [tag.label sizeWithFont:font];
+            CGSize tagSize = [tag.label sizeWithAttributes:@{NSFontAttributeName:font}];
             tagSize.width += TAG_HORIZON_MARGIN;
             tagSize.height += TAG_VERTICAL_MARGIN;
             UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth, 0, tagSize.width, tagSize.height)];

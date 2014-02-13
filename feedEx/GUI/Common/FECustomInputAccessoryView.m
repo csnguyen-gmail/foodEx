@@ -73,7 +73,7 @@
     float widthContent = 0.0;
     for (NSString *word in filteredWords) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGSize wordSize = [word sizeWithFont:button.titleLabel.font];
+        CGSize wordSize = [word sizeWithAttributes:@{NSFontAttributeName:button.titleLabel.font}];
         [button setFrame:CGRectMake(widthContent, 0, wordSize.width + WORD_MARGING, SCROLL_VIEW_HEIGHT)];
         [button setBackgroundImage:[UIImage imageNamed:@"gradientBar"] forState:UIControlStateNormal];
         [button setTitle:word forState:UIControlStateNormal];

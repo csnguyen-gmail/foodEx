@@ -10,12 +10,12 @@
 
 @implementation NSString (Extension)
 - (void)drawCenteredInRect:(CGRect)rect withFont:(UIFont *)font {
-    CGSize size = [self sizeWithFont:font];
+    CGSize size = [self sizeWithAttributes:@{NSFontAttributeName:font}];
     
     CGRect textBounds = CGRectMake(rect.origin.x + (rect.size.width - size.width) / 2,
                                    rect.origin.y + (rect.size.height - size.height) / 2,
                                    size.width, size.height);
-    [self drawInRect:textBounds withFont:font];
+    [self drawInRect:textBounds withAttributes:@{NSFontAttributeName:font}];
 }
 
 @end
