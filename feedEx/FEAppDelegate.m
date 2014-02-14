@@ -27,13 +27,14 @@
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     // provide key to use Google Map API
     [GMSServices provideAPIKey:@"AIzaSyAFoi1LNE9wzQbTjwX1LuPKEbvIP9WVfKA"];
-    // appearance
-    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
-    [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
-    [[UISegmentedControl appearance] setTintColor:[UIColor darkGrayColor]];
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
+//    // appearance
+//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+//    [[UITabBar appearance] setSelectedImageTintColor:[UIColor lightGrayColor]];
+//    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
+//    [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
+//    [[UISegmentedControl appearance] setTintColor:[UIColor darkGrayColor]];
+//    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor blackColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     // create User firstly
     [User getUser];
 //    [FEDebug printOutImageSize];
