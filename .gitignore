@@ -14,3 +14,5 @@ feedEx.xcodeproj/project.xcworkspace/xcuserdata/csnguyen.xcuserdatad/UserInterfa
 *.xcbkptlist
 
 *.xcbkptlist
+
+*.DS_Store
