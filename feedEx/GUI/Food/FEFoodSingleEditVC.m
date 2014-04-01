@@ -25,6 +25,7 @@
 @property (strong, nonatomic) FEImagePicker *imagePicker;
 @property (weak, nonatomic) FECoreDataController * coreData;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (nonatomic) BOOL hasChanges;
 @end
 
 @implementation FEFoodSingleEditVC
@@ -38,6 +39,7 @@
     self.bgView.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.bgView.layer.borderWidth = 1.5;
     self.nameTF.delegate = self;
+    self.hasChanges = NO;
     // build GUI
     self.isBestButton.selected = [self.food.isBest boolValue];
     self.nameTF.text = self.food.name;
@@ -80,7 +82,7 @@
 #pragma mark -handler
 #define ALERT_TAG_DONE      1002
 - (IBAction)closeTapped:(UIButton *)sender {
-    if (self.foodsScrollView.hasChanges) {
+    if (self.foodsScrollView.hasChanges || self.hasChanges) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"Edit Food Confirmation"
                                                            delegate:self
@@ -103,6 +105,7 @@
 - (IBAction)isBestButtonTapped:(UIButton *)sender {
     self.isBestButton.selected = !self.isBestButton.selected;
     self.food.isBest = @(self.isBestButton.selected);
+    self.hasChanges = YES;
 }
 #pragma mark - text field delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -111,6 +114,7 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.food.name = textField.text;
+    self.hasChanges = YES;
 }
 
 #pragma mark - Photos
